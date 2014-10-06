@@ -8,7 +8,7 @@
 #include "ihc.h"
 #include "GGC.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	Personnage *J1 = new Personnage();
 	Personnage *J2 = new Personnage();

@@ -2,8 +2,8 @@
 #define CARTE_H
 
 #include <string>
-#include <tchar.h>
-#include <stdlib.h>
+//#include <tchar.h>
+//#include <stdlib.h>
 #include <iostream>
 #include "Attribut.h"
 
