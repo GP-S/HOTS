@@ -12,7 +12,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	Personnage *J1 = new Personnage();
 	Personnage *J2 = new Personnage();
-	
+	 
 	cout << "--------------------------------Gen de Deck--------------------------------" << endl;
 	Board *deck(new Board(genDeck(24)));
 	//printBoard(ZoneCombatJ2);
