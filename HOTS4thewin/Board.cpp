@@ -58,11 +58,32 @@ Carte * Board::pioche(int nb_carte)
 	/* on test si on pioche la première ou dernière carte du board
 	et si besoin on modifie les pinteurs firstCard et lastCard 
 	et puis on détache first (ou temp) de la liste chainée... Trivial*/
-	first->getPrec() != NULL ? first->getPrec()->setSuiv(first->getSuiv()) : firstCard = first->getSuiv();
-	first->getSuiv() != NULL ? first->getSuiv()->setPrec(first->getSuiv()) : lastCard  = first->getPrec();
-	
+	if (first->getPrec() != NULL && first->getSuiv() != NULL)
+	{
+		first->getPrec()->setSuiv(first->getSuiv());
+		first->getSuiv()->setPrec(first->getPrec());
+	}
+	else if (first->getPrec() == NULL && first->getSuiv() != NULL)
+	{
+		firstCard = first->getSuiv();
+		first->getSuiv()->setPrec(first->getPrec());
+	}
+	else if (first->getPrec() != NULL && first->getSuiv() == NULL)
+	{
+		lastCard = first->getPrec();
+		first->getPrec()->setSuiv(first->getSuiv());
+	}
+	else
+	{
+		firstCard = NULL;
+		lastCard = NULL;
+		return 0;
+	}
+	first->setPrec(NULL);
 	first->setSuiv(NULL);
-	cout << "nb carte : " << this->getLength() << "  " << num << endl;
+
+
+	/* Même histoire mais pour les N suivants.*/
 	if (nb_carte > 1){
 		Carte *temp;
 		Carte *last = first;
@@ -95,6 +116,7 @@ Carte * Board::pioche(int nb_carte)
 			{
 				firstCard = NULL;
 				lastCard  = NULL;
+				return 0;
 			}
 			
 			last->setSuiv(temp);
