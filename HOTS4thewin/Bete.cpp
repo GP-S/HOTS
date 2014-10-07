@@ -19,5 +19,5 @@ Bete::~Bete()
 }
 
 bool Bete::isAlive(){
-	return 0;
+	return this->findByType(Att_vie)->getVal()>0;
 }

@@ -22,7 +22,6 @@ Carte::Carte(string name, Ttype typ){
 
 Carte::~Carte()
 {
-    //dtor
 }
 
 void Carte::addAttribut(Attribut * att){

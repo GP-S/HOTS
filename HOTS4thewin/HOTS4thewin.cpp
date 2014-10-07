@@ -8,9 +8,11 @@
 #include "ihc.h"
 #include "GGC.h"
 #include "mecaJeu.h"
+#include <time.h>
 
 int main(int argc, char* argv[])
 {
+	srand(time(NULL));
 	Personnage *J1 = new Personnage();
 	Personnage *J2 = new Personnage();
 	 

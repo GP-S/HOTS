@@ -22,45 +22,74 @@ void play(Personnage * J1, Personnage * J2){
 	J1Main->addCard(J1Pioche->pioche(4));
 	J2Main->addCard(J2Pioche->pioche(4));
 
-	printTable(J1, J2);
+printTable(J1, J2);
 
-	while (!over){
-		choix = 0;
-		if (JP == 1){
-			J1->findByType(Att_cristaux_cur)->setVal(++tour/2);
-			cout << "J1 pioche\n";
-			J1Main->addCard(J1Pioche->pioche(1));
-			system("pause");
-			system("cls");
-			printTable(J1, J2);
+while (!over){
+	choix = 0;
+	if (JP == 1){
+		J1->findByType(Att_cristaux_cur)->setVal(++tour / 2);
+		cout << "J1 pioche\n";
+		J1Main->addCard(J1Pioche->pioche(1));
+		system("pause");
+		system("cls");
+		printTable(J1, J2);
+		while (choix != 3){
 			cout << "Que souhaite faire J1?\n";
-			while (choix != 2){
-				cout << " 1 : Jouer Carte | 2 : Attaquer | 3 : Finir tour\n";
+			cout << " 1 : Jouer Carte | 2 : Attaquer | 3 : Finir tour\n";
+			cin >> choix;
+			if (choix == 1){
+				cout << "Quel Carte jouer?\n";
 				cin >> choix;
-				if (choix == 1){
-					cout << "Quel Carte jouer?\n";
-					cin >> choix;
-					useCard(J1, choix, J2);
-					system("cls");
-					printTable(J1, J2);
-				}
-				if (choix == 2){
-					cout << "Quel Créture?\n";
-					cin >> choix;
-					Attaque(J1, choix, J2);
-					system("cls");
-					printTable(J1, J2);
-				}
+				useCard(J1, choix, J2);
+				system("cls");
+				printTable(J1, J2);
+				choix = 0;
+			}
+			else if (choix == 2){
+				cout << "Quel Créture?\n";
+				cin >> choix;
+				attaque(J1, choix, J2);
+				system("cls");
+				printTable(J1, J2);
+				choix = 0;
 			}
 
-			JP = 2;
 		}
-		else{
-			++tour;
-			JP = 1;
-		}
-		if (tour/2 >= 4) over = true;
+
+		JP = 2;
 	}
+	else{
+		J2->findByType(Att_cristaux_cur)->setVal(++tour / 2);
+		cout << "J2 pioche\n";
+		J2Main->addCard(J2Pioche->pioche(1));
+		system("pause");
+		system("cls");
+		printTable(J1, J2);
+		while (choix != 3){
+			cout << "Que souhaite faire J2?\n";
+			cout << " 1 : Jouer Carte | 2 : Attaquer | 3 : Finir tour\n";
+			cin >> choix;
+			if (choix == 1){
+				cout << "Quel Carte jouer?\n";
+				cin >> choix;
+				useCard(J2, choix, J1);
+				system("cls");
+				printTable(J1, J2);
+				choix = 0;
+			}
+			if (choix == 2){
+				cout << "Quel Créture?\n";
+				cin >> choix;
+				attaque(J2, choix, J1);
+				system("cls");
+				printTable(J1, J2);
+				choix = 0;
+			}
+		}
+		JP = 1;
+	}
+	if (tour / 2 >= 4) over = true;
+}
 
 }
 
@@ -84,8 +113,29 @@ void useCard(Personnage * J1, int choix, Personnage * J2){
 	}
 }
 
-void Attaque(Personnage * J1, int choix, Personnage * J2)
+bool attaque(Personnage * J1, int choix, Personnage * J2)
 {
-
-
+	int numCrea = choix;
+	Carte * Card = J1->getBoard(Board_board)->getCardX(choix);
+	cout << "tapéki?\t(1,2,3... ou 0 pour le perso adverse)\n";
+	cin >> choix;
+	if (choix == 0){
+		J2->findByType(Att_vie)->setVal(J2->findByType(Att_vie)->getVal() - Card->findByType(Att_attaque)->getVal());
+		return J1->isAlive();
+	}
+	else
+	{
+		Carte * Cible = J2->getBoard(Board_board)->getCardX(choix);
+		Cible->findByType(Att_vie)->setVal(Cible->findByType(Att_vie)->getVal() - Card->findByType(Att_attaque)->getVal());
+		Card->findByType(Att_vie)->setVal(Card->findByType(Att_vie)->getVal() - Cible->findByType(Att_attaque)->getVal());
+		if(!Cible->isAlive())
+		{
+			J2->getBoard(Board_board)->takeCardX(choix);
+		}
+		if (!Card->isAlive())
+		{
+			J1->getBoard(Board_board)->takeCardX(numCrea);
+		}
+		return true;
+	}
 }

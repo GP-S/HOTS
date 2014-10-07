@@ -6,7 +6,7 @@
 
 Carte *genDeck(int nb_crea){
 
-	srand(time(NULL));
+
 	Carte *temp, *first = NULL, *last = NULL;
 
 

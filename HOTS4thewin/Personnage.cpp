@@ -12,7 +12,7 @@ Personnage::~Personnage()
 }
 
 bool Personnage::isAlive(){
-	return 0;
+	return this->findByType(Att_vie)->getVal()>0;
 }
 
 void Personnage::setBoard(Board * Board, Ttype Type)
