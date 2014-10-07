@@ -26,6 +26,7 @@ Carte *genDeck(int nb_crea){
 			temp->addAttribut(new Attribut(Att_vie, PV, inf));
 			temp->addAttribut(new Attribut(Att_attaque, Att, inf));
 			temp->addAttribut(new Attribut(Att_cible, Cible_choix, inf));
+			temp->addAttribut(new Attribut(Att_CanAttak, 0, inf));
 		}else{
 
 			nom = rand() % 6 + 15;

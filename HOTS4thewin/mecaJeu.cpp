@@ -18,6 +18,7 @@ void play(Personnage * J1, Personnage * J2){
 	int tour = 1; // nb de tour;
 	int choix = 0;
 
+
 	//init
 	J1Main->addCard(J1Pioche->pioche(4));
 	J2Main->addCard(J2Pioche->pioche(4));
@@ -27,6 +28,7 @@ printTable(J1, J2);
 while (!over){
 	choix = 0;
 	if (JP == 1){
+		for (Carte * temp = J1->getBoard(Board_board)->getFirstCard(); temp != NULL; temp = temp->getSuiv()) temp->findByType(Att_CanAttak)->setVal(1);
 		J1->findByType(Att_cristaux_cur)->setVal(++tour / 2);
 		cout << "J1 pioche\n";
 		J1Main->addCard(J1Pioche->pioche(1));
@@ -59,6 +61,7 @@ while (!over){
 		JP = 2;
 	}
 	else{
+		for (Carte * temp = J2->getBoard(Board_board)->getFirstCard(); temp != NULL; temp = temp->getSuiv()) temp->findByType(Att_CanAttak)->setVal(1);
 		J2->findByType(Att_cristaux_cur)->setVal(++tour / 2);
 		cout << "J2 pioche\n";
 		J2Main->addCard(J2Pioche->pioche(1));
@@ -154,6 +157,13 @@ bool attaque(Personnage * J1, int choix, Personnage * J2)
 {
 	int numCrea = choix;
 	Carte * Card = J1->getBoard(Board_board)->getCardX(choix);
+	if (Card->findByType(Att_CanAttak)->getVal() == 0)
+	{
+		cout << "Cette Crea ne peut attaquer pour le moment\n";
+		system("pause");
+		return false;
+	}
+	Card->findByType(Att_CanAttak)->setVal(1);
 	cout << "tapeki?\t(1,2,3... ou 0 pour le perso adverse)\n";
 	cin >> choix;
 	if (choix == 0){

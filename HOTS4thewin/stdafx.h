@@ -49,7 +49,7 @@ enum Ttype
 	Att_attaque,
 	Att_price,
 	Att_cible,
-
+	Att_CanAttak,
 	Att_cristaux_cur,
 	Att_cristaux_max,
 
