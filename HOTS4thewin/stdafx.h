@@ -30,10 +30,10 @@ enum Ttype
 	Board_pioche,
 	Board_board,
 	Board_tomb,
-	Board_main,
 	Board_totem,
 	Board_trap,
 	Board_joueur,
+	Board_Deck,
 
 	// Liste des types de carte
 	Carte_dafuck,
@@ -44,10 +44,14 @@ enum Ttype
 	// Liste des type d'attribut
 
 	Att_vie,
+	Att_vie_max,
 	Att_degats,
 	Att_attaque,
 	Att_price,
 	Att_cible,
+
+	Att_cristaux_cur,
+	Att_cristaux_max,
 
 	// Liste des type de ciblage
 

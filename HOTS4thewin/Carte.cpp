@@ -39,6 +39,7 @@ void Carte::addAttribut(Attribut * att){
 
 }
 
+
 Carte *Carte::getPrec()
 {
 	return cartePrec;

@@ -27,6 +27,47 @@ Carte * Board::getFirstCard()
 	return firstCard;
 }
 
+Carte * Board::getCardX(int x)
+{
+	Carte * temp = firstCard;
+	int i = 0;
+	while (++i < x && temp != NULL) temp = temp->getSuiv();
+	return i == x ? temp : NULL;
+}
+
+Carte * Board::takeCardX(int x)
+{
+	Carte * temp = firstCard;
+	int i = 0;
+	while (++i < x && temp != NULL) temp = temp->getSuiv();
+	if (i == x){
+		if (temp->getPrec() != NULL && temp->getSuiv() != NULL)
+		{
+			temp->getPrec()->setSuiv(temp->getSuiv());
+			temp->getSuiv()->setPrec(temp->getPrec());
+		}
+		else if (temp->getPrec() == NULL && temp->getSuiv() != NULL)
+		{
+			firstCard = temp->getSuiv();
+			temp->getSuiv()->setPrec(temp->getPrec());
+		}
+		else if (temp->getPrec() != NULL && temp->getSuiv() == NULL)
+		{
+			lastCard = temp->getPrec();
+			temp->getPrec()->setSuiv(temp->getSuiv());
+		}
+		else
+		{
+			firstCard = NULL;
+			lastCard = NULL;
+		}
+		temp->setSuiv(NULL);
+		temp->setPrec(NULL);
+		return temp;
+	}
+	return NULL;
+}
+
 int Board::getLength()
 {
 	Carte *temp = firstCard;
@@ -41,8 +82,11 @@ void Board::addCard(Carte * card)
 		card->setPrec(lastCard);
 		card->setSuiv(NULL);
 		lastCard->setSuiv(card);
-		lastCard = card;
 	}
+	else{
+		firstCard = card;
+	}
+	for (lastCard = card; lastCard->getSuiv() != NULL; lastCard = lastCard->getSuiv());
 }
 
 
@@ -91,7 +135,7 @@ Carte * Board::pioche(int nb_carte)
 		for (int i = 1; i < nb_carte; i++)
 		{
 			pose = 0;
-			cout << "nb carte : " << this->getLength() << "  " << num << endl;
+			//cout << "nb carte : " << this->getLength() << "  " << num << endl;
 			temp = firstCard;
 			num = rand() % this->getLength();
 			while (pose++ != num) temp = temp->getSuiv();

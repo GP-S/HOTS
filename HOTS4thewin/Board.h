@@ -7,6 +7,8 @@ public:
 	Board(Carte *teteList);
 	
 	Carte * getFirstCard();
+	Carte * getCardX(int x);
+	Carte * takeCardX(int x);
 	Carte * pioche(int nb_carte);
 	int		getLength();
 	void    addCard(Carte *card);

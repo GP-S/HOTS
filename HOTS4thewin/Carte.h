@@ -21,7 +21,6 @@ class Carte
 		void	  setPrec(Carte* prec);
 		void	  setSuiv(Carte* suiv);
 		string	  getName();
-		string	  getAtribut();
 		virtual   bool isAlive() = 0;
 		Attribut  *findByType(Ttype type);
 		Ttype	  getType();

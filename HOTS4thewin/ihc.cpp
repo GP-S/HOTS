@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Board.h"
+#include "Personnage.h"
 #include "ihc.h"
 
 void printBoard(Board *board)
@@ -95,4 +96,23 @@ void printDeck(Board *board)
 
 		}
 	}
+}
+
+void printTable(Personnage * J1, Personnage * J2)
+{
+	cout << "----------------------------------Main joueur 1--- vie : "  << J1->findByType(Att_vie)->getVal()
+		 <<"----- Mana : " << J1->findByType(Att_cristaux_cur)->getVal() << "-----\n";
+	cout << "    1          2          3          4           5          6          7\n";
+	printBoard(J1->getBoard(Board_hand));
+	cout << "--------------------------------------------------------------------------------\n";
+	printBoard(J1->getBoard(Board_board));
+	cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
+	printBoard(J2->getBoard(Board_board));
+	cout << "----------------------------------Main joueur 2--- vie : "	<< J2->findByType(Att_vie)->getVal() 
+		 << "----- Mana : " << J2->findByType(Att_cristaux_cur)->getVal() << "-----\n";
+	printBoard(J2->getBoard(Board_hand));
+	cout << "--------------------------------------------------------------------------------\n";
+	cout << "    1          2          3          4           5          6          7\n";
+
+
 }
