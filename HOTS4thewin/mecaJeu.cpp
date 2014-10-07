@@ -88,13 +88,15 @@ while (!over){
 		}
 		JP = 1;
 	}
-	if (tour / 2 >= 4) over = true;
+	if (tour / 2 >= 8) over = true;
 }
 
 }
 
 void useCard(Personnage * J1, int choix, Personnage * J2){
+	Carte * temp ;
 	Carte * Carte;
+	int pose;
 	int valcarte = J1->getBoard(Board_hand)->getCardX(choix)->findByType(Att_price)->getVal();
 	if (valcarte > J1->findByType(Att_cristaux_cur)->getVal())
 	{
@@ -110,6 +112,41 @@ void useCard(Personnage * J1, int choix, Personnage * J2){
 		{
 			J1->getBoard(Board_board)->addCard(Carte);
 		}
+		else
+		{
+			if (Carte->findByType(Att_cible)->getVal() == Cible_choix)
+			{
+				cout << "Quelle est la cible (1,2,3,4 ... 0 pour le perso adverse)";
+				cin >> choix;
+				if (choix == 0) J2->findByType(Att_vie)->setVal(J2->findByType(Att_vie)->getVal() - Carte->findByType(Att_degats)->getVal());
+				else
+				{
+					temp = J2->getBoard(Board_board)->getCardX(choix);
+					temp->findByType(Att_vie)->setVal(temp->findByType(Att_vie)->getVal() - Carte->findByType(Att_degats)->getVal());
+					if (!temp->isAlive()) delete J2->getBoard(Board_board)->takeCardX(choix);
+				}
+			}
+			else
+			{
+				temp = J2->getBoard(Board_board)->getFirstCard();
+				pose = 1;
+				while (temp != NULL)
+				{
+					temp->findByType(Att_vie)->setVal(temp->findByType(Att_vie)->getVal() - Carte->findByType(Att_degats)->getVal());
+					if (!temp->isAlive())
+					{
+						temp = temp->getSuiv();
+						delete J2->getBoard(Board_board)->takeCardX(pose);
+					}
+					else
+					{
+						temp = temp->getSuiv();
+						pose++;
+					}
+				}
+			}
+			delete Carte;
+		}
 	}
 }
 
@@ -117,7 +154,7 @@ bool attaque(Personnage * J1, int choix, Personnage * J2)
 {
 	int numCrea = choix;
 	Carte * Card = J1->getBoard(Board_board)->getCardX(choix);
-	cout << "tapéki?\t(1,2,3... ou 0 pour le perso adverse)\n";
+	cout << "tapeki?\t(1,2,3... ou 0 pour le perso adverse)\n";
 	cin >> choix;
 	if (choix == 0){
 		J2->findByType(Att_vie)->setVal(J2->findByType(Att_vie)->getVal() - Card->findByType(Att_attaque)->getVal());
@@ -130,11 +167,13 @@ bool attaque(Personnage * J1, int choix, Personnage * J2)
 		Card->findByType(Att_vie)->setVal(Card->findByType(Att_vie)->getVal() - Cible->findByType(Att_attaque)->getVal());
 		if(!Cible->isAlive())
 		{
-			J2->getBoard(Board_board)->takeCardX(choix);
+			Cible = J2->getBoard(Board_board)->takeCardX(choix);
+			delete Cible;
 		}
 		if (!Card->isAlive())
 		{
-			J1->getBoard(Board_board)->takeCardX(numCrea);
+			Card = J1->getBoard(Board_board)->takeCardX(numCrea);
+			delete Card;
 		}
 		return true;
 	}
