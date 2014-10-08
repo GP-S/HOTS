@@ -156,6 +156,10 @@ void useCard(Personnage * J1, int choix, Personnage * J2){
 bool attaque(Personnage * J1, int choix, Personnage * J2)
 {
 	int numCrea = choix;
+	if(choix){
+        cout<<"TG Armand!\n";
+        return false;
+	}
 	Carte * Card = J1->getBoard(Board_board)->getCardX(choix);
 	if (Card->findByType(Att_CanAttak)->getVal() == 0)
 	{
