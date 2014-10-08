@@ -156,7 +156,7 @@ void useCard(Personnage * J1, int choix, Personnage * J2){
 bool attaque(Personnage * J1, int choix, Personnage * J2)
 {
 	int numCrea = choix;
-	if(choix){
+	if(!choix){
         cout<<"TG Armand!\n";
         return false;
 	}
