@@ -40,8 +40,8 @@ Carte *genDeck(int nb_crea){
 			temp->addAttribut(new Attribut(Att_cible, listCible[PV], inf));
 		}
 
-		first == NULL ? (first = temp) : last->setSuiv(temp);
-		last  == NULL ? ( last = temp) : temp->setPrec(last);
+		first == NULL ? (void)(first = temp) : last->setSuiv(temp);
+		last  == NULL ? (void)( last = temp) : temp->setPrec(last);
 		last = temp;
 
 	}
