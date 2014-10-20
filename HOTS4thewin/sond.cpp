@@ -7,7 +7,7 @@ sond::sond()
 	output = 0;
 }
 
-sond::sond(int * input)
+sond::sond(float * input)
 {
 	this->input = input;
 	output = 0;

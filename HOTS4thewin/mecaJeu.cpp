@@ -2,7 +2,13 @@
 #include "Personnage.h"
 #include "ihc.h"
 #include "mecaJeu.h"
+#include "structure.h"
+#include "sond.h"
+#include "Neurone.h"
+#include "EasyKill.h"
 #include <time.h>
+
+
 
 
 void play(Personnage * J1, Personnage * J2){
@@ -18,6 +24,22 @@ void play(Personnage * J1, Personnage * J2){
 	int tour = 1; // nb de tour;
 	int choix = 0;
 
+	float grabbed[8];
+
+	EasyKill * creaKill = new EasyKill();
+
+	
+	chaine * dend1 = NULL;
+	chaine * dend2 = NULL;
+	
+	//Construction des dendrte
+	for (int i = 0; i < 7; i++){
+		sond  *A = new sond(&grabbed[i]);
+		dend1 = AddEntete(dend1,A);
+
+	}
+	//construction du neuronne
+	Neurone * Neur1 = new Neurone(dend1, "Neur1");
 
 	//init
 	J1Main->addCard(J1Pioche->pioche(4));
@@ -61,6 +83,7 @@ while (!over){
 		JP = 2;
 	}
 	else{
+		grabList(J1, J2, grabbed);
 		for (Carte * temp = J2->getBoard(Board_board)->getFirstCard(); temp != NULL; temp = temp->getSuiv()) temp->findByType(Att_CanAttak)->setVal(1);
 		J2->findByType(Att_cristaux_cur)->setVal(++tour / 2);
 		cout << "J2 pioche\n";
@@ -191,4 +214,17 @@ bool attaque(Personnage * J1, int choix, Personnage * J2)
 		}
 		return true;
 	}
+}
+
+
+void grabList(Personnage * J1, Personnage * J2, float tab[8])
+{
+	tab[0] = (float) J1->findByType(Att_vie)->getVal();
+	tab[1] = 1 / tab[0];
+	tab[2] = (float) J2->findByType(Att_vie)->getVal();;
+	tab[3] = 1 / tab[2];
+	tab[4] = (float) J1->getBoard(Board_board)->getLength();
+	tab[5] = 1 / tab[4];
+	tab[6] = (float) J2->getBoard(Board_board)->getLength();
+	tab[7] = 1 / tab[6];
 }
