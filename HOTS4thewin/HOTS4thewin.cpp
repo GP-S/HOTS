@@ -8,7 +8,8 @@
 #include "ihc.h"
 #include "GGC.h"
 #include "mecaJeu.h"
-#include <time.h>
+#include <time.h> 
+
 
 int main(int argc, char* argv[])
 {
