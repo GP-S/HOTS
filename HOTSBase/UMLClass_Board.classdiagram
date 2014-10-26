@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="e81d24fc-0fa6-4e60-ba1b-90d52b29423d" name="UMLClass_Board" linkedPackageId="de445e00-017c-4d1a-975f-7ebda9b9280e" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="fdc8a868-75b2-4b74-9ff3-a896a5da7239">
+      <profileInstance Id="8ef7f2f6-aeb0-43c8-bcef-5992784a7f0b" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="c7c57cae-f21e-4c98-8360-0484edbb793c">
+      <profileInstance Id="4aab46b7-a2b2-4f78-8462-0d27667a2990" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="e48b80c1-efe7-461c-8931-cebbb7ad0bef" name="BoardPackage">
+        <elementDefinition Id="61372221-e35b-44ab-9487-32b3c09aeb5e" />
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" name="Board" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="22fa3c74-2835-4ba7-be10-a7d4d8120382" />
+        <ownedAttributesInternal>
+          <property Id="535fc84c-ab5c-4142-89b6-fd7c345614df" name="CardList" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0c42bed8-717a-40d1-a570-977830209723" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="c673dbf0-b783-4d18-91bb-736c97d90cab" LastKnownName="Card" />
+            </type_NamedElement>
+          </property>
+          <property Id="f2732447-1a2d-46ea-a4a5-370af4c7bbd2" name="CardStack" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f2a2e055-52be-4d3a-8e0d-a2eaed430251" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="694fed6d-758d-48b6-b902-33676056d63b" LastKnownName="Card" />
+            </type_NamedElement>
+          </property>
+          <property Id="b6227f74-9afa-4fb6-bb98-cc1c98816644" name="Id" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5aedff88-c5e5-407c-8ed6-719c22b3c02f" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="d87a914b-b598-4bb6-9e72-2d784333b00f" LastKnownName="Integer" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="c673dbf0-b783-4d18-91bb-736c97d90cab" name="Card" isAbstract="false" isLeaf="false" cachedFullName="HOTSBase::CardPackage::Card">
+        <elementDefinition Id="4eabc4cb-2b03-4558-aebb-205b944dd0f4" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="694fed6d-758d-48b6-b902-33676056d63b" name="Card" isAbstract="false" isLeaf="false" cachedFullName="HOTSBase::CardPackage::Card">
+        <elementDefinition Id="4eabc4cb-2b03-4558-aebb-205b944dd0f4" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="d87a914b-b598-4bb6-9e72-2d784333b00f" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
+        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d6a2ce77-26dc-4ab1-a2d7-d52d13424ff3" name="Hand" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="415f63d0-464a-401c-8ef6-24866e8aac9e" />
+        <generalsInternal>
+          <generalization Id="8140b069-3ab6-4ac4-b537-6ca197192052" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="d4d752ce-4e87-4436-afe5-a9045cd9fa2e" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4f09f87b-f7ac-42ee-9e80-1f6f0c297cab" name="BattleField" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="885029b8-2584-4d88-9e3d-d444a06b181d" />
+        <generalsInternal>
+          <generalization Id="059adff2-b914-49b2-b1b5-0cd691e0e052" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="08b80955-3747-41a5-be1c-e4baa209d1c3" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d1ba16b2-346b-4429-bc07-cad7b2a7c9e2" name="Deck" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6c6cb965-a730-4aaa-8edb-0a076f291568" />
+        <generalsInternal>
+          <generalization Id="6aa9202e-afc9-4b24-9ce5-2a934eb9c1a3" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="e6a91bd7-362b-450f-9ea8-450774467943" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="accaaa7e-7efa-42d0-a14e-aaff31207ebf" name="Cemetary" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="05ac02b2-48cf-4245-97f3-8a28ae34ad69" />
+        <generalsInternal>
+          <generalization Id="c70e5381-c043-4f71-8f50-c3d9937cf44a" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="30cec715-811b-4bbd-956c-5fd756b671d7" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="94feae0c-056a-41f4-bd75-3ac8c11d2bb9" name="Trap" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0f4f4c0d-78fb-43b1-b082-b8ec5c61d4c8" />
+        <generalsInternal>
+          <generalization Id="b5ecac66-6ed3-45cd-9a00-fe3524729032" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="e4335008-c3a3-49ac-a6e2-336e8ed577cc" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e19ceff8-e5e8-45d7-b9c3-b331da8c7134" name="Equipment" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1b711d1b-def5-4072-8b56-1e40e55d5284" />
+        <generalsInternal>
+          <generalization Id="08b764a1-bde0-43ad-8d94-62125c9638bd" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="c691c295-c217-4eaf-a37d-811c681d1769" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7f25f05b-3d5a-4a52-84ca-32e50450079c" name="HeroPower" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="00c1b2c0-60ee-4c98-a75c-b6689f914609" />
+        <generalsInternal>
+          <generalization Id="57353bee-029c-450b-a344-031198142e5c" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="1c74a7cb-d931-42ee-847c-d0378a31c62a" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8091d563-9556-4b6b-8b05-48e6fc734ff0" name="HeroSlot" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f895d07f-ee69-420b-8203-8fac3042cff8" />
+        <generalsInternal>
+          <generalization Id="b19da9bd-c5b7-4480-9f7c-f9845182727b" isSubstitutable="false">
+            <classMoniker Id="db4ea06f-9ce8-4e13-97b1-5b8b3dacfa5f" LastKnownName="Board" />
+            <elementDefinition Id="d77cb130-6248-4d1d-aa05-7f304dcf9c3c" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="58fd64be-3955-421c-bbc2-897eaed10ccf" name="HOTSBase">
+    <elementDefinition Id="9cb1790d-13e9-460f-ab72-c4ff4ad31272" />
+    <profileInstances>
+      <packageHasProfileInstances Id="c3b7fa13-e2d8-46f6-bf59-86210eb9a555">
+        <profileInstance Id="2857eff3-d8d6-4db7-a8ce-a4ac9af055f1" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="7d498108-a779-4475-9953-e5c8b523723b">
+        <profileInstance Id="cf343398-88c2-4ce5-888f-4345dbb8065f" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+  <package Id="de445e00-017c-4d1a-975f-7ebda9b9280e" name="BoardPackage">
+    <elementDefinition Id="61372221-e35b-44ab-9487-32b3c09aeb5e" />
+  </package>
+</logicalClassDesignerModel>
