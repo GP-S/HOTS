@@ -1,24 +1,16 @@
 #include "Board.h"
 
-
-
-
-
-Board::Borad(){
+Board::Board(){
   
   listCard = NULL;
 
-  
 }
 
-
-Board::Borad(std::list<Card> *listCard){
+Board::Board(std::list<Card> *listCard){
   
   this.listCard = listCard;
 
-  
 }
-
 
 Card Board::getCardX(unsigned int x){
   
@@ -31,24 +23,20 @@ Card Board::getCardX(unsigned int x){
 
 }
 
-
-
 Card * takeCardX(unsigned int x){
   
   std::list<Card>::iterator it;
+  Card card;
   
   it = listCard.begin();
   it += x;
-  
-  Card card = it;
+  card = it;
   
   listcard.erase(it);
   
   return *card;  
   
 }
-
-
 
 unsigned int getSize(){
   
@@ -68,7 +56,6 @@ void setMaxSize(unsigned int size){
   
 }
 
-
 void addCardX(Card *card,unsigned int x){
   
   std::list<Card>::iterator it;
@@ -78,8 +65,6 @@ void addCardX(Card *card,unsigned int x){
   insert(it, 1, *card);
   
 }
-
-
 
 void addListCardX(std::list<Card> *listCard,unsigned int x){
   
@@ -92,33 +77,4 @@ void addListCardX(std::list<Card> *listCard,unsigned int x){
   
 }
 
-
-
 ~Board();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
