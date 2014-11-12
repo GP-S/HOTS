@@ -21,7 +21,7 @@ public:
 	~Board();
 
 private:
-	std::list<Card>	listCard;
+	std::list<*Card>	listCard;
 };
 
 #endif BOARD_H
