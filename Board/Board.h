@@ -13,13 +13,15 @@ public:
 	
 	Card * getCardX(unsigned int x);
 	Card * takeCardX(unsigned int x);
-	unsigned int getLength();
+	unsigned int getSize();
+	unsigned int getMaxSize();
+	void setMaxSize(unsigned int size);
 	void addCardX(Card *card,unsigned int x);
-	void addListCard(std::list<Card> *listCard);
+	void addListCardX(std::list<Card> *listCard,unsigned int x);
 	~Board();
 
 private:
 	std::list<Card>	listCard;
 };
 
-#endif // BOARD_H
+#endif BOARD_H
