@@ -2,21 +2,20 @@
 #define BOARD_H
 
 
-#include "Carte.h"
+#include "Card.h"
 
 
 class Board
 {
 public:
 	Board();
-	Board(Carte *teteList);
+	Board(std::list<Card> *listCard);
 	
-	Carte * getFirstCard();
-	Carte * getCardX(int x);
-	Carte * takeCardX(int x);
-	Carte * pioche(int nb_carte);
-	int		getLength();
-	void    addCard(Carte *card);
+	Card * getCardX(unsigned int x);
+	Card * takeCardX(unsigned int x);
+	unsigned int getLength();
+	void addCardX(Card *card,unsigned int x);
+	void addListCard(std::list<Card> *listCard);
 	~Board();
 
 private:
