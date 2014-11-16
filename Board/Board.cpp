@@ -13,6 +13,7 @@ Board::Board(){
 
 /** 
 * Create a board and initialize it with the pointer of listCard.  
+* @param std::list<Card> *listCard pointer of a list of card.
 */
 Board::Board(std::list<Card> *listCard){
   
@@ -80,8 +81,8 @@ unsigned int getMaxSize(){
 
 
 /** 
-* Set the maximum size to the value size.  
-* @param unsigned int size
+* Set the maximum size of the list to the value size.  
+* @param unsigned int size.
 */
 void setMaxSize(unsigned int size){
   
@@ -89,6 +90,10 @@ void setMaxSize(unsigned int size){
   
 }
 
+/**
+ * Add a card at the Xth position of a board.
+ * @param Card *card pointer of the target card, unsigned int x wanted position.
+ */
 void addCardX(Card *card,unsigned int x){
   
   std::list<Card>::iterator it;
@@ -99,6 +104,10 @@ void addCardX(Card *card,unsigned int x){
   
 }
 
+/**
+ * Add a list of cards at the Xth position of a board.
+ * @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position. 
+ */
 void addListCardX(std::list<Card> *listCard,unsigned int x){
   
   std::list<Card>::iterator it;
@@ -110,4 +119,7 @@ void addListCardX(std::list<Card> *listCard,unsigned int x){
   
 }
 
+/**
+ * Destructor.
+ */
 ~Board();
