@@ -34,7 +34,7 @@ Beast::~Beast()
 }
 
 bool Beast::isAlive(){
-	return this->findByType(Att_vie)->getVal()>0;//didn't modified this one because we don't have the architecture anyway 
+	return this->findCapaByType("hp")->getVal()>0;
 }
 
 int Beast::getHp(){
@@ -54,18 +54,26 @@ void Beast::setAttack(int attack){
 	attack=attack;
 }
 
-void Beast::attack(Beast* target){//naive implemantation . modify this
+void Beast::attack(Beast* target){//this should work now .
 
-	if(attackCount != 0){// windfury is not handled yet
-		attackCount++;
-		target.setHp(target.getHp()-attack);
-		hp-=target.getAttack();
+	EffectCapacity attackCounter = new EffectCapacity();
+	if(attackCounter.canAttack(this)){
+		attackCount.increaseAttackCount(this);
+		int attackerAttack = this->findCapaByType("attack").front.getVal();
+		int defenderAttack = target->findCapaByType("attack").front.getVal();
+		EffectLife damageAttacker = new EffectLife();
+		EffectLife damageDefender = new EffectLife();
+		damageDefender.takeDamage(target,attackerAttack);
+		damageAttacker.takeDamage(this,defenderAttack);
 	}
-
+	else{
+		throw std::logic_error( "this beast can not attack now" ); 
+	}
 }
 
 void Beast::resetAttackCount(){// call this function on each beast when the turn begins
 
-	attackCount=0;
+	EffectCapacity attackCounter = new EffectCapacity();
+	attackCount.resetAttackCount(this);
 
 }

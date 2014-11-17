@@ -53,7 +53,7 @@ std::list<Capacity> Card::findCapaByType(std::string capaType)//returns a list o
 
 }
 
-Ttype Card::getType()
+std::string Card::getType()
 {
 	return cardType;
 }

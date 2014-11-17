@@ -75,9 +75,6 @@ class Beast : public Card
         * resetAttackCount
         * Used every to reset the number of attacks a beast did .
         *
-        *
-        *
-        * modify it
         **/
         void    resetAttackCount();
     protected:

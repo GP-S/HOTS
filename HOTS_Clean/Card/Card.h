@@ -9,7 +9,7 @@
 #include "Capacity.h"
 
 /** 
-* Class Card . Derived from Card  .
+* Class Card . 
 * @author Armand
 *
 **/
@@ -22,69 +22,75 @@ class Card
     * 
     *
     **/
-													Card();
-		/**
-    * Default constructor
+								Card();
+	/**
+    * Constructor
     * 
     *
     **/
-													Card(string name, std::string cardType);
+								Card(string name, std::string cardType);
     /**
-    * Default constructor
-    * 
+    * Destructor
+    * Does nothing atm
     *
     **/
-													~Card();
+								~Card();
     /**
-    * Default constructor
-    * 
+    * getCost
+    * Basic getter
+    * @return cost the cost of the card
     *
     **/													
-		float									getCost();	
+		float					getCost();	
     /**
-    * Default constructor
-    * 
+    * calculateCost
+    * does nothing atm . modify it .
     *
     **/
-		void									calculateCost();
+		void					calculateCost();
     /**
-    * Default constructor
-    * 
+    * addCapacity
+    * adds a capacity to the list of capacities of the capacity list
     *
     **/
-		void		 	 						addCapacity(Capacity* capa);
+		void		 	 		addCapacity(Capacity* capa);
     /**
-    * Default constructor
-    * 
+    * getName
+    * basic getter
+    * @param Capacity* capa the capacity to add
+    * @return name the name of the card
     *
     **/
-		string	 						 	getName();
+		string	 				getName();
     /**
-    * Default constructor
-    * 
+    * isAlive
+    * tells if a card is alive 
+    * @return isAlive the alive flag of a card .
     *
     **/
-		virtual   						bool isAlive() = 0;
+virtual bool                    isAlive() = false;
     /**
-    * Default constructor
-    * 
+    * findCapaByType
+    * returns a list of capacity that matches choosen type
+    * @param std::string capaType the type you want to find
+    * @return capaListTemp the list of capacities that matches choosen type
     *
     **/
 		std::list<Capacity>		findCapaByType(std::string capaType);
     /**
-    * Default constructor
-    * 
+    * getType
+    * basic getter
     *
     **/
-		Ttype	  							getType();
+		std::string				getType();
 
     
 
     protected:
-      std::string							name;
-			float	 									cost;
-	    std::list<Capacity>			capaList;
-			std::string							cardType;
+        std::string				name;
+		float	 				cost;
+	    std::list<Capacity>		capaList;
+		std::string				cardType;
 };
 
 #endif // CARD_H

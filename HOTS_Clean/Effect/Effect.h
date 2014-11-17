@@ -9,7 +9,7 @@ class Effect :
 {
     public:
         Effect();
-				Effect();
+		Effect();
         abstract ~Effect();
 		
     protected:
