@@ -47,12 +47,12 @@ public:
 	/** 
 	* Return the size of the list.
 	*/
-	virtual unsigned int getSize();
+	unsigned int getSize();
 	
 	/** 
 	* Return the maximum size of the list.  
 	*/
-	virtual unsigned int getMaxSize();
+	unsigned int getMaxSize();
 	
 	/** 
 	* Set the maximum size of the list to the value size.  
