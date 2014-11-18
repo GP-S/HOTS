@@ -3,7 +3,7 @@
 
 #include "Board.h"
 
-Class RegulatedBoard
+Class RegulatedBoard : public Board
 {
 public:
   
