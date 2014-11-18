@@ -36,7 +36,7 @@ public:
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	virtual Card * takeCardX(unsigned int x);
+	Card * takeCardX(unsigned int x);
 	
 	/**
 	 * Delete the card which is at the Xth position.
@@ -58,7 +58,7 @@ public:
 	* Set the maximum size of the list to the value size.  
 	* @param unsigned int size.
 	*/
-	virtual void setMaxSize(unsigned int size);
+	void setMaxSize(unsigned int size);
 	
 	/**
  	* Add a card at the Xth position of a board.
