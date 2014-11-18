@@ -90,4 +90,13 @@ void addListCardX(std::list<Card> *listCard,unsigned int x){
   
 }
 
+bool isFull(std::list<Card> *listCard){
+  
+  if(listCard.size == listCar.max_size)
+    return 1;
+  else
+    return 0;
+  
+}
+
 ~Board();
