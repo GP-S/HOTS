@@ -46,11 +46,13 @@ public:
 	
 	/** 
 	* Return the size of the list.
+	* @return unsigned int the size.
 	*/
 	unsigned int getSize();
 	
 	/** 
 	* Return the maximum size of the list.  
+	* @return unsigned int the maximum size.
 	*/
 	unsigned int getMaxSize();
 	
@@ -71,6 +73,13 @@ public:
  	* @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position. 
 	 */
 	virtual void addListCardX(std::list<Card> *listCard,unsigned int x);
+	
+	/**
+	 * Return 1 if the list is full (like an egg), else 0.
+	 * @param std::list<Card> *listCard pointer of the list of cards.
+	 * @return bool.
+	 */
+	bool isFull(std::list<Card> *listCard);
 	
 	/**
  	* Destructor.
