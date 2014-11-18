@@ -3,7 +3,7 @@
 
 #include "Board.h"
 
-Class StackBoard
+Class StackBoard : public Board
 {
 public:
 
