@@ -22,8 +22,8 @@ public:
   
   
 private: 
-
-};
+  std::list<*Card>	CardByArrivalTime;
+};  
 
 
 #endif REGULATEDBOARD_H
