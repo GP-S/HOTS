@@ -1,7 +1,0 @@
-
-
-1 Un grabbeur récupère les info pour le réseaux
-2 les agents font leurs truc
-3 transmettent le tout au neuronne
-4 le neuro neuronne
-5 Ia fait un choix.
