@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UMLClass_Player">
-  <logicalClassDesignerModelMoniker Id="85d7baaa-7b8d-4b55-9b65-d5b80cb8ffb0" />
-  <nestedChildShapes>
-    <packageShape Id="5daf5ccf-f015-4ca2-a89b-ca6503157e59" absoluteBounds="0.75, 0.625, 1.5, 0.75" customColor="255, 249, 230" hideQualifiedName="false">
-      <packageMoniker Id="672c6366-cb83-40bd-9a64-2fd00a7997ae" LastKnownName="PlayerPckage" />
-    </packageShape>
-  </nestedChildShapes>
-</logicalClassDesignerDiagram>
