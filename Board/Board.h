@@ -86,7 +86,7 @@ public:
  	*/
 	virtual ~Board();
 
-private:
+protected:
 	std::list<*Card>	listCard;
 };
 
