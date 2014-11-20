@@ -21,7 +21,7 @@ public:
   ~StackBoard();
   
   
-private: 
+protected: 
   std::list<*Card>	CardByArrivalTime;
 };  
 
