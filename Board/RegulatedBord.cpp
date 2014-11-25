@@ -1,56 +1,41 @@
 #include "RegulatedBoard.h"
 
-/**
-* To do :
-* Put some method...
-* REDIFINE OPERATORS == AND != (and I don't succeed in this task (Yes, I tried
-* to overload == with my CodeBlock and I have had odd answers of my PC)
-*
-*/
-
-/*
-
-// Proposition of a method which return the position in the list of the arrival by time
-// if we need it.
-
-
-Card * positionByArrivalTime(*Card wantedCar1d){
+Card * takeCardX(unsigned int x, unsigned int y){
   
-  std::list<Card>::iterator it;
-  bool state = 0;
-  while(state){
-    if(it != card)
-      it++;
-    else 
-      state = 1; 
-  }
-  card = it;
-  return *card;
-} 
-*/
-
-Card * takeCardX(unsigned int x){
-  
-  std::list<Card>::iterator it;
-  Card card;
-  
-  it = listCard.begin();
-  it += x;
-  card = it;
-  
-  listcard.erase(it);
   /**
-   * How will we erase the card of CardByArrivalTime ? Has the card the same position in the two lists (CardBy.. and listcard) ?
-   * If not, we need to create a method which return the position of the card in CardByArrivalTime. 
+   * We have two positions to consider : x, the position in the regulated list and y, 
+   * the position in the list by arrival time. 
    */
   
-  CardByArrivalTime.erase(it);
+  std::list<Card>::iterator it1;
+  std::list<Card>::iterator it2;
+  Card* pointerCard1;
+  Card* pointerCard2;
   
-  return *card; 
+  it1 = listCard.begin();
+  it1 += x;
+  pointerCard1 = it1;
+  
+  it2 = CardByArrivalTime.begin();
+  it2 += y;
+  pointerCard2 = it2;
+  
+  if(*pointerCard1 == *pointerCard2){
+    
+    listcard.erase(it1);
+    CarByArrivalTime.erase(it2);
+    
+    return pointerCard1 ;
+    
+  }
+  
+  else{
+  
+  /* RETURN ERROR */
+ 
+  }
   
 }
 
-/**
- *  I'll finish this section when I'll have the precedent answers.
- * 
- */
+void 
+
