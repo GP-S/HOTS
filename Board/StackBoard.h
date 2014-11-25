@@ -12,14 +12,15 @@
 Class StackBoard : public Board
 {
 public:
-
+/*
   Card * takeCardX(unsigned int x);
   void deletCardX(unsigned int x);
   void addCardX(Card *card,unsigned int x);
   void addListCardX(std::list<Card> *listCard,unsigned int x);
   ~StackBoard();
+*/
 
-private:
+protected:
 
 };
 
