@@ -2,16 +2,23 @@
 #define BEAST_H
 
 #include "stdafx.h"
-#include "Card.h"
+#include "Creature.h"
 
 
 /** 
-*   Class Beast . Derived from Card  .
+*   Class Beast . Derived from Creature  .
 * @author Armand
 *
 **/
-
-class Beast : public Card
+/** @TODO :
+*   
+*   remove the methods that are in Creature .             
+*   remove the attributes that are in Creature .
+*   add what specifies a Beast (owner ?)
+*
+*
+**/
+class Beast : public Creature
 {
     public:
         /**
@@ -70,7 +77,7 @@ class Beast : public Card
         *
         * modify it
         **/
-		void 	attack(Beast* target);
+		void 	attack(Creature* target);
         /**
         * resetAttackCount
         * Used every to reset the number of attacks a beast did .

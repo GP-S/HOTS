@@ -63,6 +63,18 @@ class Capacity
     *
     **/
     void				setValue(int value);
+    /**
+    * setActive
+    * basic setter
+    *
+    **/
+    void                setActive(bool active);
+    /**
+    * getActive
+    * basic getter
+    *
+    **/
+    bool                getActive();
 
 	protected : 
 
@@ -71,6 +83,7 @@ class Capacity
 
 		std::string		type;
 		int 			value;
+        bool            active;
 
 
 };

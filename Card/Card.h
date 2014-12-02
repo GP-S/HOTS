@@ -41,7 +41,7 @@ class Card
     * @return cost the cost of the card
     *
     **/													
-		float					getCost();	
+		int				        getCost();	
     /**
     * calculateCost
     * does nothing atm . modify it .
@@ -76,21 +76,32 @@ virtual bool                    isAlive() = false;
     * @return capaListTemp the list of capacities that matches choosen type
     *
     **/
-		std::list<Capacity>		findCapaByType(std::string capaType);
+		std::list<Capacity*>		findCapaByType(std::string capaType);
     /**
     * getType
     * basic getter
     *
     **/
 		std::string				getType();
+    /**
+    * isUsable
+    * tells if a card can be used or not
+    * @param
+    *
+    * not done yet !!!
+    **/
+        bool                    isUsable(Player p);
+
 
     
 
     protected:
         std::string				name;
-		float	 				cost;
-	    std::list<Capacity>		capaList;
 		std::string				cardType;
+        int                     cost;
+        std::list<Capacity*>     capaList;
+        Player                  owner;
+
 };
 
 #endif // CARD_H

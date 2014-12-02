@@ -1,16 +1,6 @@
 #include "stdafx.h"
 #include "Beast.h"
-/** @TODO :
-*	attack() : 	- multiple attacks and attack modifiers are not handled yet
-*				- death is not handled (need to modify ?)
-*				- we don't send somehting when we cann't use attack() . 
-*					need to modify this . 
-*					or handle this elsewhere . like canAttack() ...
-*
-*
-*
-*
-**/
+
 Beast::Beast()
 {
   name = "unknown";

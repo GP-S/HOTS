@@ -38,3 +38,13 @@ void Capacity::setValue(int value)
 {
     this.value=value;
 }
+
+void Capacity::setActive(bool active)
+{
+    this.active=active;
+}
+
+bool Capacity::getActive()
+{
+    return active;
+}
