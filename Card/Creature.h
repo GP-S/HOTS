@@ -1,8 +1,11 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
-#include "stdafx.h"
+
 #include "Card.h"
+#include <string>
+#include <list>
+#include <iostream>
 
 
 /** 
@@ -18,7 +21,7 @@
 *
 *
 **/
-abstract class Creature : public Card
+class Creature : public Card
 {
     public:
         /**
@@ -32,7 +35,7 @@ abstract class Creature : public Card
         * 
         *
         **/
-				Creature(string name);
+				Creature(std::string name);
         /**
         * Destructor
         * Does nothing atm
@@ -44,7 +47,7 @@ abstract class Creature : public Card
         * @return a boolean corresponding to the state (dead or alive) of the Creature
         *
         **/
-		bool 	isAlive();
+		virtual bool 	isAlive();
         /**
         * getHp
         * Basic geter
@@ -56,7 +59,7 @@ abstract class Creature : public Card
         * Basic geter
         *
         **/
-		int 	getAttack();
+		int 	getBaseAttack();
         /**
         * setHp
         * Basic seter
@@ -68,7 +71,7 @@ abstract class Creature : public Card
         * Basic seter
         *
         **/
-		void 	setAttack(int attack);
+		void 	setBaseAttack(int attack);
         /**
         * attack
         * Used to attack another Creature
@@ -116,9 +119,8 @@ abstract class Creature : public Card
         void    increaseAttackCount(); 
     protected:
 
-    private:
     	int hp;
-    	int	attack;
+    	int	baseAttack;
     	int attackCount;
 };
 

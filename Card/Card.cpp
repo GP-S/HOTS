@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Card.h"
 /**@TODO : 
 *	
@@ -16,7 +15,7 @@ Card::Card()
 	
 }
 
-Card::Card(string name, std::string cardType){
+Card::Card(std::string name, std::string cardType){
 	name = name;
 	cardType = cardType;
 	capaList = new std::list<Capacity*>();
@@ -41,7 +40,7 @@ void Card::calculateCost(){//modify when capacities are done
 
 std::list<Capacity*> Card::findCapaByType(std::string capaType)//returns a list of all capacities of choosen type
 {
-	capaListTemp = new std::list<Capacity*>();
+	std::list<Capacity*> capaListTemp = new std::list<Capacity*>();
 	int i;
 	for (i=0;i<capaList.size();i++){
 		if (capaList[i]->getType()==capaType){
@@ -58,7 +57,7 @@ std::string Card::getType()
 	return cardType;
 }
 
-string Card::getName()
+std::string Card::getName()
 {
 	return name;
 }

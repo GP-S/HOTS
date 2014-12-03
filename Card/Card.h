@@ -3,10 +3,9 @@
 
 #include <string>
 #include <list>
-//#include <tchar.h>
-//#include <stdlib.h>
 #include <iostream>
 #include "Capacity.h"
+#include "Player.h"
 
 /** 
 * Class Card . 
@@ -28,7 +27,7 @@ class Card
     * 
     *
     **/
-								Card(string name, std::string cardType);
+								Card(std::string name, std::string cardType);
     /**
     * Destructor
     * Does nothing atm
@@ -61,14 +60,14 @@ class Card
     * @return name the name of the card
     *
     **/
-		string	 				getName();
+		std::string	 				getName();
     /**
     * isAlive
     * tells if a card is alive 
     * @return isAlive the alive flag of a card .
     *
     **/
-virtual bool                    isAlive() = false;
+    virtual bool                    isAlive() = 0;
     /**
     * findCapaByType
     * returns a list of capacity that matches choosen type
@@ -99,7 +98,7 @@ virtual bool                    isAlive() = false;
         std::string				name;
 		std::string				cardType;
         int                     cost;
-        std::list<Capacity*>     capaList;
+        std::list<Capacity*>    capaList;
         Player                  owner;
 
 };

@@ -3,8 +3,6 @@
 
 #include <string>
 #include <list>
-//#include <tchar.h>
-//#include <stdlib.h>
 #include <iostream>
 
 
@@ -77,9 +75,6 @@ class Capacity
     bool                getActive();
 
 	protected : 
-
-
-	private :
 
 		std::string		type;
 		int 			value;

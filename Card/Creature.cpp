@@ -1,20 +1,19 @@
-#include "stdafx.h"
+
 #include "Creature.h"
 
 Creature::Creature()
 {
     name = "unknown";
-    type = Card_crea;
     hp = 0;
-    attack = 0;
+    baseAttack = 0;
 }
 
-Creature::Creature(string name,int hp, int attack)
+Creature::Creature(std::string name,int hp, int attack)
 {
     name = name;
     type = Card_crea;
     hp = hp;
-    attack = attack;
+    baseAttack = attack;
 }
 
 
@@ -22,26 +21,26 @@ Creature::~Creature()
 {
     
 }
-
+/*
 bool Creature::isAlive(){
     return this->findCapaByType("hp").front->getVal()>0;
 }
-
+*/
 int Creature::getHp(){
 
     return hp;
 }
-int Creature::getAttack(){
+int Creature::getBaseAttack(){
 
-    return attack
+    return baseAttack;
 }
 void Creature::setHp(int hp){
 
     hp =hp;
 }
-void Creature::setAttack(int attack){
+void Creature::setBaseAttack(int attack){
 
-    attack=attack;
+    baseAttack=attack;
 }
 
 void Creature::attack(Creature* target){//this should work now .
