@@ -7,7 +7,7 @@ Board::Board(){
 
 }
 
-Board::Board(std::list<Card> *listCard){
+Board::Board(std::list<Card*> listCard){
   
   this.listCard = listCard;
 
@@ -15,7 +15,7 @@ Board::Board(std::list<Card> *listCard){
 
 Card * Board::getCardX(unsigned int x){
   
-  std::list<Card>::iterator it;
+  std::list<Card*>::iterator it;
   
   it = listCard.begin();
   it += x;
@@ -26,8 +26,8 @@ Card * Board::getCardX(unsigned int x){
 
 Card * Board::takeCardX(unsigned int x){
   
-  std::list<Card>::iterator it;
-  Card card;
+  std::list<Card*>::iterator it;
+  Card *card;
   
   it = listCard.begin();
   it += x;
@@ -35,13 +35,13 @@ Card * Board::takeCardX(unsigned int x){
   
   listcard.erase(it);
   
-  return *card;  
+  return card;  
   
 }
 
 void Board::deleteCardX(unsigned int x){
   
-  std::list<Card>::iterator it;
+  std::list<Card*>::iterator it;
   
   it = listCard.begin();
   it += x;
@@ -71,7 +71,7 @@ void Board::setMaxSize(unsigned int size){
 
 void Board::addCardX(Card *card,unsigned int x){
   
-  std::list<Card>::iterator it;
+  std::list<*Card>::iterator it;
   
   it = listCard.begin();
   it += x;
@@ -79,9 +79,9 @@ void Board::addCardX(Card *card,unsigned int x){
   
 }
 
-void Board::addListCardX(std::list<Card> *listCard,unsigned int x){
+void Board::addListCardX(std::list<Card*> listCard,unsigned int x){
   
-  std::list<Card>::iterator it;
+  std::list<Card*>::iterator it;
   
   it = this.listCard.begin();
   it += x;
@@ -90,7 +90,7 @@ void Board::addListCardX(std::list<Card> *listCard,unsigned int x){
   
 }
 
-bool Board::isFull(std::list<Card> *listCard){
+bool Board::isFull(std::list<Card*> listCard){
   
   if(listCard.size == listCar.max_size)
     return 1;
