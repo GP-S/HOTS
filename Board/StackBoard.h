@@ -9,7 +9,7 @@
  * Write the functions in StackBoard.cpp, then write here the commentaries
  * 
  */
-Class StackBoard : public Board
+class StackBoard : public Board
 {
 public:
 /*

@@ -10,7 +10,7 @@
  */
 
 
-Class RegulatedBoard : public Board
+class RegulatedBoard : public Board
 {
 public:
   
