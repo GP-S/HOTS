@@ -10,6 +10,11 @@
 
 class Card
 {
+
+protected:
+	int strength;
+	int life;
+	
 public:
 	
 	/** 
@@ -53,9 +58,6 @@ public:
  	*/
 	~Card();
 
-protected:
-	int strength;
-	int life;
 };
 
 #endif //CARD_H
