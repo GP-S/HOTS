@@ -5,14 +5,12 @@ Beast::Beast()
   name = "unknown";
 	hp = 0;
 	baseAttack = 0;
+	race = "";
 }
 
-Beast::Beast(string name,int hp, int attack) : 
+Beast::Beast(std::string race)
 {
-	name = name;
-	type = Card_crea;
-	hp = hp;
-	baseAttack = attack;
+	race=race;
 }
 
 

@@ -6,6 +6,11 @@
 *
 *
 **/
+
+#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
+
+
+
 Card::Card()
 {
 	name = "";
@@ -28,7 +33,7 @@ Card::~Card()
 
 void Card::addCapacity(Capacity* capa){//insert a Capacity at the tail of the list
 	
-	capaList.push_back(capa);
+	capaList->push_back(capa);
 
 }
 
@@ -38,13 +43,12 @@ void Card::calculateCost(){//modify when capacities are done
 	cost = 5;
 }
 
-std::list<Capacity*> Card::findCapaByType(std::string capaType)//returns a list of all capacities of choosen type
+std::list<Capacity*>* Card::findCapaByType(std::string capaType)//returns a list of all capacities of choosen type
 {
-	std::list<Capacity*> capaListTemp = new std::list<Capacity*>();
-	int i;
-	for (i=0;i<capaList.size();i++){
-		if (capaList[i]->getType()==capaType){
-			capaListTemp.push_back(capaList[i]);
+	std::list<Capacity*>* capaListTemp = new std::list<Capacity*>();
+	foreach(std::list<Capacity*>, capaListTemp, it){
+		if ((*it)->getType()==capaType){//compare the strings
+			capaListTemp->push_back(*it);
 		}
 	}
 

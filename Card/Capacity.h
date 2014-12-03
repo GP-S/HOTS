@@ -48,7 +48,7 @@ class Capacity
     * basic getter
     *
     **/
-    int					getValue();
+    int					getVal();
     /**
     * setType
     * basic setter
@@ -60,7 +60,7 @@ class Capacity
     * basic setter
     *
     **/
-    void				setValue(int value);
+    void				setVal(int value);
     /**
     * setActive
     * basic setter
