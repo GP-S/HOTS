@@ -8,8 +8,8 @@ Capacity::Capacity()
 
 Capacity::Capacity(std::string type,int value)
 {
-    this.type=type;
-    this.value=value;
+    this->type=type;
+    this->value=value;
 }
 
 
@@ -24,24 +24,24 @@ std::string	Capacity::getType()
     return type;
 }
 
-int	Capacity::getValue()
+int	Capacity::getVal()
 {
-    retun value;
+    return value;
 }
 
 void Capacity::setType(std::string type)
 {
-    this.type=type;
+    this->type=type;
 }
 
-void Capacity::setValue(int value)
+void Capacity::setVal(int value)
 {
-    this.value=value;
+    this->value=value;
 }
 
 void Capacity::setActive(bool active)
 {
-    this.active=active;
+    this->active=active;
 }
 
 bool Capacity::getActive()

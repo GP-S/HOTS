@@ -8,6 +8,7 @@
 #include <iostream>
 
 
+
 /** 
 *   Class Creature . Derived from Card  .
 * @author Armand
@@ -18,7 +19,7 @@
 *               
 *   canAttack() : - freeze, paralyze etc are not handled yet
 *
-*
+*   vrais getter et setters des capacités 
 *
 **/
 class Creature : public Card
@@ -35,7 +36,7 @@ class Creature : public Card
         * 
         *
         **/
-				Creature(std::string name);
+				Creature(std::string name,int hp,int attack);
         /**
         * Destructor
         * Does nothing atm
@@ -87,6 +88,13 @@ class Creature : public Card
         *
         **/
         void    resetAttackCount();
+        /**
+        * canAttack
+        * Tells if a creature can attack
+        * @return a boolean that tells us if a creature can attack
+        *
+        **/
+        bool canAttack();
         /**
         * takeDamage . Used everytime we need to damage a card . Does not handle things like divine shield yet .
         * @param unsigned int modifier The amount of the modification

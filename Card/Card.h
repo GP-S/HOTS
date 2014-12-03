@@ -4,8 +4,11 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include <iterator>
+#include <stdexcept>
 #include "Capacity.h"
 #include "Player.h"
+
 
 /** 
 * Class Card . 
@@ -75,7 +78,7 @@ class Card
     * @return capaListTemp the list of capacities that matches choosen type
     *
     **/
-		std::list<Capacity*>		findCapaByType(std::string capaType);
+		std::list<Capacity*>*		findCapaByType(std::string capaType);
     /**
     * getType
     * basic getter
@@ -98,7 +101,7 @@ class Card
         std::string				name;
 		std::string				cardType;
         int                     cost;
-        std::list<Capacity*>    capaList;
+        std::list<Capacity*>*   capaList;
         Player                  owner;
 
 };
