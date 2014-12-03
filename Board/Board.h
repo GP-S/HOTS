@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-
+#include <list>
 #include "Card.h"
 
 /**
@@ -11,6 +11,9 @@
 */
 class Board
 {
+protected:
+	std::list<Card*> listCard;
+
 public:
 	
 	/** 
@@ -22,7 +25,7 @@ public:
 	* Create a board and initialize it with the pointer of listCard.  
 	* @param std::list<Card> *listCard pointer of a list of card.
 	*/
-	Board(std::list<Card> *listCard);
+	Board(std::list<Card*> listCard);
 	
 	/** 
 	* Get the card which is at the Xth position.
@@ -72,22 +75,19 @@ public:
  	* Add a list of cards at the Xth position of a board.
  	* @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position. 
 	 */
-	virtual void addListCardX(std::list<Card> *listCard,unsigned int x);
+	virtual void addListCardX(std::list<Card*> listCard,unsigned int x);
 	
 	/**
 	 * Return 1 if the list is full (like an egg), else 0.
 	 * @param std::list<Card> *listCard pointer of the list of cards.
 	 * @return bool.
 	 */
-	bool isFull(std::list<Card> *listCard);
+	bool isFull(std::list<Card*> listCard);
 	
 	/**
  	* Destructor.
  	*/
 	virtual ~Board();
-
-protected:
-	std::list<*Card>	listCard;
 };
 
-#endif BOARD_H
+#endif //BOARD_H

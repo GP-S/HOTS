@@ -58,4 +58,4 @@ protected:
 	int life;
 };
 
-#endif BOARD_H
+#endif //CARD_H
