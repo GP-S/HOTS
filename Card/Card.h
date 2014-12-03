@@ -1,0 +1,109 @@
+#ifndef CARD_H
+#define CARD_H
+
+#include <string>
+#include <list>
+#include <iostream>
+#include <iterator>
+#include <stdexcept>
+#include "Capacity.h"
+#include "Player.h"
+
+
+/** 
+* Class Card . 
+* @author Armand
+*
+**/
+
+class Card
+{
+    public:
+    /**
+    * Default constructor
+    * 
+    *
+    **/
+								Card();
+	/**
+    * Constructor
+    * 
+    *
+    **/
+								Card(std::string name, std::string cardType);
+    /**
+    * Destructor
+    * Does nothing atm
+    *
+    **/
+								~Card();
+    /**
+    * getCost
+    * Basic getter
+    * @return cost the cost of the card
+    *
+    **/													
+		int				        getCost();	
+    /**
+    * calculateCost
+    * does nothing atm . modify it .
+    *
+    **/
+		void					calculateCost();
+    /**
+    * addCapacity
+    * adds a capacity to the list of capacities of the capacity list
+    *
+    **/
+		void		 	 		addCapacity(Capacity* capa);
+    /**
+    * getName
+    * basic getter
+    * @param Capacity* capa the capacity to add
+    * @return name the name of the card
+    *
+    **/
+		std::string	 				getName();
+    /**
+    * isAlive
+    * tells if a card is alive 
+    * @return isAlive the alive flag of a card .
+    *
+    **/
+    virtual bool                    isAlive() = 0;
+    /**
+    * findCapaByType
+    * returns a list of capacity that matches choosen type
+    * @param std::string capaType the type you want to find
+    * @return capaListTemp the list of capacities that matches choosen type
+    *
+    **/
+		std::list<Capacity*>*		findCapaByType(std::string capaType);
+    /**
+    * getType
+    * basic getter
+    *
+    **/
+		std::string				getType();
+    /**
+    * isUsable
+    * tells if a card can be used or not
+    * @param
+    *
+    * not done yet !!!
+    **/
+        bool                    isUsable(Player p);
+
+
+    
+
+    protected:
+        std::string				name;
+		std::string				cardType;
+        int                     cost;
+        std::list<Capacity*>*   capaList;
+        Player                  owner;
+
+};
+
+#endif // CARD_H

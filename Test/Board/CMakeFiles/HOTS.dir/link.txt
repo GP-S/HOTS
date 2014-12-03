@@ -1,0 +1,1 @@
+/usr/bin/c++     -fPIC CMakeFiles/HOTS.dir/users/n/nicolege/Documents/HOTS/HOTS/Board/Board.cpp.o CMakeFiles/HOTS.dir/users/n/nicolege/Documents/HOTS/HOTS/Board/StackBoard.cpp.o CMakeFiles/HOTS.dir/users/n/nicolege/Documents/HOTS/HOTS/Board/RegulatedBord.cpp.o  -o bin/HOTS -rdynamic 
