@@ -8,8 +8,8 @@ Card::Card(){
 
 Card::Card(int strength,int life){
 
-	this.strength = strength;
-	this.life = life;
+	this->strength = strength;
+	this->life = life;
 }
 
 int Card::getStrength(){
@@ -23,11 +23,9 @@ int Card::getLife(){
 }
 
 void Card::setStrength(int strength){
-	this.strength = strength;
+	this->strength = strength;
 }
 
 void Card::setLife(int life){
-	this.life = life;
+	this->life = life;
 }
-
-Card::~Card();
