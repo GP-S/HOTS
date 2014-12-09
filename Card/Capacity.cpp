@@ -6,10 +6,10 @@ Capacity::Capacity()
 
 }
 
-Capacity::Capacity(std::string type,int value)
+Capacity::Capacity(std::string type,int durabilty)
 {
     this->type=type;
-    this->value=value;
+    this->durabilty=durabilty;
 }
 
 
@@ -24,9 +24,9 @@ std::string	Capacity::getType()
     return type;
 }
 
-int	Capacity::getVal()
+int	Capacity::getDurabilty()
 {
-    return value;
+    return durabilty;
 }
 
 void Capacity::setType(std::string type)
@@ -34,9 +34,9 @@ void Capacity::setType(std::string type)
     this->type=type;
 }
 
-void Capacity::setVal(int value)
+void Capacity::setDurabilty(int durabilty)
 {
-    this->value=value;
+    this->durabilty=durabilty;
 }
 
 void Capacity::setActive(bool active)
@@ -47,4 +47,21 @@ void Capacity::setActive(bool active)
 bool Capacity::getActive()
 {
     return active;
+}
+
+void Capacity::decreaseDurability(){
+
+	durabilty--;
+}
+
+
+
+Effect getEffect(){
+
+	return effect;
+}
+
+void setEffect(Effect effect){
+
+	this->effect=effect;
 }

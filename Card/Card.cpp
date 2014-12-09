@@ -42,7 +42,7 @@ void Card::calculateCost(){//modify when capacities are done
 
 	cost = 5;
 }
-
+/* i don't know if this is usefull anymore . keeping it just in case
 std::list<Capacity*>* Card::findCapaByType(std::string capaType)//returns a list of all capacities of choosen type
 {
 	std::list<Capacity*>* capaListTemp = new std::list<Capacity*>();
@@ -54,6 +54,52 @@ std::list<Capacity*>* Card::findCapaByType(std::string capaType)//returns a list
 
 	return capaListTemp;
 
+}*/
+/*well it seems that capacity only has ONE effect .
+int Card::getTotal(std::string effectType)//returns the total of the values of a choosen effect type
+{
+	int total =0;
+	foreach(std::list<Capacity*>, capaList, capaIterator){
+		if ((*capaIterator)->getActive()){//if the capacity is active
+			foreach(std::list<Effect*>, capaIterator->effectList, effectIterator){
+			if ((*effectIterator)->getType()==capaType){//compare the strings
+				total+=(*effectIterator)->getValue();
+				}
+			}
+		}
+	}
+
+	if (effectType=="hp" && total<1){
+    throw std::logic_error( "current card has an illegal health" ); 
+  	}
+  	if (effectType=="attack" && total<0){
+    throw std::logic_error( "current card has an illegal attack" ); 
+  	}
+
+	return total;
+}
+*/
+
+int Card::getTotal(std::string effectType)//returns the total of the values of a choosen effect type
+{
+	int total =0;
+	foreach(std::list<Capacity*>, capaList, capaIterator){
+		if ((*capaIterator)->getActive()){//if the capacity is active
+			if(*capaIterator)->getEffect()->getType()==capaType){//compare the strings
+				total+=(*capaIterator)->getEffect()->getValue();
+				}
+			}
+		}
+	}
+
+	if (effectType=="hp" && total<1){
+    throw std::logic_error( "current card has an illegal health" ); 
+  	}
+  	if (effectType=="attack" && total<0){
+    throw std::logic_error( "current card has an illegal attack" ); 
+  	}
+
+	return total;
 }
 
 std::string Card::getType()
@@ -75,6 +121,13 @@ bool Card::isUsable(Player p)
 {
 
 	return true;
+}
+
+void decreaseAllDurabilty(){
+
+	foreach(std::list<Capacity*>, capaList, capaIterator){
+		(*capaIterator)->decreaseDurability();
+	}
 }
 
 

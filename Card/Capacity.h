@@ -7,7 +7,7 @@
 
 
 /** 
-* Class Capacity . Naive implementation for tests purposes
+* Class Capacity . upgraded implementation for tests purposes
 * @author Armand
 *
 **/
@@ -28,7 +28,7 @@ class Capacity
     * 
     *
     **/
-    					Capacity(std::string type,int value);
+    					Capacity(std::string type,int durabilty);
     /**
     * Destructor
     * 
@@ -44,11 +44,11 @@ class Capacity
 
     std::string			getType();
     /**
-    * getValue
+    * getdurabilty
     * basic getter
     *
     **/
-    int					getVal();
+    int					getDurabilty();
     /**
     * setType
     * basic setter
@@ -56,11 +56,11 @@ class Capacity
     **/
     void				setType(std::string type);
     /**
-    * setValue
+    * setdurabilty
     * basic setter
     *
     **/
-    void				setVal(int value);
+    void				setDurabilty(int durabilty);
     /**
     * setActive
     * basic setter
@@ -74,11 +74,21 @@ class Capacity
     **/
     bool                getActive();
 
+
+
+        void decreaseDurability();
+
+        Effect getEffect();
+
+        void setEffect(Effect effect);
+
 	protected : 
 
 		std::string		type;
-		int 			value;
+		int 			durabilty;
         bool            active;
+        Effect*         effect;
+
 
 
 };

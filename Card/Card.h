@@ -78,7 +78,7 @@ class Card
     * @return capaListTemp the list of capacities that matches choosen type
     *
     **/
-		std::list<Capacity*>*		findCapaByType(std::string capaType);
+	//	std::list<Capacity*>*		findCapaByType(std::string capaType);
     /**
     * getType
     * basic getter
@@ -94,8 +94,17 @@ class Card
     **/
         bool                    isUsable(Player p);
 
+    /**
+    * getTotal
+    * returns the total of the values of a choosen effect type
+    * throws exception if : hp < 0 OR attack < 1
+    * @param std::string effectType the type you want to find
+    * @return total : the total of the values of a choosen effect type
+    * 
+    **/
+        int Card::getTotal(std::string effectType);
 
-    
+        void decreaseAllDurabilty();
 
     protected:
         std::string				name;
