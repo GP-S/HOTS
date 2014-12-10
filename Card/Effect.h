@@ -8,18 +8,18 @@
 #include <stdexcept>
 
 
-class Effect : 
+class Effect 
 {
     public:
-        Effect();
-		Effect();
-       	~Effect();
-		std::string Effect::getType();
-		std::string Effect::getAffinity();
-		int Effect::getValue();
-		void Effect::setType(std::string type);
-		void Effect::setAffinity(std::string affinity);
-		void Effect::setValue(int value);
+    Effect();
+		Effect(std::string type,std::string affinity,int value);
+    ~Effect();
+		std::string getType();
+		std::string getAffinity();
+		int getValue();
+		void setType(std::string type);
+		void setAffinity(std::string affinity);
+		void setValue(int value);
 		
     protected:
     	std::string type;

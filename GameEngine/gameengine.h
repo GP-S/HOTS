@@ -34,10 +34,19 @@ namespace Engine
       GameEngine& operator= ( const GameEngine& other );
       bool operator== ( const GameEngine& other ) const;
       IGameSimulator getSimulator ( void );
-      void playCard ( int originBoard, int originPosition, int
-			      destinationBoard, int destinationPosition );
+      void playCard ( int originBoard, int originPosition, 
+                      int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
-     
+  
+  protected:
+      Board* boards;
+      Player* players;
+      IHM* ihm;
+      IA* ia;
+      UnknownTemplate<Card>* corresCardId;
+      UnknownTemplate<Board>* corresBoardId;
+      int turn;
+
   };
 }
 #endif // GAMEENGINE_H

@@ -7,7 +7,11 @@ Effect::Effect(){
 
 }
 
-Effect::Effect(){//complete this
+Effect::Effect(std::string type,std::string affinity,int value){//complete this
+
+	this->type=type;
+	this->affinity=affinity;
+	this->value=value;
 
 }
 
@@ -22,9 +26,9 @@ std::string Effect::getType(){
 	return type;
 
 }
-std::string Effect::getType(){
+std::string Effect::getAffinity(){
 
-	return affinity
+	return affinity;
 
 }
 int Effect::getValue(){
@@ -35,12 +39,12 @@ int Effect::getValue(){
 
 void Effect::setType(std::string type){
 
-	this.type=type;
+	this->type=type;
 }
 
 void Effect::setAffinity(std::string affinity){
 
-	this.affinity=affinity;
+	this->affinity=affinity;
 }
 
 void Effect::setValue(int value){

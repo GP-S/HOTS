@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include "Effect.h"
 
 
 /** 
@@ -76,18 +77,18 @@ class Capacity
 
 
 
-        void decreaseDurability();
+    void decreaseDurability();
 
-        Effect getEffect();
+    Effect* getEffect();
 
-        void setEffect(Effect effect);
+    void setEffect(Effect* effect);
 
 	protected : 
 
-		std::string		type;
-		int 			durabilty;
-        bool            active;
-        Effect*         effect;
+	std::string		type;
+	int 			durabilty;
+    bool            active;
+    Effect*         effect;
 
 
 
