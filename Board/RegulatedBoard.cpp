@@ -17,103 +17,87 @@ RegulatedBoard::RegulatedBoard(std::list<Card*> *listcard){
 
 }
 
-Card* RegulatedBoard::takeCardX(unsigned int x, unsigned int y){
+Card* RegulatedBoard::takeCardX(unsigned int x){
   
   /**
    * We have two positions to consider : x, the position in the regulated list and y, 
    * the position in the list by arrival time. 
    */
   
-  std::list<Card>::iterator it1;
-  std::list<Card>::iterator it2;
+  std::list<Card*>::iterator it1;
+  std::list<Card*>::iterator it2;
   Card* pointerCard1;
   Card* pointerCard2;
   
-  it1 = listCard.begin();
-  it1 += x;
-  pointerCard1 = it1;
-  
-  it2 = CardByArrivalTime.begin();
-  it2 += y;
-  pointerCard2 = it2;
-  
-  if(*pointerCard1 == *pointerCard2){
-  
-    /*
-     * we need to discuss about this point... (how to erase ? Redefine erase ?)
-     */
-    Card newHostOfThisCard = new Card();
-    newHostOfThisCard = *pointerCard1; 
-  
-    listcard.erase(it1);
-    // Problem with the erase : the second deleting (suppression).
-    CarByArrivalTime.erase(it2);
+  it1 = listCard->begin();
 
-    return &newHostOfThisCard;
+  for(size_t i = 0; i < x; i++)
+    it1++;
+
+  pointerCard1 = *it1;
+  
+  it2 = cardByArrivalTime->begin();
+
+  bool endwork = false;
+  while(!endwork){
+    if(*it2 == pointerCard1){
+      pointerCard2 = *it2;
+      endwork = true;
+    }
+    it2++;
+  }
+  
+  listCard->erase(it1);
+  cardByArrivalTime->erase(it2);
+
+  return pointerCard1;
 
    
-  }
-  
-  else{
-  
-  /* RETURN ERROR */
- 
-  }
-  
 }
 
-void RegulatedBoard::deletCardX(unsigned int positionListCard, unsigned int positionByArrivalTime){
+void RegulatedBoard::deletCardX(unsigned int x){
   
-  /**
-   * We have two positions to consider : x, the position in the regulated list and y, 
-   * the position in the list by arrival time. 
-   */
-  
-  std::list<Card>::iterator it1;
-  std::list<Card>::iterator it2;
+  std::list<Card*>::iterator it1;
+  std::list<Card*>::iterator it2;
   Card* pointerCard1;
   Card* pointerCard2;
   
-  it1 = listCard.begin();
-  it1 += positionListCard;
-  pointerCard1 = it1;
+  it1 = listCard->begin();
+  for(size_t i = 0; i < x; i++)
+    it1++;
+
+  pointerCard1 = *it1;
   
-  it2 = CardByArrivalTime.begin();
-  it2 += positionByArrivalTime;
-  pointerCard2 = it2;
-  
-  if(*pointerCard1 == *pointerCard2){
-    
-    
-    listcard.erase(it1);
-    CarByArrivalTime.erase(it2);
-    
-    /*
-     * Do we need a particular return ? (Depends on the error's return)
-     */
-    
+  it2 = cardByArrivalTime->begin();
+  bool endwork = false;
+
+  while(!endwork){
+    if(*it2 == pointerCard1){
+      pointerCard2 = *it2;
+      endwork = true;
+    }
+    it2++;
   }
   
-  else{
-  
-  /* RETURN ERROR */
- 
-  }
+  listCard->erase(it1);
+  cardByArrivalTime->erase(it2);
   
 }
 
-void RegulatedBoard::addCardX(Card *card,unsigned int position){
+void RegulatedBoard::addCardX(Card *card,unsigned int x){
   
-  std::list<Card>::iterator it;
-  it = listcard.begin();
-  it += position;
+  std::list<Card*>::iterator it;
+  it = listCard->begin();
+  for(size_t i = 0; i < x; i++)
+    it++;
   
-  listcard.insert(it,card);
-  CardByArrivalTime.push_back(card);
+  listCard->insert(it,card);
+  cardByArrivalTime->push_back(card);
   
 }
-  
+
 RegulatedBoard::~RegulatedBoard(){
   listCard->erase(listCard->begin(),listCard->end());
-  std::cout << "EXTERMINATE (board) not yet" << std::endl;
+  cardByArrivalTime->erase(cardByArrivalTime->begin(),cardByArrivalTime->end());
+  std::cout << "EXTERMINATE (regulatedBoard) not yet" << std::endl;
 }

@@ -24,4 +24,4 @@ protected:
 
 };
 
-#endif STACKBOARD_H
+#endif //STACKBOARD_H

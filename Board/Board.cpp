@@ -41,7 +41,7 @@ Card * Board::takeCardX(unsigned int x){
   card = *it;
   
   listCard->erase(it);
-  
+
   return card;  
   
 }

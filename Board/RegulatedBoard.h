@@ -14,7 +14,7 @@ class RegulatedBoard : public Board
 {
 
 protected: 
-	std::list<*Card>	cardByArrivalTime;
+	std::list<Card*> *cardByArrivalTime;
 
 public:
   
@@ -23,9 +23,9 @@ public:
 	Card* takeCardX(unsigned int x);
 	void deletCardX(unsigned int x);
 	void addCardX(Card *card,unsigned int x);
-	~RegulatedBoardBoard();
+	~RegulatedBoard();
   
 };  
 
 
-#endif REGULATEDBOARD_H
+#endif //REGULATEDBOARD_H
