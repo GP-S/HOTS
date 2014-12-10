@@ -1,6 +1,23 @@
+
 #include "RegulatedBoard.h"
 
-Card * takeCardX(unsigned int x, unsigned int y){
+RegulatedBoard::RegulatedBoard(){
+  
+  listCard = new std::list<Card*>();
+  cardByArrivalTime = new std::list<Card*>();
+  size_max = listCard->max_size();
+
+}
+
+RegulatedBoard::RegulatedBoard(std::list<Card*> *listcard){
+  
+  listCard = listcard;
+  cardByArrivalTime = listcard;
+  size_max = listcard->max_size();
+
+}
+
+Card* RegulatedBoard::takeCardX(unsigned int x, unsigned int y){
   
   /**
    * We have two positions to consider : x, the position in the regulated list and y, 
@@ -45,7 +62,7 @@ Card * takeCardX(unsigned int x, unsigned int y){
   
 }
 
-void deletCardX(unsigned int positionListCard, unsigned int positionByArrivalTime){
+void RegulatedBoard::deletCardX(unsigned int positionListCard, unsigned int positionByArrivalTime){
   
   /**
    * We have two positions to consider : x, the position in the regulated list and y, 
@@ -85,7 +102,7 @@ void deletCardX(unsigned int positionListCard, unsigned int positionByArrivalTim
   
 }
 
-void addCardX(Card *card,unsigned int position){
+void RegulatedBoard::addCardX(Card *card,unsigned int position){
   
   std::list<Card>::iterator it;
   it = listcard.begin();
@@ -96,3 +113,7 @@ void addCardX(Card *card,unsigned int position){
   
 }
   
+RegulatedBoard::~RegulatedBoard(){
+  listCard->erase(listCard->begin(),listCard->end());
+  std::cout << "EXTERMINATE (board) not yet" << std::endl;
+}
