@@ -85,12 +85,12 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 	int total =0;
 	foreach(std::list<Capacity*>, capaList, capaIterator){
 		if ((*capaIterator)->getActive()){//if the capacity is active
-			if(*capaIterator)->getEffect()->getType()==capaType){//compare the strings
+			if((*capaIterator)->getEffect()->getType()==effectType){//compare the strings
 				total+=(*capaIterator)->getEffect()->getValue();
 				}
 			}
 		}
-	}
+	
 
 	if (effectType=="hp" && total<1){
     throw std::logic_error( "current card has an illegal health" ); 
@@ -123,7 +123,7 @@ bool Card::isUsable(Player p)
 	return true;
 }
 
-void decreaseAllDurabilty(){
+void Card::decreaseAllDurabilty(){
 
 	foreach(std::list<Capacity*>, capaList, capaIterator){
 		(*capaIterator)->decreaseDurability();

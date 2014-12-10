@@ -25,7 +25,7 @@ public:
 	
 	virtual unsigned int getSize() = 0;
 	
-	virtualunsigned int getMaxSize() = 0;
+	virtual unsigned int getMaxSize() = 0;
 	
 	virtual void setMaxSize(unsigned int size) = 0;
 
@@ -37,8 +37,6 @@ public:
 
 	virtual ~iBoard() = 0;
 
-protected:
-	std::list<*Card>	listCard;
 };
 
-#endif IBOARD_H
+#endif //IBOARD_H

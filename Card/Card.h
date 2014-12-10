@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include "Capacity.h"
 #include "Player.h"
+#include "iCard.h"
 
 
 /** 
@@ -16,7 +17,7 @@
 *
 **/
 
-class Card
+class Card : public iCard
 {
     public:
     /**
@@ -102,7 +103,7 @@ class Card
     * @return total : the total of the values of a choosen effect type
     * 
     **/
-        int Card::getTotal(std::string effectType);
+        int getTotal(std::string effectType);
 
         void decreaseAllDurabilty();
 
