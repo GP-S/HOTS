@@ -43,9 +43,18 @@ IGameSimulator Engine::GameEngine::getSimulator ( void ) {
 
 }
 
-void Engine::GameEngine::playCard(int originBoard, int originPosition, int 
-destinationBoard, int destinationPosition){
-  
+void Engine::GameEngine::playCard(Board* originBoard, int originPosition, 
+	Board* destinationBoard, int destinationPosition){
+  	
+  	if(destinationBoard->isFull()){
+			throw std::logic_error( "destination board is full" ); 
+  	}
+  	Card* playedCard = originBoard->takeCardX(originPosition);
+  	destinationBoard->addCardX(playedCard,destinationPosition);
+
+
+
+
 }
 
 void Engine::GameEngine::endTurn(void){
