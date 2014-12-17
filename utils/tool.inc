@@ -4,4 +4,6 @@
  * foreach(std::list<int>, intList, i)
  *   (*i) *= 2;
 */
-#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
+#define foreach(T, c, i) for(T::iterator i = c->begin(),T::iterator e=c->end(); i!=e; ++i)
+
+

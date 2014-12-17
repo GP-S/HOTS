@@ -19,14 +19,14 @@ typedef struct
         ennemi_equipment : 1,
 		ennemi_trap : 1,
 		ennemi_Hero : 1,
-		justInCase : 1, //unused
-		owner_board : 1,
+        owner_board : 1,
         owner_deck : 1,
         owner_hand : 1,
         owner_cimetery : 1,
         owner_equipment : 1,
-		owner_trap : 1,
-		owner_Hero : 1,
+        owner_trap : 1,
+        owner_Hero : 1,
+		justInCase : 1, //unused
 		justInCase2 : 1; //unused
 
 }placeMask;
@@ -48,7 +48,8 @@ typedef struct
         when_something_dies : 1, // when something else dies
         when_something_healed : 1,// when something else gets healed
         when_something_hurt : 1, // when something else gets hurt
-		andmuchmore : 2;
+        when_turn_begins : 1, //when his turn begins
+        when_turn_ends : 1; //when his turn ends 
 
 }timeMask;
 
