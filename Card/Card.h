@@ -79,7 +79,7 @@ class Card : public iCard
     * @return capaListTemp the list of capacities that matches choosen type
     *
     **/
-	//	std::list<Capacity*>*		findCapaByType(std::string capaType);
+		std::list<Capacity*>*		findCapaByType(std::string capaType);
     /**
     * getType
     * basic getter
