@@ -34,7 +34,7 @@ class Beast : public Creature
         * 
         *
         **/
-				Beast(std::string race);
+				Beast(std::string name,int hp,int attack,std::string race);
         /**
         * Destructor
         * Does nothing atm

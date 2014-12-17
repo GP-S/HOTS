@@ -46,6 +46,19 @@ class Card : public iCard
     **/													
 		int				        getCost();	
     /**
+    * setType
+    * basic setter
+    *
+    **/
+    void                setType(std::string type);
+    /**
+    * setName
+    * basic setter
+    *
+    **/
+    void                setName(std::string name);
+        
+    /**
     * calculateCost
     * does nothing atm . modify it .
     *
@@ -79,7 +92,7 @@ class Card : public iCard
     * @return capaListTemp the list of capacities that matches choosen type
     *
     **/
-	//	std::list<Capacity*>*		findCapaByType(std::string capaType);
+		std::list<Capacity*>*		findCapaByType(std::string capaType);
     /**
     * getType
     * basic getter
@@ -112,7 +125,7 @@ class Card : public iCard
 		std::string				cardType;
         int                     cost;
         std::list<Capacity*>*   capaList;
-        Player                  owner;
+        Player*                 owner;
 
 };
 
