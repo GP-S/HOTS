@@ -80,7 +80,7 @@ public:
 	virtual void addListCardX(std::list<Card*> *listcard, unsigned int x);
 	
 	/**
-	 * Return 1 if the list is full (like an egg), else 0.
+	 * Return true if the list is full (like an egg), else 0.
 	 * @param std::list<Card> *listCard pointer of the list of cards.
 	 * @return bool.
 	 */
