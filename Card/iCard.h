@@ -11,6 +11,12 @@
 class iCard
 {
 public:
+
+    /**
+    * virtual destructor
+    * for vtable
+    **/
+        virtual ~iCard(){}
 	
 		virtual int getCost()=0;	
     /**

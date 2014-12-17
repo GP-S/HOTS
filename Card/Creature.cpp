@@ -96,20 +96,18 @@ void Creature::takeDamage(unsigned int damage){
 
 void Creature::heal(unsigned int heal){
 
-    std::string hp = "hp";
-    std::list<Capacity*>* listHP = this->findCapaByType(hp);
+    std::list<Capacity*>* listHP = this->findCapaByType("hp");
 
      
-        if (listHP->empty()){
-    throw std::logic_error( "no hp capacity in current card" ); 
+    if (listHP->empty()){
+        throw std::logic_error( "no hp capacity in current card" ); 
     }
  
-    std::string maxHP = "max_hp";
-    std::list<Capacity*>* listMaxHP = this->findCapaByType(maxHP);
+    std::list<Capacity*>* listMaxHP = this->findCapaByType("max_hp");
 
      
-        if (listMaxHP->empty()){
-    throw std::logic_error( "no hp_max capacity in current card" ); 
+    if (listMaxHP->empty()){
+        throw std::logic_error( "no hp_max capacity in current card" ); 
     }
 
   int newhp=((listHP->front()->getEffect()->getValue()+heal>listMaxHP->front()->getEffect()->getValue())? listMaxHP->front()->getEffect()->getValue() :listHP->front()->getEffect()->getValue()+heal);
@@ -147,4 +145,17 @@ void Creature::decreaseMaxHP(unsigned int modifier){
 
     listMaxHP->front()->getEffect()->setValue(listMaxHP->front()->getEffect()->getValue()-modifier);
 
+}
+
+
+bool Creature::isAlive(){
+
+     std::list<Capacity*>* listHP = this->findCapaByType("hp");
+
+     
+    if (listHP->empty()){
+        throw std::logic_error( "no hp capacity in current card" ); 
+    }
+
+    return listHP->front()->getEffect()->getValue() > 0;
 }

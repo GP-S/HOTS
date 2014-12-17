@@ -131,10 +131,10 @@ void Card::decreaseAllDurabilty(){
 }
 
 void Card::setType(std::string type){
-  this->cardType=type;
+  this->cardType = type;
 }
 
 void Card::setName(std::string name){
-  this->name=name;
+  this->name = name;
 }
 

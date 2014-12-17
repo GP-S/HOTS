@@ -28,37 +28,35 @@ class Beast : public Creature
         * 
         *
         **/
-        		Beast();
+        Beast();
+
         /**
         * Constructor
         * 
         *
         **/
-				Beast(std::string name,int hp,int attack,std::string race);
+		Beast(std::string name,int hp,int attack,std::string race);
+
         /**
         * Destructor
         * Does nothing atm
         *
         **/
-        	   	           ~Beast();
-        /**
-        * isAlive
-        * @return a boolean corresponding to the state (dead or alive) of the beast
-        *
-        **/
-		bool 	            isAlive();
+        ~Beast();
+
         /**
         * getRace
         * Basic geter
         *
         **/
-		std::string       getRace();
+		std::string getRace();
+        
         /**
         * setRace
         * Basic seter
         *
         **/
-		void	          setRace(std::string race);
+		void setRace(std::string race);
 
 		
     protected:
