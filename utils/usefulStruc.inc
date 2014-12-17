@@ -34,17 +34,21 @@ typedef struct
 typedef struct
 {
     unsigned short 
-        when_attacked : 1,
-        when_hurted : 1,
-        when_healed : 1,
-        when_spawned : 1,
-        when_died : 1,
-		while_attacking : 1,
-        while_hurting : 1,
-        while_healing : 1,
-        while_spawning : 1,
-        while_killing : 1,
-		andmuchmore : 6;
+        when_attacked : 1, //when I get attacked 
+        when_hurt : 1, // when I get hurt
+        when_healed : 1, // when I get healed
+        when_spawned : 1, // when I spawn
+        when_died : 1, // when I die 
+		while_attacking : 1, // when I attack
+        while_hurting : 1, // when I hurt
+        while_healing : 1, // when I heal
+        when_spawn : 1, // when something else spawn
+        while_killing : 1, // when I kill
+        when_something_attacks : 1, // when something else attacks
+        when_something_dies : 1, // when something else dies
+        when_something_healed : 1,// when something else gets healed
+        when_something_hurt : 1, // when something else gets hurt
+		andmuchmore : 2;
 
 }timeMask;
 
