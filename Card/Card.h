@@ -50,13 +50,13 @@ class Card : public iCard
     * basic setter
     *
     **/
-    void                setActive(std::string type);
+    void                setType(std::string type);
     /**
     * setName
     * basic setter
     *
     **/
-    void                setActive(std::string name);
+    void                setName(std::string name);
         
     /**
     * calculateCost
