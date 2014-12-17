@@ -23,6 +23,26 @@
 #include "isimulatorfactory.h"
 #include "igamesolver.h"
 #include "../Board/iBoard.h"
+#include "../Card/iCard.h"
+#include "../utils/usefulStruc.inc"
+
+
+static const OWNER_BOARD = 1;
+static const OWNER_DECK = 2;
+static const OWNER_HAND = 3;
+static const OWNER_CIMETERY = 4;
+static const OWNER_EQUIPMENT = 5;
+static const OWNER_TRAP = 6;
+static const OWNER_HERO = 7;
+static const ENNEMI_BOARD = 8;
+static const ENNEMI_DECK = 9;
+static const ENNEMI_HAND = 10;
+static const ENNEMI_CIMETERY = 11;
+static const ENNEMI_EQUIPMENT = 12;
+static const ENNEMI_TRAP = 13;
+static const ENNEMI_HERO = 14;
+//static const justInCase = 15; //unused
+//static const justInCase2 = 16; //unused
 
 /*  attaque . vérifie cible . résoud . 
 *  IHM . IHMBoard + pos . GEBoard + pos . GECard (x2) .. check . resolution sur les GEObjects. appeller sur les IHMObjects 
@@ -72,6 +92,13 @@ namespace Engine
       std::list<Card*>* listCardsProccedWhenSomethingHurt; // when something else gets hurt
       std::list<Card*>* listCardsProccedWhenTurnBegins; // when turn begins
       std::list<Card*>* listCardsProccedWhenTurnEnds; // when turn ends
+      std::list<Board*> *boards;
+      std::list<Player*> *players;
+      IHM *ihm;
+      IA *ia;
+      UnknownTemplate<Card>* corresCardId;
+      UnknownTemplate<Board>* corresBoardId;
+      unsigned int turn;
 
   private:
       void procEffectByType(int type);

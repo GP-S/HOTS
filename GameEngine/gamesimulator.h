@@ -22,7 +22,16 @@
 
 #include "igamesimulator.h"
 namespace Engine{
-  class GameSimulator : public IGameSimulator
+  class GameSimulator : public GameEngine
+  {
+    GameSimulator();
+    ~GameSimulator();
+
+
+
+  };
+
+  /*class GameSimulator : public IGameSimulator
   {
   public:
       GameSimulator();
@@ -34,6 +43,6 @@ namespace Engine{
       virtual void endTurn ( void );
       virtual void playCard ( int originBoard, int originPosition, int 
 destinationBoard, int destinationPosition );
-  };
+  };*/
 }
 #endif // GAMESIMULATOR_H
