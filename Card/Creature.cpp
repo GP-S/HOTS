@@ -8,9 +8,9 @@ Creature::Creature()
     baseAttack = 0;
 }
 
-Creature::Creature(std::string name,int hp, int attack)
+Creature::Creature(std::string name,int hp, int attack)  :
+Card(name,  "creature")
 {
-    name = name;
     hp = hp;
     baseAttack = attack;
 }

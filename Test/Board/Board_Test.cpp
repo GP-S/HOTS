@@ -75,7 +75,6 @@ int main(int argc, char **argv){
 /*Initialisation of all cards*/
 	printEtape(": Initialisation of all cards done");	// etape 2
 
-
 	for(size_t i = 0; i < NUMBER; i++){
 		card[i].setStrength(i);
 		card[i].setLife(i);
