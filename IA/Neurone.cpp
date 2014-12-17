@@ -1,6 +1,5 @@
 #include "Neurone.h"
 #include "iostream"
-#include "NeurMono.h"
 
 
 Neurone::Neurone()
@@ -9,11 +8,11 @@ Neurone::Neurone()
 	treshold = 0;
 }
 
-Neurone::Neurone(unsigned char * entryTab, char * weitghList, int treshold)
+Neurone::Neurone(unsigned char * entryTab, char * weitghTab, int treshold)
 {
 	this->entryTab = entryTab;
 	this->treshold = treshold;
-	this->setWeightTab(weitghList);
+	this->setWeightList(weitghTab);
 }
 
 
@@ -26,12 +25,12 @@ void Neurone::setentryTab(unsigned char * tab)
 	this->entryTab = entryTab;
 }
 
-void Neurone::setWeightTab(char * tab)
+void Neurone::setWeightList(char * tab)
 {
 	try
 	{
-		if (tab == NULL) throw "null pointer for setWeightTab in Neuronne";
-		for (int i = 0; i < nb_entry; this->weightTab[i] = tab[i++]);
+		if (tab == NULL) throw "null pointer for setWeightList in Neuronne";
+		for (int i = 0; i < lenghtEntryVector; this->weightList[i] = tab[i++]);
 	}
 	catch (const char *exception)
 	{
@@ -44,17 +43,17 @@ void Neurone::setTreshold(int treshold)
 	this->treshold = treshold;
 }
 
-int Neurone::getOutPut()
+int Neurone::getOutput()
 {
 	int res = 0;
 	for (int i = 0; i < nb_entry; i++)
 	{
-		res += weightTab[i] * entryTab[i];
+		res += weightList[i] * entryTab[i];
 	}
 	return res>0?1:0;
 }
 
-void NeurMono::learn(int eval)
+void Neurone::learn(int eval)
 {
 
 }

@@ -48,7 +48,8 @@ class Creature : public Card
         * @return a boolean corresponding to the state (dead or alive) of the Creature
         *
         **/
-		virtual bool 	isAlive();
+		bool 	isAlive();
+        
         /**
         * getHp
         * Basic geter
