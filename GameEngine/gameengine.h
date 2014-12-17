@@ -24,6 +24,13 @@
 #include "igamesolver.h"
 #include "../Board/iBoard.h"
 
+/*  attaque . vérifie cible . résoud . 
+*  IHM . IHMBoard + pos . GEBoard + pos . GECard (x2) .. check . resolution sur les GEObjects. appeller sur les IHMObjects 
+*
+*
+*
+*
+*/
 namespace Engine
 {
   class GameEngine : public ISimulatorFactory, public IGameSolver {
@@ -37,32 +44,54 @@ namespace Engine
       void playCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
+      //isLegit()
+      //
+      
   
   protected:
       Board* boards;
       Player* players;
       IHM* ihm;
       IA* ia;
-      Match<Card>* corresCardId;
-      Match<Board>* corresBoardId;
+      Match<Card>* matchCard;
+      Match<Board>* matchBoard;
       int turn;
-      std::list<Card*>*  listCardsProccedWhenAttacked; //when I get attacked 
-      std::list<Card*>*  listCardsProccedWhenHurt; // when I get hurt
-      std::list<Card*>*  listCardsProccedWhenHealed; // when I get healed
-      std::list<Card*>*  listCardsProccedWhenSpawned; // when I spawn
-      std::list<Card*>*  listCardsProccedWhenDied; // when I die 
-      std::list<Card*>*  listCardsProccedWhenAttacking; // when I attack
-      std::list<Card*>*  listCardsProccedWhenHurting; // when I hurt
-      std::list<Card*>*  listCardsProccedWhenHealing; // when I heal
-      std::list<Card*>*  listCardsProccedWhenSpawn; // when something else spawn
-      std::list<Card*>*  listCardsProccedWhenKilling; // when I kill
-      std::list<Card*>*  listCardsProccedWhenSomethingAttacks; // when something else attacks
-      std::list<Card*>*  listCardsProccedWhenSomethingDies; // when something else dies
-      std::list<Card*>*  listCardsProccedWhenSomethingHealed;// when something else gets healed
-      std::list<Card*>*  listCardsProccedWhenSomethingHurt; // when something else gets hurt
-      std::list<Card*>*  listCardsProccedWhenTurnBegins; // when turn begins
-      std::list<Card*>*  listCardsProccedWhenTurnEnds; // when turn ends
+      std::list<Card*>* listCardsProccedWhenAttacked; //when I get attacked 
+      std::list<Card*>* listCardsProccedWhenHurt; // when I get hurt
+      std::list<Card*>* listCardsProccedWhenHealed; // when I get healed
+      std::list<Card*>* listCardsProccedWhenSpawned; // when I spawn
+      std::list<Card*>* listCardsProccedWhenDied; // when I die 
+      std::list<Card*>* listCardsProccedWhenAttacking; // when I attack
+      std::list<Card*>* listCardsProccedWhenHurting; // when I hurt
+      std::list<Card*>* listCardsProccedWhenHealing; // when I heal
+      std::list<Card*>* listCardsProccedWhenSpawn; // when something else spawn
+      std::list<Card*>* listCardsProccedWhenKilling; // when I kill
+      std::list<Card*>* listCardsProccedWhenSomethingHealed;// when something else gets healed
+      std::list<Card*>* listCardsProccedWhenSomethingAttacks; // when something else attacks
+      std::list<Card*>* listCardsProccedWhenSomethingDies; // when something else dies
+      std::list<Card*>* listCardsProccedWhenSomethingHurt; // when something else gets hurt
+      std::list<Card*>* listCardsProccedWhenTurnBegins; // when turn begins
+      std::list<Card*>* listCardsProccedWhenTurnEnds; // when turn ends
 
+  private:
+      void procEffectByType(int type);
   };
+
+
 }
 #endif // GAMEENGINE_H
+
+/*      Player1_board : 1,
+        Player1_deck : 2,
+        Player1_hand : 3,
+        Player1_cimetery : 4,
+        Player1_equipment : 5,
+        Player1_trap : 6,
+        Player1_Hero : 7,
+        Player2_board : 8,
+        Player2_deck : 9,
+        Player2_hand : 10,
+        Player2_cimetery : 11,
+        Player2_equipment : 12,
+        Player2_trap : 13,
+        Player2_Hero : 14,*/
