@@ -46,6 +46,19 @@ class Card : public iCard
     **/													
 		int				        getCost();	
     /**
+    * setType
+    * basic setter
+    *
+    **/
+    void                setActive(std::string type);
+    /**
+    * setName
+    * basic setter
+    *
+    **/
+    void                setActive(std::string name);
+        
+    /**
     * calculateCost
     * does nothing atm . modify it .
     *
@@ -112,7 +125,7 @@ class Card : public iCard
 		std::string				cardType;
         int                     cost;
         std::list<Capacity*>*   capaList;
-        Player                  owner;
+        Player*                 owner;
 
 };
 

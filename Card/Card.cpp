@@ -130,4 +130,11 @@ void Card::decreaseAllDurabilty(){
 	}
 }
 
+void Card::setActive(std::string type){
+  this->type=type;
+}
+
+void Card::setActive(std::string name){
+  this->name=name;
+}
 
