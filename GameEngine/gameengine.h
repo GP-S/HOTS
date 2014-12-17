@@ -43,9 +43,25 @@ namespace Engine
       Player* players;
       IHM* ihm;
       IA* ia;
-      UnknownTemplate<Card>* corresCardId;
-      UnknownTemplate<Board>* corresBoardId;
+      Match<Card>* corresCardId;
+      Match<Board>* corresBoardId;
       int turn;
+      std::list<Card*>*  listCardsProccedWhenAttacked; //when I get attacked 
+      std::list<Card*>*  listCardsProccedWhenHurt; // when I get hurt
+      std::list<Card*>*  listCardsProccedWhenHealed; // when I get healed
+      std::list<Card*>*  listCardsProccedWhenSpawned; // when I spawn
+      std::list<Card*>*  listCardsProccedWhenDied; // when I die 
+      std::list<Card*>*  listCardsProccedWhenAttacking; // when I attack
+      std::list<Card*>*  listCardsProccedWhenHurting; // when I hurt
+      std::list<Card*>*  listCardsProccedWhenHealing; // when I heal
+      std::list<Card*>*  listCardsProccedWhenSpawn; // when something else spawn
+      std::list<Card*>*  listCardsProccedWhenKilling; // when I kill
+      std::list<Card*>*  listCardsProccedWhenSomethingAttacks; // when something else attacks
+      std::list<Card*>*  listCardsProccedWhenSomethingDies; // when something else dies
+      std::list<Card*>*  listCardsProccedWhenSomethingHealed;// when something else gets healed
+      std::list<Card*>*  listCardsProccedWhenSomethingHurt; // when something else gets hurt
+      std::list<Card*>*  listCardsProccedWhenTurnBegins; // when turn begins
+      std::list<Card*>*  listCardsProccedWhenTurnEnds; // when turn ends
 
   };
 }

@@ -1,26 +1,30 @@
-#ifndef CARD_H
-#define CARD_H
+#ifndef MATCH_H
+#define MATCH_H
 
 #include <string>
 #include <list>
 #include <iterator>
 #include <stdexcept>
-#include "../utils/tool.inc"
-//ne fonctionne pas . regarder la ligne 31 .
-template <class V,class U> class Correspondance
+
+/*
+* Template Match . Used to communicate between IHM and GE
+* @author armand
+*/
+
+template <class V,class U> class Match
 {
 	typedef typename std::list<V*> listV_type;
 	typedef typename std::list<U*> listU_type;
 	public:
-		Correspondance(){
+		Match(){
 
 		}
-		Correspondance(listV_type* GEObjects,listU_type* IHMObject){
+		Match(listV_type* GEObjects,listU_type* IHMObject){
 
 			this->GEObjects=GEObjects;
 			this->IHMObject=IHMObject;
 		}
-		~Correspondance();
+		~Match();
 	
 		void add(V* GEObject,U* IHMObject){
 			this->GEObjects->push_back(GEObject);
@@ -28,8 +32,10 @@ template <class V,class U> class Correspondance
 		}
 		int getPositionsGEObject(V* GEObject){
 			int i=0;
-			foreach(listV_type, GEObjects, GEIterator){
-				if ((*GEIterator)==GEObject){
+			typename listV_type::iterator GEIterator = GEObjects->begin() ;
+			typename listV_type::iterator GEObjectsEnd = GEObjects->end() ;
+			for( GEIterator; GEIterator!=GEObjectsEnd; ++GEIterator){
+					if ((*GEIterator)==GEObject){
 					return i;
 				}
 				else i++;
@@ -47,7 +53,10 @@ template <class V,class U> class Correspondance
 		}
 		int getPositionIHMObject(U* IHMObject){
 			int i=0;
-				foreach(listU_type, IHMObjects, IHMIterator){
+
+			typename listU_type::iterator IHMIterator = IHMObjects->begin() ;
+			typename listU_type::iterator IHMObjectsEnd = IHMObjects->end() ;
+			for( IHMIterator; IHMIterator!=IHMObjectsEnd; ++IHMIterator){
 
 				if ((*IHMIterator)==IHMObject){
 					return i;
@@ -73,4 +82,4 @@ template <class V,class U> class Correspondance
     listU_type* IHMObjects;
 };
 
-#endif // CARD_H
+#endif // MATCH_H

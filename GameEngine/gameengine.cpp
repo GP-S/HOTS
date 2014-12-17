@@ -51,10 +51,6 @@ void Engine::GameEngine::playCard(Board* originBoard, int originPosition,
   	}
   	Card* playedCard = originBoard->takeCardX(originPosition);
   	destinationBoard->addCardX(playedCard,destinationPosition);
-
-
-
-
 }
 
 void Engine::GameEngine::endTurn(void){
