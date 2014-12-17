@@ -21,9 +21,22 @@
 
 Engine::GameEngine::GameEngine() {
 
+	boards = new std::list<Board*>();
+	players = new std::list<Player*>();
+	ihm = new IHM();
+    ia = new IA();
+
+
+    
+    //corresCardId = NULL;
+    //corresBoardId = NULL;
+    
+    turn = 0;
+
 }
 
 Engine::GameEngine::GameEngine ( const GameEngine& other ) {
+
 
 }
 
@@ -39,7 +52,18 @@ bool Engine::GameEngine::operator== ( const GameEngine& other ) const {
 
 }
 
-IGameSimulator Engine::GameEngine::getSimulator ( void ) {
+std::list<GameSimulator*> Engine::GameEngine::getSimulator ( void ) {
+
+  std::list<GameSimulator*> gameSimulators;
+
+	foreach(size_t i = 0; i < boards[OWNER_HAND].getSize(); i++){
+    if(boards[OWNER_HAND].getCardX(i).getCost() < /*Get mana disponible*/){
+
+        GameSimulator *gameSimulator = new gameSimulator();
+        gameSimulator.setListCard();
+        gameSimulators.push_back(gameSimulator);
+    }
+	}
 
 }
 
