@@ -5,6 +5,12 @@
 #include "Neurone.h"
 #include "Agent.h"
 
+/**
+* Class Neurone .
+* @author Thibault
+* @author Francois
+**/
+
 class NeurMono :
 	public Neurone
 {
@@ -21,24 +27,30 @@ public:
 	* @param Agent * agent referance to the neurone's agent assigned
 	* @param int treshold try to guess...
 	**/
-	NeurMono(unsigned char * entryTab, char * weitghList, int treshold, Agent * agent);
+	NeurMono(unsigned char * entryTab, char * weightList, int treshold, Agent * agent);
 	/**
 	* Default destructor
 	*
 	**/
 	~NeurMono();
 	/**
-	* calculate the output of the Neurone;
+	* calculate the output of the Neurone (=calculaated output);
 	* @return int value of the output
 	**/
-	int getOutPut();
+	int getOutput();
 	/**
 	* learning function for the neuronne
-	* @param eval evaluation of the current decision
+	* @param expectedOutput which is calculated the turn after the decision 
 	**/
-	void learn(int eval);
+	void learn(int expectedOutput);
 protected :
 	Agent * Asset;
+	int calculatedOutput;
+	int HighAverage;
+	int HA;
+	int LowAverage;
+	int LA;
+	int Average;
 };
 
 #endif //neurmono.h

@@ -26,7 +26,7 @@ public:
 	* @param unsigned char* weitghList List of all weight corresponding to the entry
 	* @param int treshold try to guess...
 	**/
-	Neurone(unsigned char* entryTab, char * weitghList, int treshold);
+	Neurone(unsigned char* entryTab, char * weightList, int treshold);
 	/**
 	* Default destructor
 	*
@@ -39,7 +39,7 @@ public:
 	/**
 	* setter for weightTab;
 	**/
-	void setWeightTab(char * tab);
+	void setWeightList(char * tab);
 	/**
 	* setter for treshold;
 	**/
@@ -47,7 +47,7 @@ public:
 	/**
 	* calculate the output of the Neurone;
 	**/
-	virtual int getOutPut();
+	virtual int getOutput();
 	/**
 	* learning function for the neuronne
 	**/
@@ -55,8 +55,11 @@ public:
 
 protected:
 	unsigned char *entryTab;
-	char weightTab[nb_entry];
+	int lenghtEntryVector;
+	char weightList[lenghtEntryVector];
 	int treshold;
+	int delta;
+	int calculatedOutput;
 };
 
 #endif // !NEURONE_H
