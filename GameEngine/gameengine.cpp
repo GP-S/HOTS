@@ -68,82 +68,141 @@ std::list<GameSimulator*> Engine::GameEngine::getSimulator ( void ) {
 }
 
 void Engine::GameEngine::useCard(IHMBoard* originIHMBoard, int originPosition, 
-	IHMBoard* destinationIHMBoard, int destinationPosition){
-  	
+	IHMBoard* destinationIHMBoard, int destinationPosition)
+{  	
 	int idOriginBoard=matchBoard->getIHMObjectPosition(originIHMBoard);
 	int idDestinationBoard=matchBoard->getIHMObjectPosition(destinationIHMBoard);
 
-	if(idOriginBoard/7!=turn%2)//if the actions comes from a board that doesn't belong to the active player
-	{
+	if(idOriginBoard/7!=turn%2)
+	{//if the actions comes from a board that doesn't belong to the active player
 		throw std::logic_error( "you cann't use that board right now" ); 
 	}
 
-
   	Card* playedCard = matchBoard->getGEObject(idOriginBoard)->getCardX(originPosition);
   	Player* activePlayer = (turn%2) ? (players->end()) : (players->begin()); 
-		/* Decide on what is the action performed
-		Timy-whymy-bubbly stuff . Abandon hope all ye who enter here . 
-		*/
-		if (playedCard->getType()=="Beast")
-		{
-			if(idOriginBoard==1&&(idDestinationBoard==8||idDestinationBoard==14)||
-					idOriginBoard==8&&(idDestinationBoard==1||idDestinationBoard==7))
-			{//if it is an attack 
+	/* Decide on what is the action performed
+	Timy-whymy-bubbly stuff . Abandon hope all ye who enter here . 
+	*/
+	if (playedCard->getType()=="Beast")
+	{
+		if(	idOriginBoard==PLAYER1_BOARD||
+			idOriginBoard==PLAYER2_BOARD)
+		{//if it is an attack 
+			if(idDestinationBoard==PLAYER2_BOARD||idDestinationBoard==PLAYER1_BOARD)
+			{//if it is an attack on a beast
 				//verify if the creacture can attack .
 				if (playedCard->canAttack()) {		
 					//verify if the target is valid
 					//apply damage to both Creatures
-					Creature* target=matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
+					Beast* target=(Beast*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
 					target->takeDamage(playedCard->getTotal("attack"));
 					playedCard->takeDamage(target->getTotal("attack"));
 					//check for validity of the state (kill creatures etc)
 					if (!target.isAlive())
 						{
 							//kills the target
+							if(!turn%2)
+							{//if player1 is playing, target belongs to player 2
+								matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+								matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(target,0);
+							}
+							else
+							{
+								matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+								matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(target,0);
+							}
 
 						}
 					if (!playedCard.isAlive())
 						{
-							//kills the attacker
+							if(!turn%2)
+							{
+								matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+								matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(playedCard,0);
+							}
+							else
+							{
+								matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+								matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(playedCard,0);
+							}
 						}
 					//returns the state to the IHM
 				}
+			}
+			if(idDestinationBoard==PLAYER2_HERO||idDestinationBoard==PLAYER1_HERO)
+			{//if it is an attack on the hero
+				if (playedCard->canAttack()) {		
+					//verify if the target is valid
+					//apply damage to both Creatures
+					Hero* target=(Hero*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
+					target->takeDamage(playedCard->getTotal("attack"));
+					playedCard->takeDamage(target->getTotal("attack"));
+					//check for validity of the state (kill creatures etc)
+					if (!target.isAlive())
+						{
+							//kills the target
+							if(!turn%2)
+							{//if player1 is playing, target belongs to player 2
+								throw std::logic_error( "Player 1 wins !" ); 
+							}
+							else
+							{
+								throw std::logic_error( "Player 2 wins !" ); 
+							}
 
-			} 
-			else if (idOriginBoard==3&&idDestinationBoard==1||idOriginBoard==10&&idDestinationBoard==8)
-			{//if the Beast is being played
-				//verify if the owner has enough shards
-				if (!activePlayer.getShards()>=playedCard.getCost())
-				{
-					throw std::logic_error( "you don't have enough shards" ); 
-				}
-				else
-				{
-					//verify if the board isn't full
-					if(matchBoard->getGEObject(idDestinationBoard)->isFull())
-					{
-						throw std::logic_error( "destination board is full" ); 
-  					}
-					//move the card
-					matchBoard->getGEObject(idOriginBoard)->takeCardX(originPosition);
-  					matchBoard->getGEObject(idDestinationBoard)->addCardX(playedCard,destinationPosition);
+							}
+					if (!playedCard.isAlive())
+						{
+							if(!turn%2)
+							{
+								matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+								matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(playedCard,0);
+							}
+							else
+							{
+								matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+								matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(playedCard,0);
+							}
+						}
 					//returns the state to the IHM
 				}
 			}
-		}
-		else if (playedCard->getType()=="Spell")
-		{
-			if (idOriginBoard==3||idOriginBoard==10)
-			{//if the spell is played from the hand
-				//verify if the owner has enough mana
-				//verify if the target is legit 
-				//apply the effect of the spell
-				//check for the validity of the state
-				//returns state to the IHM
 
+		} 
+		else if (	idOriginBoard==PLAYER1_HAND&&idDestinationBoard==PLAYER1_BOARD||
+					idOriginBoard==PLAYER2_HAND&&idDestinationBoard==PLAYER2_BOARD)
+		{//if the Beast is being played
+			//verify if the owner has enough shards
+			if (!activePlayer.getShards()>=playedCard.getCost())
+			{
+				throw std::logic_error( "you don't have enough shards" ); 
+			}
+			else
+			{
+				//verify if the board isn't full
+				if(matchBoard->getGEObject(idDestinationBoard)->isFull())
+				{
+					throw std::logic_error( "destination board is full" ); 
+  				}
+				//move the card
+				matchBoard->getGEObject(idOriginBoard)->takeCardX(originPosition);
+  				matchBoard->getGEObject(idDestinationBoard)->addCardX(playedCard,destinationPosition);
+				//returns the state to the IHM
 			}
 		}
+	}
+	else if (playedCard->getType()=="Spell")
+	{
+		if (idOriginBoard==PLAYER1_HAND||idOriginBoard==PLAYER2_HAND)
+		{//if the spell is played from the hand
+			//verify if the owner has enough mana
+			//verify if the target is legit 
+			//apply the effect of the spell
+			//check for the validity of the state
+			//returns state to the IHM
 
+		}
+	}
 }
 
 void Engine::GameEngine::endTurn(){
@@ -162,21 +221,21 @@ void Engine::GameEngine::endTurn(){
   
 }
 //DO NOT TOUCH THIS PLEASE
-/*		Player1_board : 1,
-        Player1_deck : 2,
-        Player1_hand : 3,
-        Player1_cimetery : 4,
-        Player1_equipment : 5,
-		Player1_trap : 6,
-		Player1_Hero : 7,
-        Player2_board : 8,
-        Player2_deck : 9,
-        Player2_hand : 10,
-        Player2_cimetery : 11,
-        Player2_equipment : 12,
-        Player2_trap : 13,
-        Player2_Hero : 14,*/
-
+/*		
+PLAYER1_BOARD = 1;
+PLAYER1_DECK = 2;
+PLAYER1_HAND = 3;
+PLAYER1_CIMETERY = 4;
+PLAYER1_EQUIPMENT = 5;
+PLAYER1_TRAP = 6;
+PLAYER1_HERO = 7;
+PLAYER2_BOARD = 8;
+PLAYER2_DECK = 9;
+PLAYER2_HAND = 10;
+PLAYER2_CIMETERY = 11;
+PLAYER2_EQUIPMENT = 12;
+PLAYER2_TRAP = 13;
+PLAYER2_HERO = 14;
 /*
 	played card = beast
 		1-8 / 8-1 => attack
