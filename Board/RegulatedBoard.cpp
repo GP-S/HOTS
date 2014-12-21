@@ -20,15 +20,17 @@ Card* RegulatedBoard::takeCardX(unsigned int x){
 
   /**
    * We have two positions to consider : x, the position in the regulated
-list and y,
-   * the position in the list by arrival time.
+   * list and y, the position in the list by arrival time.
    */
+   
+  if(listCard->size() < x)
+    throw std::logic_error( "the number is to big" );
 
   std::list<Card*>::iterator it1;
   std::list<Card*>::iterator it2;
   Card* pointerCard1;
   Card* pointerCard2;
-
+  
   it1 = listCard->begin();
 
   for(size_t i = 0; i < x; i++)
@@ -38,12 +40,16 @@ list and y,
 
   it2 = cardByArrivalTime->begin();
 
-  bool endwork = false;
-  while(!endwork){
+  bool finish = false;
+  
+  while(!finish){
     if(*it2 == pointerCard1){
       pointerCard2 = *it2;
-      endwork = true;
+      finish = true;
     }
+    if(it2 == cardByArrivalTime->end() & !finish)
+      throw std::logic_error( "no corresponding card between listCard and cardByArrivalTime" );
+    
     it2++;
   }
 
@@ -57,6 +63,10 @@ list and y,
 
 void RegulatedBoard::deletCardX(unsigned int x){
 
+
+  if(listCard->size() < x)
+    throw std::logic_error( "the number is to big" );
+
   std::list<Card*>::iterator it1;
   std::list<Card*>::iterator it2;
   Card* pointerCard1;
@@ -69,13 +79,16 @@ void RegulatedBoard::deletCardX(unsigned int x){
   pointerCard1 = *it1;
 
   it2 = cardByArrivalTime->begin();
-  bool endwork = false;
+  bool finish = false;
 
-  while(!endwork){
+  while(!finish){
     if(*it2 == pointerCard1){
       pointerCard2 = *it2;
-      endwork = true;
+      finish = true;
     }
+    if(it2 == cardByArrivalTime->end() & !finish)
+      throw std::logic_error( "no corresponding card between listCard and cardByArrivalTime" );
+    
     it2++;
   }
 
@@ -85,6 +98,9 @@ void RegulatedBoard::deletCardX(unsigned int x){
 }
 
 void RegulatedBoard::addCardX(Card *card,unsigned int x){
+
+  if(listCard->size() < x)
+    throw std::logic_error( "the number is to big" );
 
   std::list<Card*>::iterator it;
   it = listCard->begin();
@@ -99,43 +115,33 @@ void RegulatedBoard::addCardX(Card *card,unsigned int x){
 
 unsigned int RegulatedBoard::CardArrivalByTime(Card *card){
 
-  unsigned int arrival = 0;
+  unsigned int arrival = 1;
+  bool finish = false;
 
   std::list<Card*>::iterator it1;
   std::list<Card*>::iterator it2;
   it1 = listCard->begin();
-  bool endwork = false;
-  bool finish = false;
-
-  while(!finish){
-    it2 = cardByArrivalTime->begin();
-    std::cout << "*it1,*it2: " << *it1 << "," << *it2 << std::endl;
-    arrival = 1;
-
-    while(!endwork){
-      if(*it2 == *it1){
-        endwork = true;
-        finish = true;
-        std::cout << "it2 = it1" << std::endl;
-        break;
-      }
-      if(it2 == cardByArrivalTime->end() & !endwork)
-        endwork = true;
-        finish = false;
-        std::cout << "endwork = true, finish = false" << std::endl;
-      it2++;
-      arrival++;
-      std::cout << "arrival = " << arrival << std::endl;
-    }
-
-    if(it1 == listCard->end()){
-      finish = true;
-      //throw error;
-    }
-
+  
+  while(card != *it1){
+    
+    if(it1 == listCard->end())
+      throw std::logic_error( "no finding card" );
+      
     it1++;
   }
 
+  while(!finish){
+    if(*it2 == *it1){
+      finish = true;
+      std::cout << "it2 = it1" << std::endl;
+      break;
+    }
+    if(it2 == cardByArrivalTime->end() & !finish)
+      throw std::logic_error( "no corresponding card between listCard and cardByArrivalTime" );
+      
+    it2++;
+    arrival++;
+  }
 
   return arrival;
 
