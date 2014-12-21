@@ -27,20 +27,20 @@
 #include "../utils/usefulStruc.inc"
 
 
-static const OWNER_BOARD = 1;
-static const OWNER_DECK = 2;
-static const OWNER_HAND = 3;
-static const OWNER_CIMETERY = 4;
-static const OWNER_EQUIPMENT = 5;
-static const OWNER_TRAP = 6;
-static const OWNER_HERO = 7;
-static const ENNEMI_BOARD = 8;
-static const ENNEMI_DECK = 9;
-static const ENNEMI_HAND = 10;
-static const ENNEMI_CIMETERY = 11;
-static const ENNEMI_EQUIPMENT = 12;
-static const ENNEMI_TRAP = 13;
-static const ENNEMI_HERO = 14;
+static const PLAYER1_BOARD = 1;
+static const PLAYER1_DECK = 2;
+static const PLAYER1_HAND = 3;
+static const PLAYER1_CIMETERY = 4;
+static const PLAYER1_EQUIPMENT = 5;
+static const PLAYER1_TRAP = 6;
+static const PLAYER1_HERO = 7;
+static const PLAYER2_BOARD = 8;
+static const PLAYER2_DECK = 9;
+static const PLAYER2_HAND = 10;
+static const PLAYER2_CIMETERY = 11;
+static const PLAYER2_EQUIPMENT = 12;
+static const PLAYER2_TRAP = 13;
+static const PLAYER2_HERO = 14;
 //static const justInCase = 15; //unused
 //static const justInCase2 = 16; //unused
 
@@ -61,7 +61,7 @@ namespace Engine
       GameEngine& operator= ( const GameEngine& other );
       bool operator== ( const GameEngine& other ) const;
       IGameSimulator getSimulator ( void );
-      void playCard ( int originBoard, int originPosition, 
+      void useCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
       //isLegit()
