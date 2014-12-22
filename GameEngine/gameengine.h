@@ -44,13 +44,7 @@ static const PLAYER2_HERO = 14;
 //static const justInCase = 15; //unused
 //static const justInCase2 = 16; //unused
 
-/*  attaque . vérifie cible . résoud . 
-*  IHM . IHMBoard + pos . GEBoard + pos . GECard (x2) .. check . resolution sur les GEObjects. appeller sur les IHMObjects 
-*
-*
-*
-*
-*/
+
 namespace Engine
 {
   class GameEngine : public ISimulatorFactory, public IGameSolver {
@@ -102,23 +96,12 @@ namespace Engine
 
   private:
       void procEffectByType(int type);
+      void playBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,Player* activePlayer,int originPosition, int destinationPosition);
+      void playSpell(int idOriginBoard,int idDestinationBoard,Spell* playedCard,Player* activePlayer,int originPosition, int destinationPosition);
+      void beastAttackBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
+      void beastAttackHero(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
   };
 
 
 }
 #endif // GAMEENGINE_H
-
-/*      Player1_board : 1,
-        Player1_deck : 2,
-        Player1_hand : 3,
-        Player1_cimetery : 4,
-        Player1_equipment : 5,
-        Player1_trap : 6,
-        Player1_Hero : 7,
-        Player2_board : 8,
-        Player2_deck : 9,
-        Player2_hand : 10,
-        Player2_cimetery : 11,
-        Player2_equipment : 12,
-        Player2_trap : 13,
-        Player2_Hero : 14,*/
