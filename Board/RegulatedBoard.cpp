@@ -99,17 +99,19 @@ void RegulatedBoard::deletCardX(unsigned int x){
 
 void RegulatedBoard::addCardX(Card *card,unsigned int x){
 
-  if(listCard->size() < x)
-    throw std::logic_error( "the number is to big" );
+  if(listCard->size() < x){
+    listCard->push_back(card);
+    cardByArrivalTime->push_back(card);
+  }
+  else{
+    std::list<Card*>::iterator it;
+    it = listCard->begin();
+    for(size_t i = 0; i < x; i++)
+      it++;
 
-  std::list<Card*>::iterator it;
-  it = listCard->begin();
-  for(size_t i = 0; i < x; i++)
-    it++;
-
-  listCard->insert(it,card);
-  cardByArrivalTime->push_back(card);
-
+    listCard->insert(it,card);
+    cardByArrivalTime->push_back(card);
+  }
 }
 
 
