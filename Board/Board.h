@@ -77,7 +77,7 @@ public:
  	* Add a list of cards at the Xth position of a board.
  	* @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position. 
 	 */
-	virtual void addListCardX(std::list<Card*> *listcard, unsigned int x);
+	virtual void addCardX(std::list<Card*> *listcard, unsigned int x);
 	
 	/**
 	 * Return true if the list is full (like an egg), else 0.

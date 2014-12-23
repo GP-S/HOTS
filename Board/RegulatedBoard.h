@@ -49,6 +49,11 @@ public:
 	void addCardX(Card *card,unsigned int x);
 
 	/**
+	* Add a list of cards at the Xth position of a board and at the ed of its regulated list.
+	* @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position.
+	*/
+	void addCardX(std::list<Card*> *listcard, unsigned int x);
+	/**
 	 * Return the position in the CardArrivalByTime listCard.
 	 * @param Card *card pointer of card.
 	 * @return unsigned int.

@@ -103,7 +103,7 @@ void Board::addCardX(Card *card,unsigned int x){
   }
 }
 
-void Board::addListCardX(std::list<Card*> *listcard, unsigned int x){
+void Board::addCardX(std::list<Card*> *listcard, unsigned int x){
   
   if(listCard->size() < x)
     throw std::logic_error( "the number is to big" );

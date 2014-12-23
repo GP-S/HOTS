@@ -115,6 +115,20 @@ void RegulatedBoard::addCardX(Card *card,unsigned int x){
 }
 
 
+void RegulatedBoard::addCardX(std::list<Card*> *list, unsigned int x) {
+
+	std::list<Card*>::iterator it;
+	it = listCard->begin();
+	this->listCard->size() < x ? it = this->listCard->end : std::advance(it, x);
+	this->listCard->insert(it,
+						 list->begin(),
+						 list->end());
+	this->cardByArrivalTime->insert(this->cardByArrivalTime->end,
+								  list->begin(),
+								  list->end());
+  
+}
+
 unsigned int RegulatedBoard::CardArrivalByTime(Card *card){
 
   unsigned int arrival = 1;
