@@ -42,7 +42,7 @@ public:
 	 * Delete the card which is at the Xth position.
 	 * @param unsigned int x position of the card to be deleted.
 	 */
-	virtual void deletCardX(unsigned int x) = 0;
+	virtual void deleteCardX(unsigned int x) = 0;
 	
 	/** 
 	* Return the size of the list.
