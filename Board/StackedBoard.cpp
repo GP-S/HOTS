@@ -76,7 +76,7 @@ void StackedBoard::setMaxSize(unsigned int size) {
 void StackedBoard::addCardX(iCard *card, unsigned int x) {
 
 	if (listCard->size() < x) {
-		listCard->push_back(card);
+		listCard->push_back((Card*)card);
 	}
 	else {
 		std::list<Card*>::iterator it;
@@ -86,7 +86,7 @@ void StackedBoard::addCardX(iCard *card, unsigned int x) {
 		for (size_t i = 0; i < x; i++)
 			it++;
 
-		listCard->insert(it, card);
+		listCard->insert(it, (Card*)card);
 	}
 }
 
@@ -105,7 +105,7 @@ void StackedBoard::addCardX(std::list<iCard*> *listcard, unsigned int x) {
 	for (size_t i = 0; i < x; i++)
 		it++;
 
-	listCard->splice(it, *listcard);
+	listCard->splice(it, reinterpret_cast <std::list<Card*> &>(listcard));
 
 }
 

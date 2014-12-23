@@ -43,7 +43,7 @@ void Card::calculateCost(){//modify when capacities are done
 	cost = 5;
 }
 // i don't know if this is usefull anymore . keeping it just in case
-std::list<Capacity*>* Card::findCapaByType(std::string capaType)//returns a list of all capacities of choosen type
+std::list <Capacity*>*  Card::findCapaByType(std::string capaType)//returns a list of all capacities of choosen type
 {
 	std::list<Capacity*>* capaListTemp = new std::list<Capacity*>();
 	foreach(std::list<Capacity*>, capaListTemp, it){

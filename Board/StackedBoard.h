@@ -7,13 +7,13 @@ public:
 	/**
 	* Constructor which puts listCard to NULL.
 	*/
-	StackedBoard() : Board()
+	StackedBoard() : Board() {}
 
-	/**
-	* Create a board and initialize it with the pointer of listCard.
-	* @param std::list<Card> *listCard pointer of a list of card.
-	*/
-	StackedBoard(std::list<Card*> *listCard) : Board(std::list<Card*> *listCard)
+		/**
+		* Create a board and initialize it with the pointer of listCard.
+		* @param std::list<Card> *listCard pointer of a list of card.
+		*/
+	StackedBoard(std::list<Card*> *listCard) : Board(listCard){}
 
 	/**
 	* Get the card which is at the Xth position.

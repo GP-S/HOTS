@@ -89,7 +89,7 @@ void Board::setMaxSize(unsigned int size){
 void Board::addCardX(iCard *card,unsigned int x){
   
   if(listCard->size() < x){
-    listCard->push_back(card);
+    listCard->push_back((Card*) card);
   }
   else{
     std::list<Card*>::iterator it;
@@ -99,11 +99,11 @@ void Board::addCardX(iCard *card,unsigned int x){
     for(size_t i = 0; i < x; i++)
       it++;
     
-    listCard->insert(it, card);
+    listCard->insert(it, (Card*) card);
   }
 }
 
-void Board::addCardX(std::list<Card*> *listcard, unsigned int x){
+void Board::addCardX(std::list<iCard*> *listcard, unsigned int x){
   
   if(listCard->size() < x)
     throw std::logic_error( "the number is to big" );
@@ -117,8 +117,7 @@ void Board::addCardX(std::list<Card*> *listcard, unsigned int x){
   
   for(size_t i = 0; i < x; i++)
     it++;
-  
-  listCard->splice(it,*listcard);
+    listCard->splice(it, reinterpret_cast <std::list<Card*> &> (listcard)); //to my future myself : beleive me
   
 }
 

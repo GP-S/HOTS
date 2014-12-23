@@ -1,21 +1,22 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 
-#include "stdafx.h"
-#include "Card.h"
+#include <string>
 
-
-class Effect : 
+class Effect
 {
     public:
         Effect();
-		Effect();
-        abstract ~Effect();
+        ~Effect();
+		void setValue(int val);
+		int getValue();
+		std::string getType();
 		
     protected:
 
     private:
-
+		int value;
+		std::string type;
 };
 
 #endif // EFFECT_H

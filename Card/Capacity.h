@@ -43,44 +43,39 @@ class Capacity
     *
     **/
 
-    std::string			getType();
+    std::string getType();
     /**
     * getdurabilty
     * basic getter
     *
     **/
-    int					getDurabilty();
+    int getDurabilty();
     /**
     * setType
     * basic setter
     *
     **/
-    void				setType(std::string type);
+    void setType(std::string type);
     /**
     * setdurabilty
     * basic setter
     *
     **/
-    void				setDurabilty(int durabilty);
+    void setDurabilty(int durabilty);
     /**
     * setActive
     * basic setter
     *
     **/
-    void                setActive(bool active);
+    void setActive(bool active);
     /**
     * getActive
     * basic getter
     *
     **/
-    bool                getActive();
-
-
-
+    bool getActive();
+	Effect* getEffect();
     void decreaseDurability();
-
-    Effect* getEffect();
-
     void setEffect(Effect* effect);
 
 	protected : 
@@ -88,7 +83,7 @@ class Capacity
 	std::string		type;
 	int 			durabilty;
     bool            active;
-    Effect*         effect;
+    Effect          *effect;
 
 
 

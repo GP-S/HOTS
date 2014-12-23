@@ -100,8 +100,8 @@ void RegulatedBoard::deletCardX(unsigned int x){
 void RegulatedBoard::addCardX(iCard *card,unsigned int x){
 
   if(listCard->size() < x){
-    listCard->push_back(card);
-    cardByArrivalTime->push_back(card);
+    listCard->push_back((Card*)card);
+    cardByArrivalTime->push_back((Card*)card);
   }
   else{
     std::list<Card*>::iterator it;
@@ -109,8 +109,8 @@ void RegulatedBoard::addCardX(iCard *card,unsigned int x){
     for(size_t i = 0; i < x; i++)
       it++;
 
-    listCard->insert(it,card);
-    cardByArrivalTime->push_back(card);
+    listCard->insert(it,(Card*)card);
+    cardByArrivalTime->push_back((Card*)card);
   }
 }
 
@@ -119,14 +119,13 @@ void RegulatedBoard::addCardX(std::list<iCard*> *list, unsigned int x) {
 
 	std::list<Card*>::iterator it;
 	it = listCard->begin();
-	this->listCard->size() < x ? it = this->listCard->end : std::advance(it, x);
-	this->listCard->insert(it,
-						 list->begin(),
-						 list->end());
-	this->cardByArrivalTime->insert(this->cardByArrivalTime->end,
-								  list->begin(),
-								  list->end());
-  
+	this->listCard->size() < x ? it = this->listCard->end() : std::advance(it, x);
+	this->listCard->splice(it, reinterpret_cast <std::list<Card*> &> (list));
+	this->listCard->splice(this->listCard->end(), reinterpret_cast <std::list<Card*> &> (list));
+	/*this->cardByArrivalTime->insert(this->cardByArrivalTime->end, //maybe onde day...
+								  ((std::list<Card*>)list)->begin(),
+								  ((std::list<Card*>)list)->end());
+  */
 }
 
 unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){

@@ -36,7 +36,7 @@ void Capacity::setType(std::string type)
 
 void Capacity::setDurabilty(int durabilty)
 {
-    this->durabilty=durabilty;
+    this->durabilty = durabilty;
 }
 
 void Capacity::setActive(bool active)

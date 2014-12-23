@@ -7,12 +7,24 @@ Effect::Effect(){
 
 }
 
-Effect::Effect(){//complete this
+
+Effect::~Effect(){
+
 
 }
 
-abstract Effect::~Effect(){
+void Effect::setValue(int val)
+{
+	
+}
 
+int Effect::getValue()
+{
+	return 0;
+}
 
+std::string Effect::getType()
+{
+	return std::string();
 }
 
