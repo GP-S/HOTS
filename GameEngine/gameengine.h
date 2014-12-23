@@ -90,8 +90,6 @@ namespace Engine
       std::list<Player*> *players;
       IHM *ihm;
       IA *ia;
-      UnknownTemplate<Card>* corresCardId;
-      UnknownTemplate<Board>* corresBoardId;
       unsigned int turn;
 
   private:
