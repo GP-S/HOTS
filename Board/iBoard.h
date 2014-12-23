@@ -2,7 +2,7 @@
 #define IBOARD_H
 
 
-#include "Card.h"
+#include "iCard.h"
 
 /**
 * The class iBoard is .
@@ -29,14 +29,14 @@ public:
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	virtual Card * getCardX(unsigned int x) = 0;
+	virtual iCard * getCardX(unsigned int x) = 0;
 	
 	/** 
 	* Take the card which is at the Xth position and erase it of the deck.
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	virtual Card * takeCardX(unsigned int x) = 0;
+	virtual iCard * takeCardX(unsigned int x) = 0;
 	
 	/**
 	 * Delete the card which is at the Xth position.
