@@ -33,15 +33,14 @@ public:
     virtual ICard* createCard() =0;
     virtual ICard* createCard ( std::string title, int cost,int attack,int defense,std::string description,int imageId ) =0;
 
-    virtual IBoard* getPlayer0Stack() =0;
-    virtual IBoard* getPlayer0Hand() =0;
-    virtual IBoard* getPlayer0Graveyard() =0;
-    virtual IBoard* getPlayer0Battlefield() =0;
-
-    virtual IBoard* getPlayer1Stack() =0;
-    virtual IBoard* getPlayer1Hand() =0;
-    virtual IBoard* getPlayer1Graveyard() =0;
-    virtual IBoard* getPlayer1Battlefield() =0;
+    virtual IBoard* getBoard(int numBoard, int numPlayer)=0;
+    
+    static constexpr int STOCK = 0;
+    static constexpr int HAND = 1;
+    static constexpr int BATTLEGROUND = 2;
+    static constexpr int GRAVEYARD = 3;
+    
 };
+}
 
 #endif // IIHM_H
