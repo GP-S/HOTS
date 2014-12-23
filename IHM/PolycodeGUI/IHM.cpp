@@ -1,24 +1,36 @@
 #include "IHM.h"
 
 
-IHM::PolycodeGUI::IHM::IHM ( PolycodeView *view ) {
+IHM::PolycodeGUI::IHM::IHM ( PolycodeView *view , Engine::IGameSolver *solver) : solver(solver){
 
     core = new POLYCODE_CORE ( view, 1920,1080,false,true,0,0,90, 0, true );
 
     CoreServices::getInstance()->getResourceManager()->addArchive ( "Resources/default.pak" );
     CoreServices::getInstance()->getResourceManager()->addDirResource ( "default", false );
     CoreServices::getInstance()->getResourceManager()->addDirResource ( "Resources", false );
-
+    
+    CoreServices::getInstance()->getResourceManager()->addArchive ( "UIThemes.pak" );
+    CoreServices::getInstance()->getConfig()->loadConfig("Polycode", "UIThemes/dark_retina/theme.xml");
+    CoreServices::getInstance()->getResourceManager()->addDirResource("UIThemes/dark_retina/");
+    
     scene = new CollisionScene();
     scene->doVisibilityChecking ( true );
+    
+    Scene *screen = new Scene(Scene::SCENE_2D_TOPLEFT);
+       
+    button = new UIButton("End of Turn",100,26);
+    button->setScale(2,2);
+    screen->addChild(button);
+    button->setPosition(core->getXRes()-2*button->getWidth()-20,core->getYRes()/2-2*button->getHeight()/2);
+    screen->rootEntity.processInputEvents = true;
 
-    ScenePrimitive *ground = new ScenePrimitive ( ScenePrimitive::TYPE_PLANE, 192,108 );
+    ground = new ScenePrimitive ( ScenePrimitive::TYPE_PLANE, 192,108 );
     ground->setMaterialByName ( "GroundMaterial" );
     scene->addEntity ( ground );
 
     initBoard();
 
-
+    /*
     for ( int i =0; i<10; i++ ) {
         Card *card = new Card();
         scene->addCollisionChild ( card );
@@ -32,6 +44,7 @@ IHM::PolycodeGUI::IHM::IHM ( PolycodeView *view ) {
         p0Hand->addCard ( card,Vector3 ( 0,0,0 ) );
         card->setTitle ( "Card "+std::to_string ( i ) );
     }
+    */
 
 
 
@@ -41,9 +54,10 @@ IHM::PolycodeGUI::IHM::IHM ( PolycodeView *view ) {
     scene->getDefaultCamera()->setPosition ( 0,130,1 );
     scene->getDefaultCamera()->lookAt ( Vector3 ( 0,0,0 ) );
 
+    button->addEventListener(this, UIEvent::CLICK_EVENT);
     core->getInput()->addEventListener ( this, InputEvent::EVENT_MOUSEMOVE );
     core->getInput()->addEventListener ( this, InputEvent::EVENT_MOUSEDOWN );
-    lastEntity = NULL;
+
 }
 
 IHM::PolycodeGUI::IHM::~IHM() {
@@ -52,6 +66,13 @@ IHM::PolycodeGUI::IHM::~IHM() {
 }
 
 void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
+    if(e->getDispatcher() == button) {
+      switch(e->getEventCode()){
+	case UIEvent::CLICK_EVENT:
+	  solver->endTurn();
+	  break;
+      }
+    }
     if ( e->getDispatcher() == core->getInput() ) {
         InputEvent *inputEvent = ( InputEvent* ) e;
         Ray ray = scene->projectRayFromCameraAndViewportCoordinate ( scene->getActiveCamera(), inputEvent->mousePosition );
@@ -114,9 +135,15 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
                     if ( selected==NULL ) {
                         int index= ( ( Board* ) res.entity )->getPlace ( res.position );
                         selected= ( * ( Board* ) res.entity ) [index];
-                        ( ( Board* ) res.entity )->deleteCard ( index );
+			selectedBoard=getBoardNo((Board*) res.entity);
+			selectedPlayer=getBoardPlayer((Board*) res.entity);
+			selectedPos=index;
                     } else {
-                        ( ( Board* ) res.entity )->addCard ( ( Card* ) selected,res.position );
+			int index= ( ( Board* ) res.entity )->getPlace ( res.position );
+			if(selectedBoard!=getBoardNo(( Board* ) res.entity) || selectedPlayer!=getBoardPlayer(( Board* ) res.entity)){
+			  solver->playCard(selectedBoard+8*selectedPlayer,selectedPos,
+					   getBoardNo(( Board* ) res.entity)+8*getBoardPlayer(( Board* ) res.entity), index);
+			}
                         selected=NULL;
                     }
 
@@ -232,4 +259,22 @@ void IHM::PolycodeGUI::IHM::createLights() {
     light3->enableShadows ( true );
 
     light3->getSpotlightCamera()->frustumCulling = false;
+}
+
+int IHM::PolycodeGUI::IHM::getBoardNo ( IHM::PolycodeGUI::Board* board) {
+  if(board==p0Battlefield || board==p1Battlefield)
+    return BATTLEGROUND;
+  if(board==p0Graveyard || board==p1Graveyard)
+    return GRAVEYARD;
+  if(board==p0Hand || board==p1Hand)
+    return HAND;
+  if(board==p0Stock || board==p1Stock)
+    return STOCK;
+}
+
+int IHM::PolycodeGUI::IHM::getBoardPlayer ( IHM::PolycodeGUI::Board* board) {
+  if(board==p0Battlefield || board==p0Graveyard || board==p0Hand || board==p0Stock)
+    return 0;
+  if(board==p1Battlefield || board==p1Graveyard || board==p1Hand || board==p1Stock)
+    return 1;
 }
