@@ -19,56 +19,53 @@
 
 #include "gameengine.h"
 
-Engine::GameEngine::GameEngine() {
-
+Engine::GameEngine::GameEngine() 
+{
 	boards = new std::list<Board*>();
 	players = new std::list<Player*>();
 	ihm = new IHM();
     ia = new IA();
-
-
-    
     //corresCardId = NULL;
-    //corresBoardId = NULL;
-    
+    //corresBoardId = NULL;  
     turn = 0;
+}
+
+Engine::GameEngine::GameEngine ( const GameEngine& other ) 
+{
 
 }
 
-Engine::GameEngine::GameEngine ( const GameEngine& other ) {
-
-
-}
-
-Engine::GameEngine::~GameEngine() {
+Engine::GameEngine::~GameEngine() 
+{
 
 }
 
-Engine::GameEngine& GameEngine::operator= ( const GameEngine& other ) {
+Engine::GameEngine& GameEngine::operator= ( const GameEngine& other ) 
+{
 
 }
 
-bool Engine::GameEngine::operator== ( const GameEngine& other ) const {
+bool Engine::GameEngine::operator== ( const GameEngine& other ) const 
+{
 
 }
 
-std::list<GameSimulator*> Engine::GameEngine::getSimulator ( void ) {
-
-  std::list<GameSimulator*> gameSimulators;
-
-	foreach(size_t i = 0; i < boards[OWNER_HAND].getSize(); i++){
-    if(boards[OWNER_HAND].getCardX(i).getCost() < /*Get mana disponible*/){
-
-        GameSimulator *gameSimulator = new gameSimulator();
-        gameSimulator.setListCard();
-        gameSimulators.push_back(gameSimulator);
-    }
+std::list<GameSimulator*> Engine::GameEngine::getSimulator ( void ) 
+{
+ 	std::list<GameSimulator*> gameSimulators;
+	foreach(size_t i = 0; i < boards[OWNER_HAND].getSize(); i++)
+	{
+	    if(boards[OWNER_HAND].getCardX(i).getCost() < /*Get mana disponible*/)
+		{
+	        GameSimulator *gameSimulator = new gameSimulator();
+	        gameSimulator.setListCard();
+	        gameSimulators.push_back(gameSimulator);
+	    }
 	}
-
 }
 
-void Engine::GameEngine::useCard(	IHMBoard* originIHMBoard, int originPosition, 
-									IHMBoard* destinationIHMBoard, int destinationPosition)
+void Engine::GameEngine::useCard(	IBoard* originIHMBoard, int originPosition, //-------------- DOUBT HERE
+									IBoard* destinationIHMBoard, int destinationPosition)
 {  	
 	int idOriginBoard=matchBoard->getIHMObjectPosition(originIHMBoard);
 	int idDestinationBoard=matchBoard->getIHMObjectPosition(destinationIHMBoard);
@@ -85,14 +82,16 @@ void Engine::GameEngine::useCard(	IHMBoard* originIHMBoard, int originPosition,
 	*/
 	if (playedCard->getType()=="Beast")
 	{
-		if(	idOriginBoard==PLAYER1_BOARD||
+		if(	idOriginBoard==PLAYER1_BOARD||//this test is obsolete for now but i don't know how it's gonna be later 
 			idOriginBoard==PLAYER2_BOARD)
 		{//if it is an attack 
-			if(idDestinationBoard==PLAYER2_BOARD||idDestinationBoard==PLAYER1_BOARD)
+			if(	idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER2_BOARD||
+				idOriginBoard==PLAYER2_BOARD&&idDestinationBoard==PLAYER1_BOARD)
 			{//if it is an attack on a beast
 				beastAttackBeast(idOriginBoard,idDestinationBoard,(Beast*) playedCard,originPosition,destinationPosition);
 			}
-			if(idDestinationBoard==PLAYER2_HERO||idDestinationBoard==PLAYER1_HERO)
+			if(	idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER2_HERO||
+				idOriginBoard==PLAYER2_BOARD&&idDestinationBoard==PLAYER1_HERO)
 			{//if it is an attack on the hero
 				beastAttackHero(idOriginBoard,idDestinationBoard,(Beast*) playedCard,originPosition,destinationPosition);
 			}
@@ -113,8 +112,8 @@ void Engine::GameEngine::useCard(	IHMBoard* originIHMBoard, int originPosition,
 	}
 }
 
-void Engine::GameEngine::endTurn(){
-	
+void Engine::GameEngine::endTurn()
+{
 //-------- this will be a generic function later
 	foreach(std::list<Card*>, listCardsProccedWhenTurnEnds, itCard){
 		foreach(std::list<Capacity*>, itList->capaList, itCapa){
@@ -141,27 +140,30 @@ void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,Bea
 		if(matchBoard->getGEObject(idDestinationBoard)->isFull())
 		{
 			throw std::logic_error( "destination board is full" ); 
-				}
+		}	
 		//move the card
-		matchBoard->getGEObject(idOriginBoard)->takeCardX(originPosition);
-				matchBoard->getGEObject(idDestinationBoard)->addCardX(playedCard,destinationPosition);
+		iCard* playedCardIHM = matchBoard->getIHMObject(idOriginBoard)->getCard(originPosition); //-------------- DOUBT HERE
+		matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+		matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
+		matchBoard->getGEObject(idDestinationBoard)->addCardX(playedCard,destinationPosition);
+		matchBoard->getIHMObject(idDestinationBoard)->addCard(playedCardIHM,destinationPosition);
 		//returns the state to the IHM
 	}
 }
 
 void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Spell* playedCard,
-									Player* activePlayer,int originPosition, int destinationPosition){
-
-			//verify if the owner has enough mana
-			//verify if the target is legit 
-			//apply the effect of the spell
-			//check for the validity of the state
-			//returns state to the IHM
+									Player* activePlayer,int originPosition, int destinationPosition)
+{
+	//verify if the owner has enough mana
+	//verify if the target is legit 
+	//apply the effect of the spell
+	//check for the validity of the state
+	//returns state to the IHM
 }
 
 void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBoard,Beast* playedCard,
-											int originPosition, int destinationPosition){
-	
+											int originPosition, int destinationPosition)
+{
 	//verify if the creacture can attack .
 	if (!playedCard->canAttack()) 
 	{	
@@ -172,34 +174,47 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 		//verify if the target is valid
 		//apply damage to both Creatures
 		Beast* target=(Beast*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
+		iCard* playedCardIHM = matchBoard->getIHMObject(idOriginBoard)->getCard(originPosition);
+		iCard* targetIHM = matchBoard->getIHMObject(idDestinationBoard)->getCard(destinationPosition);
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
+		playedCardIHM->setDefense(playedCard->getTotal("hp"));
+		targetIHM->setDefense(target->getTotal("hp"));
 		//check for validity of the state (kill creatures etc)
 		if (!target.isAlive())
 			{
 				//kills the target
 				if(!turn%2)
 				{//if player1 is playing, target belongs to player 2
-					matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+					matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
+					matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
 					matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(target,0);
+					matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(targetIHM,0);
 				}
 				else
 				{
-					matchBoard->getGEObject(idOriginBoard)->takeCardX(originPosition);
+					matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
+					matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
 					matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(target,0);
+					matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(targetIHM,0);
 				}
 			}
 		if (!playedCard.isAlive())
 			{
+				//kills the attacker
 				if(!turn%2)
 				{
-					matchBoard->getGEObject(idOriginBoard)->takeCardX(originPosition);
+					matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+					matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 					matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(playedCard,0);
+					matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(playedCardIHM,0);
 				}
 				else
 				{
-					matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+					matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+					matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 					matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(playedCard,0);
+					matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(playedCardIHM,0);
 				}
 			}
 		//returns the state to the IHM
@@ -207,8 +222,8 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 }
 
 void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoard,Beast* playedCard,
-											int originPosition, int destinationPosition){
-
+											int originPosition, int destinationPosition)
+{
 	//verify if the creacture can attack .
 	if (!playedCard->canAttack()) 
 	{	
@@ -219,8 +234,12 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 		//verify if the target is valid
 		//apply damage to both Creatures
 		Hero* target=(Hero*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
+		iCard* playedCardIHM = matchBoard->getIHMObject(idOriginBoard)->getCard(originPosition);
+		iCard* targetIHM = matchBoard->getIHMObject(idDestinationBoard)->getCard(destinationPosition);
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
+		playedCardIHM->setDefense(playedCard->getTotal("hp"));
+		targetIHM->setDefense(target->getTotal("hp"));
 		//check for validity of the state (kill creatures etc)
 		if (!target.isAlive())
 		{
@@ -238,13 +257,17 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 		{
 			if(!turn%2)
 			{
-				matchBoard->getGEObject(idOriginBoard)->takeCardX(originPosition);
+				matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+				matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 				matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(playedCard,0);
+				matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(playedCardIHM,0);
 			}
 			else
 			{
-				matchBoard->getGEObject(idDestinationBoard)->takeCardX(destinationPosition);
+				matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+				matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 				matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(playedCard,0);
+				matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(playedCardIHM,0);
 			}
 		}
 		//returns the state to the IHM
