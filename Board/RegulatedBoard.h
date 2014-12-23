@@ -34,7 +34,7 @@ public:
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	Card* takeCardX(unsigned int x);
+	iCard* takeCardX(unsigned int x);
 
 	/**
 	 * Delete the card which is at the Xth position.
@@ -46,19 +46,19 @@ public:
  	* Add a card at the Xth position of a board.
  	* @param Card *card pointer of the target card, unsigned int x wanted position.
  	*/
-	void addCardX(Card *card,unsigned int x);
+	void addCardX(iCard *card,unsigned int x);
 
 	/**
 	* Add a list of cards at the Xth position of a board and at the ed of its regulated list.
 	* @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position.
 	*/
-	void addCardX(std::list<Card*> *listcard, unsigned int x);
+	void addCardX(std::list<iCard*> *listcard, unsigned int x);
 	/**
 	 * Return the position in the CardArrivalByTime listCard.
 	 * @param Card *card pointer of card.
 	 * @return unsigned int.
 	 */
-	unsigned int CardArrivalByTime(Card *card);
+	unsigned int CardArrivalByTime(iCard *card);
 
 	/**
  	* Destructor.

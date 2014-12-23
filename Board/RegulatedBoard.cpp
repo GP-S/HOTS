@@ -16,7 +16,7 @@ RegulatedBoard::RegulatedBoard(std::list<Card*> *listcard){
 
 }
 
-Card* RegulatedBoard::takeCardX(unsigned int x){
+iCard* RegulatedBoard::takeCardX(unsigned int x){
 
   /**
    * We have two positions to consider : x, the position in the regulated
@@ -97,7 +97,7 @@ void RegulatedBoard::deletCardX(unsigned int x){
 
 }
 
-void RegulatedBoard::addCardX(Card *card,unsigned int x){
+void RegulatedBoard::addCardX(iCard *card,unsigned int x){
 
   if(listCard->size() < x){
     listCard->push_back(card);
@@ -115,7 +115,7 @@ void RegulatedBoard::addCardX(Card *card,unsigned int x){
 }
 
 
-void RegulatedBoard::addCardX(std::list<Card*> *list, unsigned int x) {
+void RegulatedBoard::addCardX(std::list<iCard*> *list, unsigned int x) {
 
 	std::list<Card*>::iterator it;
 	it = listCard->begin();
@@ -129,7 +129,7 @@ void RegulatedBoard::addCardX(std::list<Card*> *list, unsigned int x) {
   
 }
 
-unsigned int RegulatedBoard::CardArrivalByTime(Card *card){
+unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
 
   unsigned int arrival = 1;
   bool finish = false;

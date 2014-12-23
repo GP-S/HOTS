@@ -34,14 +34,14 @@ public:
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	virtual Card * getCardX(unsigned int x);
+	virtual iCard * getCardX(unsigned int x);
 	
 	/** 
 	* Take the card which is at the Xth position and erase it of the deck.
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	Card * takeCardX(unsigned int x);
+	virtual iCard * takeCardX(unsigned int x);
 	
 	/**
 	 * Delete the card which is at the Xth position.
@@ -71,13 +71,13 @@ public:
  	* Add a card at the Xth position of a board.
  	* @param Card *card pointer of the target card, unsigned int x wanted position.
  	*/
-	virtual void addCardX(Card *card,unsigned int x);
+	virtual void addCardX(iCard *card,unsigned int x);
 	
 	/**
  	* Add a list of cards at the Xth position of a board.
  	* @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position. 
 	 */
-	virtual void addCardX(std::list<Card*> *listcard, unsigned int x);
+	virtual void addCardX(std::list<iCard*> *listcard, unsigned int x);
 	
 	/**
 	 * Return true if the list is full (like an egg), else 0.

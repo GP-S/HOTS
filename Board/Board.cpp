@@ -15,7 +15,7 @@ Board::Board(std::list<Card*> *listcard){
 
 }
 
-Card * Board::getCardX(unsigned int x){
+iCard * Board::getCardX(unsigned int x){
   
   if(listCard->size() < x)
     throw std::logic_error( "the number is to big" );
@@ -31,7 +31,7 @@ Card * Board::getCardX(unsigned int x){
 
 }
 
-Card * Board::takeCardX(unsigned int x){
+iCard * Board::takeCardX(unsigned int x){
   
   if(listCard->size() < x)
     throw std::logic_error( "the number is to big" );
@@ -86,7 +86,7 @@ void Board::setMaxSize(unsigned int size){
   
 }
 
-void Board::addCardX(Card *card,unsigned int x){
+void Board::addCardX(iCard *card,unsigned int x){
   
   if(listCard->size() < x){
     listCard->push_back(card);
