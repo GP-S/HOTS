@@ -29,6 +29,7 @@ class IBoard
 {
 public:
     virtual void addCard ( ICard* card, int pos ) =0;
+    virtual void addCard (std::list<ICard*> cards, int pos )=0;
     virtual void deleteCard ( int ) =0;
     virtual ICard* operator[] ( int i ) =0;
 };
