@@ -1,18 +1,25 @@
 #include "Neurone.h"
 #include "iostream"
+#define lengthEntryVector 5
+#define nb_entry lengthEntryVector
 
 
 Neurone::Neurone()
 {
-	entryTab = NULL;
+	int i;
+	for(i=0;i<lengthEntryVector;i++){
+	  entryTab[i] = 0;
+	}
 	treshold = 0;
 }
 
-Neurone::Neurone(unsigned char * entryTab, char * weitghTab, int treshold)
+Neurone::Neurone(char entryTab[lengthEntryVector], char weightTab[lengthEntryVector], int treshold)
 {
-	this->entryTab = entryTab;
+  
+
+	this->setentryTab(entryTab);
 	this->treshold = treshold;
-	this->setWeightList(weitghTab);
+	this->setWeightList(weightTab);
 }
 
 
@@ -20,17 +27,17 @@ Neurone::~Neurone()
 {
 }
 
-void Neurone::setentryTab(unsigned char * tab)
+void Neurone::setentryTab(char tab[lengthEntryVector])
 {
-	this->entryTab = entryTab;
+	this->setentryTab(entryTab);
 }
 
-void Neurone::setWeightList(char * tab)
+void Neurone::setWeightList(char tab[lengthEntryVector])
 {
 	try
 	{
 		if (tab == NULL) throw "null pointer for setWeightList in Neuronne";
-		for (int i = 0; i < lenghtEntryVector; this->weightList[i] = tab[i++]);
+		for (int i = 0; i < lengthEntryVector; this->weightList[i] = tab[i++]);
 	}
 	catch (const char *exception)
 	{

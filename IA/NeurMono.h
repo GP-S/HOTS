@@ -1,6 +1,7 @@
 #ifndef NEURMON_H
 #define NEURMON_H
-
+#define lengthEntryVector 5
+#define nb_entry lengthEntryVector
 
 #include "Neurone.h"
 #include "Agent.h"
@@ -22,19 +23,19 @@ public:
 	NeurMono() : Neurone() { Asset = NULL; }
 	/**
 	* Constructor
-	* @param unsigned char* entryTab List of all entry vector
-	* @param unsigned char* weitghList List of all weight corresponding to the entry
+	* @param char* entryTab List of all entry vector
+	* @param char* weitghList List of all weight corresponding to the entry
 	* @param Agent * agent referance to the neurone's agent assigned
 	* @param int treshold try to guess...
 	**/
-	NeurMono(unsigned char * entryTab, char * weightList, int treshold, Agent * agent);
+	NeurMono(char entryTab[lengthEntryVector], char weightList[lengthEntryVector], int treshold, Agent * agent);
 	/**
 	* Default destructor
 	*
 	**/
 	~NeurMono();
 	/**
-	* calculate the output of the Neurone (=calculaated output);
+	* calculate the output of the Neurone (=calculated output);
 	* @return int value of the output
 	**/
 	int getOutput();
