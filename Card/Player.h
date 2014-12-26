@@ -14,10 +14,23 @@
 
 class Player
 {
+		public :
+
+		Player();
+		PLayer(std::string name, int shards, int maxShards);
+		~Player();
+		std::string getName();
+		int getShards();
+		int getMaxShards();
+		void setName(std::string name);
+		void setShards(int shards);//shards cannot be over 10
+		void setMaxShards(int maxShards);//maxShards cannot be over 10
 
 		protected :
 
-		std::string		name;
+		std::string	name;
+		int shards;
+		int maxShards;
 
 
 
