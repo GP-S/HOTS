@@ -101,11 +101,12 @@ if [ ${#uninstalled[@]} -ne 0 ]; then
   fi
 fi
 
-if [[ $1 = --no-download ]]; then
-else
-git clone https://github.com/GP-S/HOTS.git
-cd HOTS
-fi
+### Uncomment this to make it clone the repository
+#if [[ $1 = --no-download ]]; then
+#else
+#git clone https://github.com/GP-S/HOTS.git
+#cd HOTS
+#fi
 
 git submodule update --init --recursive
 
