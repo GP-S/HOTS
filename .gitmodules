@@ -1,0 +1,3 @@
+[submodule "Dependencies/Polycode"]
+	path = Dependencies/Polycode
+	url = https://github.com/ivansafrin/Polycode.git
