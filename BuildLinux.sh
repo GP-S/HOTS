@@ -76,7 +76,21 @@ case $ID_LIKE in
     done
   ;;
   debian)
-    for package in ${suse_packages[@]}; do
+    for package in ${debian_packages[@]}; do
+      if ! check_for_package $package; then
+	uninstalled+=($package)
+      fi
+    done
+  ;;
+  rhel)
+    for package in ${rhel_packages[@]}; do
+      if ! check_for_package $package; then
+	uninstalled+=($package)
+      fi
+    done
+  ;;
+  arch)
+    for package in ${arch_packages[@]}; do
       if ! check_for_package $package; then
 	uninstalled+=($package)
       fi
