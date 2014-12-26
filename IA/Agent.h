@@ -2,7 +2,7 @@
 #define AGENT_H
 
 #include <string>
-#include "usefulStruc.inc"
+//#include "usefulStruc.inc"
 
 
 /**
@@ -40,7 +40,7 @@ protected:
 
 	int satisfaction;
 	const std::string order; //destroy, save, protect, powerup...
-	const placeMask targetAvailable;
+	//const placeMask targetAvailable;
 };
 
 #endif //AGENT_H
