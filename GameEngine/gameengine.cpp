@@ -142,7 +142,7 @@ void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,Bea
 			throw std::logic_error( "destination board is full" ); 
 		}	
 		//move the card
-		iCard* playedCardIHM = matchBoard->getIHMObject(idOriginBoard)->getCard(originPosition); //-------------- DOUBT HERE
+		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
 		matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
 		matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 		matchBoard->getGEObject(idDestinationBoard)->addCardX(playedCard,destinationPosition);
@@ -174,8 +174,8 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 		//verify if the target is valid
 		//apply damage to both Creatures
 		Beast* target=(Beast*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
-		iCard* playedCardIHM = matchBoard->getIHMObject(idOriginBoard)->getCard(originPosition);
-		iCard* targetIHM = matchBoard->getIHMObject(idDestinationBoard)->getCard(destinationPosition);
+		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition];
+		iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
 		playedCardIHM->setDefense(playedCard->getTotal("hp"));
@@ -234,8 +234,8 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 		//verify if the target is valid
 		//apply damage to both Creatures
 		Hero* target=(Hero*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
-		iCard* playedCardIHM = matchBoard->getIHMObject(idOriginBoard)->getCard(originPosition);
-		iCard* targetIHM = matchBoard->getIHMObject(idDestinationBoard)->getCard(destinationPosition);
+		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition];
+		iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
 		playedCardIHM->setDefense(playedCard->getTotal("hp"));
@@ -272,4 +272,60 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 		}
 		//returns the state to the IHM
 	}	
+}
+
+void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this should work for v1 since there is no effect that makes a player draw .
+
+	if(!(playerNumber%2))
+	{//if it is the Player1
+		for (int i=0;i<cardsDrawn)
+		{
+			//takes the first card of the deck
+			Card* cardDrawn = matchBoard->getGEObject(PLAYER1_DECK)->takeCardX(0);
+			iCard* cardDrawnIHM = (matchBoard->getIHMObject(PLAYER1_DECK))[0];
+			matchBoard->getIHMObject(PLAYER1_DECK)->deleteCard(0);
+			if (!matchBoard->getGEObject(PLAYER1_HAND)->isFull())
+			{//if the hand isn't full
+				//adds the card the the hand
+				matchBoard->getGEObject(PLAYER1_HAND)->addCardX(cardDrawn, 0);
+				matchBoard->getIHMObject(PLAYER1_HAND)->addCard(cardDrawnIHM, 0);
+			}
+		}	
+	}
+	else
+	{
+		for (int i=0;i<cardsDrawn)
+		{
+			//takes the first card of the deck
+			Card* cardDrawn = matchBoard->getGEObject(PLAYER2_DECK)->takeCardX(0);
+			iCard* cardDrawnIHM = (matchBoard->getIHMObject(PLAYER2_DECK))[0];
+			matchBoard->getIHMObject(PLAYER2_DECK)->deleteCard(0);
+			if (!matchBoard->getGEObject(PLAYER2_HAND)->isFull())
+			{//if the hand isn't full
+				//adds the card the the hand
+				matchBoard->getGEObject(PLAYER2_HAND)->addCardX(cardDrawn, 0);
+				matchBoard->getIHMObject(PLAYER2_HAND)->addCard(cardDrawnIHM, 0);
+			}
+		}
+	}
+}
+
+void Engine::GameEngine::beginTurn()
+{
+	//procs the effect of the beginning of the turn .
+
+	//makes the current player draw
+	if(!(turn%2))
+	{//if it is player 1's turn
+		players->begin()->setMaxShards(players->begin()->getMaxShards()+1);//limitation to 10 shards will come from setMaxShards, addShards, etc
+		players->begin()->setShards(players->begin()->getMaxShards());
+		playerDraws(1,1);
+	}
+	else
+	{//if it is player 2's turn
+		players->end()->setMaxShards(players->end()->getMaxShards()+1);//limitation to 10 shards will come from setMaxShards, addShards, etc
+		players->end()->setShards(players->end()->getMaxShards());
+		playerDraws(2,1);
+	}
+
 }

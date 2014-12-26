@@ -98,6 +98,8 @@ namespace Engine
       void playSpell(int idOriginBoard,int idDestinationBoard,Spell* playedCard,Player* activePlayer,int originPosition, int destinationPosition);
       void beastAttackBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void beastAttackHero(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
+      void playerDraws(int playerNumber,int cardsDrawn);
+      void beginTurn(); //never used for now . care .
   };
 
 
