@@ -124,6 +124,7 @@ void Engine::GameEngine::endTurn()
 	}
 //--------
 	turn++; 
+	beginTurn();
 }
 
 void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,Beast* playedCard,
@@ -328,4 +329,21 @@ void Engine::GameEngine::beginTurn()
 		playerDraws(2,1);
 	}
 
+}
+
+void Engine::GameEngine::shuffleDeck(int playerNumber){//heavy tests for this please .
+	if(!(playerNumber%2))
+	{//if it is the Player1
+  		srand ( unsigned ( time(0) ) );//initialize random
+		vector<Card*> v{ begin(matchBoard->getIHMObject(PLAYER1_DECK)), end(matchBoard->getIHMObject(PLAYER1_DECK)) };//copies the deck in a vector for random access
+		random_shuffle ( v.begin(), v.end() );// shuffles with algorithm.shuffle
+		copy(v.begin(), v(), back_inserter( matchBoard->getIHMObject(PLAYER1_DECK)));//copies the vector back to a list
+	}
+	else
+	{
+  		srand ( unsigned ( std::time(0) ) );
+		vector<Card*> v{ begin(matchBoard->getIHMObject(PLAYER2_DECK)), end(matchBoard->getIHMObject(PLAYER2_DECK)) };
+		random_shuffle ( v.begin(), v.end() );
+		copy(v.begin(), v(), back_inserter( matchBoard->getIHMObject(PLAYER2_DECK)));		
+	}
 }

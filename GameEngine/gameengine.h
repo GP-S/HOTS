@@ -25,6 +25,12 @@
 #include "../Board/iBoard.h"
 #include "../Card/iCard.h"
 #include "../utils/usefulStruc.inc"
+#include <vector>
+#include <list>
+#include <iterator>
+#include <algorithm>    
+#include <ctime>        // std::time
+#include <cstdlib>      // std::rand, std::srand
 
 
 static const PLAYER1_BOARD = 1;
@@ -100,6 +106,7 @@ namespace Engine
       void beastAttackHero(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void playerDraws(int playerNumber,int cardsDrawn);
       void beginTurn(); //never used for now . care .
+      void shuffleDeck(int playerNumber);//heavy tests for this please .
   };
 
 
