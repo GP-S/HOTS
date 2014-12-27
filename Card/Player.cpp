@@ -5,7 +5,7 @@ Player::Player(){
 
 
 }
-Player::PLayer(std::string name, int shards, int maxShards){
+Player::Player(std::string name, int shards, int maxShards){
 
 	this->name=name;
 	this->shards=shards;

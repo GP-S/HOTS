@@ -2,21 +2,32 @@
 #define EFFECT_H
 
 #include <string>
+#include <list>
+#include <iostream>
+#include <iterator>
+#include <stdexcept>
 
-class Effect
+
+class Effect 
 {
     public:
-        Effect();
-        ~Effect();
-		void setValue(int val);
-		int getValue();
+    Effect();
+		Effect(std::string type,std::string affinity,int value);
+    ~Effect();
 		std::string getType();
+		std::string getAffinity();
+		int getValue();
+		void setType(std::string type);
+		void setAffinity(std::string affinity);
+		void setValue(int value);
 		
     protected:
+    	std::string type;
+    	std::string affinity;
+    	int	value;
 
     private:
-		int value;
-		std::string type;
+
 };
 
 #endif // EFFECT_H

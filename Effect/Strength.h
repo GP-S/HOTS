@@ -2,9 +2,8 @@
 #define STRENGTH_H
 
 #include <exception>
-#include "stdafx.h"
 #include "Effect.h"
-
+#include "Card.h"
 /** 
 *	Class Strength . Derived from Effect . Used to handle all strength-related events .
 * @author Armand
