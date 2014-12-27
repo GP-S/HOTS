@@ -62,19 +62,19 @@ void Creature::attack(Creature* target){//this should work now
 
 void Creature::resetAttackCount(){// call this function on each creature when the turn begins
 
-    this->findCapaByType("AttackCount")->front()->getEffect()->setValue(0);
+    this->findCapaByType("attackCount")->front()->getEffect()->setValue(0);
 
 }
 
 bool Creature::canAttack(){
 
-    return this->findCapaByType("AttackCount")->front()->getEffect()->getValue()<this->findCapaByType("AttackCountMax")->front()->getEffect()->getValue();
+    return this->findCapaByType("attackCount")->front()->getEffect()->getValue()<this->findCapaByType("attackCountMax")->front()->getEffect()->getValue();
 
 }
 
 void Creature::increaseAttackCount(){
 
-     this->findCapaByType("AttackCount")->front()->getEffect()->setValue(this->findCapaByType("AttackCount")->front()->getEffect()->getValue()+1);    
+     this->findCapaByType("attackCount")->front()->getEffect()->setValue(this->findCapaByType("attackCount")->front()->getEffect()->getValue()+1);    
 }
 
 
@@ -103,7 +103,7 @@ void Creature::heal(unsigned int heal){
         throw std::logic_error( "no hp capacity in current card" ); 
     }
  
-    std::list<Capacity*>* listMaxHP = this->findCapaByType("max_hp");
+    std::list<Capacity*>* listMaxHP = this->findCapaByType("hpMax");
 
      
     if (listMaxHP->empty()){
@@ -119,7 +119,7 @@ void Creature::heal(unsigned int heal){
 
 void Creature::increaseMaxHP(unsigned int modifier){
 
-    std::string maxHP = "max_hp";
+    std::string maxHP = "hpMax";
     std::list<Capacity*>* listMaxHP = this->findCapaByType(maxHP);
 
      
@@ -135,7 +135,7 @@ void Creature::increaseMaxHP(unsigned int modifier){
 
 void Creature::decreaseMaxHP(unsigned int modifier){
 
-    std::string maxHP = "max_hp";
+    std::string maxHP = "hpMax";
     std::list<Capacity*>* listMaxHP = this->findCapaByType(maxHP);
 
      

@@ -1,10 +1,4 @@
-#include "Card.h"
-#include "Beast.h"
-#include "Spell.h"
-#include "cstdlib"
-#include "iostream"
-#include "ctime"
-
+#include "creatdeck.h"
 
 /*
 list of minimal capacity for beast and spell:
@@ -28,11 +22,6 @@ int random(){
 	return std::rand()%10;
 }
 
-int cost(int life, int strength){
-
-	return (life+strength)/2.5;
-}
-
 std::list<Card*>* newDeck(){
 
 	std::srand(std::time(0));
@@ -50,16 +39,16 @@ std::list<Card*>* newDeck(){
 		Beast *beast = new Beast(namebeast(random()),life,strength,"human");
 
 		Effect *hp = new Effect("hp",NULL,life);
-		Effect *max_hp = new Effect("max_hp",NULL,life);
+		Effect *max_hp = new Effect("hpMax",NULL,life);
 		Effect *attack = new Effect("attack",NULL,strength);
-		Effect *AttackCount = new Effect("AttackCount",NULL,0);
-		Effect *AttackCountMax = new Effect("AttackCountMax",NULL,1);
+		Effect *AttackCount = new Effect("attackCount",NULL,0);
+		Effect *AttackCountMax = new Effect("attackCountMax",NULL,1);
 
 		Capacity *capa_hp = new Capacity("hp",-1);
-		Capacity *capa_max_hp = new Capacity("max_hp",-1);
+		Capacity *capa_max_hp = new Capacity("hpMax",-1);
 		Capacity *capa_attack = new Capacity("attack",-1);
-		Capacity *capa_AttackCount = new Capacity("AttackCount",-1);
-		Capacity *capa_AttackCountMax = new Capacity("AttackCountMax",-1);
+		Capacity *capa_AttackCount = new Capacity("attackCount",-1);
+		Capacity *capa_AttackCountMax = new Capacity("attackCountMax",-1);
 
 		capa_hp->setEffect(hp);
 		capa_max_hp->setEffect(max_hp);

@@ -1,6 +1,25 @@
 Effect types :
 "attack"
-"AttackCount"
+"attackCount"
+"attackCountMax"
+"damage"
 "hp"
-"max_hp"
-"AttackCountMax"
+"hpMax"
+
+
+Not Implemented:
+
+"attackModifier"
+
+"maxLifeModifier"
+"lifeModifier"
+
+"costModifier"
+
+"capacityAdder"
+"capacityRemover"
+"capacityEnable"
+"capacityDisable"
+
+"invok"
+"move"

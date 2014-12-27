@@ -14,7 +14,7 @@
 Card::Card()
 {
 	name = "";
-	cardType = "Card_dafuck";
+	cardType = "card_dafuck";
 	capaList = new std::list<Capacity*>();
 
 	
