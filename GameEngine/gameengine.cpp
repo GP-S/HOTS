@@ -161,11 +161,56 @@ void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,Bea
 void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Spell* playedCard,
 									int originPosition, int destinationPosition)
 {
-	//verify if the owner has enough mana
-	//verify if the target is legit 
-	//apply the effect of the spell
-	//check for the validity of the state
-	//returns state to the IHM
+	//verify if the owner has enough shards
+	Hero* currentHero=(Hero*) (idOriginBoard==PLAYER1_HAND) ? matchBoard->getGEObject(PLAYER1_HERO)->getCardX(0)
+															: matchBoard->getGEObject(PLAYER2_HERO)->getCardX(0);
+	if (!currentHero->getShards()>=playedCard->getCost())
+	{
+		throw std::logic_error( "you don't have enough shards to play that" ); 
+	}
+	else
+	{
+		//move the card
+		iCard* currentHeroIHM = (idOriginBoard==PLAYER1_HAND) 	? (matchBoard->getIHMObject(PLAYER1_HERO))[0]
+																: (matchBoard->getIHMObject(PLAYER2_HERO))[0];
+		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
+		currentHero->decreaseShards(playedCard->getCost);
+		currentHeroIHM->decreaseShards(playedCard->getCost);
+		matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+		matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
+		
+		Creature* target=(Creature*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
+		iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
+		target->takeDamage(playedCard->getTotal("damage"));
+		targetIHM->setDefense(target->getTotal("hp"));
+		if (!target.isAlive())
+		{
+			//kills the target
+			if(idDestinationBoard == PLAYER2_BOARD)
+			{//if the target is either in the board or hero of player 1
+				matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
+				matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
+				matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(target,0);
+				matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(targetIHM,0);
+			}
+			else if (idDestinationBoard == PLAYER1_BOARD)
+			{
+				matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
+				matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
+				matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(target,0);
+				matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(targetIHM,0);
+			}
+			else if (idDestinationBoard == PLAYER1_HERO)
+			{
+				throw std::logic_error( "Player 2 wins !" ); 
+			}
+			else if (idDestinationBoard == PLAYER2_HERO)
+			{
+				throw std::logic_error( "Player 1 wins !" ); 
+			}
+		}
+		//returns the state to the IHM
+	}
 }
 
 void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBoard,Beast* playedCard,
@@ -190,41 +235,41 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 		targetIHM->setDefense(target->getTotal("hp"));
 		//check for validity of the state (kill creatures etc)
 		if (!target.isAlive())
-			{
-				//kills the target
-				if(!turn%2)
-				{//if player1 is playing, target belongs to player 2
-					matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
-					matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
-					matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(target,0);
-					matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(targetIHM,0);
-				}
-				else
-				{
-					matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
-					matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
-					matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(target,0);
-					matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(targetIHM,0);
-				}
+		{
+			//kills the target
+			if(!turn%2)
+			{//if player1 is playing, target belongs to player 2
+				matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
+				matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
+				matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(target,0);
+				matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(targetIHM,0);
 			}
+			else
+			{
+				matchBoard->getGEObject(idDestinationBoard)->deleteCardX(destinationPosition);
+				matchBoard->getIHMObject(idDestinationBoard)->deleteCard(destinationPosition);
+				matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(target,0);
+				matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(targetIHM,0);
+			}
+		}
 		if (!playedCard.isAlive())
+		{
+			//kills the attacker
+			if(!turn%2)
 			{
-				//kills the attacker
-				if(!turn%2)
-				{
-					matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
-					matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
-					matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(playedCard,0);
-					matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(playedCardIHM,0);
-				}
-				else
-				{
-					matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
-					matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
-					matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(playedCard,0);
-					matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(playedCardIHM,0);
-				}
+				matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+				matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
+				matchBoard->getGEObject(PLAYER1_CIMETERY)->addCardX(playedCard,0);
+				matchBoard->getIHMObject(PLAYER1_CIMETERY)->addCard(playedCardIHM,0);
 			}
+			else
+			{
+				matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
+				matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
+				matchBoard->getGEObject(PLAYER2_CIMETERY)->addCardX(playedCard,0);
+				matchBoard->getIHMObject(PLAYER2_CIMETERY)->addCard(playedCardIHM,0);
+			}
+		}
 		//returns the state to the IHM
 	}
 }
