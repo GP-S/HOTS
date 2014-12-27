@@ -61,13 +61,13 @@ float Effect::costVal(Card *card){
 
 	if(card->getType == "beast"){
 
-		if(type == "hp")
+		if(type == "hpMax")
 			return (Beast*)card->getHp()/2.5;
 
 		if(type == "attack")
 			return cost += ((Beast*)card->getBaseAttack()/2.5;
 		
-		if(type == "AttackCountMax"){
+		if(type == "attackCountMax"){
 			float attack = (Beast*)card->getBaseAttack();
 			float life = (Beast*)card->getHp();
 

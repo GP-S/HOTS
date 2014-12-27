@@ -7,7 +7,7 @@ Spell::Spell()
 }
 
 Spell::Spell(std::string name)  :
-Card(name,  "Spell")
+Card(name,  "spell")
 {
  
 }
