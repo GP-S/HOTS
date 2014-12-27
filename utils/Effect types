@@ -4,7 +4,7 @@ Effect types :
 "attackCountMax"
 "damage"
 "hp"
-"max_hp"
+"hpMax"
 
 
 Not Implemented:
