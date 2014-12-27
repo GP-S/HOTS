@@ -1,9 +1,4 @@
-/**
-* I can't work on Attack and canAttack
-*
-*/
-
-
+#include "Card_Test.h"
 
 #define NUMBER 10
 

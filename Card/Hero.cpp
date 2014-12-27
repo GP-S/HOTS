@@ -10,7 +10,7 @@ Hero::Hero()
 Hero::Hero(std::string name,int hp,int attack) :
 Creature(name,hp,attack)
 {
-   
+   setType("hero");
 }
 
 

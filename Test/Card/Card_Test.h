@@ -6,7 +6,7 @@
 #include "../../Card/Creature.h"
 #include "../../Card/Beast.h"
 #include "../../Card/Capacity.h"
-#include "../../Card/Player.h"
+#include "../../Card/Hero.h"
 #include "../../Effect/Effect.h"
 #include <iostream>
 #include <sstream>
@@ -15,3 +15,6 @@
 #include <string>
 
 #include "../../utils/tool.inc"
+
+
+#endif //CARD_TEST_H
