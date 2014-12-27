@@ -3,19 +3,7 @@
 *
 */
 
-#include "../../Card/Card.h"
-#include "../../Card/Beast.h"
-#include "../../Card/Capacity.h"
-#include "../../Card/Creature.h"
-#include "../../Card/Effect.h"
-#include "../../Card/Player.h"
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <cstdlib>
-#include <string>
 
-#include "../../utils/tool.inc"
 
 #define NUMBER 10
 
@@ -96,7 +84,7 @@ int main(int argc, char **argv){
 
 /*==================================================================================*/
 /*I Instance some card, creature, beast*/
-	printEtape(": Instanciation of cards, creatures and beasts");	// etape 1
+	printEtape("Instanciation of cards, creatures and beasts");	// etape 1
 	Card *card;
 	Creature *creature;
 	Beast *beast;
@@ -107,7 +95,7 @@ int main(int argc, char **argv){
 
 /*==================================================================================*/
 /*I Initialise some card, creature, beast*/
-	printEtape(": Intialisation of cards, creatures and beasts");	// etape 2
+	printEtape("Intialisation of cards, creatures and beasts");	// etape 2
 
 	/*for(size_t i = 0; i < NUMBER; i++){
 		printEtape("plop 0");
@@ -156,7 +144,7 @@ int main(int argc, char **argv){
 
 /*==================================================================================*/
 /*I Instance a beast and a creature*/
-	printEtape(": Instanciation of heros ,human");	// etape 3
+	printEtape("Instanciation of heros ,human");	// etape 3
 
 
 	//Card *firstCard = new Card("firstCard","\0");
@@ -171,13 +159,13 @@ int main(int argc, char **argv){
 
 /*==================================================================================*/
 /*I try to get all attribute of all class*/
-	printEtape(": Test all getteur");	// etape 4
+	printEtape("Test all getteur");	// etape 4
 
 
 
 /*==================================================================================*/
 /*I test the methode attack*/
-	printEtape(": Fight beteewn heros and arthas");	// etape 5
+	printEtape("Fight beteewn heros and arthas");	// etape 5
 
 	arthas->takeDamage(heros->getBaseAttack());
 	heros->takeDamage(arthas->getBaseAttack());
@@ -190,7 +178,7 @@ int main(int argc, char **argv){
 
 /*==================================================================================*/
 /*I test the methode attack and canAttack util death*/
-	printEtape(": Fight beteewn heros and arthas util death");	// etape 6
+	printEtape("Fight beteewn heros and arthas util death");	// etape 6
 
 	size_t roundNumber = 0;
 	while(arthas->isAlive() | heros->isAlive()){
@@ -210,7 +198,7 @@ int main(int argc, char **argv){
 
 /*==================================================================================*/
 /*I test methode for increase/decrease attribute*/
-	printEtape(": heal, increaseMaxHP, increaseAttackCount, decreaseMaxHP");	// etape 7
+	printEtape("heal, increaseMaxHP, increaseAttackCount, decreaseMaxHP");	// etape 7
 
 	std::cout << "	before tests" << std::endl;
 	printCreature(&creature[9],1);
@@ -240,7 +228,7 @@ int main(int argc, char **argv){
 	Il manque aussi le fait que l'on travail avec des RegulatedBoard & des StackBoard
 			*/
 
-	printEtape(": End of the test, all tests are succesfull for the science !");	// etape 10
+	printEtape("End of the test, all tests are succesfull for the science !");	// etape 10
 	return 0;
 }
 

@@ -51,7 +51,8 @@ bool Capacity::getActive()
 
 void Capacity::decreaseDurability(){
 
-	durabilty--;
+    if(durabilty != -1)
+	   durabilty--;
 }
 
 

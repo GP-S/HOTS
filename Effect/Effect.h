@@ -20,7 +20,7 @@ class Effect
 		void setType(std::string type);
 		void setAffinity(std::string affinity);
 		void setValue(int value);
-		float costVal(Card *card);
+		float costVal(Card *card = NULL);
 		
     protected:
     	std::string type;

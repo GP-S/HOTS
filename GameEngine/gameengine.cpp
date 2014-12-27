@@ -80,7 +80,7 @@ void Engine::GameEngine::useCard(	IBoard* originIHMBoard, int originPosition, //
 	/* Decide on what is the action performed
 	Timy-whymy-bubbly stuff . Abandon hope all ye who enter here . 
 	*/
-	if (playedCard->getType()=="Beast")
+	if (playedCard->getType()=="beast")
 	{
 		if(	idOriginBoard==PLAYER1_BOARD||//this test is obsolete for now but i don't know how it's gonna be later 
 			idOriginBoard==PLAYER2_BOARD)
@@ -103,7 +103,7 @@ void Engine::GameEngine::useCard(	IBoard* originIHMBoard, int originPosition, //
 			playBeast(idOriginBoard,idDestinationBoard,(Beast*) playedCard,originPosition,destinationPosition);
 		}
 	}
-	else if (playedCard->getType()=="Spell")
+	else if (playedCard->getType()=="spell")
 	{
 		if (idOriginBoard==PLAYER1_HAND||idOriginBoard==PLAYER2_HAND)
 		{//if the spell is played from the hand

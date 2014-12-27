@@ -53,10 +53,10 @@ void Effect::setValue(int value){
 
 }
 
-float Effect::costVal(Card *card){
+float Effect::costVal(Card *card = NULL){
 
 	if(card == NULL)
-		return (float)value;
+		return (float)value/2.0;
 
 
 	if(card->getType == "beast"){
@@ -79,7 +79,7 @@ float Effect::costVal(Card *card){
 	if(card->getType == "spell"){
 
 		if(type == "damage")
-			return 1.0+(value*value)/10;
+			return 1.0+(value*value)/10.0;
 
 	}
 
