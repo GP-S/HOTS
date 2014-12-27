@@ -3,7 +3,6 @@
 
 #define NULL 0
 #define lengthEntryVector 5
-#define nb_entry lengthEntryVector
 
 /**
 * Class Neurone .
@@ -26,7 +25,7 @@ public:
 	* @param unsigned char* weightList List of all weight corresponding to the entry
 	* @param int treshold try to guess...
 	**/
-	Neurone(char entryTab[lengthEntryVector], char weightList[lengthEntryVector], int treshold);
+	Neurone(char *entryTab, char weightList[lengthEntryVector], int treshold);
 	/**
 	* Default destructor
 	*
@@ -35,7 +34,7 @@ public:
 	/**
 	* setter for entryTab;
 	**/
-	void setentryTab(char tab[lengthEntryVector]);
+	void setentryTab(char *tab);
 	/**
 	* setter for weightTab;
 	**/
@@ -54,7 +53,7 @@ public:
 	virtual void learn(int eval);
 
 protected:
-	char entryTab[lengthEntryVector];
+	char* entryTab;
 //	int lenghtEntryVector;
 	char weightList[lengthEntryVector];
 	int treshold;

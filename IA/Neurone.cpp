@@ -7,19 +7,14 @@
 Neurone::Neurone()
 {
 	int i;
-	for(i=0;i<lengthEntryVector;i++){
-	  entryTab[i] = 0;
-	}
 	treshold = 0;
 }
 
-Neurone::Neurone(char entryTab[lengthEntryVector], char weightTab[lengthEntryVector], int treshold)
+Neurone::Neurone(char *entryTab, char weightTab[lengthEntryVector], int treshold)
 {
-  
-
-	this->setentryTab(entryTab);
-	this->treshold = treshold;
+	this->entryTab = entryTab;
 	this->setWeightList(weightTab);
+	this->treshold = treshold;
 }
 
 
@@ -27,9 +22,10 @@ Neurone::~Neurone()
 {
 }
 
-void Neurone::setentryTab(char tab[lengthEntryVector])
+void Neurone::setentryTab(char* tab)
 {
-	this->setentryTab(entryTab);
+	//this->setentryTab(entryTab); ...Are you kidding me?
+	this->entryTab = tab;
 }
 
 void Neurone::setWeightList(char tab[lengthEntryVector])

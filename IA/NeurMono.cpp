@@ -41,7 +41,7 @@ void NeurMono::learn(int expectedOutput)
 	 * with the elements higher than the average) 
 	 * */
 	for(j=0;j<lengthEntryVector;j++){
-		Average=Average+weightList[i]/lengthEntryVector;
+		Average=Average+weightList[j]/lengthEntryVector;
 	}
 	for(k=0;k<lengthEntryVector;k++){
 		if(weightList[k]>=Average){
