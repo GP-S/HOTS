@@ -1,7 +1,7 @@
 Effect types :
 "attack"
-"AttackCount"
-"AttackCountMax"
+"attackCount"
+"attackCountMax"
 "damage"
 "hp"
 "max_hp"
