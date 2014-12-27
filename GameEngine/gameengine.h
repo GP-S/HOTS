@@ -104,7 +104,7 @@ namespace Engine
       void beastAttackBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void beastAttackHero(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void playerDraws(int playerNumber,int cardsDrawn);
-      void beginTurn(); //needs the ihm return
+      void beginTurn(); 
       void shuffleDeck(int playerNumber);//heavy tests for this please .
   };
 
