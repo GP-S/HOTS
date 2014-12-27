@@ -12,14 +12,7 @@
 * @author Armand
 *
 **/
-/** @TODO :
-*   
-*   
-*   
-*   
-*
-*
-**/
+
 class Hero : public Creature
 {
     public:
@@ -43,6 +36,31 @@ class Hero : public Creature
         *
         **/
         ~Hero();
+
+        /**
+        * increaseShards . Used everytime we need to increase the shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        void    increaseShards(unsigned int modifier);
+        /**
+        * decreaseShards . Used everytime we need to decrease the shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        void    decreaseShards(unsigned int modifier);
+        /**
+        * increaseMaxShards . Used everytime we need to increase the maximum shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        void    increaseMaxShards(unsigned int modifier);
+        /**
+        * decreaseMaxShards . Used everytime we need to decrease the maximum shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        void    decreaseMaxShards(unsigned int modifier);
 
 		
     protected:

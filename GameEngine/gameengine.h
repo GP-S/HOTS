@@ -99,8 +99,8 @@ namespace Engine
 
   private:
       void procEffectByType(int type);
-      void playBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,Player* activePlayer,int originPosition, int destinationPosition);
-      void playSpell(int idOriginBoard,int idDestinationBoard,Spell* playedCard,Player* activePlayer,int originPosition, int destinationPosition);
+      void playBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
+      void playSpell(int idOriginBoard,int idDestinationBoard,Spell* playedCard,int originPosition, int destinationPosition);
       void beastAttackBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void beastAttackHero(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void playerDraws(int playerNumber,int cardsDrawn);
