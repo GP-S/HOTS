@@ -40,7 +40,12 @@ void Card::addCapacity(Capacity* capa){//insert a Capacity at the tail of the li
 
 void Card::calculateCost(){//modify when capacities are done
 
-	cost = 5;
+	cost = 0;
+
+	foreach(std::list<Capacity*>, capaList, it){
+		cost += (*it)->getEffect()->costVal(this);
+	}
+
 }
 // i don't know if this is usefull anymore . keeping it just in case
 std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a list of all capacities of choosen type

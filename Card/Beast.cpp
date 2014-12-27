@@ -12,6 +12,7 @@ Beast::Beast(std::string name,int hp,int attack,std::string race) :
 Creature(name,hp,attack)
 {
 	race=race;
+	setType("beast");
 }
 
 
