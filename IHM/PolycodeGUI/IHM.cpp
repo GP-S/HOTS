@@ -92,7 +92,7 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
                                         //std::cout<<e.what()<<std::endl;
                                         return;
                                     }
-                            hovered= ( * ( Board* ) res.entity ) [index];
+                            hovered= (Card*) ( * ( Board* ) res.entity ) [index];
                             try {
                                 hovered->hover();
                             } catch ( const std::runtime_error& e ) {
@@ -134,7 +134,7 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
                 if ( typeid ( *res.entity ) ==typeid ( Board ) ) {
                     if ( selected==NULL ) {
                         int index= ( ( Board* ) res.entity )->getPlace ( res.position );
-                        selected= ( * ( Board* ) res.entity ) [index];
+                        selected= (SceneEntity*)( * ( Board* ) res.entity ) [index];
 			selectedBoard=getBoardNo((Board*) res.entity);
 			selectedPlayer=getBoardPlayer((Board*) res.entity);
 			selectedPos=index;
@@ -261,7 +261,7 @@ void IHM::PolycodeGUI::IHM::createLights() {
     light3->getSpotlightCamera()->frustumCulling = false;
 }
 
-int IHM::PolycodeGUI::IHM::getBoardNo ( IHM::PolycodeGUI::Board* board) {
+int IHM::PolycodeGUI::IHM::getBoardNo ( ::IHM::PolycodeGUI::Board* board) {
   if(board==p0Battlefield || board==p1Battlefield)
     return BATTLEGROUND;
   if(board==p0Graveyard || board==p1Graveyard)
@@ -272,7 +272,7 @@ int IHM::PolycodeGUI::IHM::getBoardNo ( IHM::PolycodeGUI::Board* board) {
     return STOCK;
 }
 
-int IHM::PolycodeGUI::IHM::getBoardPlayer ( IHM::PolycodeGUI::Board* board) {
+int IHM::PolycodeGUI::IHM::getBoardPlayer ( ::IHM::PolycodeGUI::Board* board) {
   if(board==p0Battlefield || board==p0Graveyard || board==p0Hand || board==p0Stock)
     return 0;
   if(board==p1Battlefield || board==p1Graveyard || board==p1Hand || board==p1Stock)

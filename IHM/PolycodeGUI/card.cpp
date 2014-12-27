@@ -316,3 +316,6 @@ void IHM::PolycodeGUI::Card::unhover() {
     }
 }
 
+int IHM::PolycodeGUI::Card::getCost() {
+  return cost;
+}

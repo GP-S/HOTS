@@ -70,4 +70,4 @@ private:
 }
 }
 
-#endif POLYCODEGUI_IHM_H
+#endif //POLYCODEGUI_IHM_H

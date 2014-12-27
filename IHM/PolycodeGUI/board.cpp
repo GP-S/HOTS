@@ -47,7 +47,7 @@ void IHM::PolycodeGUI::Board::addCard ( ICard* card, int pos ) {
     if ( typeid ( card ) !=typeid ( Card ) ) {
         throw std::invalid_argument ( "This card is incompatible with this UI" );
     }
-    Card* realCard = card;
+    Card* realCard = (Card*) card;
     if ( cards.size() >=size && size!=0 ) {
         throw std::length_error ( "Board is full" );
     }
@@ -58,7 +58,7 @@ void IHM::PolycodeGUI::Board::addCard ( ICard* card, int pos ) {
             Card* last=cards.back();
             last->moveTo ( position+Vector3 ( 0,-Card::CARD_THICK/2,0 ),false );
         }
-        cards.push_back ( card );
+        cards.push_back ( realCard );
     } else {
         int index = pos;
 
@@ -78,7 +78,7 @@ void IHM::PolycodeGUI::Board::addCard ( ICard* card, int pos ) {
             Card* current=cards[i];
             current->moveTo ( position+Vector3 ( ( ( int ) ( ( i+1 )-round ( size/2 ) ) ) * ( Card::CARD_WIDTH+0.8 ),0,0 ),false );
         }
-        cards.insert ( cards.begin() +index, card );
+        cards.insert ( cards.begin() +index, realCard );
     }
 
     if ( hidden ) {
@@ -95,7 +95,8 @@ void IHM::PolycodeGUI::Board::addCard ( ICard* card, int pos ) {
 }
 
 void IHM::PolycodeGUI::Board::addCard ( std::list< IHM::ICard* > cards, int pos ) {
-    foreach ( std::list<IHM::ICard*>, cards, i ) {
+    for(std::list<IHM::ICard*>::iterator i = cards.begin(), e=cards.end(); i!=e; ++i)
+    {
         addCard ( *i,pos );
     }
 }
@@ -117,11 +118,11 @@ void IHM::PolycodeGUI::Board::deleteCard ( int index ) {
         }
 }
 
-Card* IHM::PolycodeGUI::Board::operator[] ( int i ) {
+IHM::ICard* IHM::PolycodeGUI::Board::operator[] ( int i ) {
     if ( i>=cards.size() ) {
         throw std::out_of_range ( "Out of board" );
     }
-    return cards[i];
+    return (ICard*) cards[i];
 }
 
 int IHM::PolycodeGUI::Board::getPlace ( Vector3 pos ) {

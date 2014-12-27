@@ -7,7 +7,7 @@ fi
 
 #### Variables initialisations
 debian_packages=("git" "build-essential" "cmake" "python" "libsdl1.2-dev" "libopenal-dev" "libopenal1" "libsdl1.2debian" "python-ply")
-suse_packages=("git" "devel_basis" "cmake" "python" "libSDL-devel" "libSDL-1_2-0" "python-ply" "openal-soft" "openal-soft-devel")
+suse_packages=("git" "+pattern:devel_basis" "cmake" "python" "libSDL-devel" "libSDL-1_2-0" "python-ply" "openal-soft" "openal-soft-devel")
 rhel_packages=("git" "gcc" "gcc-c++" "make" "cmake" "python" "python-ply" "SDL" "SDL-devel" "openal-soft-devel" "openal-soft")
 arch_packages=("git" "base-devel" "cmake" "sdl" "python2" "python2-ply" "openal")
 uninstalled=()

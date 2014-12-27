@@ -20,6 +20,8 @@
 #ifndef IBOARD_H
 #define IBOARD_H
 
+#include <list>
+
 #include "icard.h"
 
 namespace IHM
