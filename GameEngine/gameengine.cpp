@@ -319,13 +319,17 @@ void Engine::GameEngine::beginTurn()
 	if(!(turn%2))
 	{//if it is player 1's turn
 		players->begin()->setMaxShards(players->begin()->getMaxShards()+1);//limitation to 10 shards will come from setMaxShards, addShards, etc
+		//ihm::setMaxShards(1,players->begin()->getMaxShards());//return to ihm
 		players->begin()->setShards(players->begin()->getMaxShards());
+		//ihm::setShards(1,players->begin()->getShards());//return to ihm
 		playerDraws(1,1);
 	}
 	else
 	{//if it is player 2's turn
 		players->end()->setMaxShards(players->end()->getMaxShards()+1);//limitation to 10 shards will come from setMaxShards, addShards, etc
+		//ihm::setMaxShards(1,players->begin()->getMaxShards());//return to ihm
 		players->end()->setShards(players->end()->getMaxShards());
+		//ihm::setShards(1,players->begin()->getShards());//return to ihm
 		playerDraws(2,1);
 	}
 

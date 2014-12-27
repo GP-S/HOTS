@@ -11,9 +11,9 @@
 class Effect 
 {
     public:
-    Effect();
+    	Effect();
 		Effect(std::string type,std::string affinity,int value);
-    ~Effect();
+    	~Effect();
 		std::string getType();
 		std::string getAffinity();
 		int getValue();

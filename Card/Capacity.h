@@ -4,7 +4,7 @@
 #include <string>
 #include <list>
 #include <iostream>
-#include "Effect.h"
+#include "../Effect/Effect.h"
 
 
 /** 

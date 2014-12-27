@@ -106,7 +106,7 @@ class Card : public iCard
         *
         * not done yet !!!
         **/
-        bool isUsable(Player p);
+        bool isUsable(Player* p);
 
         /**
         * getTotal

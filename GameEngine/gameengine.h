@@ -75,7 +75,6 @@ namespace Engine
       IA* ia;
       Match<Card>* matchCard;
       Match<Board>* matchBoard;
-      int turn;
       std::list<Card*>* listCardsProccedWhenAttacked; //when I get attacked 
       std::list<Card*>* listCardsProccedWhenHurt; // when I get hurt
       std::list<Card*>* listCardsProccedWhenHealed; // when I get healed
@@ -105,7 +104,7 @@ namespace Engine
       void beastAttackBeast(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void beastAttackHero(int idOriginBoard,int idDestinationBoard,Beast* playedCard,int originPosition, int destinationPosition);
       void playerDraws(int playerNumber,int cardsDrawn);
-      void beginTurn(); //never used for now . care .
+      void beginTurn(); //needs the ihm return
       void shuffleDeck(int playerNumber);//heavy tests for this please .
   };
 
