@@ -25,6 +25,9 @@
 #include "match.h"
 #include "../Board/iBoard.h"
 #include "../Card/iCard.h"
+#include "../Card/iHero.h"
+#include "../Card/iCreature.h"
+#include "../Card/iBeast.h"
 #include "../utils/usefulStruc.inc"
 #include "../IHM/iihm.h"
 #include <vector>
@@ -69,10 +72,6 @@ namespace Engine
       //static constexpr int justInCase2 = 16; //unused
     
   protected:
-      iBoard* boards;
-      Player* players;
-      IHM::IIHM* ihm;
-      IA* ia;
       Match<iCard,IHM::ICard>* matchCard;
       Match<iBoard,IHM::IBoard>* matchBoard;
       std::list<iCard*>* listCardsProccedWhenAttacked; //when I get attacked 

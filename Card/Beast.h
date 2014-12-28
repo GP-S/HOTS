@@ -20,7 +20,7 @@
 *
 *
 **/
-class Beast : public Creature
+class Beast : public Creature, public iBeast
 {
     public:
         /**

@@ -8,7 +8,7 @@
 #include <stdexcept>
 
 
-class Effect 
+class Effect : public iEffect
 {
     public:
     	Effect();

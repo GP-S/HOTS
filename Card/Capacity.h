@@ -13,7 +13,7 @@
 *
 **/
 
-class Capacity
+class Capacity : public iCapacity
 {
 
 	public :

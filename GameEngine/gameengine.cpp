@@ -88,26 +88,26 @@ void Engine::GameEngine::useCard(	IBoard* originIHMBoard, int originPosition, //
 			if(	idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER2_BOARD||
 				idOriginBoard==PLAYER2_BOARD&&idDestinationBoard==PLAYER1_BOARD)
 			{//if it is an attack on a beast
-				beastAttackBeast(idOriginBoard,idDestinationBoard,(Beast*) playedCard,originPosition,destinationPosition);
+				beastAttackBeast(idOriginBoard,idDestinationBoard,(iBeast*) playedCard,originPosition,destinationPosition);
 			}
 			if(	idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER2_HERO||
 				idOriginBoard==PLAYER2_BOARD&&idDestinationBoard==PLAYER1_HERO)
 			{//if it is an attack on the hero
-				beastAttackHero(idOriginBoard,idDestinationBoard,(Beast*) playedCard,originPosition,destinationPosition);
+				beastAttackHero(idOriginBoard,idDestinationBoard,(iBeast*) playedCard,originPosition,destinationPosition);
 			}
 
 		} 
 		else if (	idOriginBoard==PLAYER1_HAND&&idDestinationBoard==PLAYER1_BOARD||
 					idOriginBoard==PLAYER2_HAND&&idDestinationBoard==PLAYER2_BOARD)
 		{//if the Beast is being played
-			playBeast(idOriginBoard,idDestinationBoard,(Beast*) playedCard,originPosition,destinationPosition);
+			playBeast(idOriginBoard,idDestinationBoard,(iBeast*) playedCard,originPosition,destinationPosition);
 		}
 	}
 	else if (playedCard->getType()=="spell")
 	{
 		if (idOriginBoard==PLAYER1_HAND||idOriginBoard==PLAYER2_HAND)
 		{//if the spell is played from the hand
-			playSpell(idOriginBoard,idDestinationBoard,(Spell*) playedCard,originPosition,destinationPosition);
+			playSpell(idOriginBoard,idDestinationBoard, playedCard,originPosition,destinationPosition);
 		}
 	}
 }
@@ -127,7 +127,7 @@ void Engine::GameEngine::endTurn()
 	beginTurn();
 }
 
-void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,Beast* playedCard,
+void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,iBeast* playedCard,
 									int originPosition, int destinationPosition){
 
 	//verify if the owner has enough shards
@@ -145,9 +145,9 @@ void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,Bea
 			throw std::logic_error( "destination board is full" ); 
 		}	
 		//move the card
-		iCard* currentHeroIHM = (idOriginBoard==PLAYER1_HAND) 	? (matchBoard->getIHMObject(PLAYER1_HERO))[0]
+		IHM::iCard* currentHeroIHM = (idOriginBoard==PLAYER1_HAND) 	? (matchBoard->getIHMObject(PLAYER1_HERO))[0]
 																: (matchBoard->getIHMObject(PLAYER2_HERO))[0];
-		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
+		IHM::iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
 		currentHero->decreaseShards(playedCard->getCost);
 		currentHeroIHM->decreaseShards(playedCard->getCost);
 		matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
@@ -158,7 +158,7 @@ void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,Bea
 	}
 }
 
-void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Spell* playedCard,
+void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Card* playedCard,
 									int originPosition, int destinationPosition)
 {
 	//verify if the owner has enough shards
@@ -171,16 +171,16 @@ void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Spe
 	else
 	{
 		//move the card
-		iCard* currentHeroIHM = (idOriginBoard==PLAYER1_HAND) 	? (matchBoard->getIHMObject(PLAYER1_HERO))[0]
+		IHM::iCard* currentHeroIHM = (idOriginBoard==PLAYER1_HAND) 	? (matchBoard->getIHMObject(PLAYER1_HERO))[0]
 																: (matchBoard->getIHMObject(PLAYER2_HERO))[0];
-		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
+		IHM::iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
 		currentHero->decreaseShards(playedCard->getCost);
 		currentHeroIHM->decreaseShards(playedCard->getCost);
 		matchBoard->getGEObject(idOriginBoard)->deleteCardX(originPosition);
 		matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 		
 		Creature* target=(Creature*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
-		iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
+		IHM::iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
 		target->takeDamage(playedCard->getTotal("damage"));
 		targetIHM->setDefense(target->getTotal("hp"));
 		if (!target.isAlive())
@@ -213,7 +213,7 @@ void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Spe
 	}
 }
 
-void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBoard,Beast* playedCard,
+void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBoard,iBeast* playedCard,
 											int originPosition, int destinationPosition)
 {
 	//verify if the creacture can attack .
@@ -226,9 +226,9 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 		//verify if the target is valid
 		//apply damage to both Creatures
 		playedCard->increaseAttackCount();
-		Beast* target=(Beast*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
-		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition];
-		iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
+		iBeast* target=(iBeast*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
+		IHM::iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition];
+		IHM::iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
 		playedCardIHM->setDefense(playedCard->getTotal("hp"));
@@ -274,7 +274,7 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 	}
 }
 
-void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoard,Beast* playedCard,
+void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoard,iBeast* playedCard,
 											int originPosition, int destinationPosition)
 {
 	//verify if the creacture can attack .
@@ -288,8 +288,8 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 		//apply damage to both Creatures
 		playedCard->increaseAttackCount();
 		Hero* target=(Hero*) matchBoard->getGEObject(idDestinationBoard)->getCardX(destinationPosition);
-		iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition];
-		iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
+		IHM::iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition];
+		IHM::iCard* targetIHM = (matchBoard->getIHMObject(idDestinationBoard))[destinationPosition];
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
 		playedCardIHM->setDefense(playedCard->getTotal("hp"));
@@ -336,7 +336,7 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 		{
 			//takes the first card of the deck
 			Card* cardDrawn = matchBoard->getGEObject(PLAYER1_DECK)->takeCardX(0);
-			iCard* cardDrawnIHM = (matchBoard->getIHMObject(PLAYER1_DECK))[0];
+			IHM::iCard* cardDrawnIHM = (matchBoard->getIHMObject(PLAYER1_DECK))[0];
 			matchBoard->getIHMObject(PLAYER1_DECK)->deleteCard(0);
 			if (!matchBoard->getGEObject(PLAYER1_HAND)->isFull())
 			{//if the hand isn't full
@@ -352,7 +352,7 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 		{
 			//takes the first card of the deck
 			Card* cardDrawn = matchBoard->getGEObject(PLAYER2_DECK)->takeCardX(0);
-			iCard* cardDrawnIHM = (matchBoard->getIHMObject(PLAYER2_DECK))[0];
+			IHM::iCard* cardDrawnIHM = (matchBoard->getIHMObject(PLAYER2_DECK))[0];
 			matchBoard->getIHMObject(PLAYER2_DECK)->deleteCard(0);
 			if (!matchBoard->getGEObject(PLAYER2_HAND)->isFull())
 			{//if the hand isn't full

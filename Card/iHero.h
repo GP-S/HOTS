@@ -1,0 +1,49 @@
+#ifndef IHERO_H
+#define IHERO_H
+
+
+/** 
+*   Class iHero . Derived from iCreature  .
+* @author Armand
+*
+**/
+
+class iHero : public iCreature
+{
+    public:
+        /**
+        * Destructor
+        * Does nothing atm
+        *
+        **/
+        virtual ~Hero() {};
+
+        /**
+        * increaseShards . Used everytime we need to increase the shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        virtual void    increaseShards(unsigned int modifier) = 0;
+        /**
+        * decreaseShards . Used everytime we need to decrease the shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        virtual void    decreaseShards(unsigned int modifier) = 0;
+        /**
+        * increaseMaxShards . Used everytime we need to increase the maximum shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        virtual void    increaseMaxShards(unsigned int modifier) = 0;
+        /**
+        * decreaseMaxShards . Used everytime we need to decrease the maximum shards of a hero
+        * @param unsigned int modifier The amount of the modification
+        *
+        **/
+        virtual void    decreaseMaxShards(unsigned int modifier) = 0;
+
+		    	
+};
+
+#endif // IHERO_H

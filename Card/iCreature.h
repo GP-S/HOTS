@@ -1,79 +1,48 @@
-#ifndef CREATURE_H
-#define CREATURE_H
-
-
-#include "Card.h"
-#include <string>
-#include <list>
-#include <iostream>
-
-
+#ifndef ICREATURE_H
+#define ICREATURE_H
 
 /** 
-*   Class Creature . Derived from Card  .
+*   Class iCreature . 
 * @author Armand
 *
 **/
-/** @TODO :
-*   attack() :  - attack modifiers are not handled yet
-*               
-*   canAttack() : - freeze, paralyze etc are not handled yet
-*
-*   vrais getter et setters des capacités 
-*
-**/
-class Creature : public Card, public iCreature
+
+class iCreature
 {
     public:
-        /**
-        * Default constructor
-        * 
-        *
-        **/
-        		Creature();
-        /**
-        * Constructor
-        * 
-        *
-        **/
-				Creature(std::string name,int hp,int attack);
-        /**
-        * Destructor
-        * Does nothing atm
-        *
-        **/
-        		~Creature();
+        
+        virtual ~Creature() {};
         /**
         * isAlive
         * @return a boolean corresponding to the state (dead or alive) of the Creature
         *
         **/
-		bool 	isAlive();
+		virtual bool 	isAlive() = 0;
         
         /**
         * getHp
         * Basic geter
         *
         **/
-		int 	getHp();
+		virtual int 	getHp() = 0;
         /**
         * getAttack
         * Basic geter
         *
         **/
-		int 	getBaseAttack();
+		virtual int 	getBaseAttack() = 0;
         /**
         * setHp
         * Basic seter
         *
         **/
-		void	setHp(int hp);
+		virtual void	setHp(int hp) = 0;
         /**
         * setAttack
         * Basic seter
         *
         **/
-		void 	setBaseAttack(int attack);
+		virtual void 	setBaseAttack(int attack) = 0;
         /**
         * attack
         * Used to attack another Creature
@@ -82,55 +51,51 @@ class Creature : public Card, public iCreature
         *
         * modify it
         **/
-		void 	attack(Creature* target);
+		virtual void 	attack(Creature* target) = 0;
         /**
         * resetAttackCount
         * Used every to reset the number of attacks a Creature did .
         *
         **/
-        void    resetAttackCount();
+        virtual void    resetAttackCount() = 0;
         /**
         * canAttack
         * Tells if a creature can attack
         * @return a boolean that tells us if a creature can attack
         *
         **/
-        bool canAttack();
+        virtual bool canAttack() = 0;
         /**
         * takeDamage . Used everytime we need to damage a card . Does not handle things like divine shield yet .
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    takeDamage(unsigned int damage);
+        virtual void    takeDamage(unsigned int damage) = 0;
         /**
         * heal . Used everytime we need to heal a card
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    heal(unsigned int heal);
+        virtual void    heal(unsigned int heal) = 0;
         /**
         * increaseMaxHP . Used everytime we need to increase the maximum HP of a card
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    increaseMaxHP(unsigned int modifier);
+        virtual void    increaseMaxHP(unsigned int modifier) = 0;
         /**
         * decreaseMaxHP . Used everytime we need to decrease the maximum HP of a card
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    decreaseMaxHP(unsigned int modifier);       
+        virtual void    decreaseMaxHP(unsigned int modifier);       = 0 
         /**
         * increaseAttackCount
         * Used every time a creature attacks .
         *
         **/
-        void    increaseAttackCount(); 
-    protected:
+        virtual void    increaseAttackCount(); = 0 
 
-    	int hp;
-    	int	baseAttack;
-    	int attackCount;
 };
 
-#endif // CREATURE_H
+#endif // ICREATURE_H
