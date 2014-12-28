@@ -72,6 +72,7 @@ private:
     void createLights();
     int getBoardNo(Board*);
     int getBoardPlayer(Board*);
+    int getCorrespondinBoardId(int BoardNo, int PLayerId);
 };
 
 }

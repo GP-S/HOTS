@@ -322,3 +322,34 @@ void IHM::PolycodeGUI::IHM::setShards ( int playerNumber, int shards ) {
     p1Shards->setPosition(10,10);
   }
 }
+
+int IHM::PolycodeGUI::IHM::getCorrespondinBoardId ( int BoardNo, int PLayerId ) {
+  if(PLayerId==0){
+    switch(BoardNo){
+      case STOCK:
+	return 2;
+      case BATTLEGROUND:
+	return 1;
+      case HAND:
+	return 3;
+      case GRAVEYARD:
+	return 4;
+      case HERO:
+	return 7;
+    }
+  }
+  else {
+        switch(BoardNo){
+      case STOCK:
+	return 9;
+      case BATTLEGROUND:
+	return 8;
+      case HAND:
+	return 10;
+      case GRAVEYARD:
+	return 11;
+      case HERO:
+	return 14;
+    }
+  }
+}
