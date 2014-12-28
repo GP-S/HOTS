@@ -1,6 +1,7 @@
 #ifndef IHERO_H
 #define IHERO_H
 
+#include "iCreature.h"
 
 /** 
 *   Class iHero . Derived from iCreature  .
@@ -11,12 +12,6 @@
 class iHero : public iCreature
 {
     public:
-        /**
-        * Destructor
-        * Does nothing atm
-        *
-        **/
-        virtual ~Hero() {};
 
         /**
         * increaseShards . Used everytime we need to increase the shards of a hero

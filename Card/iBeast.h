@@ -1,18 +1,12 @@
 #ifndef IBEAST_H
 #define IBEAST_H
 
+#include "iCreature.h"
 
 class iBeast : public iCreature
 {
     public:
-        
 
-        /**
-        * Destructor
-        * Does nothing atm
-        *
-        **/
-        virtual ~Beast() {};
 
         /**
         * getRace

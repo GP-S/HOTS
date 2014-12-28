@@ -1,7 +1,7 @@
 #ifndef ICARD_H
 #define ICARD_H
 
-
+#include "iCapacity.h"
 
 
 /**
@@ -30,7 +30,7 @@ public:
     * adds a capacity to the list of capacities of the capacity list
     *
     **/
-		virtual void addCapacity(Capacity* capa)=0;
+		virtual void addCapacity(iCapacity* capa)=0;
     /**
     * getName
     * basic getter

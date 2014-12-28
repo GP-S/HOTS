@@ -11,7 +11,7 @@ class iCreature
 {
     public:
         
-        virtual ~Creature() {};
+
         /**
         * isAlive
         * @return a boolean corresponding to the state (dead or alive) of the Creature
@@ -51,7 +51,7 @@ class iCreature
         *
         * modify it
         **/
-		virtual void 	attack(Creature* target) = 0;
+		virtual void 	attack(iCreature* target) = 0;
         /**
         * resetAttackCount
         * Used every to reset the number of attacks a Creature did .
@@ -88,13 +88,13 @@ class iCreature
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        virtual void    decreaseMaxHP(unsigned int modifier);       = 0 
+        virtual void    decreaseMaxHP(unsigned int modifier)= 0 ;
         /**
         * increaseAttackCount
         * Used every time a creature attacks .
         *
         **/
-        virtual void    increaseAttackCount(); = 0 
+        virtual void    increaseAttackCount() = 0 ;
 
 };
 

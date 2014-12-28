@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iterator>
 #include <stdexcept>
+#include "iEffect.h"
 
 
 class Effect : public iEffect
@@ -20,7 +21,7 @@ class Effect : public iEffect
 		void setType(std::string type);
 		void setAffinity(std::string affinity);
 		void setValue(int value);
-		float costVal(Card *card = NULL);
+		float costVal(iCard *card = NULL);
 		
     protected:
     	std::string type;

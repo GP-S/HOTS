@@ -18,25 +18,7 @@ class iCapacity
 
 	public :
 
-    /**
-    * Default constructor
-    * 
-    *
-    **/
-    virtual Capacity() = 0;
-    /**
-    * Constructor
-    * 
-    *
-    **/
-    virtual Capacity(std::string type,int durabilty) = 0;
-    /**
-    * Destructor
-    * 
-    *
-	**/
 
-  	virtual ~Capacity() {};
     /**
     * getType
     * basic getter
