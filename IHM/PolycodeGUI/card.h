@@ -17,8 +17,8 @@
  *
  */
 
-#ifndef CARD_H
-#define CARD_H
+#ifndef IHM_POLYCODE_CARD_H
+#define IHM_POLYCODE_CARD_H
 
 #include <string>
 #include <list>
@@ -98,4 +98,4 @@ protected:
 }
 }
 
-#endif // CARD_H
+#endif // IHM_POLYCODE_CARD_H

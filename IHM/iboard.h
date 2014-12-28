@@ -17,8 +17,8 @@
  *
  */
 
-#ifndef IBOARD_H
-#define IBOARD_H
+#ifndef IHM_IBOARD_H
+#define IHM_IBOARD_H
 
 #include <list>
 
@@ -38,4 +38,4 @@ public:
 
 }
 
-#endif // IBOARd_H
+#endif // IHM_IBOARD_H

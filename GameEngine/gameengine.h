@@ -22,33 +22,17 @@
 
 #include "isimulatorfactory.h"
 #include "igamesolver.h"
+#include "match.h"
 #include "../Board/iBoard.h"
 #include "../Card/iCard.h"
 #include "../utils/usefulStruc.inc"
+#include "../IHM/iihm.h"
 #include <vector>
 #include <list>
 #include <iterator>
 #include <algorithm>    
 #include <ctime>        // std::time
 #include <cstdlib>      // std::rand, std::srand
-
-
-static const PLAYER1_BOARD = 1;
-static const PLAYER1_DECK = 2;
-static const PLAYER1_HAND = 3;
-static const PLAYER1_CIMETERY = 4;
-static const PLAYER1_EQUIPMENT = 5;
-static const PLAYER1_TRAP = 6;
-static const PLAYER1_HERO = 7;
-static const PLAYER2_BOARD = 8;
-static const PLAYER2_DECK = 9;
-static const PLAYER2_HAND = 10;
-static const PLAYER2_CIMETERY = 11;
-static const PLAYER2_EQUIPMENT = 12;
-static const PLAYER2_TRAP = 13;
-static const PLAYER2_HERO = 14;
-//static const justInCase = 15; //unused
-//static const justInCase2 = 16; //unused
 
 
 namespace Engine
@@ -60,40 +44,56 @@ namespace Engine
       ~GameEngine();
       GameEngine& operator= ( const GameEngine& other );
       bool operator== ( const GameEngine& other ) const;
-      IGameSimulator getSimulator ( void );
+      IGameSimulator& getSimulator ( void );
       void useCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
       //isLegit()
       //
       
-  
+      static constexpr int PLAYER1_BOARD = 1;
+      static constexpr int PLAYER1_DECK = 2;
+      static constexpr int PLAYER1_HAND = 3;
+      static constexpr int PLAYER1_CIMETERY = 4;
+      static constexpr int PLAYER1_EQUIPMENT = 5;
+      static constexpr int PLAYER1_TRAP = 6;
+      static constexpr int PLAYER1_HERO = 7;
+      static constexpr int PLAYER2_BOARD = 8;
+      static constexpr int PLAYER2_DECK = 9;
+      static constexpr int PLAYER2_HAND = 10;
+      static constexpr int PLAYER2_CIMETERY = 11;
+      static constexpr int PLAYER2_EQUIPMENT = 12;
+      static constexpr int PLAYER2_TRAP = 13;
+      static constexpr int PLAYER2_HERO = 14;
+      //static constexpr int justInCase = 15; //unused
+      //static constexpr int justInCase2 = 16; //unused
+    
   protected:
-      Board* boards;
+      iBoard* boards;
       Player* players;
-      IHM* ihm;
+      IHM::IIHM* ihm;
       IA* ia;
-      Match<Card>* matchCard;
-      Match<Board>* matchBoard;
-      std::list<Card*>* listCardsProccedWhenAttacked; //when I get attacked 
-      std::list<Card*>* listCardsProccedWhenHurt; // when I get hurt
-      std::list<Card*>* listCardsProccedWhenHealed; // when I get healed
-      std::list<Card*>* listCardsProccedWhenSpawned; // when I spawn
-      std::list<Card*>* listCardsProccedWhenDied; // when I die 
-      std::list<Card*>* listCardsProccedWhenAttacking; // when I attack
-      std::list<Card*>* listCardsProccedWhenHurting; // when I hurt
-      std::list<Card*>* listCardsProccedWhenHealing; // when I heal
-      std::list<Card*>* listCardsProccedWhenSpawn; // when something else spawn
-      std::list<Card*>* listCardsProccedWhenKilling; // when I kill
-      std::list<Card*>* listCardsProccedWhenSomethingHealed;// when something else gets healed
-      std::list<Card*>* listCardsProccedWhenSomethingAttacks; // when something else attacks
-      std::list<Card*>* listCardsProccedWhenSomethingDies; // when something else dies
-      std::list<Card*>* listCardsProccedWhenSomethingHurt; // when something else gets hurt
-      std::list<Card*>* listCardsProccedWhenTurnBegins; // when turn begins
-      std::list<Card*>* listCardsProccedWhenTurnEnds; // when turn ends
-      std::list<Board*> *boards;
+      Match<iCard,IHM::ICard>* matchCard;
+      Match<iBoard,IHM::IBoard>* matchBoard;
+      std::list<iCard*>* listCardsProccedWhenAttacked; //when I get attacked 
+      std::list<iCard*>* listCardsProccedWhenHurt; // when I get hurt
+      std::list<iCard*>* listCardsProccedWhenHealed; // when I get healed
+      std::list<iCard*>* listCardsProccedWhenSpawned; // when I spawn
+      std::list<iCard*>* listCardsProccedWhenDied; // when I die 
+      std::list<iCard*>* listCardsProccedWhenAttacking; // when I attack
+      std::list<iCard*>* listCardsProccedWhenHurting; // when I hurt
+      std::list<iCard*>* listCardsProccedWhenHealing; // when I heal
+      std::list<iCard*>* listCardsProccedWhenSpawn; // when something else spawn
+      std::list<iCard*>* listCardsProccedWhenKilling; // when I kill
+      std::list<iCard*>* listCardsProccedWhenSomethingHealed;// when something else gets healed
+      std::list<iCard*>* listCardsProccedWhenSomethingAttacks; // when something else attacks
+      std::list<iCard*>* listCardsProccedWhenSomethingDies; // when something else dies
+      std::list<iCard*>* listCardsProccedWhenSomethingHurt; // when something else gets hurt
+      std::list<iCard*>* listCardsProccedWhenTurnBegins; // when turn begins
+      std::list<iCard*>* listCardsProccedWhenTurnEnds; // when turn ends
+      std::list<iBoard*> *boards;
       std::list<Player*> *players;
-      IHM *ihm;
+      IHM::IIHM *ihm;
       IA *ia;
       unsigned int turn;
 

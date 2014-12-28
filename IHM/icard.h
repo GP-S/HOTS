@@ -17,8 +17,8 @@
  *
  */
 
-#ifndef ICARD_H
-#define ICARD_H
+#ifndef IHM_ICARD_H
+#define IHM_ICARD_H
 
 #include <string>
 
@@ -61,4 +61,4 @@ public:
     virtual void setImageId ( int imageId ) =0;
 };
 }
-#endif // ICARD_H
+#endif // IHM_ICARD_H

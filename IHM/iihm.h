@@ -17,8 +17,8 @@
  *
  */
 
-#ifndef IIHM_H
-#define IIHM_H
+#ifndef IHM_IIHM_H
+#define IHM_IIHM_H
 
 #include <string>
 
@@ -47,4 +47,4 @@ public:
 };
 }
 
-#endif // IIHM_H
+#endif // IHM_IIHM_H

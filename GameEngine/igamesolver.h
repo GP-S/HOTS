@@ -31,7 +31,7 @@ namespace Engine{
     * @param int destinationPosition The position of the action destination in 
     * 	the board
     * */
-    virtual void playCard(int originBoard, int originPosition, int 
+    virtual void useCard(int originBoard, int originPosition, int 
   destinationBoard, int destinationPosition) =0;
     
     /** Ends the player's turn **/

@@ -8,6 +8,8 @@ file(GLOB_RECURSE HOTS_SRC_FILES
 			Card/*
 			Effect/*
 			GameEngine/*
+			utils/*
+			IA/*
 			)
 
 find_package(Threads)
@@ -18,7 +20,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
-set(HOTS_SCR_DIRS Board/ Card/ Effect/ GameEngine/ IHM/)
+set(HOTS_SCR_DIRS Board/ Card/ Effect/ GameEngine/ IHM/ utils/ IA/)
 set(POLYCODE_INCLUDE_DIRS 
       Dependencies/Polycode/Release/Linux/Framework/Core/Dependencies/include 
       Dependencies/Polycode/Release/Linux/Framework/Core/Dependencies/include/AL 
@@ -46,5 +48,5 @@ set(POLYCODE_LINKER_FLAGS
       ${PROJECT_SOURCE_DIR}/Dependencies/Polycode/Release/Linux/Framework/Modules/Dependencies/lib/libLinearMath.a)
 
 include_directories(${HOTS_SCR_DIRS} ${POLYCODE_INCLUDE_DIRS})
-add_executable(HOTS ${HOTS_SRC_FILES})
+add_executable(HOTS HOTS.cpp ${HOTS_SRC_FILES})
 target_link_libraries (HOTS ${CMAKE_THREAD_LIBS_INIT} ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY} ${SDL_LIBRARY} X11 rt dl ${POLYCODE_LINKER_FLAGS})

@@ -1,5 +1,5 @@
-#infdef USEFULSTRUC_INC
-#def USEFULSTRUC_INC
+#ifndef USEFULSTRUC_INC
+#define USEFULSTRUC_INC
 
 /**
 * Some struct used by target, GE and IA

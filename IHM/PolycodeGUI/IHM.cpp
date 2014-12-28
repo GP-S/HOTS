@@ -151,7 +151,7 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
                     } else {
 			int index= ( ( Board* ) res.entity )->getPlace ( res.position );
 			if(selectedBoard!=getBoardNo(( Board* ) res.entity) || selectedPlayer!=getBoardPlayer(( Board* ) res.entity)){
-			  solver->playCard(selectedBoard+8*selectedPlayer,selectedPos,
+			  solver->useCard(selectedBoard+8*selectedPlayer,selectedPos,
 					   getBoardNo(( Board* ) res.entity)+8*getBoardPlayer(( Board* ) res.entity), index);
 			}
                         selected=NULL;

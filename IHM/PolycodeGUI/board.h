@@ -17,8 +17,8 @@
  *
  */
 
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef IHM_POLYCODE_BOARD_H
+#define IHM_POLYCODE_BOARD_H
 
 #include <iostream>
 #include <string>
@@ -66,4 +66,4 @@ private:
 };
 }
 }
-#endif // BOARD_H
+#endif // IHM_POLYCODE_BOARD_H
