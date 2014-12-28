@@ -150,12 +150,16 @@ void IHM::PolycodeGUI::Card::setAttack ( int newAttack ) {
                                CARD_THICK/2+textElevation,
                                - ( CARD_HEIGHT/2-textMargin - textScale )
                              );
+    if(att<0)
+      attackLabel->visible=false;
 }
 
 void IHM::PolycodeGUI::Card::setCost ( int newCost ) {
     cost=newCost;
     costLabel->setText ( std::to_string ( cost ) );
     costLabel->setPosition ( 0,CARD_THICK/2+textElevation,- ( CARD_HEIGHT/2-textMargin- textScale/2 ) );
+    if(cost<0)
+      costLabel->visible=false;
 }
 
 
@@ -167,6 +171,8 @@ void IHM::PolycodeGUI::Card::setDefense ( int newDefense ) {
                                 CARD_THICK/2+textElevation,
                                 - ( CARD_HEIGHT/2-textMargin- textScale )
                               );
+    if(def<0)
+      defenseLabel->visible=false;
 }
 
 void IHM::PolycodeGUI::Card::setDescription ( std::string newDescription ) {
@@ -197,7 +203,7 @@ void IHM::PolycodeGUI::Card::setTitle ( std::string newTitle ) {
 void IHM::PolycodeGUI::Card::toggleMinified() {
     visibilityAffectsChildren=minified;
     visible=minified;
-    costLabel->visible=minified;
+    costLabel->visible=cost<0 ? false : minified;
     for ( std::list<SceneLabel*>::iterator i = descriptionLabels.begin(); i!=descriptionLabels.end(); ++i ) {
         ( *i )->visible=minified;
     }
