@@ -30,6 +30,8 @@ public:
     virtual ICard* createCard ( std::string title, int cost, int attack, int defense, std::string description, int imageId );
     virtual ICard* createCard();
     virtual IBoard* getBoard ( int numBoard, int numPlayer );
+    virtual void setMaxShards ( int playerNumber, int maxShards );
+    virtual void setShards ( int playerNumber, int shards );
 
 protected:
     // Core system
@@ -42,11 +44,13 @@ protected:
     Board* p0Hand;
     Board* p0Graveyard;
     Board* p0Battlefield;
+    Board* p0Hero;
 
     Board* p1Stock;
     Board* p1Hand;
     Board* p1Graveyard;
     Board* p1Battlefield;
+    Board* p1Hero;
     
     // Game Engine Interface
     Engine::IGameSolver* solver;
@@ -59,6 +63,9 @@ protected:
     
     // HUD
     UIButton* button;
+    SceneLabel* p1Shards;
+    SceneLabel* p0Shards;
+    int p0MaxShards, p0CurentShards, p1MaxShards, p1CurentShards;
 
 private:
     void initBoard();

@@ -23,6 +23,16 @@ IHM::PolycodeGUI::IHM::IHM ( PolycodeView *view , Engine::IGameSolver *solver) :
     screen->addChild(button);
     button->setPosition(core->getXRes()-2*button->getWidth()-20,core->getYRes()/2-2*button->getHeight()/2);
     screen->rootEntity.processInputEvents = true;
+    
+    p1Shards = new SceneLabel("0/0", 17,"Script",Label::ANTIALIAS_FULL,1.6);
+    p1Shards->setColorInt(255,255,255,255);
+    p1Shards->setPosition(10,10);
+    screen->addChild(p1Shards);
+    
+    p0Shards = new SceneLabel("0/0", 17,"Script",Label::ANTIALIAS_FULL,1.6);
+    p0Shards->setColorInt(255,255,255,255);
+    p0Shards->setPosition(core->getXRes()-2*p0Shards->getWidth()-10,core->getYRes()-2*p0Shards->getHeight()-10);
+    screen->addChild(p0Shards);
 
     ground = new ScenePrimitive ( ScenePrimitive::TYPE_PLANE, 192,108 );
     ground->setMaterialByName ( "GroundMaterial" );
@@ -203,6 +213,11 @@ void IHM::PolycodeGUI::IHM::initBoard() {
     p0Battlefield = new Board ( 5,false,true,false );
     p0Battlefield->setPosition ( 0,Card::CARD_THICK/2+10,10 );
     scene->addCollisionChild ( p0Battlefield,CollisionEntity::SHAPE_MESH );
+    
+    p0Hero = new Board (1,false,true,false);
+    p0Hero->setPosition( 0, Card::CARD_THICK/2+10, Card::CARD_HEIGHT/2+10+10);
+    scene->addCollisionChild( p0Hero, CollisionEntity::SHAPE_MESH);
+    
 
     p1Stock = new Board();
     p1Stock->setPosition ( ( ground->getPrimitiveParameter1() /2-Card::CARD_WIDTH/2-10 ),
@@ -223,6 +238,10 @@ void IHM::PolycodeGUI::IHM::initBoard() {
     p1Battlefield = new Board ( 5,false,true,false );
     p1Battlefield->setPosition ( 0,Card::CARD_THICK/2+10,-10 );
     scene->addCollisionChild ( p1Battlefield,CollisionEntity::SHAPE_MESH );
+    
+    p1Hero = new Board (1,false,true,false);
+    p1Hero->setPosition( 0, Card::CARD_THICK/2+10, -(Card::CARD_HEIGHT/2+10+10));
+    scene->addCollisionChild( p1Hero, CollisionEntity::SHAPE_MESH);
 }
 
 void IHM::PolycodeGUI::IHM::createLights() {
@@ -277,4 +296,29 @@ int IHM::PolycodeGUI::IHM::getBoardPlayer ( ::IHM::PolycodeGUI::Board* board) {
     return 0;
   if(board==p1Battlefield || board==p1Graveyard || board==p1Hand || board==p1Stock)
     return 1;
+}
+
+void IHM::PolycodeGUI::IHM::setMaxShards ( int playerNumber, int maxShards ) {
+  if(playerNumber==0){
+    p0MaxShards=maxShards;
+    p0Shards->setText(std::to_string(p0CurentShards) + "/" + std::to_string(p0MaxShards));
+    p0Shards->setPosition(core->getXRes()-2*p0Shards->getWidth()-10,core->getYRes()-2*p0Shards->getHeight()-10);
+  } else {
+    p1MaxShards=maxShards;
+    p1Shards->setText(std::to_string(p1CurentShards) + "/" + std::to_string(p1MaxShards));
+    p1Shards->setPosition(10,10);
+  }
+  
+}
+
+void IHM::PolycodeGUI::IHM::setShards ( int playerNumber, int shards ) {
+  if(playerNumber==0){
+    p0CurentShards=shards;
+    p0Shards->setText(std::to_string(p0CurentShards) + "/" + std::to_string(p0MaxShards));
+    p0Shards->setPosition(core->getXRes()-2*p0Shards->getWidth()-10,core->getYRes()-2*p0Shards->getHeight()-10);
+  } else {
+    p1CurentShards=shards;
+    p1Shards->setText(std::to_string(p1CurentShards) + "/" + std::to_string(p1MaxShards));
+    p1Shards->setPosition(10,10);
+  }
 }
