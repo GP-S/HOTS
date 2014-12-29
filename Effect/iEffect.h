@@ -2,8 +2,10 @@
 #define IEFFECT_H
 
 #include "../Card/iCard.h"
+#include "../Card/iBeast.h"
 
 class iCard;
+class iBeast;
 
 class iEffect
 {
