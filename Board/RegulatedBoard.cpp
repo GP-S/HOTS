@@ -119,7 +119,15 @@ void RegulatedBoard::addCardX(std::list<iCard*> *list, unsigned int x) {
 
 	std::list<Card*>::iterator it;
 	it = listCard->begin();
-	this->listCard->size() < x ? it = this->listCard->end() : std::advance(it, x);
+
+  if(this->listCard->size() < x)
+    for(size_t i = 0; i < x; i++)
+      it++;
+
+  else
+    it = this->listCard->end();
+
+
 	this->listCard->splice(it, reinterpret_cast <std::list<Card*> &> (list));
 	this->listCard->splice(this->listCard->end(), reinterpret_cast <std::list<Card*> &> (list));
 	/*this->cardByArrivalTime->insert(this->cardByArrivalTime->end, //maybe onde day...

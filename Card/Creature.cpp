@@ -42,23 +42,23 @@ void Creature::setBaseAttack(int attack){
     baseAttack=attack;
 }
 
-void Creature::attack(Creature* target){//this should work now 
+// void Creature::attack(Creature* target){//this should work now 
 
-   /* 
-    if(this->canAttack()){
-        this->increaseAttackCount();
-        int attackerAttack ;
-        std::list<Capacity*>* capaListTemp = this->findCapaByType("attack");
-        Capacity* capaAttack = capaListTemp->front();
-        attackerAttack=canAttack.getEffect()->getValue();
-        int defenderAttack = target->findCapaByType("attack")->front()->getEffect()->getValue();
-        target->takeDamage(attackerAttack);
-        this->takeDamage(defenderAttack);
-    }
-    else{
-        throw std::logic_error( "this Creature can not attack now" ); 
-    }*/
-}
+    
+//     if(this->canAttack()){
+//         this->increaseAttackCount();
+//         int attackerAttack ;
+//         std::list<Capacity*>* capaListTemp = this->findCapaByType("attack");
+//         Capacity* capaAttack = capaListTemp->front();
+//         attackerAttack=canAttack.getEffect()->getValue();
+//         int defenderAttack = target->findCapaByType("attack")->front()->getEffect()->getValue();
+//         target->takeDamage(attackerAttack);
+//         this->takeDamage(defenderAttack);
+//     }
+//     else{
+//         throw std::logic_error( "this Creature can not attack now" ); 
+//     }
+// }
 
 void Creature::resetAttackCount(){// call this function on each creature when the turn begins
 

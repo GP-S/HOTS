@@ -51,7 +51,7 @@ class iCreature
         *
         * modify it
         **/
-		virtual void 	attack(iCreature* target) = 0;
+//		virtual void 	attack(iCreature* target) = 0;
         /**
         * resetAttackCount
         * Used every to reset the number of attacks a Creature did .

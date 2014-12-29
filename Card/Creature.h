@@ -83,7 +83,7 @@ class Creature : public Card, virtual public iCreature
         *
         * modify it
         **/
-		virtual void attack(Creature* target);
+//		virtual void attack(Creature* target);
         /**
         * resetAttackCount
         * Used every to reset the number of attacks a Creature did .
