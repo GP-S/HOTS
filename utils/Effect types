@@ -5,6 +5,8 @@ Effect types :
 "damage"
 "hp"
 "hpMax"
+"shards"
+"shardsMax"
 
 
 Not Implemented:
