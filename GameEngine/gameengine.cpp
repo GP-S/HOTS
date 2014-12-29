@@ -144,11 +144,10 @@ void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,iBe
 			throw std::logic_error( "destination board is full" ); 
 		}	
 		//move the card
-		IHM::iCard* currentHeroIHM = (idOriginBoard==PLAYER1_HAND) 	? (matchBoard->getIHMObject(PLAYER1_HERO))[0]
-																: (matchBoard->getIHMObject(PLAYER2_HERO))[0];
+		int playerNumber = (idOriginBoard==PLAYER1_HAND) ? 1 : 2;
 		IHM::iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
 		currentHero->decreaseShards(playedCard->getCost);
-		currentHeroIHM->decreaseShards(playedCard->getCost);
+		IHM::setShards(playerNumber,currentHero->getShards());
 		boards[idOriginBoard]->deleteCardX(originPosition);
 		matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 		boards[idDestinationBoard]->addCardX(playedCard,destinationPosition);
@@ -170,11 +169,10 @@ void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Car
 	else
 	{
 		//move the card
-		IHM::iCard* currentHeroIHM = (idOriginBoard==PLAYER1_HAND) 	? (matchBoard->getIHMObject(PLAYER1_HERO))[0]
-																: (matchBoard->getIHMObject(PLAYER2_HERO))[0];
+		int playerNumber = (idOriginBoard==PLAYER1_HAND) ? 1 : 2;
 		IHM::iCard* playedCardIHM = (matchBoard->getIHMObject(idOriginBoard))[originPosition]; //-------------- DOUBT HERE
 		currentHero->decreaseShards(playedCard->getCost);
-		currentHeroIHM->decreaseShards(playedCard->getCost);
+		IHM::setShards(playerNumber,currentHero->getShards());
 		boards[idOriginBoard]->deleteCardX(originPosition);
 		matchBoard->getIHMObject(idOriginBoard)->deleteCard(originPosition);
 		
@@ -374,14 +372,12 @@ void Engine::GameEngine::beginTurn()
 		boards[PLAYER1_HERO]->getCardX(0)->setMaxShards(
 			boards[PLAYER1_HERO]->getCardX(0)->getMaxShards()+1);
 		//transmit to IHM
-		(matchBoard->getIHMObject(PLAYER1_HERO))[0]->setMaxShards(
-			(matchBoard->getIHMObject(PLAYER1_HERO))[0]->getMaxShards()+1);
+		IHM::setMaxShards(1,currentHero->getMaxShards());
 		//reset the shards of the player
 		boards[PLAYER1_HERO]->getCardX(0)->setShards(
 			boards[PLAYER1_HERO]->getCardX(0)->getMaxShards());
 		//transmit to IHM
-		(matchBoard->getIHMObject(PLAYER1_HERO))[0]->setShards(
-			(matchBoard->getIHMObject(PLAYER1_HERO))[0]->getShards());
+		IHM::setShards(1,currentHero->getShards());
 		//reset the attack count of the board
 		foreach(std::list<Card*>, matchBoard->getIHMObject(PLAYER1_BOARD), itCard){
 			itCard->resetAttackCount();		
@@ -394,14 +390,12 @@ void Engine::GameEngine::beginTurn()
 		boards[PLAYER2_HERO]->getCardX(0)->setMaxShards(
 			boards[PLAYER2_HERO]->getCardX(0)->getMaxShards()+1);
 		//transmit to IHM
-		(matchBoard->getIHMObject(PLAYER2_HERO))[0]->setMaxShards(
-			(matchBoard->getIHMObject(PLAYER2_HERO))[0]->getMaxShards()+1);
+		IHM::setMaxShards(2,currentHero->getMaxShards());
 		//reset the shards of the player
 		boards[PLAYER2_HERO]->getCardX(0)->setShards(
 			boards[PLAYER2_HERO]->getCardX(0)->getMaxShards());
 		//transmit to IHM
-		(matchBoard->getIHMObject(PLAYER2_HERO))[0]->setShards(
-			(matchBoard->getIHMObject(PLAYER2_HERO))[0]->getShards());
+		IHM::setShards(2,currentHero->getShards());		
 		//reset the attack count of the board
 		foreach(std::list<Card*>, matchBoard->getIHMObject(PLAYER2_BOARD), itCard){
 			itCard->resetAttackCount();		
