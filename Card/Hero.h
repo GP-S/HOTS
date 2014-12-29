@@ -5,6 +5,7 @@
 #include <list>
 #include <iostream>
 #include "Creature.h"
+#include "iHero.h"
 
 
 /** 
@@ -14,7 +15,7 @@
 *
 **/
 
-class Hero : public Creature
+class Hero : public Creature, public iHero
 {
     public:
         /**

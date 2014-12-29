@@ -5,7 +5,7 @@
 #include <list>
 #include <iostream>
 #include "../Effect/Effect.h"
-
+#include "iCapacity.h"
 
 /** 
 * Class Capacity . upgraded implementation for tests purposes

@@ -5,6 +5,7 @@
 #include <list>
 #include <iostream>
 #include "Creature.h"
+#include "iBeast.h"
 
 
 /** 
