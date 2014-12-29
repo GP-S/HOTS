@@ -84,7 +84,7 @@ class Card : public iCard
         * @return isAlive the alive flag of a card .
         *
         **/
-        virtual bool isAlive() = 0;
+//        virtual bool isAlive() = 0;
         /**
         * findCapaByType
         * returns a list of capacity that matches choosen type
