@@ -104,6 +104,10 @@ namespace Engine
     void moveCardRequest(Polycode::ServerClient* client, int originBoard, int originPosition, int destinationBoard, int destinationPosition);
     void setShardsRequest(Polycode::ServerClient* client, int playerId, int shards);
     void setMaxShardsRequest(Polycode::ServerClient* client, int playerId, int shards);
+    void setAttackRequest(Polycode::ServerClient* client, void* card, int newVal);
+    void setDefenseRequest(Polycode::ServerClient* client, void* card, int newVal);
+    void setCostkRequest(Polycode::ServerClient* client, void* card, int newVal);
+    void setImageIDRequest(Polycode::ServerClient* client, void* card, int newVal);
 
   private:
       void procEffectByType(int type);

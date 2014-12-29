@@ -45,13 +45,17 @@ namespace Network {
       IHM::IIHM *ihm;
       
       void setTitleExecute(SetTitleStructType* request);
-      void setDescriptionExecute(SetDescriptionStructType* request);
+      void setDescriptionExecute(SetDescriptionStructType* request); // FIXME CRADE
       void addCardExecute(AddCardStructType* request);
       void removeCardExecute(RemoveCardStructType* request);
       void moveCardExecute(MoveCardStructType* request);
       void setShardsExecute ( SetShardStructType* request );
       void setMaxShardsExecute ( SetShardStructType* request );
       void createCardExecute ( CreateCardStructType* request );
+      void setImageIdExecute( SetNumericalAttributeStructType* request);
+      void setAttackExecute( SetNumericalAttributeStructType* request);
+      void setDefenseExecute ( SetNumericalAttributeStructType* request);
+      void setCostExecute( SetNumericalAttributeStructType* request);
   };
 }
 #endif // GAMECLIENT_H

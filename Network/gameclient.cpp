@@ -41,7 +41,7 @@ namespace Network {
 	    case SETTYPE:
 	      
 	      break;
-	    case SETDESCRIP:
+	    case SETDESCRIP: //FIXME CRADE
 	      setDescriptionExecute((SetDescriptionStructType*)e->data);
 	      break;
 	    case SETCAPA:
@@ -67,6 +67,20 @@ namespace Network {
 	      break;
 	    case CREATE:
 	      createCardExecute((CreateCardStructType*) e->data);
+	      break;
+	    case SETDEFENSE:
+	      setDefenseExecute((SetNumericalAttributeStructType*) e->data);
+	      break;
+	    case SETATTACK:
+	      setAttackExecute((SetNumericalAttributeStructType*) e->data);
+	      break;
+	    case SETCOST:
+	      setCostExecute((SetNumericalAttributeStructType*) e->data);
+	      break;
+	    case SETIMAGEID:
+	      setImageIdExecute((SetNumericalAttributeStructType*) e->data);
+	      break;
+	      
 	  }
 	  break;
       }
@@ -98,7 +112,7 @@ void GameClient::removeCardExecute ( RemoveCardStructType* request ) {
 	ihm->getBoard(request->board)->deleteCard(request->position);
 }
 
-void GameClient::setDescriptionExecute ( SetDescriptionStructType* request ) {
+void GameClient::setDescriptionExecute ( SetDescriptionStructType* request ) { // FIXME CRADE
 
 	dynamic_cast<IHM::ICard*> (request->card)->setDescription(request->description);
 }
@@ -120,6 +134,22 @@ void GameClient::createCardExecute ( Network::CreateCardStructType* request ) {
   IHM::ICard* card=ihm->createCard( request->title,request->cost,request->attack,request->defense,request->description,request->imageID);
   CreateCardAnswerStructType answer = {request->incomingReference, (int) card};
   sendData(serverAddress,&answer,sizeof(CreateCardAnswerStructType),CREATE);
+}
+
+void GameClient::setAttackExecute ( SetNumericalAttributeStructType* request ) { //FIXME CRADE
+  dynamic_cast<IHM::ICard*> (request->card)->setAttack(request->newVal);
+}
+
+void GameClient::setCostExecute ( SetNumericalAttributeStructType* request ) { //FIXME CRADE
+  dynamic_cast<IHM::ICard*> (request->card)->setCost(request->newVal);
+}
+
+void GameClient::setDefenseExecute ( SetNumericalAttributeStructType* request ) { //FIXME CRADE
+  dynamic_cast<IHM::ICard*> (request->card)->setDefense(request->newVal);
+}
+
+void GameClient::setImageIdExecute ( SetNumericalAttributeStructType* request ) {
+  dynamic_cast<IHM::ICard*> (request->card)->setImageId(request->newVal);
 }
 
 }

@@ -503,3 +503,23 @@ void Engine::GameEngine::setShardsRequest ( Polycode::ServerClient* client, int 
   Network::SetShardStructType request = { playerId, shards};
   sendData(client, &request, sizeof(Network::SetShardStructType), Network::SETSHARD);
 }
+
+void Engine::GameEngine::setAttackRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
+  Network::SetNumericalAttributeStructType request = { card, newVal };
+  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETATTACK);
+}
+
+void Engine::GameEngine::setCostkRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
+  Network::SetNumericalAttributeStructType request = { card, newVal };
+  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETCOST);
+}
+
+void Engine::GameEngine::setDefenseRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
+  Network::SetNumericalAttributeStructType request = { card, newVal };
+  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETDEFENSE);
+}
+
+void Engine::GameEngine::setImageIDRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
+  Network::SetNumericalAttributeStructType request = { card, newVal };
+  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETIMAGEID);
+}

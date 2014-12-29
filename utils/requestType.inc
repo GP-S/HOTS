@@ -6,8 +6,16 @@
   //Request from GE to player fo card
   constexpr int SETTITLE=20;
   constexpr int SETTYPE=21;
-  constexpr int SETDESCRIP=22;
+  constexpr int SETDESCRIP=22; //FIXME CRADE
   constexpr int SETCAPA=23;
+  
+  //FIXME CRADE
+  constexpr int SETATTACK=24;
+  constexpr int SETCOST=25;
+  constexpr int SETDEFENSE=26;
+  
+  constexpr int SETIMAGEID=27;
+  
   constexpr int CREATE=29;
 
   //Request from GE to player for Board
@@ -74,5 +82,10 @@
     int serverRef;
     int clientRef;
   } CreateCardAnswerStructType;
+  
+  typedef struct SetNumericalAttributeStruct {
+    void* card;
+    int newVal;
+  } SetNumericalAttributeStructType;
   
 }
