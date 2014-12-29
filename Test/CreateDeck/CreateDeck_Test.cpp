@@ -19,9 +19,9 @@ void printSpell(Spell *spell,unsigned int max){
 	std::cout << "Spell: " << std::endl;
 	for(size_t i = 0; i < max; i++){
 		std::cout <<	" spell[" << i << "] = ";
-		std::cout <<	" Name: " << card[i].getName();
-		std::cout <<	" cardType: " << card[i].getType();
-		std::cout <<	" cost: " << card[i].getCost() << std::endl;
+		std::cout <<	" Name: " << spell[i].getName();
+		std::cout <<	" cardType: " << spell[i].getType();
+		std::cout <<	" cost: " << spell[i].getCost() << std::endl;
 	} 
 }
 
