@@ -3,6 +3,7 @@
 
 #include <list>
 #include "../Card/iCard.h"
+#include "../Card/Card.h"
 #include <iostream>
 
 /**

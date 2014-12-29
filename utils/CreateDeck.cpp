@@ -72,11 +72,11 @@ std::list<Card*>* newDeck(){
 
 		Spell *spell = new Spell(namespell[myRandom()]);
 
-		Effect *damage = new Effect("damage",NULL,damage);
+		Effect *damageeffect = new Effect("damage",NULL,damage);
 
 		Capacity *capa = new Capacity("damage",0);
 
-		capa->setEffect(damage);
+		capa->setEffect(damageeffect);
 
 		spell->addCapacity(capa);
 

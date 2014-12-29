@@ -1,50 +1,50 @@
-#include "EffectCost.h"
+// #include "EffectCost.h"
 
-/**@TODO : 
-*			-i'd like someone to double check this pls .
-*
-*
-**/    	
+// /**@TODO : 
+// *			-i'd like someone to double check this pls .
+// *
+// *
+// **/    	
 
-EffectCost::EffectCost(){
-
-
-}
-
-EffectCost::EffectCost(){//complete this
+// EffectCost::EffectCost(){
 
 
-}
+// }
 
-EffectCost::~EffectCost(){
+// EffectCost::EffectCost(){//complete this
 
 
-}
+// }
 
-void EffectCost::increaseCost(Card* card,unsigned int modifier){
+// EffectCost::~EffectCost(){
 
-	std::string cost = "cost";
-	std::list listCost = card->findCapaByType(cost);
 
-     
-		if (listCost.empty()){
-    throw std::logic_error( "no cost capacity in current card" ); 
-  	}
+// }
 
-	listCost.front.setVal(listCost.front.getval()+n);
+// void EffectCost::increaseCost(Card* card,unsigned int modifier){
 
-}
-
-void EffectCost::decreaseCost(Card* card,unsigned int modifier){
-
-	std::string cost = "cost";
-	std::list listCost = card->findCapaByType(cost);
+// 	std::string cost = "cost";
+// 	std::list listCost = card->findCapaByType(cost);
 
      
-		if (listCost.empty()){
-    throw std::logic_error( "no cost capacity in current card" ); 
-  	}
+// 		if (listCost.empty()){
+//     throw std::logic_error( "no cost capacity in current card" ); 
+//   	}
 
-	listCost.front.setVal(listCost.front.getval()-n);
+// 	listCost.front.setVal(listCost.front.getval()+n);
 
-}
+// }
+
+// void EffectCost::decreaseCost(Card* card,unsigned int modifier){
+
+// 	std::string cost = "cost";
+// 	std::list listCost = card->findCapaByType(cost);
+
+     
+// 		if (listCost.empty()){
+//     throw std::logic_error( "no cost capacity in current card" ); 
+//   	}
+
+// 	listCost.front.setVal(listCost.front.getval()-n);
+
+// }

@@ -45,7 +45,7 @@ public:
     * @return isAlive the alive flag of a card .
     *
     **/
-    virtual bool isAlive() = 0;
+//    virtual bool isAlive() = 0;
     /**
     * getType
     * basic getter
