@@ -1,4 +1,4 @@
-#include "creatdeck.h"
+#include "CreateDeck.h"
 
 /*
 list of minimal capacity for beast and spell:

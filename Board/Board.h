@@ -2,7 +2,7 @@
 #define BOARD_H
 
 #include <list>
-#include "Card.h"
+#include "../Card/iCard.h"
 #include <iostream>
 
 /**

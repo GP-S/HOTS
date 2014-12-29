@@ -8,4 +8,4 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
 add_executable(Effect_Test ${HOTS_SRC_FILES} Effect_Test.cpp)
 
-include_directories(./ ../../Effect/ ../../Card/)
+include_directories(./ ../../Effect/ ../../Card/ ../../utils/)

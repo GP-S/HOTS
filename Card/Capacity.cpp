@@ -57,12 +57,12 @@ void Capacity::decreaseDurability(){
 
 
 
-Effect* Capacity::getEffect(){
+iEffect* Capacity::getEffect(){
 
 	return effect;
 }
 
-void Capacity::setEffect(Effect* effect){
+void Capacity::setEffect(iEffect* effect){
 
 	this->effect=effect;
 }

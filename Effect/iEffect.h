@@ -5,7 +5,7 @@
 
 class iCard;
 
-class iEffect 
+class iEffect
 {
     public:
 

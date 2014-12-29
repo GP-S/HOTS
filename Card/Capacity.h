@@ -4,7 +4,7 @@
 #include <string>
 #include <list>
 #include <iostream>
-#include "../Effect/Effect.h"
+#include "../Effect/iEffect.h"
 
 
 /** 
@@ -23,20 +23,20 @@ class Capacity : public iCapacity
     * 
     *
     **/
-    					Capacity();
+    Capacity();
     /**
     * Constructor
     * 
     *
     **/
-    					Capacity(std::string type,int durabilty);
+    Capacity(std::string type,int durabilty);
     /**
     * Destructor
     * 
     *
 	**/
 
-  						~Capacity();
+  	~Capacity();
     /**
     * getType
     * basic getter
@@ -74,16 +74,16 @@ class Capacity : public iCapacity
     *
     **/
     bool getActive();
-	Effect* getEffect();
+	iEffect* getEffect();
     void decreaseDurability();
-    void setEffect(Effect* effect);
+    void setEffect(iEffect* effect);
 
 	protected : 
 
 	std::string		type;
 	int 			durabilty;
     bool            active;
-    Effect          *effect;
+    iEffect          *effect;
 
 
 

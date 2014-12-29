@@ -19,7 +19,7 @@
 
 #include "IHM/PolycodeGUI/IHM.h"
 #include "GameEngine/gameengine.h"
-#include "utils/creatdeck.h"
+#include "utils/CreateDeck.h"
 
 #include <Polycode.h>
 #include "PolycodeView.h"
