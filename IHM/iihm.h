@@ -33,7 +33,7 @@ public:
     virtual ICard* createCard() =0;
     virtual ICard* createCard ( std::string title, int cost,int attack,int defense,std::string description,int imageId ) =0;
 
-    virtual IBoard* getBoard(int numBoard, int numPlayer)=0;
+    virtual IBoard* getBoard(int numBoard)=0;
     
     virtual void setShards(int playerNumber, int shards)=0;
     virtual void setMaxShards(int playerNumber, int maxShards)=0;
