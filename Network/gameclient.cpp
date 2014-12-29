@@ -59,6 +59,14 @@ namespace Network {
 	    case SETNBCARD:
 	      
 	      break;
+	    case SETSHARD:
+	      setShardsExecute((SetShardStructType*) e->data);
+	      break;
+	    case SETMAXSHARD:
+	      setMaxShardsExecute((SetShardStructType*) e->data);
+	      break;
+	    case CREATE:
+	      createCardExecute((CreateCardStructType*) e->data);
 	  }
 	  break;
       }
@@ -76,29 +84,42 @@ void GameClient::playOnRequest ( int boardOrigin, int cardOrigine, int boardArr,
 
 void GameClient::addCardExecute ( AddCardStructType* request ) {
 
-	getBoard(request->boardDestination)->addCard(request->card,request->cardDestination);
+	ihm->getBoard(request->boardDestination)->addCard(request->card,request->cardDestination);
 }
 
 void GameClient::moveCardExecute ( MoveCardStructType* request ) {
-
-	ICard* movedCard= (getBoard(request->boardOrigin))[request->cardOrigin];
-	getBoard(request->boardOrigin)->deleteCard(request->cardOrigin);
-	getBoard(request->boardDestination)->addCard(movedCard,request->cardDestination);
+	IHM::ICard* movedCard= (ihm->getBoard(request->boardOrigin))[request->cardOrigin];
+	ihm->getBoard(request->boardOrigin)->deleteCard(request->cardOrigin);
+	ihm->getBoard(request->boardDestination)->addCard(movedCard,request->cardDestination);
 }
 
 void GameClient::removeCardExecute ( RemoveCardStructType* request ) {
 
-	getBoard(request->board)->deleteCard(request->position);
+	ihm->getBoard(request->board)->deleteCard(request->position);
 }
 
 void GameClient::setDescriptionExecute ( SetDescriptionStructType* request ) {
 
-	request->card->setDescription(request->description);
+	dynamic_cast<IHM::ICard*> (request->card)->setDescription(request->description);
 }
 
 void GameClient::setTitleExecute ( SetTitleStructType* request ) {
 
-	request->card->setTitle(request->title);
+	dynamic_cast<IHM::ICard*> (request->card)->setTitle(request->title);
+}
+
+void GameClient::setMaxShardsExecute ( Network::SetShardStructType* request ) {
+  ihm->setMaxShards( request->playerId,request->shards);
+}
+
+void GameClient::setShardsExecute ( Network::SetShardStructType* request ) {
+  ihm->setShards( request->playerId,request->shards);
+}
+
+void GameClient::createCardExecute ( Network::CreateCardStructType* request ) {
+  IHM::ICard* card=ihm->createCard( request->title,request->cost,request->attack,request->defense,request->description,request->imageID);
+  CreateCardAnswerStructType answer = {request->incomingReference, (int) card};
+  sendData(serverAddress,&answer,sizeof(CreateCardAnswerStructType),CREATE);
 }
 
 }

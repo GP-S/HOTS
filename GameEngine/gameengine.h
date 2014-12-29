@@ -87,7 +87,7 @@ namespace Engine
       std::list<iCard*>* listCardsProccedWhenTurnEnds; // when turn ends
       
       iBoard* boards[16];
-      std::list<Player*> *players;
+      Player* players[2];
       
       Polycode::ServerClient* player0;
       Polycode::ServerClient* player1;

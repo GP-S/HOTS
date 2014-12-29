@@ -49,6 +49,9 @@ namespace Network {
       void addCardExecute(AddCardStructType* request);
       void removeCardExecute(RemoveCardStructType* request);
       void moveCardExecute(MoveCardStructType* request);
+      void setShardsExecute ( SetShardStructType* request );
+      void setMaxShardsExecute ( SetShardStructType* request );
+      void createCardExecute ( CreateCardStructType* request );
   };
 }
 #endif // GAMECLIENT_H
