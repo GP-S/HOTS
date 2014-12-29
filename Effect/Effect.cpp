@@ -53,7 +53,7 @@ void Effect::setValue(int value){
 
 }
 
-float Effect::costVal(Card *card = NULL){
+float Effect::costVal(iCard *card = NULL){
 
 	if(card == NULL)
 		return (float)value/2.0;

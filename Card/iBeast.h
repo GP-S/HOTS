@@ -3,7 +3,7 @@
 
 #include "iCreature.h"
 
-class iBeast : public iCreature
+class iBeast : virtual public iCreature
 {
     public:
 

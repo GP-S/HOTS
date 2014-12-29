@@ -23,7 +23,7 @@
 *   vrais getter et setters des capacités 
 *
 **/
-class Creature : public Card, public iCreature
+class Creature : public Card, virtual public iCreature
 {
     public:
         /**
