@@ -34,15 +34,13 @@ void printEffect(Card *card,std::string type){
 
 	std::list<Capacity*>* capaList = card->findCapaByType(type);
 
-	std::cout << "size: " << capaList->size() << std::endl;
-
 	if(capaList->size()>0){
 		Effect *effect = capaList->front()->getEffect();
 
-		std::cout <<	"     type: " << effect->getType();
+		std::cout <<	"     cost value: " << effect->costVal(card);
 		std::cout <<	"     affinity: " << effect->getAffinity();
 		std::cout <<	"     value: " << effect->getValue();		
-		std::cout <<	"     cost value: " << effect->costVal(card) << std::endl;
+		std::cout <<	"     type: " << effect->getType() << std::endl;
 	}
 }
 

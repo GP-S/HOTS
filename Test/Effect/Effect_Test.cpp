@@ -57,42 +57,51 @@ int main(int argc, char **argv){
 /*=================================etape  1=========================================*/
 /*I instance some effects and capacities*/
 	printEtape("Instanciation of effects and capacities");
-	Effect *effect;
-	Capacity *capacity;
+	// Effect *effect;
+	// Capacity *capacity;
 
-	effect = (Effect*)malloc(NUMBER*sizeof(Effect));
-	capacity = (Capacity*)malloc(NUMBER*sizeof(Capacity));
+	Effect *effect = new Effect();
+	Capacity *capacity = new Capacity();
+
+//	effect = (Effect*)malloc(NUMBER*sizeof(Effect));
+//	capacity = (Capacity*)malloc(NUMBER*sizeof(Capacity));
 	
 
 /*=================================etape  2=========================================*/
 /*I initialise all effects and capacities*/
 	printEtape("Intialisation of effects and capacities");
 
-	for(size_t i = 0; i < NUMBER; i++){
-		effect[i].setType(effectTypes[i]);
-		effect[i].setAffinity("");
-		effect[i].setValue(i);
-	}
+	effect->setType(effectTypes[0]);
+	effect->setAffinity("none");
+	effect->setValue(0);
 
-	printEffect(effect,NUMBER);
+	printEffect(effect,1);
 
-	for(size_t i = 0; i < NUMBER; i++){
+	// for(size_t i = 0; i < NUMBER; i++){
+	// 	effect[i].setType(effectTypes[i]);
+	// 	effect[i].setAffinity("nome");
+	// 	effect[i].setValue(i);
+	// }
 
-		capacity[i].setType(effectTypes[i]);
-		if(i%2)
-			capacity[i].setActive(true);
-		else
-			capacity[i].setActive(false);
+	// printEffect(effect,NUMBER);
 
-		if(i<NUMBER/2)
-			capacity[i].setDurabilty(-1);
-		else
-			capacity[i].setDurabilty(i);
+	// for(size_t i = 0; i < NUMBER; i++){
 
-		capacity[i].setEffect(&effect[i]);
-	}
+	// 	capacity[i].setType(effectTypes[i]);
+	// 	if(i%2)
+	// 		capacity[i].setActive(true);
+	// 	else
+	// 		capacity[i].setActive(false);
 
-	printCapacity(capacity,NUMBER);
+	// 	if(i<NUMBER/2)
+	// 		capacity[i].setDurabilty(-1);
+	// 	else
+	// 		capacity[i].setDurabilty(i);
+
+	// 	capacity[i].setEffect(&effect[i]);
+	// }
+
+	// printCapacity(capacity,NUMBER);
 
 /*=================================etape  3=========================================*/
 /*I try to get the effect of all capacity*/

@@ -1,19 +1,4 @@
-/**
-*
-*	g++ Board_Test.cpp ../../Board/Board.cpp Card.cpp  -I ./
-*	./a.out
-*/
-
-
-#include "Card.h"
-#include "../../Board/Board.h"
-#include "../../Board/RegulatedBoard.h"
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <string>
-
-#include "../../utils/tool.inc"
+#include "Board_Test.h"
 
 #define NUMBER 10
 
@@ -30,9 +15,8 @@ void printBoard(Board *board, std::string name){
 
 	std::cout << "Board " << name << ": " << std::endl;
 	for(size_t i = 0; i < board->getSize(); i++){
-		std::cout <<	"position: " << i << ", ";
-		std::cout <<	" F: " << board->getCardX(i)->getStrength();
-		std::cout <<	" E: " << board->getCardX(i)->getLife() << std::endl;
+		std::cout <<	" Card[" << i << "]";
+		std::cout <<	" name: " << board->getCardX(i)->getName();
 	} 
 	std::cout << std::endl;
 }
@@ -41,9 +25,10 @@ void printCard(Card *card,unsigned int max){
 
 	std::cout << "Card: " << std::endl;
 	for(size_t i = 0; i < max; i++){
-		std::cout <<	" Card[" << i << "] = ";
-		std::cout <<	" F: " << card[i].getStrength();
-		std::cout <<	" E: " << card[i].getLife() << std::endl;
+		std::cout <<	" Card[" << i << "]";
+		std::cout <<	" name: " << board->getCardX(i)->getName();
+		std::cout <<	" type: " << board->getCardX(i)->getType();
+		std::cout <<	" cost: " << board->getCardX(i)->getName() << std::endl;
 	} 
 }
 
