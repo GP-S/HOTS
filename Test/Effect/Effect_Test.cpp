@@ -70,7 +70,7 @@ int main(int argc, char **argv){
 
 	for(size_t i = 0; i < NUMBER; i++){
 		effect[i].setType(effectTypes[i]);
-		effect[i].setAffinity("");
+		effect[i].setAffinity("nome");
 		effect[i].setValue(i);
 	}
 

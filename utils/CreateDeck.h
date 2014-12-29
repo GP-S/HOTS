@@ -3,7 +3,9 @@
 
 #include "../Card/Card.h"
 #include "../Card/Beast.h"
-#include "Spell.h"
+#include "../Card/Spell.h"
+#include "../Card/Capacity.h"
+#include "../Effect/Effect.h"
 #include "cstdlib"
 #include "iostream"
 #include "ctime"
