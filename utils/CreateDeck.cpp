@@ -35,11 +35,11 @@ std::list<Card*>* newDeck(){
 
 		std::cout << "beast instancie " << std::endl;
 
-		Effect *hp = new Effect("hp",NULL,life);
-		Effect *max_hp = new Effect("hpMax",NULL,life);
-		Effect *attack = new Effect("attack",NULL,strength);
-		Effect *AttackCount = new Effect("attackCount",NULL,0);
-		Effect *AttackCountMax = new Effect("attackCountMax",NULL,1);
+		Effect *hp = new Effect("hp","none",life);
+		Effect *max_hp = new Effect("hpMax","none",life);
+		Effect *attack = new Effect("attack","none",strength);
+		Effect *AttackCount = new Effect("attackCount","none",0);
+		Effect *AttackCountMax = new Effect("attackCountMax","none",1);
 
 		std::cout << "effect instancie " << std::endl;
 
@@ -82,7 +82,7 @@ std::list<Card*>* newDeck(){
 
 		Spell *spell = new Spell(namespell[myRandom()]);
 
-		Effect *damageeffect = new Effect("damage",NULL,damage);
+		Effect *damageeffect = new Effect("damage","none",damage);
 
 		Capacity *capa = new Capacity("damage",0);
 
