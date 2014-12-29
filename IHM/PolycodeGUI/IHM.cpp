@@ -179,25 +179,25 @@ IHM::ICard* IHM::PolycodeGUI::IHM::createCard ( std::string title, int cost, int
 
 IHM::IBoard* IHM::PolycodeGUI::IHM::getBoard ( int numBoard) {
     switch ( numBoard ) {
-      case Engine::IGameSolver::PLAYER1_DECK :
+      case Engine::IGameSolver::PLAYER0_DECK :
         return p0Stock;
-      case Engine::IGameSolver::PLAYER2_DECK :
+      case Engine::IGameSolver::PLAYER1_DECK :
 	return p1Stock;
-      case Engine::IGameSolver::PLAYER1_HAND :
+      case Engine::IGameSolver::PLAYER0_HAND :
         return p0Hand;
-      case Engine::IGameSolver::PLAYER2_HAND :
+      case Engine::IGameSolver::PLAYER1_HAND :
 	return p1Hand;
-      case Engine::IGameSolver::PLAYER1_CIMETERY :
+      case Engine::IGameSolver::PLAYER0_CIMETERY :
         return p0Graveyard;
-      case Engine::IGameSolver::PLAYER2_CIMETERY :
+      case Engine::IGameSolver::PLAYER1_CIMETERY :
 	return p1Graveyard;
-      case Engine::IGameSolver::PLAYER1_BOARD :
+      case Engine::IGameSolver::PLAYER0_BOARD :
         return p0Battlefield;
-      case Engine::IGameSolver::PLAYER2_BOARD :
+      case Engine::IGameSolver::PLAYER1_BOARD :
 	return p1Battlefield;
-      case Engine::IGameSolver::PLAYER1_HERO :
+      case Engine::IGameSolver::PLAYER0_HERO :
         return p0Hero;
-      case Engine::IGameSolver::PLAYER2_HERO :
+      case Engine::IGameSolver::PLAYER1_HERO :
 	return p1Hero;
     default:
         throw std::invalid_argument ( "No matching board" );
@@ -293,25 +293,25 @@ void IHM::PolycodeGUI::IHM::createLights() {
 
 int IHM::PolycodeGUI::IHM::getBoardNo ( IHM::PolycodeGUI::Board* board ) {
   if(board==p0Battlefield)
-    return Engine::IGameSolver::PLAYER1_BOARD;
+    return Engine::IGameSolver::PLAYER0_BOARD;
   if(board==p0Graveyard)
-    return Engine::IGameSolver::PLAYER1_CIMETERY;
+    return Engine::IGameSolver::PLAYER0_CIMETERY;
   if(board==p0Hand)
-    return Engine::IGameSolver::PLAYER1_HAND;
+    return Engine::IGameSolver::PLAYER0_HAND;
   if(board==p0Hero)
-    return Engine::IGameSolver::PLAYER1_HERO;
+    return Engine::IGameSolver::PLAYER0_HERO;
   if(board==p0Stock)
-    return Engine::IGameSolver::PLAYER1_DECK;
+    return Engine::IGameSolver::PLAYER0_DECK;
   if(board==p1Battlefield)
-    return Engine::IGameSolver::PLAYER2_BOARD;
+    return Engine::IGameSolver::PLAYER1_BOARD;
   if(board==p1Graveyard)
-    return Engine::IGameSolver::PLAYER2_CIMETERY;
+    return Engine::IGameSolver::PLAYER1_CIMETERY;
   if(board==p1Hand)
-    return Engine::IGameSolver::PLAYER2_HAND;
+    return Engine::IGameSolver::PLAYER1_HAND;
   if(board==p1Hero)
-    return Engine::IGameSolver::PLAYER2_HERO;
+    return Engine::IGameSolver::PLAYER1_HERO;
   if(board==p1Stock)
-    return Engine::IGameSolver::PLAYER2_DECK;
+    return Engine::IGameSolver::PLAYER1_DECK;
 }
 
 void IHM::PolycodeGUI::IHM::setMaxShards ( int playerNumber, int maxShards ) {

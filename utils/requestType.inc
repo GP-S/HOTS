@@ -16,6 +16,10 @@
   constexpr int SETNBCARD=32;
   constexpr int MOVECARD=33;
   
+  //Request from GE to player
+  constexpr int SETSHARD=40;
+  constexpr int SETMAXSHARD=41;
+  
   typedef struct PlayOnStruct {
     int boardOrigin;
     int cardOrigin;
@@ -50,5 +54,25 @@
     int boardDestination;
     int cardDestination;
   } MoveCardStructType;
+  
+  typedef struct SetShardStruct {
+    int playerId;
+    int shards;
+  } SetShardStructType;
+  
+  typedef struct CreateCardStruct {
+    int incomingReference;
+    int attack;
+    int defense;
+    int cost;
+    char title[20];
+    char description[255];
+    int imageID;
+  } CreateCardStructType;
+  
+  typedef struct CreateCardAnswerStruct {
+    int serverRef;
+    int clientRef;
+  } CreateCardAnswerStructType;
   
 }

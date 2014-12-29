@@ -87,7 +87,7 @@ namespace Engine
       std::list<iCard*>* listCardsProccedWhenTurnEnds; // when turn ends
       
       iBoard* boards[16];
-      std::list<Player*> *players;
+      Player* players[2];
       
       Polycode::ServerClient* player0;
       Polycode::ServerClient* player1;
@@ -102,6 +102,8 @@ namespace Engine
     void removeCardRequest(Polycode::ServerClient* client, int board, int position);
     void addCardRequest(Polycode::ServerClient* client, void* card, int board, int position);
     void moveCardRequest(Polycode::ServerClient* client, int originBoard, int originPosition, int destinationBoard, int destinationPosition);
+    void setShardsRequest(Polycode::ServerClient* client, int playerId, int shards);
+    void setMaxShardsRequest(Polycode::ServerClient* client, int playerId, int shards);
 
   private:
       void procEffectByType(int type);
