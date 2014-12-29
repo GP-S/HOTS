@@ -1,8 +1,8 @@
-#ifndef COST_H
-#define COST_H
+// #ifndef COST_H
+// #define COST_H
 
-#include <exception>
-#include "Effect.h"
+// #include <exception>
+// #include "Effect.h"
 
 /** 
 *	Class Cost . Derived from Effect . Used to handle all cost-related events .
@@ -53,4 +53,4 @@
 
 // };
 
-#endif // COST_H
+// #endif // COST_H

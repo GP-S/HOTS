@@ -1,9 +1,9 @@
-#ifndef EFFECTLIFE_H
-#define EFFECTLIFE_H
+// #ifndef EFFECTLIFE_H
+// #define EFFECTLIFE_H
 
-#include <exception>
-#include "stdafx.h"
-#include "Effect.h"
+// #include <exception>
+// #include "stdafx.h"
+// #include "Effect.h"
 
 
 /** 
@@ -69,4 +69,4 @@
 
 // };
 
-#endif // EFFECTLIFE_H
+// #endif // EFFECTLIFE_H
