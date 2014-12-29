@@ -34,7 +34,6 @@ Card::~Card()
 void Card::addCapacity(iCapacity* capa){//insert a Capacity at the tail of the list
 	
 	capaList->push_back( (Capacity*) capa);
-
 }
 
 
@@ -51,7 +50,8 @@ void Card::calculateCost(){//modify when capacities are done
 std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a list of all capacities of choosen type
 {
 	std::list<Capacity*>* capaListTemp = new std::list<Capacity*>();
-	foreach(std::list<Capacity*>, capaListTemp, it){
+
+	foreach(std::list<Capacity*>, capaList, it){
 		if ((*it)->getEffect()->getType()==effectType){//compare the strings
 			capaListTemp->push_back(*it);
 		}

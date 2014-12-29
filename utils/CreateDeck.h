@@ -1,6 +1,8 @@
-#pragma once
-#include "Card.h"
-#include "Beast.h"
+#ifndef CREATEDECK_H
+#define CREATEDECK_H
+
+#include "../Card/Card.h"
+#include "../Card/Beast.h"
 #include "Spell.h"
 #include "cstdlib"
 #include "iostream"
@@ -9,3 +11,5 @@
 int myRandom();
 
 std::list<Card*>* newDeck();
+
+#endif //CREATEDECK_H

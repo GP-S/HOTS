@@ -32,12 +32,18 @@ void printCard(Card *card){
 
 void printEffect(Card *card,std::string type){
 
-	Effect *effect = card->findCapaByType(type)->front()->getEffect();
+	std::list<Capacity*>* capaList = card->findCapaByType(type);
 
-	std::cout <<	"     type: " << effect->getType();
-	std::cout <<	"     affinity: " << effect->getAffinity();
-	std::cout <<	"     value: " << effect->getValue();		
-	std::cout <<	"     cost value: " << effect->costVal(card) << std::endl;
+	std::cout << "size: " << capaList->size() << std::endl;
+
+	if(capaList->size()>0){
+		Effect *effect = capaList->front()->getEffect();
+
+		std::cout <<	"     type: " << effect->getType();
+		std::cout <<	"     affinity: " << effect->getAffinity();
+		std::cout <<	"     value: " << effect->getValue();		
+		std::cout <<	"     cost value: " << effect->costVal(card) << std::endl;
+	}
 }
 
 
@@ -52,7 +58,7 @@ int main(int argc, char **argv){
 	std::cout << "Deck cree, size: " << deck->size() << std::endl;
 
 //	foreach(std::list<Card*>, deck, it){
-	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); ++it){
+	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); it++){
 
 		printCard((*it));
 
