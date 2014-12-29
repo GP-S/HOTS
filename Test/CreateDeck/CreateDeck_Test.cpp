@@ -39,10 +39,10 @@ void printCard(Card *card,unsigned int max){
 void printEffect(Effect *effect,Card *card){
 
 	std::cout << "Effect: " << std::endl;	
-	std::cout <<	" type: " << effect[i].getType();
-	std::cout <<	" affinity: " << effect[i].getAffinity();
-	std::cout <<	" value: " << effect[i].getValue();		
-	std::cout <<	" cost value: " << effect[i].costVal(card) << std::endl;
+	std::cout <<	" type: " << effect->getType();
+	std::cout <<	" affinity: " << effect->getAffinity();
+	std::cout <<	" value: " << effect->getValue();		
+	std::cout <<	" cost value: " << effect->costVal(card) << std::endl;
 
 }
 
@@ -55,7 +55,8 @@ int main(int argc, char **argv){
 
 	std::list<Card*> *deck = newDeck();
 
-	foreach(std::list<Card*>, deck, it){
+//	foreach(std::list<Card*>, deck, it){
+	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); ++it){
 		printCard(*it,1);
 	}
 
