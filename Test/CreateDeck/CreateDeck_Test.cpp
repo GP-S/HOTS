@@ -32,7 +32,9 @@ void printCard(Card *card){
 
 void printEffect(Card *card,std::string type){
 
+	std::cout << "avant ";
 	Effect *effect = card->findCapaByType(type)->front()->getEffect();
+	std::cout << "apres ";
 
 	std::cout <<	"     type: " << effect->getType();
 	std::cout <<	"     affinity: " << effect->getAffinity();
