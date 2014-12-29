@@ -23,3 +23,4 @@ class iEffect
 };
 
 #endif // IEFFECT_H
+
