@@ -53,8 +53,8 @@ int main(int argc, char **argv){
 
 //	foreach(std::list<Card*>, deck, it){
 	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); ++it){
-		std::cout << "*it: " << *it << std::endl;
-		std::cout << " it: " <<  it << std::endl;
+		std::cout << "*it: " << (*it) << std::endl;
+		std::cout << " it: " << ( it) << std::endl;
 
 		printCard(it);
 	}
