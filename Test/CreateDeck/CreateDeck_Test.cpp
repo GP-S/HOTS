@@ -1,49 +1,43 @@
 #include "CreateDeck.h"
 
-void printBeast(Beast *beast,unsigned int max){
+void printBeast(Beast *beast){
 
 	std::cout << "Beast: " << std::endl;
-	for(size_t i = 0; i < max; i++){
-		std::cout <<	" beast[" << i << "] = ";
-		std::cout <<	" Name: " << beast[i].getName();
-		std::cout <<	" cardType: " << beast[i].getType();
-		std::cout <<	" cost: " << beast[i].getCost();
-		std::cout <<	" hp: " << beast[i].getHp();
-		std::cout <<	" baseAttack: " << beast[i].getBaseAttack();
-		std::cout <<	" race: " << beast[i].getRace() << std::endl;
-	} 
+
+	std::cout <<	" Name: " << beast->getName();
+	std::cout <<	" cardType: " << beast->getType();
+	std::cout <<	" cost: " << beast->getCost();
+	std::cout <<	" hp: " << beast->getHp();
+	std::cout <<	" baseAttack: " << beast->getBaseAttack();
+	std::cout <<	" race: " << beast->getRace() << std::endl;
 }
 
-void printSpell(Spell *spell,unsigned int max){
+void printSpell(Spell *spell){
 
 	std::cout << "Spell: " << std::endl;
-	for(size_t i = 0; i < max; i++){
-		std::cout <<	" spell[" << i << "] = ";
-		std::cout <<	" Name: " << spell[i].getName();
-		std::cout <<	" cardType: " << spell[i].getType();
-		std::cout <<	" cost: " << spell[i].getCost() << std::endl;
-	} 
+
+	std::cout <<	" Name: " << spell->getName();
+	std::cout <<	" cardType: " << spell->getType();
+	std::cout <<	" cost: " << spell->getCost() << std::endl; 
 }
 
-void printCard(Card *card,unsigned int max){
+void printCard(Card *card){
 
 	std::cout << "Card: " << std::endl;
-	for(size_t i = 0; i < max; i++){
-		std::cout <<	" card[" << i << "] = ";
-		std::cout <<	" Name: " << card[i].getName();
-		std::cout <<	" cardType: " << card[i].getType();
-		std::cout <<	" cost: " << card[i].getCost() << std::endl;
-	} 
+
+	std::cout <<	" Name: " << card->getName();
+	std::cout <<	" cardType: " << card->getType();
+	std::cout <<	" cost: " << card->getCost() << std::endl;
 }
 
 void printEffect(Effect *effect,Card *card){
 
-	std::cout << "Effect: " << std::endl;	
+	std::cout << "Effect: " << std::endl;
+
 	std::cout <<	" type: " << effect->getType();
 	std::cout <<	" affinity: " << effect->getAffinity();
 	std::cout <<	" value: " << effect->getValue();		
 	std::cout <<	" cost value: " << effect->costVal(card) << std::endl;
-
 }
 
 
@@ -59,8 +53,10 @@ int main(int argc, char **argv){
 
 //	foreach(std::list<Card*>, deck, it){
 	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); ++it){
-		std::cout << "blc " << std::endl;
-		printCard((*it),1);
+		std::cout << "*it: " << *it << std::endl;
+		std::cout << " it: " <<  it << std::endl;
+
+		printCard(it);
 	}
 
 	/*foreach(std::list<Card*>, deck, it){
