@@ -1,19 +1,4 @@
-/**
-*
-*	g++ Board_Test.cpp ../../Board/Board.cpp Card.cpp  -I ./
-*	./a.out
-*/
-
-
-#include "Card.h"
-#include "../../Board/Board.h"
-#include "../../Board/RegulatedBoard.h"
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <string>
-
-#include "../../utils/tool.inc"
+#include "Board_Test.h"
 
 #define NUMBER 10
 
