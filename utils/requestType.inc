@@ -24,17 +24,17 @@
   } PlayOnStructType;
   
   typedef struct SetTitleStruct {
-    void* Card;
+    void* card;
     char title[20];
   } SetTitleStructType;
   
   typedef struct SetDescriptionStruct {
-    void* Card;
+    void* card;
     char description[255];
   } SetDescriptionStructType;
   
   typedef struct AddCardStruct {
-    void* Card;
+    void* card;
     int boardDestination;
     int cardDestination;
   } AddCardStructType;

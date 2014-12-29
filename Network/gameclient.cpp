@@ -76,25 +76,29 @@ void GameClient::playOnRequest ( int boardOrigin, int cardOrigine, int boardArr,
 
 void GameClient::addCardExecute ( AddCardStructType* request ) {
 
+	getBoard(request->boardDestination)->addCard(request->card,request->cardDestination);
 }
 
 void GameClient::moveCardExecute ( MoveCardStructType* request ) {
 
+	ICard* movedCard= (getBoard(request->boardOrigin))[request->cardOrigin];
+	getBoard(request->boardOrigin)->deleteCard(request->cardOrigin);
+	getBoard(request->boardDestination)->addCard(movedCard,request->cardDestination);
 }
 
 void GameClient::removeCardExecute ( RemoveCardStructType* request ) {
 
+	getBoard(request->board)->deleteCard(request->position);
 }
 
 void GameClient::setDescriptionExecute ( SetDescriptionStructType* request ) {
 
+	request->card->setDescription(request->description);
 }
 
 void GameClient::setTitleExecute ( SetTitleStructType* request ) {
 
+	request->card->setTitle(request->title);
 }
-
-
-
 
 }
