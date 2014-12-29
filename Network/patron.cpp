@@ -28,7 +28,7 @@ void setDescrip(char * Descript){
 
 void create(iCard* card){//a mettre dans un factory? on cré une carte client avec un num unique qu'on posera plus tard dans un board
   char idnumber[4] = {(char)card>>24, (char)card>>16, (char)card >> 8, (char) card};
-  sendData(char* ServerAddress, idnumber, sizeof(idnumber), CREATE);
+  sendData(char* ServerAddress, (char*) &card, sizeof(iCard*), CREATE);
 }
 
 void setCapacity(char* type, int durability, bool isActive,placeMask, timeMask ,int effectVal){
@@ -57,5 +57,5 @@ void removeCard( int boardOrigin, int cardOrigine){
 }
 
 void setNbCard( int nb){//les joueurs on besoin de connaitre le nb de carte dans chaque deck
-   sendData(CLIENt* cli, std::to_string(nb), sizeof(std::to_string(nb)), SETNBCARD);
+   sendData(CLIENt* cli,(char*) &nb, sizeof(int), SETNBCARD);
 }

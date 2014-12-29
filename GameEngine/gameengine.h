@@ -36,11 +36,12 @@
 #include <algorithm>    
 #include <ctime>        // std::time
 #include <cstdlib>      // std::rand, std::srand
+#include <Polycode.h>
 
 
 namespace Engine
 {
-  class GameEngine : public ISimulatorFactory, public IGameSolver {
+  class GameEngine : public ISimulatorFactory, public IGameSolver, public Polycode::Server {
   public:
       GameEngine();
       GameEngine ( const GameEngine& other );
@@ -51,6 +52,7 @@ namespace Engine
       void useCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
+      virtual void handleEvent ( Polycode::Event* event );
       //isLegit()
       //
       
