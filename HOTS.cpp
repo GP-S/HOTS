@@ -19,11 +19,15 @@
 
 #include "IHM/PolycodeGUI/IHM.h"
 #include "GameEngine/gameengine.h"
+#include "utils/creatdeck.h"
 
 #include <Polycode.h>
 #include "PolycodeView.h"
 
 int main (int argc, char** argv){
+  std::list<Card*> *firstDeck = newDeck();
+  std::list<Card*> *secondDeck = newDeck();
+
   Engine::GameEngine *ge= new Engine::GameEngine();
   
   PolycodeView *view = new PolycodeView("Hello Polycode!");
