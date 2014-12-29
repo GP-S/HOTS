@@ -7,6 +7,8 @@
 #include "../Effect/Effect.h"
 
 
+class iEffect;
+
 /** 
 * Class iCapacity .
 * @author Armand

@@ -1,7 +1,7 @@
 #ifndef IEFFECT_H
 #define IEFFECT_H
 
-#include "iCard.h"
+#include "../Card/iCard.h"
 
 class iCard;
 
