@@ -471,20 +471,35 @@ void Engine::GameEngine::initDeck ( Polycode::ServerClient* player ) {
 }
 
 void Engine::GameEngine::addCardRequest ( Polycode::ServerClient* client, void* card, int board, int position ) {
-
+  Network::AddCardStructType request = {card,board,position};
+  sendData(client, &request, sizeof(Network::AddCardStructType), Network::ADDCARD);
 }
 void Engine::GameEngine::moveCardRequest ( Polycode::ServerClient* client, int originBoard, int originPosition, int destinationBoard, int destinationPosition ) {
-
+  Network::MoveCardStructType request = {originBoard,originPosition,destinationBoard,destinationPosition};
+  sendData(client, &request, sizeof(Network::MoveCardStructType), Network::MOVECARD);
 }
 
 void Engine::GameEngine::removeCardRequest ( Polycode::ServerClient* client, int board, int position ) {
-
+  Network::RemoveCardStructType request = {board,position};
+  sendData(client, &request, sizeof(Network::RemoveCardStructType),Network::REMOVECARD);
 }
 
 void Engine::GameEngine::setDescriptionRequest ( Polycode::ServerClient* client, void* card, std::string Description ) {
-
+  Network::SetDescriptionStructType request = { card, Description.substr(0,254)};
+  sendData(client, &request, sizeof(Network::SetDescriptionStructType),Network::SETDESCRIP);
 }
 
 void Engine::GameEngine::setTitleRequest ( Polycode::ServerClient* client, void* card, std::string title ) {
+  Network::SetTitleStructType request = { card, title.substr(0,19)};
+  sendData(client, &request, sizeof(Network::SetTitleStructType),Network::SETTITLE);
+}
 
+void Engine::GameEngine::setMaxShardsRequest ( Polycode::ServerClient* client, int playerId, int shards ) {
+  Network::SetShardStructType request = { playerId, shards};
+  sendData(client, &request, sizeof(Network::SetShardStructType), Network::SETMAXSHARD);
+}
+
+void Engine::GameEngine::setShardsRequest ( Polycode::ServerClient* client, int playerId, int shards ) {
+  Network::SetShardStructType request = { playerId, shards};
+  sendData(client, &request, sizeof(Network::SetShardStructType), Network::SETSHARD);
 }
