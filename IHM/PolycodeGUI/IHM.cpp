@@ -1,7 +1,7 @@
 #include "IHM.h"
 
 
-IHM::PolycodeGUI::IHM::IHM ( PolycodeView *view , Engine::IGameSolver *solver) : solver(solver){
+IHM::PolycodeGUI::IHM::IHM ( PolycodeView* view, string serverAddress, int serverPort ) {
 
     core = new POLYCODE_CORE ( view, 1920,1080,false,true,0,0,90, 0, true );
 
@@ -67,6 +67,8 @@ IHM::PolycodeGUI::IHM::IHM ( PolycodeView *view , Engine::IGameSolver *solver) :
     button->addEventListener(this, UIEvent::CLICK_EVENT);
     core->getInput()->addEventListener ( this, InputEvent::EVENT_MOUSEMOVE );
     core->getInput()->addEventListener ( this, InputEvent::EVENT_MOUSEDOWN );
+    
+    client = new Network::GameClient(serverAddress,serverPort,this);
 
 }
 
@@ -79,7 +81,7 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
     if(e->getDispatcher() == button) {
       switch(e->getEventCode()){
 	case UIEvent::CLICK_EVENT:
-	  solver->endTurn();
+	  client->endTurnRequest();
 	  break;
       }
     }
@@ -150,7 +152,7 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
                     } else {
 			int index= ( ( Board* ) res.entity )->getPlace ( res.position );
 			if(selectedBoard!=getBoardNo(( Board* ) res.entity)){
-			  solver->useCard(selectedBoard,selectedPos,
+			  client->playOnRequest(selectedBoard,selectedPos,
 					   getBoardNo(( Board* ) res.entity), index);
 			}
                         selected=NULL;

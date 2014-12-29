@@ -13,6 +13,7 @@
 #include "card.h"
 #include "board.h"
 #include "../../GameEngine/igamesolver.h"
+#include <gameclient.h>
 
 using namespace Polycode;
 namespace IHM
@@ -23,7 +24,7 @@ namespace PolycodeGUI
 class IHM : public EventHandler, public IIHM
 {
 public:
-    IHM ( PolycodeView *view, Engine::IGameSolver *solver );
+    IHM ( PolycodeView *view, std::string serverAddress, int serverPort);
     ~IHM();
     bool Update();
     void handleEvent ( Event *event );
@@ -52,8 +53,6 @@ protected:
     Board* p1Battlefield;
     Board* p1Hero;
     
-    // Game Engine Interface
-    Engine::IGameSolver* solver;
     
     // Event Handling
     Card* hovered;
@@ -65,6 +64,9 @@ protected:
     SceneLabel* p1Shards;
     SceneLabel* p0Shards;
     int p0MaxShards, p0CurentShards, p1MaxShards, p1CurentShards;
+    
+    // Network
+    Network::GameClient* client;
 
 private:
     void initBoard();
