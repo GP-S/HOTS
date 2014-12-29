@@ -16,21 +16,21 @@ public:
     * virtual destructor
     * for vtable
     **/
-        virtual ~iCard(){}
+    virtual ~iCard(){}
 	
-		virtual int getCost()=0;	
+	virtual int getCost()=0;	
     /**
     * calculateCost
     * does nothing atm . modify it .
     *
     **/
-		virtual void calculateCost()=0;
+	virtual void calculateCost()=0;
     /**
     * addCapacity
     * adds a capacity to the list of capacities of the capacity list
     *
     **/
-		virtual void addCapacity(iCapacity* capa)=0;
+	virtual void addCapacity(iCapacity* capa)=0;
     /**
     * getName
     * basic getter
@@ -38,7 +38,7 @@ public:
     * @return name the name of the card
     *
     **/
-		virtual std::string	getName()=0;
+	virtual std::string	getName()=0;
     /**
     * isAlive
     * tells if a card is alive 
@@ -51,7 +51,7 @@ public:
     * basic getter
     *
     **/
-		virtual std::string	getType()=0;
+	virtual std::string	getType()=0;
     /**
     * isUsable
     * tells if a card can be used or not
@@ -59,7 +59,7 @@ public:
     *
     * not done yet !!!
     **/
-    virtual bool isUsable(Player p)=0;
+//    virtual bool isUsable(Player p)=0;
 
     /**
     * getTotal
@@ -69,9 +69,9 @@ public:
     * @return total : the total of the values of a choosen effect type
     * 
     **/
-        virtual int getTotal(std::string effectType)=0;
+    virtual int getTotal(std::string effectType)=0;
 
-        virtual void decreaseAllDurabilty()=0;
+    virtual void decreaseAllDurabilty()=0;
 
 };
 

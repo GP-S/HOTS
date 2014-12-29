@@ -23,20 +23,20 @@ class Capacity : public iCapacity
     * 
     *
     **/
-    					Capacity();
+    Capacity();
     /**
     * Constructor
     * 
     *
     **/
-    					Capacity(std::string type,int durabilty);
+    Capacity(std::string type,int durabilty);
     /**
     * Destructor
     * 
     *
 	**/
 
-  						~Capacity();
+  	~Capacity();
     /**
     * getType
     * basic getter
