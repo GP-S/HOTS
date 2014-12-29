@@ -122,11 +122,11 @@ int Card::getCost()
 	return cost;
 }
 
-bool Card::isUsable(Player p)
-{
+// bool Card::isUsable(Player p)
+// {
 
-	return true;
-}
+// 	return true;
+// }
 
 void Card::decreaseAllDurabilty(){
 
