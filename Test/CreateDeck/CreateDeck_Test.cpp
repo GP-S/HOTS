@@ -32,12 +32,12 @@ void printCard(Card *card){
 
 void printEffect(Card *card,std::string type){
 
-	Effect effect = card->findCapaByType(type)->front()->getEffect();
+	Effect *effect = card->findCapaByType(type)->front()->getEffect();
 
-	std::cout <<	"     type: " << effect.getType();
-	std::cout <<	"     affinity: " << effect.getAffinity();
-	std::cout <<	"     value: " << effect.getValue();		
-	std::cout <<	"     cost value: " << effect.costVal(card) << std::endl;
+	std::cout <<	"     type: " << effect->getType();
+	std::cout <<	"     affinity: " << effect->getAffinity();
+	std::cout <<	"     value: " << effect->getValue();		
+	std::cout <<	"     cost value: " << effect->costVal(card) << std::endl;
 }
 
 
@@ -68,7 +68,7 @@ int main(int argc, char **argv){
 		}
 
 		if((*it)->getType() == "spell")
-			printBeast((Spell*)(*it));
+			printSpell((Spell*)(*it));
 			printEffect((*it),"damage");
 
 
