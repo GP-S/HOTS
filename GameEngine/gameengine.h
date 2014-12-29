@@ -30,13 +30,20 @@
 #include "../Card/iBeast.h"
 #include "../utils/usefulStruc.inc"
 #include "../IHM/iihm.h"
+#include "gamesimulator.h"
+
 #include <vector>
 #include <list>
 #include <iterator>
 #include <algorithm>    
+#include <vector>
+
 #include <ctime>        // std::time
 #include <cstdlib>      // std::rand, std::srand
+
 #include <Polycode.h>
+#include <PolyServer.h>
+#include <requestType.inc>
 
 
 namespace Engine
@@ -56,26 +63,12 @@ namespace Engine
       //isLegit()
       //
       
-      static constexpr int PLAYER1_BOARD = 1;
-      static constexpr int PLAYER1_DECK = 2;
-      static constexpr int PLAYER1_HAND = 3;
-      static constexpr int PLAYER1_CIMETERY = 4;
-      static constexpr int PLAYER1_EQUIPMENT = 5;
-      static constexpr int PLAYER1_TRAP = 6;
-      static constexpr int PLAYER1_HERO = 7;
-      static constexpr int PLAYER2_BOARD = 8;
-      static constexpr int PLAYER2_DECK = 9;
-      static constexpr int PLAYER2_HAND = 10;
-      static constexpr int PLAYER2_CIMETERY = 11;
-      static constexpr int PLAYER2_EQUIPMENT = 12;
-      static constexpr int PLAYER2_TRAP = 13;
-      static constexpr int PLAYER2_HERO = 14;
-      //static constexpr int justInCase = 15; //unused
-      //static constexpr int justInCase2 = 16; //unused
+
     
   protected:
-      Match<iCard,IHM::ICard>* matchCard;
-      Match<iBoard,IHM::IBoard>* matchBoard;
+      Match<iCard,void> matchCardPlayer0;
+      Match<iCard,void> matchCardPlayer1;
+      
       std::list<iCard*>* listCardsProccedWhenAttacked; //when I get attacked 
       std::list<iCard*>* listCardsProccedWhenHurt; // when I get hurt
       std::list<iCard*>* listCardsProccedWhenHealed; // when I get healed
@@ -92,11 +85,23 @@ namespace Engine
       std::list<iCard*>* listCardsProccedWhenSomethingHurt; // when something else gets hurt
       std::list<iCard*>* listCardsProccedWhenTurnBegins; // when turn begins
       std::list<iCard*>* listCardsProccedWhenTurnEnds; // when turn ends
-      std::list<iBoard*> *boards;
+      
+      iBoard* boards[16];
       std::list<Player*> *players;
-      IHM::IIHM *ihm;
-      IA *ia;
+      
+      Polycode::ServerClient* player0;
+      Polycode::ServerClient* player1;
+      
       unsigned int turn;
+      
+    Polycode::ServerClient*& getCurentPlayer();
+    void initDeck ( Polycode::ServerClient* player );
+    
+    void setTitleRequest(Polycode::ServerClient* client, void* card, std::string title);
+    void setDescriptionRequest(Polycode::ServerClient* client, void* card, std::string Description);
+    void removeCardRequest(Polycode::ServerClient* client, int board, int position);
+    void addCardRequest(Polycode::ServerClient* client, void* card, int board, int position);
+    void moveCardRequest(Polycode::ServerClient* client, int originBoard, int originPosition, int destinationBoard, int destinationPosition);
 
   private:
       void procEffectByType(int type);
