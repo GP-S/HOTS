@@ -3,6 +3,7 @@
 
 
 #include "Card.h"
+#include "iCreature.h"
 #include <string>
 #include <list>
 #include <iostream>
@@ -22,7 +23,8 @@
 *   vrais getter et setters des capacités 
 *
 **/
-class Creature : public Card, public iCreature{
+class Creature : public Card, public iCreature
+{
     public:
         /**
         * Default constructor

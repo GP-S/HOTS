@@ -51,6 +51,7 @@ void Hero::decreaseShards(unsigned int modifier){
 
 void Hero::increaseMaxShards(unsigned int modifier){
 
+    std::string shards = "shards";
     std::string maxShards = "maxShards";
     std::list<Capacity*>* listMaxShards = this->findCapaByType(maxShards);
     std::list<Capacity*>* listShards = this->findCapaByType(shards);
@@ -58,7 +59,7 @@ void Hero::increaseMaxShards(unsigned int modifier){
     if (listShards->empty()){
         throw std::logic_error( "no maxShards capacity in current card" ); 
     }
-    
+
 	int newMaxShards = (listMaxShards->front()->getEffect()->getValue()+modifier) > 10 ? 10 : (listMaxShards->front()->getEffect()->getValue()+modifier);
     listMaxShards->front()->getEffect()->setValue(newMaxShards);
 
@@ -68,6 +69,7 @@ void Hero::increaseMaxShards(unsigned int modifier){
 
 void Hero::decreaseMaxShards(unsigned int modifier){
 
+    std::string shards = "shards";
     std::string maxShards = "maxShards";
     std::list<Capacity*>* listMaxShards = this->findCapaByType(maxShards);
     std::list<Capacity*>* listShards = this->findCapaByType(shards);
