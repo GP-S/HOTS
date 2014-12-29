@@ -35,9 +35,8 @@ std::list<Card*>* newDeck(){
 
 		strength = myRandom();
 		life = myRandom();
-		std::string name = namebeast(myRandom());
 
-		Beast *beast = new Beast(name,life,strength,"human");
+		Beast *beast = new Beast(namebeast[myRandom()],life,strength,"human");
 
 		Effect *hp = new Effect("hp",NULL,life);
 		Effect *max_hp = new Effect("hpMax",NULL,life);
@@ -70,9 +69,8 @@ std::list<Card*>* newDeck(){
 	for(size_t i = sizeofdeck/2+1; i < sizeofdeck; i++){
 
 		damage = myRandom();
-		std::string name = namespell(myRandom());
 
-		Spell *spell = new Spell(name);
+		Spell *spell = new Spell(namespell[myRandom()]);
 
 		Effect *damage = new Effect("damage",NULL,damage);
 
