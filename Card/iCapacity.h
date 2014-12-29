@@ -7,7 +7,7 @@
 #include "../Effect/Effect.h"
 
 
-class iEffect;
+class Effect;
 
 /** 
 * Class iCapacity .
