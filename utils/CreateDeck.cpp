@@ -16,8 +16,6 @@ std::list<Card*>* newDeck(){
 	int life = 0;
 	int damage = 0;
 
-	std::cout << "Deck size: " << deck->size() << std::endl;
-
 	for(size_t i = 0; i < sizeofdeck/2; i++){
 
 		strength = myRandom();
@@ -52,8 +50,6 @@ std::list<Card*>* newDeck(){
 		beast->calculateCost();
 
 		deck->push_back((Card*)beast);
-
-		std::cout << "Deck cree, size: " << deck->size() << std::endl;
 	}
 
 	for(size_t i = sizeofdeck/2+1; i < sizeofdeck; i++){
@@ -73,8 +69,6 @@ std::list<Card*>* newDeck(){
 
 		spell->calculateCost();
 		deck->push_back((Card*)spell);
-
-		std::cout << "Deck cree, size: " << deck->size() << std::endl;
 	}
 
 	return deck;

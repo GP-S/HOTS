@@ -20,6 +20,6 @@
 void printBeast(Beast *beast);
 void printSpell(Spell *spell);
 void printCard(Card *card);
-void printEffect(Effect *effect,Card *card);
+void printEffect(Card *card,std::string type);
 
 #endif //CREATEDECK_TEST_H
