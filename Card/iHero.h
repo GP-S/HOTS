@@ -9,7 +9,7 @@
 *
 **/
 
-class iHero : public iCreature
+class iHero : virtual public iCreature
 {
     public:
 

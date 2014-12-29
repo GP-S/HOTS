@@ -21,7 +21,7 @@
 *
 *
 **/
-class Beast : public Creature, public iBeast
+class Beast : public Creature, virtual public iBeast
 {
     public:
         /**

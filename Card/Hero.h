@@ -15,7 +15,7 @@
 *
 **/
 
-class Hero : public Creature, public iHero
+class Hero : public Creature, virtual public iHero
 {
     public:
         /**
