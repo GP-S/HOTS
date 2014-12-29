@@ -17,9 +17,9 @@
 
 #include "../../utils/tool.inc"
 
-void printBeast(Beast *beast,unsigned int max);
-void printSpell(Spell *spell,unsigned int max);
-void printCard(Card *card,unsigned int max);
-void printEffect(Effect *effect,Card *card);
+void printBeast(Beast *beast);
+void printSpell(Spell *spell);
+void printCard(Card *card);
+void printEffect(Card *card,std::string type);
 
 #endif //CREATEDECK_TEST_H

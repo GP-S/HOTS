@@ -69,7 +69,7 @@ class Card : public iCard
         * adds a capacity to the list of capacities of the capacity list
         *
         **/
-    	void addCapacity(Capacity* capa);
+    	void addCapacity(iCapacity* capa);
         /**
         * getName
         * basic getter
@@ -84,7 +84,7 @@ class Card : public iCard
         * @return isAlive the alive flag of a card .
         *
         **/
-        virtual bool isAlive() = 0;
+//        virtual bool isAlive() = 0;
         /**
         * findCapaByType
         * returns a list of capacity that matches choosen type

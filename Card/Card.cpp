@@ -31,9 +31,9 @@ Card::~Card()
 {
 }
 
-void Card::addCapacity(Capacity* capa){//insert a Capacity at the tail of the list
+void Card::addCapacity(iCapacity* capa){//insert a Capacity at the tail of the list
 	
-	capaList->push_back(capa);
+	capaList->push_back( (Capacity*) capa);
 
 }
 

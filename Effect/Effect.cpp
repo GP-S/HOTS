@@ -53,34 +53,36 @@ void Effect::setValue(int value){
 
 }
 
-float Effect::costVal(iCard *card = NULL){
+float Effect::costVal(iCard *card){
 
 	if(card == NULL)
 		return (float)value/2.0;
+	else
+		return (float)value/2.5;
 
 
-	if(card->getType == "beast"){
+	// if((Card*)card->getType == "beast"){
 
-		if(type == "hpMax")
-			return (Beast*)card->getHp()/2.5;
+	// 	if(type == "hpMax")
+	// 		return (float)value/2.5;
 
-		if(type == "attack")
-			return cost += ((Beast*)card->getBaseAttack()/2.5;
+	// 	if(type == "attack")
+	// 		return (float)value/2.5;
 		
-		if(type == "attackCountMax"){
-			float attack = (Beast*)card->getBaseAttack();
-			float life = (Beast*)card->getHp();
+	// 	if(type == "attackCountMax"){
+	// 		float attack = (iBeast*)card->getBaseAttack();
+	// 		float life = (iBeast*)card->getHp();
 
-			return ((value*value-1)*(attack+(life-1)))/7.5;
-		}
+	// 		return ((value*value-1)*(attack+(life-1)))/7.5;
+	// 	}
 
-	}
+	// }
 
-	if(card->getType == "spell"){
+	// if((Card*)card->getType == "spell"){
 
-		if(type == "damage")
-			return 1.0+(value*value)/10.0;
+	// 	if(type == "damage")
+	// 		return 1.0+(value*value)/10.0;
 
-	}
+	// }
 
 }

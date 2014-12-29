@@ -10,6 +10,7 @@ file(GLOB_RECURSE HOTS_SRC_FILES
 			GameEngine/*
 			utils/*
 			IA/*
+			Network/*
 			)
 
 find_package(Threads)
@@ -20,7 +21,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
-set(HOTS_SCR_DIRS Board/ Card/ Effect/ GameEngine/ IHM/ utils/ IA/)
+set(HOTS_SCR_DIRS Board/ Card/ Effect/ GameEngine/ IHM/ utils/ IA/ Network/)
 set(POLYCODE_INCLUDE_DIRS 
       Dependencies/Polycode/Release/Linux/Framework/Core/Dependencies/include 
       Dependencies/Polycode/Release/Linux/Framework/Core/Dependencies/include/AL 

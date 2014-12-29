@@ -29,7 +29,7 @@ public:
     void handleEvent ( Event *event );
     virtual ICard* createCard ( std::string title, int cost, int attack, int defense, std::string description, int imageId );
     virtual ICard* createCard();
-    virtual IBoard* getBoard ( int numBoard, int numPlayer );
+    virtual IBoard* getBoard ( int numBoard);
     virtual void setMaxShards ( int playerNumber, int maxShards );
     virtual void setShards ( int playerNumber, int shards );
 
@@ -59,7 +59,6 @@ protected:
     Card* hovered;
     SceneEntity *selected;
     int selectedBoard, selectedPos;
-    int selectedPlayer;
     
     // HUD
     UIButton* button;
@@ -70,9 +69,7 @@ protected:
 private:
     void initBoard();
     void createLights();
-    int getBoardNo(Board*);
-    int getBoardPlayer(Board*);
-    int getCorrespondinBoardId(int BoardNo, int PLayerId);
+    int getBoardNo(Board* board);
 };
 
 }

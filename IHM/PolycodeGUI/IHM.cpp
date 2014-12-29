@@ -146,13 +146,12 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
                         int index= ( ( Board* ) res.entity )->getPlace ( res.position );
                         selected= (SceneEntity*)( * ( Board* ) res.entity ) [index];
 			selectedBoard=getBoardNo((Board*) res.entity);
-			selectedPlayer=getBoardPlayer((Board*) res.entity);
 			selectedPos=index;
                     } else {
 			int index= ( ( Board* ) res.entity )->getPlace ( res.position );
-			if(selectedBoard!=getBoardNo(( Board* ) res.entity) || selectedPlayer!=getBoardPlayer(( Board* ) res.entity)){
-			  solver->useCard(selectedBoard+8*selectedPlayer,selectedPos,
-					   getBoardNo(( Board* ) res.entity)+8*getBoardPlayer(( Board* ) res.entity), index);
+			if(selectedBoard!=getBoardNo(( Board* ) res.entity)){
+			  solver->useCard(selectedBoard,selectedPos,
+					   getBoardNo(( Board* ) res.entity), index);
 			}
                         selected=NULL;
                     }
@@ -178,16 +177,28 @@ IHM::ICard* IHM::PolycodeGUI::IHM::createCard ( std::string title, int cost, int
     return new Card ( title,cost,attack,defense,description,imageId );
 }
 
-IHM::IBoard* IHM::PolycodeGUI::IHM::getBoard ( int numBoard, int numPlayer ) {
+IHM::IBoard* IHM::PolycodeGUI::IHM::getBoard ( int numBoard) {
     switch ( numBoard ) {
-    case IIHM::STOCK:
-        return numPlayer==0?p0Stock:p1Stock;
-    case IIHM::HAND:
-        return numPlayer==0?p0Hand:p1Hand;
-    case IIHM::GRAVEYARD:
-        return numPlayer==0?p0Graveyard:p1Graveyard;
-    case IIHM::BATTLEGROUND:
-        return numPlayer==0?p0Battlefield:p1Battlefield;
+      case Engine::IGameSolver::PLAYER1_DECK :
+        return p0Stock;
+      case Engine::IGameSolver::PLAYER2_DECK :
+	return p1Stock;
+      case Engine::IGameSolver::PLAYER1_HAND :
+        return p0Hand;
+      case Engine::IGameSolver::PLAYER2_HAND :
+	return p1Hand;
+      case Engine::IGameSolver::PLAYER1_CIMETERY :
+        return p0Graveyard;
+      case Engine::IGameSolver::PLAYER2_CIMETERY :
+	return p1Graveyard;
+      case Engine::IGameSolver::PLAYER1_BOARD :
+        return p0Battlefield;
+      case Engine::IGameSolver::PLAYER2_BOARD :
+	return p1Battlefield;
+      case Engine::IGameSolver::PLAYER1_HERO :
+        return p0Hero;
+      case Engine::IGameSolver::PLAYER2_HERO :
+	return p1Hero;
     default:
         throw std::invalid_argument ( "No matching board" );
     }
@@ -280,22 +291,27 @@ void IHM::PolycodeGUI::IHM::createLights() {
     light3->getSpotlightCamera()->frustumCulling = false;
 }
 
-int IHM::PolycodeGUI::IHM::getBoardNo ( ::IHM::PolycodeGUI::Board* board) {
-  if(board==p0Battlefield || board==p1Battlefield)
-    return BATTLEGROUND;
-  if(board==p0Graveyard || board==p1Graveyard)
-    return GRAVEYARD;
-  if(board==p0Hand || board==p1Hand)
-    return HAND;
-  if(board==p0Stock || board==p1Stock)
-    return STOCK;
-}
-
-int IHM::PolycodeGUI::IHM::getBoardPlayer ( ::IHM::PolycodeGUI::Board* board) {
-  if(board==p0Battlefield || board==p0Graveyard || board==p0Hand || board==p0Stock)
-    return 0;
-  if(board==p1Battlefield || board==p1Graveyard || board==p1Hand || board==p1Stock)
-    return 1;
+int IHM::PolycodeGUI::IHM::getBoardNo ( IHM::PolycodeGUI::Board* board ) {
+  if(board==p0Battlefield)
+    return Engine::IGameSolver::PLAYER1_BOARD;
+  if(board==p0Graveyard)
+    return Engine::IGameSolver::PLAYER1_CIMETERY;
+  if(board==p0Hand)
+    return Engine::IGameSolver::PLAYER1_HAND;
+  if(board==p0Hero)
+    return Engine::IGameSolver::PLAYER1_HERO;
+  if(board==p0Stock)
+    return Engine::IGameSolver::PLAYER1_DECK;
+  if(board==p1Battlefield)
+    return Engine::IGameSolver::PLAYER2_BOARD;
+  if(board==p1Graveyard)
+    return Engine::IGameSolver::PLAYER2_CIMETERY;
+  if(board==p1Hand)
+    return Engine::IGameSolver::PLAYER2_HAND;
+  if(board==p1Hero)
+    return Engine::IGameSolver::PLAYER2_HERO;
+  if(board==p1Stock)
+    return Engine::IGameSolver::PLAYER2_DECK;
 }
 
 void IHM::PolycodeGUI::IHM::setMaxShards ( int playerNumber, int maxShards ) {
@@ -323,33 +339,4 @@ void IHM::PolycodeGUI::IHM::setShards ( int playerNumber, int shards ) {
   }
 }
 
-int IHM::PolycodeGUI::IHM::getCorrespondinBoardId ( int BoardNo, int PLayerId ) {
-  if(PLayerId==0){
-    switch(BoardNo){
-      case STOCK:
-	return 2;
-      case BATTLEGROUND:
-	return 1;
-      case HAND:
-	return 3;
-      case GRAVEYARD:
-	return 4;
-      case HERO:
-	return 7;
-    }
-  }
-  else {
-        switch(BoardNo){
-      case STOCK:
-	return 9;
-      case BATTLEGROUND:
-	return 8;
-      case HAND:
-	return 10;
-      case GRAVEYARD:
-	return 11;
-      case HERO:
-	return 14;
-    }
-  }
-}
+
