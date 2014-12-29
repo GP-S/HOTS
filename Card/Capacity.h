@@ -4,7 +4,7 @@
 #include <string>
 #include <list>
 #include <iostream>
-#include "../Effect/iEffect.h"
+#include "../Effect/Effect.h"
 
 
 /** 
@@ -74,16 +74,16 @@ class Capacity : public iCapacity
     *
     **/
     bool getActive();
-	iEffect* getEffect();
+	Effect* getEffect();
     void decreaseDurability();
-    void setEffect(iEffect* effect);
+    void setEffect(Effect* effect);
 
 	protected : 
 
 	std::string		type;
 	int 			durabilty;
     bool            active;
-    iEffect          *effect;
+    Effect          *effect;
 
 
 

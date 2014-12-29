@@ -4,7 +4,7 @@
 #include <string>
 #include <list>
 #include <iostream>
-#include "../Effect/iEffect.h"
+#include "../Effect/Effect.h"
 
 
 /** 
@@ -56,9 +56,9 @@ class iCapacity
     *
     **/
     virtual bool getActive() = 0;
-	virtual iEffect* getEffect() = 0;
+	virtual Effect* getEffect() = 0;
     virtual void decreaseDurability() = 0;
-    virtual void setEffect(iEffect* effect) = 0;
+    virtual void setEffect(Effect* effect) = 0;
 
 
 };
