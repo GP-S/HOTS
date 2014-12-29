@@ -52,7 +52,7 @@ std::list<Card*>* newDeck(){
 		deck->push_back((Card*)beast);
 	}
 
-	for(size_t i = sizeofdeck/2+1; i < sizeofdeck; i++){
+	for(size_t i = sizeofdeck/2; i < sizeofdeck; i++){
 
 		damage = myRandom();
 
