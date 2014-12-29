@@ -31,50 +31,50 @@ class Creature : public Card, public iCreature
         * 
         *
         **/
-        		Creature();
+        Creature();
         /**
         * Constructor
         * 
         *
         **/
-				Creature(std::string name,int hp,int attack);
+		Creature(std::string name,int hp,int attack);
         /**
         * Destructor
         * Does nothing atm
         *
         **/
-        		~Creature();
+        ~Creature();
         /**
         * isAlive
         * @return a boolean corresponding to the state (dead or alive) of the Creature
         *
         **/
-		bool 	isAlive();
+		virtual bool isAlive();
         
         /**
         * getHp
         * Basic geter
         *
         **/
-		int 	getHp();
+		virtual int getHp();
         /**
         * getAttack
         * Basic geter
         *
         **/
-		int 	getBaseAttack();
+		virtual int getBaseAttack();
         /**
         * setHp
         * Basic seter
         *
         **/
-		void	setHp(int hp);
+		virtual void setHp(int hp);
         /**
         * setAttack
         * Basic seter
         *
         **/
-		void 	setBaseAttack(int attack);
+		virtual void setBaseAttack(int attack);
         /**
         * attack
         * Used to attack another Creature
@@ -83,50 +83,51 @@ class Creature : public Card, public iCreature
         *
         * modify it
         **/
-		void 	attack(Creature* target);
+		virtual void attack(Creature* target);
         /**
         * resetAttackCount
         * Used every to reset the number of attacks a Creature did .
         *
         **/
-        void    resetAttackCount();
+        virtual void resetAttackCount();
         /**
         * canAttack
         * Tells if a creature can attack
         * @return a boolean that tells us if a creature can attack
         *
         **/
-        bool canAttack();
+        virtual bool canAttack();
         /**
         * takeDamage . Used everytime we need to damage a card . Does not handle things like divine shield yet .
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    takeDamage(unsigned int damage);
+        virtual void takeDamage(unsigned int damage);
         /**
         * heal . Used everytime we need to heal a card
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    heal(unsigned int heal);
+        virtual void heal(unsigned int heal);
         /**
         * increaseMaxHP . Used everytime we need to increase the maximum HP of a card
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    increaseMaxHP(unsigned int modifier);
+        virtual void increaseMaxHP(unsigned int modifier);
         /**
         * decreaseMaxHP . Used everytime we need to decrease the maximum HP of a card
         * @param unsigned int modifier The amount of the modification
         *
         **/
-        void    decreaseMaxHP(unsigned int modifier);       
+        virtual void decreaseMaxHP(unsigned int modifier);       
         /**
         * increaseAttackCount
         * Used every time a creature attacks .
         *
         **/
-        void    increaseAttackCount(); 
+        virtual void increaseAttackCount(); 
+
     protected:
 
     	int hp;
