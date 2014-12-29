@@ -6,5 +6,6 @@
 #include "iostream"
 #include "ctime"
 
-int random();
+int myRandom();
+
 std::list<Card*>* newDeck();
