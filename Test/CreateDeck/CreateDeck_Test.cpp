@@ -55,8 +55,11 @@ int main(int argc, char **argv){
 
 	std::list<Card*> *deck = newDeck();
 
-//	foreach(std::list<Card*>, deck, it){
-	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); ++it){
+	std::cout << "Deck cree" << std::endl;
+	std::cout << "Deck cree" << std::endl;
+
+	foreach(std::list<Card*>, deck, it){
+//	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); ++it){
 		printCard(*it,1);
 	}
 
