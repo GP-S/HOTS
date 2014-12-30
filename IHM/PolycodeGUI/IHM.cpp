@@ -293,7 +293,7 @@ void IHM::PolycodeGUI::IHM::createLights() {
     light3->getSpotlightCamera()->frustumCulling = false;
 }
 
-int IHM::PolycodeGUI::IHM::getBoardNo ( IHM::PolycodeGUI::Board* board ) {
+int IHM::PolycodeGUI::IHM::getBoardNo ( ::IHM::PolycodeGUI::Board* board ) {
   if(board==p0Battlefield)
     return Engine::IGameSolver::PLAYER0_BOARD;
   if(board==p0Graveyard)

@@ -24,7 +24,7 @@
 #include "gameengine.h"
 
 namespace Engine {
-  class GameSimulator : public GameEngine
+  class GameSimulator : public IGameSolver
   {
     GameSimulator();
     ~GameSimulator();
