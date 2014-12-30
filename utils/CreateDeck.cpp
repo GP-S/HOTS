@@ -19,7 +19,7 @@ std::list<Card*>* newDeck(){
 	for(size_t i = 0; i < sizeofdeck/2; i++){
 
 		strength = myRandom();
-		life = myRandom();
+		life = myRandom()+1;
 
 		Beast *beast = new Beast(namebeast[myRandom()],life,strength,"human");
 

@@ -3,9 +3,9 @@
 #define NUMBER 5
 
 static unsigned int etape = 0;
-std::string std::string cardName[NUMBER] = {"alpha","fire","dafuck","beta","omega"};
-std::string std::string cardType[NUMBER] = {"beast","spell","card_dafuck","creature","hero"};
-std::string std::string cardRace[NUMBER] = {"human","robot","none","none","none"};
+static const std::string cardName[NUMBER] = {"alpha","fire","dafuck","beta","omega"};
+static const std::string cardType[NUMBER] = {"beast","spell","card_dafuck","creature","hero"};
+static const std::string cardRace[NUMBER] = {"human","robot","none","none","none"};
 
 
 

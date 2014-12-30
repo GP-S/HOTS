@@ -15,7 +15,8 @@
 
 void printEtape(std::string text);
 void printBoard(Board *board, std::string name);
-void printCard(Card *card,unsigned int max);
+void printCard(Card *card);
+void printListCard(std::list<Card*> *listCard);
 void printSizeBoard(Board *board, std::string name);
 
 #endif //BOARD_TEST_H

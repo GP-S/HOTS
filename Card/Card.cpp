@@ -21,8 +21,8 @@ Card::Card()
 }
 
 Card::Card(std::string name, std::string cardType){
-	name = name;
-	cardType = cardType;
+	this->name = name;
+	this->cardType = cardType;
 	capaList = new std::list<Capacity*>();
 }
 

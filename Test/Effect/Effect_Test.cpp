@@ -82,7 +82,7 @@ int main(int argc, char **argv){
 		else
 			capacity->setDurabilty(i);
 
-		printCapacity(capacity,NUMBER);
+		printCapacity(capacity);
 	}
 
 	anotherCapacity->setEffect(anotherEffect);
