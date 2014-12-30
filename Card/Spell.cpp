@@ -1,8 +1,10 @@
 #include "Spell.h"
 
-Spell::Spell() :
-Card()
+Spell::Spell()
 {
+	name = "";
+	cardType = "spell";
+	capaList = new std::list<Capacity*>();
 }
 
 Spell::Spell(std::string name)  :
