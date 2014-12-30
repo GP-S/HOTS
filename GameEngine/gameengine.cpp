@@ -107,15 +107,20 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 void Engine::GameEngine::endTurn()
 {
 //-------- this will be a generic function later
+	/*
+	//event and effect.proc() not done yet . cannot do this .
 	std::for_each(listCardsProccedWhenTurnEnds->begin(), listCardsProccedWhenTurnEnds->end(), [] (iCard* itCard) { 
-		std::for_each(capaList->begin(), capaList->end(), [] (iCapacity* itCapa) { 
+		std::for_each(itCard->capaList->begin(), itCard->capaList->end(), [] (iCapacity* itCapa) { 
+			
 			if(itCapa->getEvent()->timeMask.when_turn_ends==1){
+
 				itCapa->getEffect()->proc();
 			} 
 		}); 
 	});
 //--------
 	turn++; 
+	*/
 	beginTurn();
 }
 
