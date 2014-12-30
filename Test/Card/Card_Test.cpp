@@ -114,7 +114,7 @@ int main(int argc, char **argv){
 	anotherSpell->setName("+++++++++++++++++++");
 
 	printSpell(anotherSpell);
-	
+
 	/*card->setName(cardName[2]);
 	card->setType(cardType[2]);
 	card->calculateCost();
@@ -123,9 +123,9 @@ int main(int argc, char **argv){
 
 	// beast->setName("0");
 	// beast->setType(cardType[0]);
-	beast->setHp(5);
+	//beast->setHp(5);
 	// beast->setBaseAttack(1);
-	// beast->setRace(cardRace[0]);
+	beast->setRace(cardRace[0]);
 	// beast->calculateCost();
 	printEtape(": Intialisation of cards");	
 	printBeast(beast);

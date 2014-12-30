@@ -26,7 +26,7 @@ void printTimeBoard(RegulatedBoard *board, std::string name){
 	for(size_t i = 0; i < board->getSize(); i++){
 		std::cout <<	" Card[" << i << "]";
 		std::cout <<	" name: " << board->getCardX(i)->getName();
-		std::cout <<	" arrival time: " << board->CardArrivalByTime(getCardX(i)) << std::endl;
+		std::cout <<	" arrival time: " << board->CardArrivalByTime(board->getCardX(i)) << std::endl;
 	} 
 	std::cout << std::endl;
 }
