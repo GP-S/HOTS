@@ -2,12 +2,12 @@
 #define ICREATURE_H
 
 /** 
-*   Class iCreature . 
+*   Class iCreature . derived from iCard
 * @author Armand
 *
 **/
 
-class iCreature
+class iCreature : public iCard
 {
     public:
         
