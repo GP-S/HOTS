@@ -61,8 +61,8 @@ int main(int argc, char **argv){
 	printEtape(": Initialisation of all cards done");	// etape 2
 
 	for(size_t i = 0; i < NUMBER; i++){
-		card[i].setStrength(i);
-		card[i].setLife(i);
+		card[i].setName("alpha");
+		card[i].setType("beast");
 	}
 
 	printCard(card,NUMBER);

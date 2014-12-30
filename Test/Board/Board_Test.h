@@ -1,7 +1,8 @@
 #ifndef BOARD_TEST_H
 #define BOARD_TEST_H
 
-#include "../../Card.h"
+#include "../../Card/Card.h"
+#include "../../Card/iCard.h"
 #include "../../Board/Board.h"
 #include "../../Board/RegulatedBoard.h"
 #include <iostream>
