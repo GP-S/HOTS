@@ -138,7 +138,7 @@ void RegulatedBoard::addCardX(std::list<iCard*> *list, unsigned int x) {
 
 unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
 
-  unsigned int arrival = 1;
+  unsigned int arrival = 0;
   bool finish = false;
 
   std::list<Card*>::iterator it1;
@@ -158,7 +158,6 @@ unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
 
     if(*it2 == *it1){
       finish = true;
-      std::cout << arrival << std::endl;
       break;
     }
     if(it2 == cardByArrivalTime->end() & !finish)
