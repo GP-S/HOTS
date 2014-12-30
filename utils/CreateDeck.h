@@ -10,7 +10,7 @@
 #include "iostream"
 #include "ctime"
 
-int myRandom();
+int myRandom(mod);
 
 std::list<Card*>* newDeck();
 

@@ -1,11 +1,18 @@
 #include "CreateDeck.h"
 
 static const unsigned int sizeofdeck = 40;
-static const std::string namebeast[10] = {"Azarie","Docibilis","Edric","Fenelon","Wilbray","Zenalie","Henreliette","Donatielle","Adelinie","Lizimene"};
-static const std::string namespell[10] = {"Fire ball","Acid arrow","Touch of idiocy","Deafness","Explosive runes","Lightning bolt","Wind rage","Flame arrow","Vanish","Storm"};
+static const std::string namebeast[16] = {	"Socrate","Platon","Aristote","Confucius",
+											"Sénèque","Averroès","Montaigne","Descartes",
+											"Erasme","Voltaire","Moontesquieu","Rousseau",
+											"Diderot","Kant","Marx","Nietzsche"
+										 };
+static const std::string namespell[10] = {	"Fire ball","Acid arrow","Touch of idiocy",
+											"Deafness","Explosive runes","Lightning bolt",
+											"Wind rage","Flame arrow","Vanish","Storm"
+										 };
 
-int myRandom(){
-	return (int)std::rand()%10;
+int myRandom(unsigned int mod){
+	return (int)std::rand()%mod;
 }
 
 std::list<Card*>* newDeck(){
@@ -18,10 +25,10 @@ std::list<Card*>* newDeck(){
 
 	for(size_t i = 0; i < sizeofdeck/2; i++){
 
-		strength = myRandom();
-		life = myRandom()+1;
+		strength = myRandom(11);
+		life = myRandom(10)+1;
 
-		Beast *beast = new Beast(namebeast[myRandom()],life,strength,"human");
+		Beast *beast = new Beast(namebeast[myRandom(16)],life,strength,"human");
 
 		Effect *hp = new Effect("hp","none",life);
 		Effect *max_hp = new Effect("hpMax","none",life);
@@ -54,9 +61,9 @@ std::list<Card*>* newDeck(){
 
 	for(size_t i = sizeofdeck/2; i < sizeofdeck; i++){
 
-		damage = myRandom()+1;
+		damage = myRandom(10)+1;
 
-		Spell *spell = new Spell(namespell[myRandom()]);
+		Spell *spell = new Spell(namespell[myRandom(10)]);
 
 		Effect *damageeffect = new Effect("damage","none",damage);
 

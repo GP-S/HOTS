@@ -1,7 +1,7 @@
 #include "Board_Test.h"
 
 static unsigned int etape = 0;
-
+static size_t increm = 0;
 
 void printEtape(std::string text){
 	std::cout << std::endl;
@@ -67,8 +67,11 @@ int main(int argc, char **argv){
 
 /*=================================etape  1=========================================*/
 /*Instance of some card, and three board: hand, cemetery and deck*/
- 	printEtape(": Instanciation of hand, cemetery and deck and a list of card with newDeck");	// etape 1
+ 	printEtape(": Instanciation of hand, cemetery and deck and a list of card with newDeck");
+
  	std::list<Card*> *listOfCard = newDeck();
+
+	iCard *tmpCard;
 
  	Board *deck = new Board();
  	Board *hand = new Board();
@@ -105,7 +108,12 @@ int main(int argc, char **argv){
 	printEtape(": Fill the deck with all cards");
 
 //	deck->addCardX(reinterpret_cast <std::list<iCard*> *> (listOfCard),0);
-	deck->addCardX((iCard*)listOfCard->front(),0);
+//	deck->addCardX((iCard*)listOfCard->front(),0);
+	
+
+	for(<std::list<Card*>::iterator it = listOfCard->begin(); it != listOfCard->end(); ++it){
+		deck->addCardX((iCard*)(*it),0);
+	}
 
 	printSizeBoard(deck,"deck");
 	printBoard(deck,"deck");
@@ -113,7 +121,7 @@ int main(int argc, char **argv){
 /*=================================etape  5=========================================*/
 /*I look the first 3 cards of deck*/
 	printEtape(": Look first 3 cards of deck");
-	iCard *tmpCard;
+
 	for(size_t i = 0; i < 3; i++){
 		tmpCard = deck->getCardX(i);
 		printCard((Card*)tmpCard);
@@ -129,79 +137,69 @@ int main(int argc, char **argv){
 	printSizeBoard(deck,"deck");
 	printBoard(deck,"deck");
 
-// /*==================================================================================*/
-// /*I add a card at the first position of deck*/
-// 	printEtape(": Add a card at the top of deck");	// etape 7
+/*=================================etape  7=========================================*/
+/*I take all cards I can from deck and I put them into hand*/
+	printEtape(": Take all posible cards from deck and put them into hand");	// etape 8
 
-// 	deck->addCardX(&card[0],0);
+	increm = 0;
 
-// 	printSizeBoard(deck,"deck");
-// 	printBoard(deck,"deck");
+	while(!hand->isFull()){
+		tmpCard = deck->takeCardX(0);
 
-// /*==================================================================================*/
-// /*I take all cards from deck and I put them into hand*/
-// 	printEtape(": Take all cards from deck and put them into hand");	// etape 8
+		hand->addCardX(tmpCard,increm++);
 
-// 	for(size_t i = 0; i < NUMBER; i++){
-// 		tmpCard[i] = *deck->takeCardX(0);
-
-// 		if(!hand->isFull())
-// 			hand->addCardX(&tmpCard[i],i);
-// 		else
-// 			std::cout << "The board " << "hand" << " is full !" << std::endl;
-
-// 		std::cout << "loop number: " << i << std::endl;
-// 		printSizeBoard(deck,"deck");
-// 		//printBoard(deck,"deck");
-// 		printSizeBoard(hand,"hand");
-// 		//printBoard(hand,"hand");
-// 	}
-
-// /*==================================================================================*/
-// /*I take all cards from hand and I put them into cemetery, if i can't place it on battle, I keep it in hand*/
-// 	printEtape(": Take all cards from hand and put them into cemetery");	// etape 9
-
-// 	for(size_t i = 0; i < NUMBER; i++){
-// 		tmpCard[i] = *hand->takeCardX(0);
-
-// 		std::cout << "loop number: " << i << std::endl;
-
-// 		if(!cemetery->isFull())
-// 			cemetery->addCardX(&tmpCard[i],i);
-// 		else{
-// 			std::cout << "The board " << "cemetery" << " is full !" << std::endl;
-// 			hand->addCardX(&tmpCard[i],0);
-// 		}
-// 		printSizeBoard(hand,"hand       ");
-// 		//printBoard(hand,"hand");
-// 		printSizeBoard(cemetery,"cemetery");
-// 		//printBoard(cemetery,"cemetery");
-// 	}
-
-// /*==================================================================================*/
-// /*I add the list of cards to deck*/
-// 	printEtape(": add list of cards to deck");	// etape 10
-
-// 	std::list<Card*> *listCard = new std::list<Card*>();
+	}
 
 
-// 	for(size_t i = 0; i < NUMBER; i++){
-// 		listCard->push_back(&card[i]);
-// 	}
+	printSizeBoard(deck,"deck");
+	//printBoard(deck,"deck");
+	printSizeBoard(hand,"hand");
+	//printBoard(hand,"hand");
+
+/*=================================etape  8=========================================*/
+/*I take all cards from hand and I put them into battlefield, if I can't place it on battle, I put it into hand*/
+	printEtape(": Take all cards from hand and put them into battlefield, if it's not possible the card is returned into hand");
+
+	for(size_t i = 0; i < 7; i++){
+		tmpCard = hand->takeCardX(0);
+
+		if(!battlefield->isFull())
+			battlefield->addCardX(tmpCard,i);
+		
+		else
+			hand->addCardX(tmpCard,0);
+
+	}
+
+	printSizeBoard(hand,"hand       ");
+	//printBoard(hand,"hand");
+	printSizeBoard(battlefield,"battlefield");
+	//printBoard(battlefield,"battlefield");
+
+/*=================================etape  9=========================================*/
+/*I add the list of cards to deck*/
+	// printEtape(": add list of cards to deck");	// etape 10
+
+	// std::list<Card*> *listCard = new std::list<Card*>();
 
 
-// 	printCard(card,NUMBER);
-// 	foreach(std::list<Card*>, listCard, it){
-// 		printCard(*it,1);
-// 		//std::cout << "hello" << std::endl;
-// 	}
+	// for(size_t i = 0; i < NUMBER; i++){
+	// 	listCard->push_back(&card[i]);
+	// }
 
-// 	deck->setMaxSize(2*NUMBER);
 
-// 	deck->addListCardX(listCard,NUMBER/2);
+	// printCard(card,NUMBER);
+	// foreach(std::list<Card*>, listCard, it){
+	// 	printCard(*it,1);
+	// 	//std::cout << "hello" << std::endl;
+	// }
 
-// 	printSizeBoard(deck,"deck");
-// 	printBoard(deck,"deck");
+	// deck->setMaxSize(2*NUMBER);
+
+	// deck->addListCardX(listCard,NUMBER/2);
+
+	// printSizeBoard(deck,"deck");
+	// printBoard(deck,"deck");
 
 // /*==================================================================================*/
 // /*I delete the cemetery*/
