@@ -38,25 +38,22 @@ int main (int argc, char** argv){
     bool single=false;
     bool server=false;
   if(argc >= 2){
-    switch(argv[2]){
-      case "-c":
+
+      if(std::string(argv[1])=="-c"){
 	if(argc == 2){
 	  printHelp();
 	  return 1;
 	}
-	address = argv[3];
-	break;
-      case "--single":
+	address = argv[2];
+      } else if (std::string(argv[1])=="--single") {
 	single=true;
 	server=true;
-	break;
-      case "--server":
+      } else if (std::string(argv[1])=="--server") {
 	server=true;
-	break;
-      default:
+      } else {
 	printHelp();
 	return 1;
-    }
+      }
   }
   else {
     printHelp();

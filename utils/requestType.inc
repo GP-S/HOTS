@@ -1,4 +1,7 @@
-﻿namespace Network {
+﻿#ifndef REQUEST_TYPE_INC
+#define REQUEST_TYPE_INC
+
+namespace Network {
   //Request from player to GE
   constexpr int PLAYON=10;
   constexpr int ENDTURN=11;
@@ -89,3 +92,5 @@
   } SetNumericalAttributeStructType;
   
 }
+
+#endif // REQUEST_TYPE_INC

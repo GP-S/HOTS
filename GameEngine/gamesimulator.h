@@ -21,7 +21,9 @@
 #define GAMESIMULATOR_H
 
 #include "igamesimulator.h"
-namespace Engine{
+#include "gameengine.h"
+
+namespace Engine {
   class GameSimulator : public GameEngine
   {
     GameSimulator();
