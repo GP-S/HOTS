@@ -31,7 +31,7 @@
 #include "../utils/usefulStruc.inc"
 #include "../IHM/iihm.h"
 
-#include <tool.inc>
+
 #include "gamesimulator.h"
 
 #include <vector>
@@ -101,6 +101,7 @@ namespace Engine
     Match<iCard,void>& getCurrentPlayerCards();
     Match<iCard,void>& getNonCurrentPlayerCards();
     int getCurrentPlayerNumber();
+    int getOppositeBoard(int boardNumber);
     void initDeck ( Polycode::ServerClient* client );
     
     void setTitleRequest(Polycode::ServerClient* client, void* card, std::string title);

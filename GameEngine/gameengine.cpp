@@ -107,8 +107,9 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 void Engine::GameEngine::endTurn()
 {
 //-------- this will be a generic function later
-	for_each(listCardsProccedWhenTurnEnds.begin(), listCardsProccedWhenTurnEnds.end(), [] (iCard* itCard) { 
-		for_each(capaList.begin(), capaList.end(), [] (iCard* itCapa) { if(itCapa->getEvent()->timeMask.when_turn_ends==1){
+	std::for_each(listCardsProccedWhenTurnEnds->begin(), listCardsProccedWhenTurnEnds->end(), [] (iCard* itCard) { 
+		std::for_each(capaList->begin(), capaList->end(), [] (iCapacity* itCapa) { 
+			if(itCapa->getEvent()->timeMask.when_turn_ends==1){
 				itCapa->getEffect()->proc();
 			} 
 		}); 
@@ -137,22 +138,22 @@ void Engine::GameEngine::playBeast(	int idOriginBoard,int idDestinationBoard,iBe
 			throw std::logic_error( "destination board is full" ); 
 		}	
 		//move the card
-		IHM::iCard* playedCardIHMCurrent = (getCurentPlayerCards())[(playedCard)];
-		IHM::iCard* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
+		void* playedCardIHMCurrent = (getCurrentPlayerCards())[(playedCard)];
+		void* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
 		currentHero->decreaseShards(playedCard->getCost);
-		setShardsRequest(getCurentPlayer(), getCurrentPlayerNumber(), currentHero->getShards());
+		setShardsRequest(getCurrentPlayer(), getCurrentPlayerNumber(), currentHero->getShards());
 		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), currentHero->getShards());
 		boards[idOriginBoard]->deleteCardX(originPosition);
-		removeCardRequest(getCurentPlayer(), idOriginBoard, originPosition);
+		removeCardRequest(getCurrentPlayer(), idOriginBoard, originPosition);
 		removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idOriginBoard), originPosition);
 		boards[idDestinationBoard]->addCardX(playedCard,destinationPosition);
-		addCardRequest(getCurentPlayer(),playedCardIHMCurrent, idDestinationBoard, destinationPosition);
+		addCardRequest(getCurrentPlayer(),playedCardIHMCurrent, idDestinationBoard, destinationPosition);
 		addCardRequest(getNonCurentPlayer(),playedCardIHMNonCurrent, getOppositeBoard(idDestinationBoard), destinationPosition);
 		//returns the state to the IHM
 	}
 }
 
-void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Card* playedCard,
+void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,iCard* playedCard,
 									int originPosition, int destinationPosition)
 {
 	//verify if the owner has enough shards
@@ -165,21 +166,21 @@ void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Car
 	else
 	{
 		//move the card
-		IHM::iCard* playedCardIHMCurrent = (getCurentPlayerCards())[(playedCard)];
-		IHM::iCard* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
+		void* playedCardIHMCurrent = (getCurrentPlayerCards())[(playedCard)];
+		void* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
 		currentHero->decreaseShards(playedCard->getCost);
-		setShardsRequest(getCurentPlayer(), getCurrentPlayerNumber(), currentHero->getShards());
+		setShardsRequest(getCurrentPlayer(), getCurrentPlayerNumber(), currentHero->getShards());
 		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), currentHero->getShards());
 		boards[idOriginBoard]->deleteCardX(originPosition);
-		removeCardRequest(getCurentPlayer(), idOriginBoard, originPosition);
+		removeCardRequest(getCurrentPlayer(), idOriginBoard, originPosition);
 		removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idOriginBoard), originPosition);
 		
 		Creature* target=(Creature*) boards[idDestinationBoard]->getCardX(destinationPosition);
-		IHM::iCard* targetIHMCurrent = (getCurentPlayerCards())[(target)];
-		IHM::iCard* targetIHMNonCurrent = (getNonCurentPlayerCards())[(target)];
+		void* targetIHMCurrent = (getCurrentPlayerCards())[(target)];
+		void* targetIHMNonCurrent = (getNonCurentPlayerCards())[(target)];
 		target->takeDamage(playedCard->getTotal("damage"));
 		int newHP = target->getTotal("hp");
-		setDefenseRequest ( getCurentPlayer(), targetIHMCurrent, newHP );
+		setDefenseRequest ( getCurrentPlayer(), targetIHMCurrent, newHP );
 		setDefenseRequest ( getCurentNonPlayer(), targetIHMNonCurrent,newHP);
 		if (!target.isAlive())
 		{
@@ -187,20 +188,20 @@ void Engine::GameEngine::playSpell(	int idOriginBoard,int idDestinationBoard,Car
 			if(idDestinationBoard == PLAYER1_BOARD)
 			{//if the target is in the board of player 1
 				boards[idDestinationBoard]->deleteCardX(destinationPosition);
-				removeCardRequest(getCurentPlayer(), idDestinationBoard, destinationPosition);
+				removeCardRequest(getCurrentPlayer(), idDestinationBoard, destinationPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idDestinationBoard), destinationPosition);
 				boards[PLAYER1_CIMETERY]->addCardX(target,0);
-				addCardRequest(getCurentPlayer(),targetIHMCurrent, PLAYER1_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),targetIHMCurrent, PLAYER1_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),targetIHMNonCurrent, getOppositeBoard(PLAYER1_CIMETERY), 0);
 
 			}
 			else if (idDestinationBoard == PLAYER0_BOARD)
 			{
 				boards[idDestinationBoard]->deleteCardX(destinationPosition);
-				removeCardRequest(getCurentPlayer(), idDestinationBoard, destinationPosition);
+				removeCardRequest(getCurrentPlayer(), idDestinationBoard, destinationPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idDestinationBoard), destinationPosition);
 				boards[PLAYER0_CIMETERY]->addCardX(target,0);
-				addCardRequest(getCurentPlayer(),targetIHMCurrent, PLAYER0_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),targetIHMCurrent, PLAYER0_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),targetIHMNonCurrent, getOppositeBoard(PLAYER0_CIMETERY), 0);
 			}
 			else if (idDestinationBoard == PLAYER0_HERO)
@@ -230,16 +231,16 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 		//apply damage to both Creatures
 		playedCard->increaseAttackCount();
 		iBeast* target=(iBeast*) boards[idDestinationBoard]->getCardX(destinationPosition);
-		IHM::iCard* playedCardIHMCurrent = (getCurentPlayerCards())[(playedCard)];
-		IHM::iCard* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
-		IHM::iCard* targetIHMCurrent = (getCurentPlayerCards())[(target)];
-		IHM::iCard* targetIHMNonCurrent = (getNonCurentPlayerCards())[(target)];
+		void* playedCardIHMCurrent = (getCurrentPlayerCards())[(playedCard)];
+		void* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
+		void* targetIHMCurrent = (getCurrentPlayerCards())[(target)];
+		void* targetIHMNonCurrent = (getNonCurentPlayerCards())[(target)];
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
 		int newHP= target->getTotal("hp");
-		setDefenseRequest ( getCurentPlayer(), playedCardIHMCurrent, newHP);
+		setDefenseRequest ( getCurrentPlayer(), playedCardIHMCurrent, newHP);
 		setDefenseRequest ( getCurentNonPlayer(), playedCardIHMNonCurrent,newHP );
-		setDefenseRequest ( getCurentPlayer(), targetIHMCurrent,newHP );
+		setDefenseRequest ( getCurrentPlayer(), targetIHMCurrent,newHP );
 		setDefenseRequest ( getCurentNonPlayer(), targetIHMNonCurrent,newHP );
 		//check for validity of the state (kill creatures etc)
 		if (!target.isAlive())
@@ -248,19 +249,19 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 			if(idDestinationBoard == PLAYER1_BOARD)// MODIFY THIS AND ALL THE LINES LIKE THAT
 			{//if player0 is playing, target belongs to player 1
 				boards[idDestinationBoard]->deleteCardX(destinationPosition);
-				removeCardRequest(getCurentPlayer(), idDestinationBoard, destinationPosition);
+				removeCardRequest(getCurrentPlayer(), idDestinationBoard, destinationPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idDestinationBoard), destinationPosition);
 				boards[PLAYER1_CIMETERY]->addCardX(target,0);
-				addCardRequest(getCurentPlayer(),targetIHMCurrent, PLAYER1_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),targetIHMCurrent, PLAYER1_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),targetIHMNonCurrent, getOppositeBoard(PLAYER1_CIMETERY), 0);
 			}
 			else
 			{
 				boards[idDestinationBoard]->deleteCardX(destinationPosition);
-				removeCardRequest(getCurentPlayer(), idDestinationBoard, destinationPosition);
+				removeCardRequest(getCurrentPlayer(), idDestinationBoard, destinationPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idDestinationBoard), destinationPosition);
 				boards[PLAYER0_CIMETERY]->addCardX(target,0);
-				addCardRequest(getCurentPlayer(),targetIHMCurrent, PLAYER0_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),targetIHMCurrent, PLAYER0_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),targetIHMNonCurrent, getOppositeBoard(PLAYER0_CIMETERY), 0);
 			}
 		}
@@ -270,19 +271,19 @@ void Engine::GameEngine::beastAttackBeast(	int idOriginBoard,int idDestinationBo
 			if(idDestinationBoard == PLAYER1_BOARD)
 			{
 				boards[idOriginBoard]->deleteCardX(originPosition);
-				removeCardRequest(getCurentPlayer(), idOriginBoard, originPosition);
+				removeCardRequest(getCurrentPlayer(), idOriginBoard, originPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idOriginBoard), originPosition);
 				boards[PLAYER0_CIMETERY]->addCardX(playedCard,0);
-				addCardRequest(getCurentPlayer(),targetIHMCurrent, PLAYER0_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),targetIHMCurrent, PLAYER0_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),targetIHMNonCurrent, getOppositeBoard(PLAYER0_CIMETERY), 0);
 			}
 			else
 			{
 				boards[idOriginBoard]->deleteCardX(originPosition);
-				removeCardRequest(getCurentPlayer(), idOriginBoard, originPosition);
+				removeCardRequest(getCurrentPlayer(), idOriginBoard, originPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idOriginBoard), originPosition);
 				boards[PLAYER1_CIMETERY]->addCardX(playedCard,0);
-				addCardRequest(getCurentPlayer(),targetIHMCurrent, PLAYER1_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),targetIHMCurrent, PLAYER1_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),targetIHMNonCurrent, getOppositeBoard(PLAYER1_CIMETERY), 0);
 			}
 		}
@@ -304,16 +305,16 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 		//apply damage to both Creatures
 		playedCard->increaseAttackCount();
 		Hero* target=(Hero*) boards[idDestinationBoard]->getCardX(destinationPosition);
-		IIHM::iCard* playedCardIHMCurrent = (getCurentPlayerCards())[(playedCard)];
-		IHM::iCard* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
-		IHM::iCard* targetIHMCurrent = (getCurentPlayerCards())[(target)];
-		IHM::iCard* targetIHMNonCurrent = (getNonCurentPlayerCards())[(target)];
+		void* playedCardIHMCurrent = (getCurrentPlayerCards())[(playedCard)];
+		void* playedCardIHMNonCurrent = (getNonCurentPlayerCards())[(playedCard)];
+		void* targetIHMCurrent = (getCurrentPlayerCards())[(target)];
+		void* targetIHMNonCurrent = (getNonCurentPlayerCards())[(target)];
 		target->takeDamage(playedCard->getTotal("attack"));
 		playedCard->takeDamage(target->getTotal("attack"));
 		int newHP= target->getTotal("hp");
-		setDefenseRequest ( getCurentPlayer(), playedCardIHMCurrent, newHP);
+		setDefenseRequest ( getCurrentPlayer(), playedCardIHMCurrent, newHP);
 		setDefenseRequest ( getCurentNonPlayer(), playedCardIHMNonCurrent,newHP );
-		setDefenseRequest ( getCurentPlayer(), targetIHMCurrent,newHP );
+		setDefenseRequest ( getCurrentPlayer(), targetIHMCurrent,newHP );
 		setDefenseRequest ( getCurentNonPlayer(), targetIHMNonCurrent,newHP );
 
 		//check for validity of the state (kill creatures etc)
@@ -334,19 +335,19 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 			if(idDestinationBoard == PLAYER0_BOARD)
 			{
 				boards[idOriginBoard]->deleteCardX(originPosition);
-				removeCardRequest(getCurentPlayer(), idOriginBoard, originPosition);
+				removeCardRequest(getCurrentPlayer(), idOriginBoard, originPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idOriginBoard), originPosition);
 				boards[PLAYER0_CIMETERY]->addCardX(playedCard,0);
-				addCardRequest(getCurentPlayer(),playedCardIHMCurrent, PLAYER0_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),playedCardIHMCurrent, PLAYER0_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),playedCardIHMNonCurrent, getOppositeBoard(PLAYER0_CIMETERY), 0);
 			}
 			else
 			{
 				boards[idOriginBoard]->deleteCardX(originPosition);
-				removeCardRequest(getCurentPlayer(), idOriginBoard, originPosition);
+				removeCardRequest(getCurrentPlayer(), idOriginBoard, originPosition);
 				removeCardRequest(getNonCurentPlayer(), getOppositeBoard(idOriginBoard), originPosition);
 				boards[PLAYER1_CIMETERY]->addCardX(playedCard,0);
-				addCardRequest(getCurentPlayer(),playedCardIHMCurrent, PLAYER1_CIMETERY, 0);
+				addCardRequest(getCurrentPlayer(),playedCardIHMCurrent, PLAYER1_CIMETERY, 0);
 				addCardRequest(getNonCurentPlayer(),playedCardIHMNonCurrent, getOppositeBoard(PLAYER1_CIMETERY), 0);
 			}
 		}
@@ -361,16 +362,16 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 		for (int i=0;i<cardsDrawn;i++)
 		{
 			//takes the first card of the deck
-			Card* drawnCard = boards[PLAYER0_DECK]->takeCardX(0);
-			IHM::iCard* drawnCardIHMCurrent = (getCurentPlayerCards())[(drawnCard)];
-			IHM::iCard* drawnCardIHMNonCurrent = (getNonCurentPlayerCards())[(drawnCard)];
-			removeCardRequest(getCurentPlayer(), PLAYER0_DECK, 0);
+			iCard* drawnCard = boards[PLAYER0_DECK]->takeCardX(0);
+			void* drawnCardIHMCurrent = (getCurrentPlayerCards())[(drawnCard)];
+			void* drawnCardIHMNonCurrent = (getNonCurentPlayerCards())[(drawnCard)];
+			removeCardRequest(getCurrentPlayer(), PLAYER0_DECK, 0);
 			removeCardRequest(getNonCurentPlayer(), getOppositeBoard(PLAYER0_DECK), 0);
 			if (!boards[PLAYER0_HAND]->isFull())
 			{//if the hand isn't full
 				//adds the card the the hand
 				boards[PLAYER0_HAND]->addCardX(drawnCard, 0);
-				addCardRequest(getCurentPlayer(),drawnCardIHMCurrent, PLAYER0_HAND, 0);
+				addCardRequest(getCurrentPlayer(),drawnCardIHMCurrent, PLAYER0_HAND, 0);
 				addCardRequest(getNonCurentPlayer(),drawnCardIHMNonCurrent, getOppositeBoard(PLAYER0_HAND), 0);
 			}
 		}	
@@ -380,16 +381,16 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 		for (int i=0;i<cardsDrawn;i++)
 		{
 			//takes the first card of the deck
-			Card* drawnCard = boards[PLAYER1_DECK]->takeCardX(0);
-			IHM::iCard* drawnCardIHMCurrent = (getCurentPlayerCards())[(drawnCard)];
-			IHM::iCard* drawnCardIHMNonCurrent = (getNonCurentPlayerCards())[(drawnCard)];
-			removeCardRequest(getCurentPlayer(), PLAYER1_DECK, 0);
+			iCard* drawnCard = boards[PLAYER1_DECK]->takeCardX(0);
+			void* drawnCardIHMCurrent = (getCurrentPlayerCards())[(drawnCard)];
+			void* drawnCardIHMNonCurrent = (getNonCurentPlayerCards())[(drawnCard)];
+			removeCardRequest(getCurrentPlayer(), PLAYER1_DECK, 0);
 			removeCardRequest(getNonCurentPlayer(), getOppositeBoard(PLAYER1_DECK), 0);
 			if (!boards[PLAYER1_HAND]->isFull())
 			{//if the hand isn't full
 				//adds the card the the hand
 				boards[PLAYER1_HAND]->addCardX(drawnCard, 0);
-				addCardRequest(getCurentPlayer(),drawnCardIHMCurrent, PLAYER1_HAND, 0);
+				addCardRequest(getCurrentPlayer(),drawnCardIHMCurrent, PLAYER1_HAND, 0);
 				addCardRequest(getNonCurentPlayer(),drawnCardIHMNonCurrent, getOppositeBoard(PLAYER1_HAND), 0);
 			}
 		}
@@ -407,7 +408,7 @@ void Engine::GameEngine::beginTurn()
 		boards[PLAYER0_HERO]->getCardX(0)->setMaxShards(
 			boards[PLAYER0_HERO]->getCardX(0)->getMaxShards()+1);
 		//transmit to IHM
-		setMaxShardsRequest(getCurentPlayer(), getCurrentPlayerNumber(),
+		setMaxShardsRequest(getCurrentPlayer(), getCurrentPlayerNumber(),
 			boards[PLAYER0_HERO]->getCardX(0)->getMaxShards());
 		setMaxShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER0_HERO]->getCardX(0)->getMaxShards());
@@ -415,12 +416,12 @@ void Engine::GameEngine::beginTurn()
 		boards[PLAYER0_HERO]->getCardX(0)->setShards(
 			boards[PLAYER0_HERO]->getCardX(0)->getMaxShards());
 		//transmit to IHM
-		setShardsRequest(getCurentPlayer(), getCurrentPlayerNumber(),
+		setShardsRequest(getCurrentPlayer(), getCurrentPlayerNumber(),
 			boards[PLAYER0_HERO]->getCardX(0)->getShards());
-		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
+		setShardsRequest(getNonCurrentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER0_HERO]->getCardX(0)->getShards());
 		//reset the attack count of the board
-		for_each(boards[PLAYER0_BOARD].begin(), boards[PLAYER0_BOARD].end(), [] (iCard* itCard) {
+		std::for_each(boards[PLAYER0_BOARD]->begin(), boards[PLAYER0_BOARD]->end(), [] (iCard* itCard) {
 			itCard->resetAttackCount();	
 		});
 		
@@ -433,7 +434,7 @@ void Engine::GameEngine::beginTurn()
 		boards[PLAYER1_HERO]->getCardX(0)->setMaxShards(
 			boards[PLAYER1_HERO]->getCardX(0)->getMaxShards()+1);
 		//transmit to IHM
-		setMaxShardsRequest(getCurentPlayer(), getCurrentPlayerNumber(),
+		setMaxShardsRequest(getCurrentPlayer(), getCurrentPlayerNumber(),
 			boards[PLAYER1_HERO]->getCardX(0)->getMaxShards());
 		setMaxShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER1_HERO]->getCardX(0)->getMaxShards());
@@ -441,12 +442,12 @@ void Engine::GameEngine::beginTurn()
 		boards[PLAYER1_HERO]->getCardX(0)->setShards(
 			boards[PLAYER1_HERO]->getCardX(0)->getMaxShards());
 		//transmit to IHM
-		setShardsRequest(getCurentPlayer(), getCurrentPlayerNumber(),
+		setShardsRequest(getCurrentPlayer(), getCurrentPlayerNumber(),
 			boards[PLAYER1_HERO]->getCardX(0)->getShards());
 		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER1_HERO]->getCardX(0)->getShards());
 		//reset the attack count of the board
-		for_each(boards[PLAYER1_BOARD].begin(), boards[PLAYER1_BOARD].end(), [] (iCard* itCard) {
+		std::for_each(boards[PLAYER1_BOARD]->begin(), boards[PLAYER1_BOARD]->end(), [] (iCard* itCard) {
 			itCard->resetAttackCount();	
 		});
 		playerDraws(getCurrentPlayerNumber(),1);
@@ -549,6 +550,11 @@ int Engine::GameEngine::getCurrentPlayerNumber(){
     return 0;
   else
     return 1;
+}
+
+int Engine::GameEngine::getOppositeBoard(int boardNumber){
+
+	return ((boardNumber+6)%14)+1;
 }
 
 void Engine::GameEngine::initDeck ( Polycode::ServerClient* client ) {

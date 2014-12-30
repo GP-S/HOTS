@@ -30,7 +30,7 @@
 
 #include "card.h"
 #include "../iboard.h"
-#include "../../utils/tool.inc"
+
 
 using namespace Polycode;
 namespace IHM

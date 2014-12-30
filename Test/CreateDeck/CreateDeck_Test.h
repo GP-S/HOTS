@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <string>
 
+
 void printBeast(Beast *beast);
 void printSpell(Spell *spell);
 void printCard(Card *card);
