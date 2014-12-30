@@ -31,6 +31,7 @@
 #include "../utils/usefulStruc.inc"
 #include "../IHM/iihm.h"
 
+#include <tool.inc>
 #include "gamesimulator.h"
 
 #include <vector>
