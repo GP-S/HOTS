@@ -19,7 +19,7 @@
 *
 **/
 
-class Card : public iCard
+class Card : virtual public iCard
 {
     public:
         /**

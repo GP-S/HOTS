@@ -17,6 +17,8 @@ static const std::string capaName[ALLCAPA] = {	"attack","attackCount","attackCou
 
 void printEtape(std::string text){
 	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
 	etape++;
 	std::cout << "***etape " << etape << text << " *** " << std::endl;
 }
@@ -83,6 +85,17 @@ void printIsAlive(Creature * creature){
 		std::cout << "dead" << std::endl; 
 }
 
+void printCanAttack(Creature * creature){
+
+	std::cout << creature->getName();
+	if(creature->canAttack())
+		std::cout << "can ";
+	else
+		std::cout << "can't ";
+
+	std::cout <<	" attack " << std::endl; 
+}
+
 void printAllCapa(Card *card,std::string name){
 
 	std::cout << "Print all capa of " << name << std::endl;
@@ -91,9 +104,14 @@ void printAllCapa(Card *card,std::string name){
 
 		capalist =  card->findCapaByType(capaName[i]);
 
-		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
-			printCapacity((*it));
-		}
+		// for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
+		// 	printCapacity((*it));
+		// }
+
+		std::for_each(capalist->begin(),capalist->end(), [] (Capacity* it){
+			printCapacity(it);
+			}
+		);	
 	}
 }
 
@@ -121,6 +139,22 @@ void printCapacity(Capacity *capacity){
 
 	std::cout <<	" value effect: " << capacity->getEffect()->getValue(); 
 	std::cout <<	" type: " << capacity->getType() << std::endl; 
+}
+
+void printCapa(Card *card,std::string capaName,std::string name){
+
+	std::cout << "Print capa of " << name << std::endl;
+
+	capalist =  card->findCapaByType(capaName);
+
+	// for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
+	// 	printCapacity((*it));
+	// }
+
+	std::for_each(capalist->begin(),capalist->end(), [] (Capacity* it){
+		printCapacity(it);
+		}
+	);
 }
 
 /*==================================================================================*/
@@ -202,7 +236,7 @@ int main(int argc, char **argv){
 
 /*Beast*//*Beast*//*Beast*//*Beast*//*Beast*//*Beast*//*Beast*/
 	Effect *beast_hp = new Effect("hp","none",5);
-	Effect *beast_hpMax = new Effect("hpMax","none",7);
+	Effect *beast_hpMax = new Effect("hpMax","none",5);
 	Effect *beast_attack = new Effect("attack","none",5);
 	Effect *beast_attackCount = new Effect("attackCount","none",0);
 	Effect *beast_attackCountMax = new Effect("attackCountMax","none",1);
@@ -296,56 +330,70 @@ int main(int argc, char **argv){
 
 
 /*=================================etape  4=========================================*/
-/*I add some Capacity to beast, spell and hero*/
-	printEtape(": Add capacity to beast,spell and hero");
+/**/
+	printEtape(": Modification on shards (into hero class)");
 
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero");
+	hero->decreaseShards(1);
+	printCapa(hero,"shards","hero");
+	hero->increaseMaxShards(1);
+	printCapa(hero,"shardsMax","hero, increase shardsMax");
+	hero->decreaseMaxShards(1);
+	printCapa(hero,"shardsMax","hero, decrease shardsMax");
+
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
+
+/*=================================etape  5=========================================*/
+/**/
+	printEtape(": Modification on creature (manipulation on beast)");
+
+	printIsAlive(beast);
+	printCanAttack(beast);
+
+	beast->increaseAttackCount();
+	printCapa(beast,"attackCount","beast, increase attackcount");
+	beast->increaseAttackCount();
+	printCapa(beast,"attackCount","beast, increase attackcount");
+	beast->resetAttackCount();
+	printCapa(beast,"attackCount","beast, reset attackcount");
+
+	beast->takeDamage(2);
+	printCapa(beast,"hp","beast, take 2 damage");
+	beast->heal(1);
+	printCapa(beast,"hp","beast, heal 1 HP");
+	beast->heal(1);
+	printCapa(beast,"hp","beast, heal 1 HP");
+	beast->heal(1);
+	printCapa(beast,"hp","beast, heal 1 HP");
+
+	beast->increaseMaxHP(1);
+	printCapa(beast,"hpMax","beast, increase hpMax");
+	beast->decreaseMaxHP(1);
+	printCapa(beast,"hpMax","beast, decrease hpMax");
+
+/*=================================etape  6=========================================*/
+/**/
+	printEtape(": Modification on Card");
+
+	std::cout << "getTotal de 'effect': " << beast->getTotal("effect") << std::endl;
+
+	beast->decreaseAllDurabilty();
+	printAllCapa(beast,"beast");
 
 /*=================================etape  5=========================================*/
 
 	printEtape(": End of the test, all tests are succesfull for the science !");
 	return 0;
 }
-
-
-/*=================================Beast=========================================*/
-/*
-        ~Beast();
-*/
-/*=================================Hero=========================================*/
-/*
-        ~Hero();
-        void    increaseShards(unsigned int modifier);
-        void    decreaseShards(unsigned int modifier);
-        void    increaseMaxShards(unsigned int modifier);
-        void    decreaseMaxShards(unsigned int modifier);
-
-*/
-/*=================================Creature=========================================*/
-/*
-
-        ~Creature();
-		virtual bool isAlive();
-        virtual void resetAttackCount();
-        virtual bool canAttack();
-        virtual void takeDamage(unsigned int damage);
-        virtual void heal(unsigned int heal);
-        virtual void increaseMaxHP(unsigned int modifier);
-        virtual void decreaseMaxHP(unsigned int modifier);
-        virtual void increaseAttackCount(); 
-
-
-*/
-/*=================================Spell=========================================*/
-/*
-
-        ~Spell();
-
-*/
-/*=================================Card=========================================*/
-/*
-    	~Card();								
-    	int	getCost();
-        int getTotal(std::string effectType);
-        void decreaseAllDurabilty();
-
-*/
