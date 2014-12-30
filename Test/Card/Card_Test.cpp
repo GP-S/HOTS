@@ -240,16 +240,11 @@ int main(int argc, char **argv){
 	beast->calculateCost();
 	printAllCapa(beast,"beast");
 
-	std::cout << "	1	2	3	blc" << std::endl;
-
 	Effect *shards = new Effect("shards","none",3);
 	Effect *shardsMax = new Effect("shardsMax","none",7);
 	
 	Capacity *capa_shards = new Capacity("shards",-1);
 	Capacity *capa_shardsMax = new Capacity("shardsMax",-1);
-
-	std::cout << "	4	5	6	blc" << std::endl;
-
 
 	capa_shards->setActive(true);
 	capa_shardsMax->setActive(true);
@@ -261,11 +256,7 @@ int main(int argc, char **argv){
 	hero->addCapacity(capa_shards);
 	hero->addCapacity(capa_shardsMax);
 
-	std::cout << "	7	8	9	blc" << std::endl;
-
-	hero->calculateCost();
-
-	std::cout << "	10	11	12	blc" << std::endl;
+	std::cout << "	1	2	3	blc" << std::endl;
 
 	printAllCapa(hero,"hero");
 
@@ -275,6 +266,7 @@ int main(int argc, char **argv){
 	capa->setEffect(damageeffect);
 	spell->addCapacity(capa);
 
+	std::cout << "	4	5	6	blc" << std::endl;
 
 	spell->calculateCost();
 	printAllCapa(spell,"spell");
