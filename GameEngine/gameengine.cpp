@@ -476,6 +476,7 @@ void Engine::GameEngine::shuffleDeck(int playerNumber){//this doesn't work at al
 	}
 }
 
+
 void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
   using namespace Polycode;
     if(event->getDispatcher()==this){
@@ -546,7 +547,9 @@ int Engine::GameEngine::getCurrentPlayerNumber(){
     return 1;
 }
 
-void Engine::GameEngine::initDeck ( Polycode::ServerClient* player ) {
+void Engine::GameEngine::initDeck ( Polycode::ServerClient* client ) {
+
+	
   
 }
 
@@ -603,3 +606,10 @@ void Engine::GameEngine::setImageIDRequest ( Polycode::ServerClient* client, voi
   Network::SetNumericalAttributeStructType request = { card, newVal };
   sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETIMAGEID);
 }
+
+void Engine::GameEngine::CreateCardRequest (Polycode::ServerClient* client, void* card, int attack,
+    int defense, int cost, char title[20], char description[255], int imageID){
+	Network::CreateCardStructType request = {&card,attack,defense,cost, title, description,imageID};
+	sendData(client, &request, sizeof(Network::CreateCardStructType),Network::CREATE);
+}
+  
