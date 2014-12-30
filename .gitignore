@@ -154,3 +154,5 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+IA/file_manager.cpp
+IA/file_manager.h
