@@ -25,5 +25,6 @@ void printIsAlive(Creature * creature);
 void printAllCapa(Card *card);
 void printEffect(Effect *effect);
 void printCapacity(Capacity *capacity);
+void printCapa(Card *card,std::string capaName,std::string name);
 
 #endif //CARD_TEST_H

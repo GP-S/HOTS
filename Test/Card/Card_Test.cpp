@@ -83,6 +83,17 @@ void printIsAlive(Creature * creature){
 		std::cout << "dead" << std::endl; 
 }
 
+void printCanAttack(Creature * creature){
+
+	std::cout << creature->getName();
+	if(creature->canAttack())
+		std::cout << "can ";
+	else
+		std::cout << "can't ";
+
+	std::cout <<	" attack " << std::endl; 
+}
+
 void printAllCapa(Card *card,std::string name){
 
 	std::cout << "Print all capa of " << name << std::endl;
@@ -121,6 +132,17 @@ void printCapacity(Capacity *capacity){
 
 	std::cout <<	" value effect: " << capacity->getEffect()->getValue(); 
 	std::cout <<	" type: " << capacity->getType() << std::endl; 
+}
+
+void printCapa(Card *card,std::string capaName,std::string name){
+
+	std::cout << "Print capa of " << name << std::endl;
+
+	capalist =  card->findCapaByType(capaName);
+
+	for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
+		printCapacity((*it));
+	}
 }
 
 /*==================================================================================*/
@@ -296,8 +318,38 @@ int main(int argc, char **argv){
 
 
 /*=================================etape  4=========================================*/
-/*I add some Capacity to beast, spell and hero*/
-	printEtape(": Add capacity to beast,spell and hero");
+/**/
+	printEtape(": Modification on shards (into hero class)");
+
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero");
+	hero->decreaseShards(1);
+	printCapa(hero,"shards","hero");
+	hero->increaseMaxShards(1);
+	printCapa(hero,"shardsMax","hero");
+	hero->decreaseMaxShards(2);
+	printCapa(hero,"shardsMax","hero");
+
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero");
+
+/*=================================etape  5=========================================*/
+/**/
+	printEtape(": Modification on creature (manipulation on beast)");
+
+	printIsAlive(beast);
+	printCanAttack(beast);
+
+/*=================================etape  6=========================================*/
+/**/
+	printEtape(": Modification on Card");
+
 
 
 /*=================================etape  5=========================================*/
@@ -314,19 +366,12 @@ int main(int argc, char **argv){
 /*=================================Hero=========================================*/
 /*
         ~Hero();
-        void    increaseShards(unsigned int modifier);
-        void    decreaseShards(unsigned int modifier);
-        void    increaseMaxShards(unsigned int modifier);
-        void    decreaseMaxShards(unsigned int modifier);
-
 */
 /*=================================Creature=========================================*/
 /*
 
         ~Creature();
-		virtual bool isAlive();
         virtual void resetAttackCount();
-        virtual bool canAttack();
         virtual void takeDamage(unsigned int damage);
         virtual void heal(unsigned int heal);
         virtual void increaseMaxHP(unsigned int modifier);
@@ -343,8 +388,7 @@ int main(int argc, char **argv){
 */
 /*=================================Card=========================================*/
 /*
-    	~Card();								
-    	int	getCost();
+    	~Card();
         int getTotal(std::string effectType);
         void decreaseAllDurabilty();
 
