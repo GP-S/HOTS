@@ -20,14 +20,14 @@
 #ifndef ISIMULATORFACTORY_H
 #define ISIMULATORFACTORY_H
 
-#include "igamesimulator.h"
+#include "iGameSimulator.h"
 
 namespace Engine{
-  class ISimulatorFactory
+  class iSimulatorFactory
   {
   public:
     /** Creates a simulator with the curent state of the game **/
-    virtual IGameSimulator* getSimulator(void)=0;
+    virtual iGameSimulator* getSimulator(void)=0;
 
   };
 }

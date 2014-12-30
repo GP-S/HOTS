@@ -17,7 +17,7 @@
  *
  */
 
-#include "gameengine.h"
+#include "GameEngine.h"
 
 Engine::GameEngine::GameEngine() : Server(1337,100)
 {

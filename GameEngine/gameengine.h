@@ -20,8 +20,8 @@
 #ifndef GAMEENGINE_H
 #define GAMEENGINE_H
 
-#include "isimulatorfactory.h"
-#include "igamesolver.h"
+#include "iSimulatorFactory.h"
+#include "iGameSolver.h"
 #include "match.h"
 #include "../Board/iBoard.h"
 #include "../Card/iCard.h"
@@ -32,7 +32,7 @@
 #include "../IHM/iihm.h"
 
 
-#include "gamesimulator.h"
+#include "GameSimulator.h"
 
 #include <vector>
 #include <list>
@@ -50,7 +50,7 @@
 
 namespace Engine
 {
-  class GameEngine : public ISimulatorFactory, public IGameSolver, public Polycode::Server {
+  class GameEngine : public iSimulatorFactory, public iGameSolver, public Polycode::Server {
   public:
       GameEngine();
       GameEngine ( const GameEngine& other );

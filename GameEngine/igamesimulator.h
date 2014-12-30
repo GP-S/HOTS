@@ -19,9 +19,9 @@
 #ifndef IGAMESIMULATOR_H
 #define IGAMESIMULATOR_H
 
-#include "igamesolver.h"
+#include "iGameSolver.h"
 namespace Engine{
-  class IGameSimulator : public IGameSolver
+  class iGameSimulator : public iGameSolver
   {
   public:
     /** Reset the state of the simulator to its creation's state **/

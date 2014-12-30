@@ -20,10 +20,10 @@
 #ifndef GAMESIMULATOR_H
 #define GAMESIMULATOR_H
 
-#include "igamesimulator.h"
+#include "iGameSimulator.h"
 
 namespace Engine {
-  class GameSimulator : public IGameSolver
+  class GameSimulator : public iGameSolver
   {
   public:
     GameSimulator();

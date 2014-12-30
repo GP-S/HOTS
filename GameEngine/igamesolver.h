@@ -20,7 +20,7 @@
 #ifndef IGAMESOLVER_H
 #define IGAMESOLVER_H
 namespace Engine{
-  class IGameSolver {
+  class iGameSolver {
   public:
     
       static constexpr int PLAYER0_BOARD = 1;

@@ -17,7 +17,7 @@
  *
  */
 
-#include "gamesimulator.h"
+#include "GameSimulator.h"
 
 namespace Engine {
 GameSimulator::GameSimulator() {
