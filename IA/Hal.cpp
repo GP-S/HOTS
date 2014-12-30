@@ -8,9 +8,11 @@ Hal::Hal()
 
 Hal::Hal(char * WeightPAth)
 {
-	PoolofState->push_back(presentState);
+	presentState = new State();
+	PoolofState = new std::list<State*>();
 	savePath = WeightPAth;
 	neurNetwork = new NeuralNetwork( PoolofState, WeightPAth);
+	chosenOne = NULL;
 }
 
 
