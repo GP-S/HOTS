@@ -88,12 +88,10 @@ void printAllCapa(Card *card,std::string name){
 	std::cout << "Print all capa of " << name << std::endl;
 
 	for(size_t i = 0; i < ALLCAPA; i++){
-		std::cout << "					blc					" << i << std::endl;
 
 		capalist =  card->findCapaByType(capaName[i]);
 
 		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
-					std::cout << "					blc					into" << std::endl;
 			printCapacity((*it));
 		}
 	}
@@ -284,8 +282,6 @@ int main(int argc, char **argv){
 	hero->addCapacity(capa_hero_shards);
 	hero->addCapacity(capa_hero_shardsMax);
 
-	std::cout << "	1	2	3	blc" << std::endl;
-
 	printAllCapa(hero,"hero");
 
 /*Spell*//*Spell*//*Spell*//*Spell*//*Spell*//*Spell*//*Spell*/
@@ -294,8 +290,6 @@ int main(int argc, char **argv){
 	capa->setActive(true);
 	capa->setEffect(damageeffect);
 	spell->addCapacity(capa);
-
-	std::cout << "	4	5	6	blc" << std::endl;
 
 	spell->calculateCost();
 	printAllCapa(spell,"spell");

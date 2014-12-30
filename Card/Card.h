@@ -9,6 +9,7 @@
 #include "Capacity.h"
 #include "Player.h"
 #include "iCard.h"
+#include <algorithm>
 
 
 /** 
