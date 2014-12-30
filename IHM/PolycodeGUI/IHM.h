@@ -12,7 +12,7 @@
 #include "../iihm.h"
 #include "card.h"
 #include "board.h"
-#include "../../GameEngine/igamesolver.h"
+#include "iGameSolver.h"
 #include <gameclient.h>
 
 using namespace Polycode;
