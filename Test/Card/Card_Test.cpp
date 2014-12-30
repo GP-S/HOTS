@@ -87,8 +87,10 @@ void printAllCapa(Card *card,std::string name){
 	std::cout << "Print all capa of " << name << std::endl;
 
 	for(size_t i = 0; i < ALLCAPA; i++){
+
 		std::list<Capacity*>* capalist =  card->findCapaByType(capaName[i]);
-		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();++it){
+
+		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
 			printCapacity((*it));
 		}
 	}
@@ -212,6 +214,13 @@ int main(int argc, char **argv){
 	Capacity *capa_effect1 = new Capacity("effect",5);
 	Capacity *capa_effect2 = new Capacity("effect",4);
 
+	capa_hp->setActive(true);
+	capa_hpMax->setActive(true);
+	capa_attack->setActive(true);
+	capa_attackCount->setActive(true);
+	capa_attackCountMax->setActive(true);
+	capa_effect1->setActive(true);
+	capa_effect2->setActive(true);
 	capa_hp->setEffect(hp);
 	capa_hpMax->setEffect(hpMax);
 	capa_attack->setEffect(attack);
@@ -231,12 +240,19 @@ int main(int argc, char **argv){
 	beast->calculateCost();
 	printAllCapa(beast,"beast");
 
+	std::cout << "	1	2	3	blc" << std::endl;
+
 	Effect *shards = new Effect("shards","none",3);
 	Effect *shardsMax = new Effect("shardsMax","none",7);
 	
 	Capacity *capa_shards = new Capacity("shards",-1);
 	Capacity *capa_shardsMax = new Capacity("shardsMax",-1);
 
+	std::cout << "	4	5	6	blc" << std::endl;
+
+
+	capa_shards->setActive(true);
+	capa_shardsMax->setActive(true);
 	hero->addCapacity(capa_hp);
 	hero->addCapacity(capa_hpMax);
 	hero->addCapacity(capa_attack);
@@ -245,11 +261,17 @@ int main(int argc, char **argv){
 	hero->addCapacity(capa_shards);
 	hero->addCapacity(capa_shardsMax);
 
+	std::cout << "	7	8	9	blc" << std::endl;
+
 	hero->calculateCost();
+
+	std::cout << "	10	11	12	blc" << std::endl;
+
 	printAllCapa(hero,"hero");
 
 	Effect *damageeffect = new Effect("damage","none",6);
 	Capacity *capa = new Capacity("damage",0);
+	capa->setActive(true);
 	capa->setEffect(damageeffect);
 	spell->addCapacity(capa);
 
