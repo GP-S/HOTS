@@ -54,7 +54,7 @@ std::list<Card*>* newDeck(){
 
 	for(size_t i = sizeofdeck/2; i < sizeofdeck; i++){
 
-		damage = myRandom();
+		damage = myRandom()+1;
 
 		Spell *spell = new Spell(namespell[myRandom()]);
 

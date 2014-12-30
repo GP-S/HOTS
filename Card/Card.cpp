@@ -39,11 +39,13 @@ void Card::addCapacity(iCapacity* capa){//insert a Capacity at the tail of the l
 
 void Card::calculateCost(){//modify when capacities are done
 
-	cost = 0;
+	float fcost = 0.0;
 
 	foreach(std::list<Capacity*>, capaList, it){
-		cost += (*it)->getEffect()->costVal(this);
+		fcost += (*it)->getEffect()->costVal(this);
 	}
+
+	cost = (int)fcost;
 
 }
 // i don't know if this is usefull anymore . keeping it just in case
