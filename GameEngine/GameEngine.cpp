@@ -428,7 +428,7 @@ void Engine::GameEngine::beginTurn()
 			currentHero->getTotal("shards"));
 		//reset the attack count of the board
 		std::for_each(boards[PLAYER0_BOARD]->begin(), boards[PLAYER0_BOARD]->end(), [] (iCard* itCard) {
-			itCard->resetAttackCount();	
+			dynamic_cast<iBeast*> (itCard)->resetAttackCount();	
 		});
 		playerDraws(getCurrentPlayerNumber(),1);
 	}
