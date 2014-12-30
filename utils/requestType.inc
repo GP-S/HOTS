@@ -31,6 +31,10 @@ namespace Network {
   constexpr unsigned short SETSHARD=40;
   constexpr unsigned short SETMAXSHARD=41;
   
+  // Simulation Requests
+  constexpr unsigned short SIMULATECARD=50;
+  constexpr unsigned short SIMULATIONEND=51;
+  
   typedef struct PlayOnStruct {
     int boardOrigin;
     int cardOrigin;

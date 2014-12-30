@@ -59,7 +59,7 @@ bool Engine::GameEngine::operator== ( const GameEngine& other ) const
 
 Engine::iGameSimulator* Engine::GameEngine::getSimulator ( void ) 
 {
- 	Engine::GameSimulator* gameSimulator=new GameSimulator();
+ 	Engine::GameSimulator* gameSimulator=new GameSimulator(this, getCurrentPlayer());
 
 	return dynamic_cast<iGameSimulator*> (gameSimulator);
 
@@ -738,3 +738,6 @@ void Engine::GameEngine::CreateCardRequest (Polycode::ServerClient* client, void
 	sendData(client->connection->address, (char*) &request, sizeof(Network::CreateCardStructType),Network::CREATE);
 }
   
+void Engine::GameEngine::SimulationEndRequest ( Polycode::ServerClient* client ) {
+  sendData(client->connection->address, "0", sizeof("0"), Network::SIMULATIONEND);
+}

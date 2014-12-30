@@ -51,6 +51,7 @@
 namespace Engine
 {
   class GameEngine : public iSimulatorFactory, public iGameSolver, public Polycode::Server {
+    friend class GameSimulator;
   public:
       GameEngine();
       GameEngine(std::list<iCard*>* deckPlayer0,std::list<iCard*>* deckPlayer1,iHero* heroPlayer0,iHero* heroPlayer1);
@@ -108,6 +109,8 @@ namespace Engine
     iHero* heroPlayer0;
     iHero* heroPlayer1;
     
+  public: // Server Methods
+    
     void setTitleRequest(Polycode::ServerClient* client, void* card, std::string title);
     void setDescriptionRequest(Polycode::ServerClient* client, void* card, std::string Description);
     void removeCardRequest(Polycode::ServerClient* client, int board, int position);
@@ -120,6 +123,7 @@ namespace Engine
     void setCostRequest(Polycode::ServerClient* client, void* card, int newVal);
     void setImageIDRequest(Polycode::ServerClient* client, void* card, int newVal);
     void CreateCardRequest (Polycode::ServerClient* client, void* card, int attack, int defense, int cost, std::string title, std::string description, int imageID);
+    void SimulationEndRequest (Polycode::ServerClient* client);
 
   private:
       void procEffectByType(int type);
