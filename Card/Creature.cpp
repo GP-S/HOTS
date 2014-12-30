@@ -1,7 +1,7 @@
 
 #include "Creature.h"
 
-Creature::Creature()
+Creature::Creature() :
 Card()
 {
     hp = 0;
