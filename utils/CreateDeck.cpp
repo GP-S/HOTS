@@ -25,7 +25,7 @@ std::list<Card*>* newDeck(){
 
 	for(size_t i = 0; i < sizeofdeck; i++){
 
-		if(myRandom(3)){
+		if(!myRandom(3)){
 
 			damage = myRandom(10)+1;
 
@@ -77,6 +77,6 @@ std::list<Card*>* newDeck(){
 			deck->push_back((Card*)beast);
 		}
 	}
-	
+
 	return deck;
 }
