@@ -88,11 +88,11 @@ int main(int argc, char **argv){
 /*=================================etape  1=========================================*/
 /*I Instance all diferent Card*/
 	printEtape(": Instanciation of all Cards type");
-	Card *card;
-	Spell *spell;
-	Creature *creature;
-	Hero *hero;
-	Beast *beast;
+	Card *card = new Card();
+	Spell *spell = new Spell();
+	Creature *creature = new Creature();
+	Hero *hero = new Hero();
+	Beast *beast = new Beast();
 
 	Card *anotherCard = new Card("card","card_dafuck");
 	Spell *anotherSpell = new Spell("Lightning bolt");
@@ -111,46 +111,42 @@ int main(int argc, char **argv){
 	printHero(anotherHero);
 	printSpell(anotherSpell);
 
-	anotherSpell->setName("+++++++++++++++++++");
-
-	printSpell(anotherSpell);
-
-	/*card->setName(cardName[2]);
+	card->setName(cardName[2]);
 	card->setType(cardType[2]);
 	card->calculateCost();
 
-	printCard(card);*/
+	printCard(card);
 
-	// beast->setName("0");
-	// beast->setType(cardType[0]);
-	// beast->setHp(5);
-	// beast->setBaseAttack(1);
-	// beast->setRace(cardRace[0]);
-	// beast->calculateCost();
-	printEtape(": Intialisation of cards");	
+	beast->setName("0");
+	beast->setType(cardType[0]);
+	beast->setHp(5);
+	beast->setBaseAttack(1);
+	beast->setRace(cardRace[0]);
+	beast->calculateCost();
+
 	printBeast(beast);
-	printEtape(": Intialisation of cards");
-	// creature->setName(cardName[3]);
-	// creature->setType(cardType[3]);
-	// creature->setHp(1);
-	// creature->setBaseAttack(1);
-	// creature->calculateCost();
 	
-	// printCreature(creature);
+	creature->setName(cardName[3]);
+	creature->setType(cardType[3]);
+	creature->setHp(1);
+	creature->setBaseAttack(1);
+	creature->calculateCost();
+	
+	printCreature(creature);
 
-	// hero->setName(cardName[4]);
-	// hero->setType(cardType[4]);
-	// hero->setHp(30);
-	// hero->setBaseAttack(0);
-	// hero->calculateCost();
+	hero->setName(cardName[4]);
+	hero->setType(cardType[4]);
+	hero->setHp(30);
+	hero->setBaseAttack(0);
+	hero->calculateCost();
 	
 	printHero(hero);
-	printEtape(": Intialisation of cards");
-	// spell->setName(cardName[1]);
-	// spell->setType(cardType[1]);
-	// spell->calculateCost();
+	
+	spell->setName(cardName[1]);
+	spell->setType(cardType[1]);
+	spell->calculateCost();
 
-	// printSpell(spell);
+	printSpell(spell);
 
 
 
