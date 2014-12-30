@@ -482,7 +482,10 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	   case Network::PLAYON: {
 	     Network::PlayOnStructType* playon = (Network::PlayOnStructType*) e->data;
 	     if(getCurrentPlayer()->clientID==e->client->clientID)
-	      useCard(playon->boardOrigin,playon->cardOrigin,playon->boardDestination,playon->cardDestination);
+	       if(e->client->clientID==player0->clientID)
+		useCard(playon->boardOrigin,playon->cardOrigin,playon->boardDestination,playon->cardDestination);
+	       else
+		useCard(getOppositeBoard(playon->boardOrigin),getOppositeBoard(playon->cardOrigin),getOppositeBoard(playon->boardDestination),getOppositeBoard(playon->cardDestination));
 	     }
 	     break;
 	   case Network::ENDTURN:
