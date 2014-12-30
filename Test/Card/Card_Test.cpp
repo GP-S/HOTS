@@ -117,7 +117,7 @@ int main(int argc, char **argv){
 	// beast->setBaseAttack(1);
 	// beast->setRace(cardRace[0]);
 	// beast->calculateCost();
-
+	printEtape(": Intialisation of cards");	
 	printBeast(beast);
 	printEtape(": Intialisation of cards");
 	// creature->setName(cardName[3]);
@@ -164,16 +164,86 @@ int main(int argc, char **argv){
 
 /*=================================Beast=========================================*/
 /*
+
+        Beast();
+		Beast(std::string name,int hp,int attack,std::string race);
+        ~Beast();
+		std::string getRace();
+		void setRace(std::string race);
+
+		
+    protected:
+
+    	std::string race;
 */
 /*=================================Hero=========================================*/
 /*
+
+		Hero();
+		Hero(std::string name,int hp,int attack);
+        ~Hero();
+        void    increaseShards(unsigned int modifier);
+        void    decreaseShards(unsigned int modifier);
+        void    increaseMaxShards(unsigned int modifier);
+        void    decreaseMaxShards(unsigned int modifier);
+
+    protected:
 */
 /*=================================Creature=========================================*/
 /*
+
+        Creature();
+		Creature(std::string name,int hp,int attack);
+        ~Creature();
+		virtual bool isAlive();
+		virtual int getHp();
+		virtual int getBaseAttack();
+		virtual void setHp(int hp);
+		virtual void setBaseAttack(int attack);
+        virtual void resetAttackCount();
+        virtual bool canAttack();
+        virtual void takeDamage(unsigned int damage);
+        virtual void heal(unsigned int heal);
+        virtual void increaseMaxHP(unsigned int modifier);
+        virtual void decreaseMaxHP(unsigned int modifier);
+        virtual void increaseAttackCount(); 
+
+    protected:
+
+    	int hp;
+    	int	baseAttack;
+    	int attackCount;
 */
 /*=================================Spell=========================================*/
 /*
+
+		Spell();
+        Spell(std::string name);
+        ~Spell();
+        
+    protected:
+
 */
 /*=================================Card=========================================*/
 /*
+		Card();
+    	Card(std::string name, std::string cardType);
+    	~Card();								
+    	int	getCost();
+        void setType(std::string type);
+        void setName(std::string name);
+    	void calculateCost();
+    	void addCapacity(iCapacity* capa);
+    	std::string getName();
+		std::list<Capacity*>* findCapaByType(std::string capaType);
+    	std::string	getType();
+        int getTotal(std::string effectType);
+        void decreaseAllDurabilty();
+
+    protected:
+        std::string				name;
+		std::string				cardType;
+        int                     cost;
+        std::list<Capacity*> *  capaList;
+        Player*                 owner;
 */
