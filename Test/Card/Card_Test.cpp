@@ -111,6 +111,10 @@ int main(int argc, char **argv){
 	printHero(anotherHero);
 	printSpell(anotherSpell);
 
+	anotherSpell->setName("+++++++++++++++++++");
+
+	printSpell(anotherSpell);
+	
 	/*card->setName(cardName[2]);
 	card->setType(cardType[2]);
 	card->calculateCost();
