@@ -18,7 +18,7 @@
 #include <cstdlib>
 #include <string>
 
-#include "../../utils/tool.inc"
+
 #include "../../utils/CreateDeck.h"
 
 void printEtape(std::string text);

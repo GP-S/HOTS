@@ -9,7 +9,6 @@
 #include <cstdlib>
 #include <string>
 
-#include "../../utils/tool.inc"
 
 
 void printEtape(std::string text);

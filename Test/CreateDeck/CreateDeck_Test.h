@@ -15,7 +15,6 @@
 #include <cstdlib>
 #include <string>
 
-#include "../../utils/tool.inc"
 
 void printBeast(Beast *beast);
 void printSpell(Spell *spell);
