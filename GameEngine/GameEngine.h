@@ -53,6 +53,7 @@ namespace Engine
   class GameEngine : public iSimulatorFactory, public iGameSolver, public Polycode::Server {
   public:
       GameEngine();
+      GameEngine(std::list<iCard*>* deckPlayer0,std::list<iCard*>* deckPlayer1,iHero* heroPlayer0,iHero* heroPlayer1);
       GameEngine ( const GameEngine& other );
       ~GameEngine();
       GameEngine& operator= ( const GameEngine& other );
@@ -102,7 +103,10 @@ namespace Engine
     Match<iCard,void>& getNonCurrentPlayerCards();
     int getCurrentPlayerNumber();
     int getOppositeBoard(int boardNumber);
-    void initDeck ( Polycode::ServerClient* client );
+    std::list<iCard*>* deckPlayer0;
+    std::list<iCard*>* deckPlayer1;
+    iHero* heroPlayer0;
+    iHero* heroPlayer1;
     
     void setTitleRequest(Polycode::ServerClient* client, void* card, std::string title);
     void setDescriptionRequest(Polycode::ServerClient* client, void* card, std::string Description);
@@ -126,6 +130,7 @@ namespace Engine
       void playerDraws(int playerNumber,int cardsDrawn);
       void beginTurn(); 
       void shuffleDeck(int playerNumber);//this doesn't work at all . do it over .
+      void initDecks();
       
   };
 
