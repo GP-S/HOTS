@@ -1,6 +1,5 @@
 #include "NeurMono.h"
-#define lengthEntryVector 5
-#define nb_entry 5
+
 
 NeurMono::NeurMono(char * entryTab, char * weightList, int treshold, Agent * agent) :
 Neurone(entryTab,  weightList, treshold)
@@ -30,6 +29,11 @@ int NeurMono::getOutput()
 	   return calculatedOutput=1;
 	else
 	  return calculatedOutput=0;
+}
+
+char * NeurMono::getWeightList() {
+
+	return weightList;
 }
 
 
@@ -67,9 +71,9 @@ void NeurMono::learn(int expectedOutput)
 			 * */
 			if(weightList[i]<LowAverage)
 				weightList[i]+=delta;
-			else if(LowAverage<=weightList[i]<Average)
+			else if(weightList[i]<Average)
 				weightList[i]+=2*delta;
-			else if(Average<=weightList[i]<HighAverage)
+			else if(weightList[i]<HighAverage)
 				weightList[i]+=3*delta;
 			else
 				weightList[i]+=4*delta;

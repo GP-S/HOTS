@@ -39,6 +39,7 @@ public:
 	* @return int value of the output
 	**/
 	int getOutput();
+	char * getWeightList();
 	/**
 	* learning function for the neuronne
 	* @param expectedOutput which is calculated the turn after the decision 

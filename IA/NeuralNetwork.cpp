@@ -5,7 +5,7 @@ NeuralNetwork::NeuralNetwork()
 {
 }
 
-NeuralNetwork::NeuralNetwork(State * present, char* path)
+NeuralNetwork::NeuralNetwork(std::list<State*>* pool, char * path)
 {
 	char weightList[NBAGENT*nb_entry];
 	if (path == NULL) {
@@ -16,7 +16,7 @@ NeuralNetwork::NeuralNetwork(State * present, char* path)
 		//error
 	};
 	for (size_t i = 0; i < NBAGENT; i++){
-		neurones.push_back( new NeurMono ((char*)present, weightList, 100, new Agent()));
+		neurones.push_back( new NeurMono ((char*)*pool->begin(), weightList, 100, new Agent()));
 	}
 }
 
@@ -26,9 +26,11 @@ NeuralNetwork::~NeuralNetwork()
 
 }
 
-void NeuralNetwork::saveWeight()
+void NeuralNetwork::saveWeight(char * path)
 {
-
+	std::string s;
+	for each(NeurMono* neu in neurones) //moi du future : tu vois fallait utiliser std::for_each
+		s+= neu->getWeightList();
 }
 
 void NeuralNetwork::learn(std::list<Agent*> wished)

@@ -20,9 +20,12 @@ public:
 
 private:
 
-	void* play();
+	void play();
+	void test();
+	State * simresult(int boardOrigin, int PlaceOri, int boardFinal, int FinalPlace);
 	char * savePath;
 	State * presentState;
+	std::list<State*>*  PoolofState; 
 	NeuralNetwork * neurNetwork;
 	Agent * chosenOne; //Agent elicted by the IA to play this turn; //might be need to be converted in list oneday
 

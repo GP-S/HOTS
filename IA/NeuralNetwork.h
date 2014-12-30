@@ -6,6 +6,7 @@
 #include "file_manager.h"
 #include "NeurMono.h"
 
+
 //mmmh may be need to be interfaced... in order to be able to test different kind of neuronne need to think about it
 
 #define NBAGENT 4
@@ -14,14 +15,16 @@
 //life
 //lifemax
 //cost
+
+
 const std::string listOrder[NBAGENT] = { "attack","life","lifemax","cost" };
 
 class NeuralNetwork
 {
 public:
 	NeuralNetwork();
-	NeuralNetwork(State * present, char * path);
-	void saveWeight();
+	NeuralNetwork(std::list<State*>* pool, char * path);
+	void saveWeight(char *path);
 	~NeuralNetwork();
 	/**
 	* Take the satifaction of HAL, learn, update andsend back new proposition;
