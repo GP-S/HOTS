@@ -85,7 +85,7 @@ void printIsAlive(Creature * creature){
 void printAllCapa(Card *card){
 
 	for(size_t i = 0; i < ALLCAPA; i++){
-		std::list<Capacity*>* capalist =  findCapaByType(capaName[i]);
+		std::list<Capacity*>* capalist =  card->findCapaByType(capaName[i]);
 		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();++it){
 			printCapacity((*it));
 		}
