@@ -21,8 +21,7 @@
 
 Engine::GameEngine::GameEngine() 
 {
-	boards = new std::list<Board*>();
-	players = new std::list<Player*>();
+
 
     //corresCardId = NULL;
     //corresBoardId = NULL;  
@@ -74,8 +73,8 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 		throw std::logic_error( "you cann't use that board right now" ); 
 	}
 
-  	Card* playedCard = boards[idOriginBoard]->getCardX(originPosition);
-  	Player* activePlayer = (turn%2) ? (players->end()) : (players->begin()); 
+  	iCard* playedCard = boards[idOriginBoard]->getCardX(originPosition);
+  	//Player* activePlayer = (turn%2) ? (players->end()) : (players->begin()); 
 	/* Decide on what is the action performed
 	Timy-whymy-bubbly stuff . Abandon hope all ye who enter here . 
 	*/
