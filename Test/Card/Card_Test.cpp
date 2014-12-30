@@ -89,7 +89,6 @@ void printAllCapa(Card *card,std::string name){
 	for(size_t i = 0; i < ALLCAPA; i++){
 		std::list<Capacity*>* capalist =  card->findCapaByType(capaName[i]);
 		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();++it){
-			std::cout << "blc" << std::endl;
 			printCapacity((*it));
 		}
 	}

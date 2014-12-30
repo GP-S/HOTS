@@ -23,58 +23,60 @@ std::list<Card*>* newDeck(){
 	int life = 0;
 	int damage = 0;
 
-	for(size_t i = 0; i < sizeofdeck/2; i++){
+	for(size_t i = 0; i < sizeofdeck; i++){
 
-		strength = myRandom(11);
-		life = myRandom(10)+1;
+		if(myRandom(3)){
 
-		Beast *beast = new Beast(namebeast[myRandom(16)],life,strength,"human");
+			damage = myRandom(10)+1;
 
-		Effect *hp = new Effect("hp","none",life);
-		Effect *hpMax = new Effect("hpMax","none",life);
-		Effect *attack = new Effect("attack","none",strength);
-		Effect *attackCount = new Effect("attackCount","none",0);
-		Effect *attackCountMax = new Effect("attackCountMax","none",1);
+			Spell *spell = new Spell(namespell[myRandom(10)]);
 
-		Capacity *capa_hp = new Capacity("hp",-1);
-		Capacity *capa_hpMax = new Capacity("hpMax",-1);
-		Capacity *capa_attack = new Capacity("attack",-1);
-		Capacity *capa_attackCount = new Capacity("attackCount",-1);
-		Capacity *capa_attackCountMax = new Capacity("attackCountMax",-1);
+			Effect *damageeffect = new Effect("damage","none",damage);
 
-		capa_hp->setEffect(hp);
-		capa_hpMax->setEffect(hpMax);
-		capa_attack->setEffect(attack);
-		capa_attackCount->setEffect(attackCount);
-		capa_attackCountMax->setEffect(attackCountMax);
+			Capacity *capa = new Capacity("damage",0);
 
-		beast->addCapacity(capa_hp);
-		beast->addCapacity(capa_hpMax);
-		beast->addCapacity(capa_attack);
-		beast->addCapacity(capa_attackCount);
-		beast->addCapacity(capa_attackCountMax);
+			capa->setEffect(damageeffect);
+			spell->addCapacity(capa);
+			spell->calculateCost();
+			
+			deck->push_back((Card*)spell);
 
-		beast->calculateCost();
+		}
+		else{
+			strength = myRandom(11);
+			life = myRandom(10)+1;
 
-		deck->push_back((Card*)beast);
+			Beast *beast = new Beast(namebeast[myRandom(16)],life,strength,"human");
+
+			Effect *hp = new Effect("hp","none",life);
+			Effect *hpMax = new Effect("hpMax","none",life);
+			Effect *attack = new Effect("attack","none",strength);
+			Effect *attackCount = new Effect("attackCount","none",0);
+			Effect *attackCountMax = new Effect("attackCountMax","none",1);
+
+			Capacity *capa_hp = new Capacity("hp",-1);
+			Capacity *capa_hpMax = new Capacity("hpMax",-1);
+			Capacity *capa_attack = new Capacity("attack",-1);
+			Capacity *capa_attackCount = new Capacity("attackCount",-1);
+			Capacity *capa_attackCountMax = new Capacity("attackCountMax",-1);
+
+			capa_hp->setEffect(hp);
+			capa_hpMax->setEffect(hpMax);
+			capa_attack->setEffect(attack);
+			capa_attackCount->setEffect(attackCount);
+			capa_attackCountMax->setEffect(attackCountMax);
+
+			beast->addCapacity(capa_hp);
+			beast->addCapacity(capa_hpMax);
+			beast->addCapacity(capa_attack);
+			beast->addCapacity(capa_attackCount);
+			beast->addCapacity(capa_attackCountMax);
+
+			beast->calculateCost();
+
+			deck->push_back((Card*)beast);
+		}
 	}
-
-	for(size_t i = sizeofdeck/2; i < sizeofdeck; i++){
-
-		damage = myRandom(10)+1;
-
-		Spell *spell = new Spell(namespell[myRandom(10)]);
-
-		Effect *damageeffect = new Effect("damage","none",damage);
-
-		Capacity *capa = new Capacity("damage",0);
-
-		capa->setEffect(damageeffect);
-		spell->addCapacity(capa);
-		spell->calculateCost();
-		
-		deck->push_back((Card*)spell);
-	}
-
+	
 	return deck;
 }
