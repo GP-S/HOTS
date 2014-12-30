@@ -45,7 +45,7 @@ void Card::calculateCost(){//modify when capacities are done
 		fcost += (*it)->getEffect()->costVal(this);
 	}*/
 
-	for_each(capaList->begin(),capaList->end(), [] (Capacity* it){
+	std::for_each(capaList->begin(),capaList->end(), [] (Capacity* it){
 
 			fcost += it->getEffect()->costVal(this);
 		}
@@ -65,7 +65,7 @@ std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a 
 		}
 	}*/
 
-	for_each(capaList->begin(),capaList->end(), [] (Capacity* it){
+	std::for_each(capaList->begin(),capaList->end(),(Capacity* it){
 		if (it->getEffect()->getType()==effectType)//compare the strings
 			capaListTemp->push_back(it);
 		}
@@ -111,7 +111,7 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 			}
 		}*/
 
-	for_each(capaList->begin(),capaList->end(),(Capacity* capaIterator){
+	std::for_each(capaList->begin(),capaList->end(),(Capacity* capaIterator){
 		if (capaIterator->getActive())//if the capacity is active
 			if(capaIterator->getEffect()->getType()==effectType)//compare the strings
 				total+=capaIterator->getEffect()->getValue();
@@ -156,7 +156,7 @@ void Card::decreaseAllDurabilty(){
 		(*capaIterator)->decreaseDurability();
 	}*/
 
-	for_each(capaList->begin(),capaList->end(), [] (Capacity* capaIterator){
+	std::for_each(capaList->begin(),capaList->end(), (Capacity* capaIterator){
 			capaIterator->decreaseDurability();
 		}
 	);
