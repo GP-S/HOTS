@@ -17,6 +17,8 @@ static const std::string capaName[ALLCAPA] = {	"attack","attackCount","attackCou
 
 void printEtape(std::string text){
 	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
 	etape++;
 	std::cout << "***etape " << etape << text << " *** " << std::endl;
 }
@@ -326,10 +328,14 @@ int main(int argc, char **argv){
 	hero->decreaseShards(1);
 	printCapa(hero,"shards","hero");
 	hero->increaseMaxShards(1);
-	printCapa(hero,"shardsMax","hero");
+	printCapa(hero,"shardsMax","hero, increase shardsMax");
 	hero->decreaseMaxShards(2);
-	printCapa(hero,"shardsMax","hero");
+	printCapa(hero,"shardsMax","hero, decrease shardsMax");
 
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
+	hero->increaseShards(1);
+	printCapa(hero,"shards","hero, increase shards");
 	hero->increaseShards(1);
 	printCapa(hero,"shards","hero, increase shards");
 	hero->increaseShards(1);
