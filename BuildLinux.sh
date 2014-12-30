@@ -1,9 +1,20 @@
 #!/bin/bash
 #### Import distro specific variables
 source /etc/os-release
-if [[ "$ID" = "arch" ]]; then
-  ID_LIKE="arch"
-fi
+case $ID in
+  suse)
+    ID_LIKE="suse"
+  ;;
+  debian)
+    ID_LIKE="debian"
+  ;;
+  arch)
+    ID_LIKE="arch"
+  ;;
+  rhel)
+    ID_LIKE="rhel"
+  ;;
+esac
 
 #### Variables initialisations
 debian_packages=("git" "build-essential" "cmake" "python" "libsdl1.2-dev" "libopenal-dev" "libopenal1" "libsdl1.2debian" "python-ply")

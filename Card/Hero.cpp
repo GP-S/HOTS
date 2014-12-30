@@ -47,7 +47,7 @@ void Hero::decreaseShards(unsigned int modifier){
         throw std::logic_error( "no shards capacity in current card" ); 
     }
 
-    int newShards = (listShards->front()->getEffect()->getValue()+modifier) < 0 ? 0 : (listShards->front()->getEffect()->getValue()-modifier);
+    int newShards = (listShards->front()->getEffect()->getValue()-modifier) < 0 ? 0 : (listShards->front()->getEffect()->getValue()-modifier);
     listShards->front()->getEffect()->setValue(newShards);
 
 }
