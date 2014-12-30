@@ -82,11 +82,14 @@ void printIsAlive(Creature * creature){
 		std::cout << "dead" << std::endl; 
 }
 
-void printAllCapa(Card *card){
+void printAllCapa(Card *card,std::string name){
+
+	std::cout << "Print all capa of " << name << std::endl;
 
 	for(size_t i = 0; i < ALLCAPA; i++){
 		std::list<Capacity*>* capalist =  card->findCapaByType(capaName[i]);
 		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();++it){
+			std::cout << "blc" << std::endl;
 			printCapacity((*it));
 		}
 	}
@@ -227,7 +230,7 @@ int main(int argc, char **argv){
 	beast->addCapacity(capa_effect2);
 
 	beast->calculateCost();
-	printAllCapa(beast);
+	printAllCapa(beast,"beast");
 
 	Effect *shards = new Effect("shards","none",3);
 	Effect *shardsMax = new Effect("shardsMax","none",7);
@@ -244,7 +247,7 @@ int main(int argc, char **argv){
 	hero->addCapacity(capa_shardsMax);
 
 	hero->calculateCost();
-	printAllCapa(hero);
+	printAllCapa(hero,"hero");
 
 	Effect *damageeffect = new Effect("damage","none",6);
 	Capacity *capa = new Capacity("damage",0);
@@ -253,7 +256,7 @@ int main(int argc, char **argv){
 
 
 	spell->calculateCost();
-	printAllCapa(spell);
+	printAllCapa(spell,"spell");
 
 
 /*=================================etape  4=========================================*/
