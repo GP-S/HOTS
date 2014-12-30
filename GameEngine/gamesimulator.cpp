@@ -19,37 +19,22 @@
 
 #include "gamesimulator.h"
 
-Engine::GameSimulator::GameSimulator() {
+namespace Engine {
+GameSimulator::GameSimulator() {
 
 }
 
-Engine::GameSimulator::GameSimulator ( const Engine::GameSimulator& other ) {
+GameSimulator::~GameSimulator() {
 
 }
 
-Engine::GameSimulator::~GameSimulator() {
+void GameSimulator::endTurn ( void ) {
 
 }
 
-Engine::GameSimulator& Engine::GameSimulator::operator= ( const 
-Engine::GameSimulator& other ) {
+void GameSimulator::useCard ( int originBoard, int originPosition, int destinationBoard, int destinationPosition ) {
 
 }
 
-bool Engine::GameSimulator::operator== ( const Engine::GameSimulator& other ) 
-const {
-
-}
-
-void Engine::GameSimulator::resetState() {
-
-}
-
-void Engine::GameSimulator::endTurn ( void ) {
-
-}
-
-void Engine::GameSimulator::playCard ( int originBoard, int originPosition, int 
-destinationBoard, int destinationPosition ) {
-
+  
 }

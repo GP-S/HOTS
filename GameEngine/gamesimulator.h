@@ -21,14 +21,14 @@
 #define GAMESIMULATOR_H
 
 #include "igamesimulator.h"
-#include "gameengine.h"
 
 namespace Engine {
   class GameSimulator : public IGameSolver
   {
     GameSimulator();
     ~GameSimulator();
-
+    virtual void endTurn ( void );
+    virtual void useCard ( int originBoard, int originPosition, int destinationBoard, int destinationPosition );
 
 
   };
