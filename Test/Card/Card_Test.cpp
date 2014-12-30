@@ -224,7 +224,7 @@ int main(int argc, char **argv){
 
 /*Beast*//*Beast*//*Beast*//*Beast*//*Beast*//*Beast*//*Beast*/
 	Effect *beast_hp = new Effect("hp","none",5);
-	Effect *beast_hpMax = new Effect("hpMax","none",7);
+	Effect *beast_hpMax = new Effect("hpMax","none",5);
 	Effect *beast_attack = new Effect("attack","none",5);
 	Effect *beast_attackCount = new Effect("attackCount","none",0);
 	Effect *beast_attackCountMax = new Effect("attackCountMax","none",1);
@@ -363,9 +363,9 @@ int main(int argc, char **argv){
 	printCapa(beast,"hp","beast, heal 1 HP");
 
 	beast->increaseMaxHP(1);
-	printCapa(beast,"hp","beast, increase hpMax");
+	printCapa(beast,"hpMax","beast, increase hpMax");
 	beast->decreaseMaxHP(1);
-	printCapa(beast,"hp","beast, decrease hpMax");
+	printCapa(beast,"hpMax","beast, decrease hpMax");
 
 /*=================================etape  6=========================================*/
 /**/
