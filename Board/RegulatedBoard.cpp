@@ -145,11 +145,11 @@ unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
   std::list<Card*>::iterator it2;
   it1 = listCard->begin();
 
-  std::cout << "CABT 1" << endl;
+  std::cout << "CABT 1" << std::endl;
   
   while((Card*)card != *it1){
 
-    std::cout << "CABT while it1" << endl;
+    std::cout << "CABT while it1" << std::endl;
     
     if(it1 == listCard->end())
       throw std::logic_error( "no finding card" );
@@ -158,12 +158,12 @@ unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
   }
 
 
-  std::cout << "CABT 2" << endl;
+  std::cout << "CABT 2" << std::endl;
 
   while(!finish){
 
 
-  std::cout << "CABT while it2" << endl;
+  std::cout << "CABT while it2" << std::endl;
 
     if(*it2 == *it1){
       finish = true;

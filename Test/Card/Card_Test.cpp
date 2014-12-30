@@ -123,9 +123,9 @@ int main(int argc, char **argv){
 
 	// beast->setName("0");
 	// beast->setType(cardType[0]);
-	//beast->setHp(5);
+	// beast->setHp(5);
 	// beast->setBaseAttack(1);
-	beast->setRace(cardRace[0]);
+	// beast->setRace(cardRace[0]);
 	// beast->calculateCost();
 	printEtape(": Intialisation of cards");	
 	printBeast(beast);
@@ -139,7 +139,7 @@ int main(int argc, char **argv){
 	// printCreature(creature);
 
 	// hero->setName(cardName[4]);
-	hero->setType(cardType[4]);
+	// hero->setType(cardType[4]);
 	// hero->setHp(30);
 	// hero->setBaseAttack(0);
 	// hero->calculateCost();
@@ -217,7 +217,7 @@ int main(int argc, char **argv){
     	int hp;
     	int	baseAttack;
     	int attackCount;
-    	
+
 */
 /*=================================Spell=========================================*/
 /*
