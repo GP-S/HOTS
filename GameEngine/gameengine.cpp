@@ -19,7 +19,7 @@
 
 #include "gameengine.h"
 
-Engine::GameEngine::GameEngine() 
+Engine::GameEngine::GameEngine() : Server(1337,100)
 {
 
 
@@ -28,7 +28,7 @@ Engine::GameEngine::GameEngine()
     turn = 0;
 }
 
-Engine::GameEngine::GameEngine ( const GameEngine& other ) 
+Engine::GameEngine::GameEngine ( const GameEngine& other ) : Server(1337,100)
 {
 
 }
@@ -48,18 +48,12 @@ bool Engine::GameEngine::operator== ( const GameEngine& other ) const
 
 }
 
-std::list<GameSimulator*> Engine::GameEngine::getSimulator ( void ) 
+Engine::IGameSimulator* Engine::GameEngine::getSimulator ( void ) 
 {
- 	std::list<GameSimulator*> gameSimulators;
-	for(size_t i = 0; i < boards[OWNER_HAND].getSize(); i++)
-	{
-	    if(boards[OWNER_HAND].getCardX(i).getCost() < /*FIXME TODO Get mana disponible*/)
-		{
-	        GameSimulator *gameSimulator = new gameSimulator();
-	        gameSimulator.setListCard();
-	        gameSimulators.push_back(gameSimulator);
-	    }
-	}
+ 	Engine::GameSimulator* gameSimulator=new GameSimulator();
+
+	return dynamic_cast<IGameSimulator*> (gameSimulator);
+
 }
 
 void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //-------------- DOUBT HERE

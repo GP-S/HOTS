@@ -25,6 +25,7 @@
 namespace Engine {
   class GameSimulator : public IGameSolver
   {
+  public:
     GameSimulator();
     ~GameSimulator();
     virtual void endTurn ( void );
