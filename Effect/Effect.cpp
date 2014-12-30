@@ -57,8 +57,15 @@ float Effect::costVal(iCard *card){
 
 	if(card == NULL)
 		return (float)value/2.0;
-	else
+	
+	if(type == "attack" | type == "hpMax")
 		return (float)value/2.5;
+
+	if(type == "damage")
+		return 1+(0.9*value*value*value)/(10*value+1);
+
+	else
+		return 0.0;
 
 
 	// if((Card*)card->getType == "beast"){

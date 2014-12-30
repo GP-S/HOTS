@@ -106,6 +106,7 @@ int main(int argc, char **argv){
 
 	deck->addCardX(reinterpret_cast <std::list<iCard*> *> (listOfCard),0);
 
+	printSizeBoard(deck,"deck");
 	printBoard(deck,"deck");
 
 /*=================================etape  5=========================================*/
