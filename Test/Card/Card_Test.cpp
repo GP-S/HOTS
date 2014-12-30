@@ -329,7 +329,7 @@ int main(int argc, char **argv){
 	printCapa(hero,"shards","hero");
 	hero->increaseMaxShards(1);
 	printCapa(hero,"shardsMax","hero, increase shardsMax");
-	hero->decreaseMaxShards(2);
+	hero->decreaseMaxShards(1);
 	printCapa(hero,"shardsMax","hero, decrease shardsMax");
 
 	hero->increaseShards(1);
