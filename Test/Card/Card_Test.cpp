@@ -4,6 +4,7 @@
 #define ALLCAPA 9
 
 static unsigned int etape = 0;
+static std::list<Capacity*>* capalist = new std::list<Capacity*>();
 static const std::string cardName[NUMBER] = {"alpha","fire","dafuck","beta","omega"};
 static const std::string cardType[NUMBER] = {"beast","spell","card_dafuck","creature","hero"};
 static const std::string cardRace[NUMBER] = {"human","robot","none","none","none"};
@@ -87,10 +88,12 @@ void printAllCapa(Card *card,std::string name){
 	std::cout << "Print all capa of " << name << std::endl;
 
 	for(size_t i = 0; i < ALLCAPA; i++){
+		std::cout << "					blc					" << i << std::endl;
 
-		std::list<Capacity*>* capalist =  card->findCapaByType(capaName[i]);
+		capalist =  card->findCapaByType(capaName[i]);
 
 		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
+					std::cout << "					blc					into" << std::endl;
 			printCapacity((*it));
 		}
 	}
@@ -198,83 +201,101 @@ int main(int argc, char **argv){
 /*I add some Capacity to beast, spell and hero*/
 	printEtape(": Add capacity to beast,spell and hero");
 
-	Effect *hp = new Effect("hp","none",5);
-	Effect *hpMax = new Effect("hpMax","none",7);
-	Effect *attack = new Effect("attack","none",5);
-	Effect *attackCount = new Effect("attackCount","none",0);
-	Effect *attackCountMax = new Effect("attackCountMax","none",1);
-	Effect *effect1 = new Effect("effect","none",1);
-	Effect *effect2 = new Effect("effect","none",5);
 
-	Capacity *capa_hp = new Capacity("hp",-1);
-	Capacity *capa_hpMax = new Capacity("hpMax",-1);
-	Capacity *capa_attack = new Capacity("attack",-1);
-	Capacity *capa_attackCount = new Capacity("attackCount",-1);
-	Capacity *capa_attackCountMax = new Capacity("attackCountMax",-1);
-	Capacity *capa_effect1 = new Capacity("effect",5);
-	Capacity *capa_effect2 = new Capacity("effect",4);
+/*Beast*//*Beast*//*Beast*//*Beast*//*Beast*//*Beast*//*Beast*/
+	Effect *beast_hp = new Effect("hp","none",5);
+	Effect *beast_hpMax = new Effect("hpMax","none",7);
+	Effect *beast_attack = new Effect("attack","none",5);
+	Effect *beast_attackCount = new Effect("attackCount","none",0);
+	Effect *beast_attackCountMax = new Effect("attackCountMax","none",1);
+	Effect *beast_effect1 = new Effect("effect","none",1);
+	Effect *beast_effect2 = new Effect("effect","none",5);
 
-	capa_hp->setActive(true);
-	capa_hpMax->setActive(true);
-	capa_attack->setActive(true);
-	capa_attackCount->setActive(true);
-	capa_attackCountMax->setActive(true);
-	capa_effect1->setActive(true);
-	capa_effect2->setActive(true);
-	capa_hp->setEffect(hp);
-	capa_hpMax->setEffect(hpMax);
-	capa_attack->setEffect(attack);
-	capa_attackCount->setEffect(attackCount);
-	capa_attackCountMax->setEffect(attackCountMax);
-	capa_effect1->setEffect(effect1);
-	capa_effect2->setEffect(effect2);
+	Capacity *capa_beast_hp = new Capacity("hp",-1);
+	Capacity *capa_beast_hpMax = new Capacity("hpMax",-1);
+	Capacity *capa_beast_attack = new Capacity("attack",-1);
+	Capacity *capa_beast_attackCount = new Capacity("attackCount",-1);
+	Capacity *capa_beast_attackCountMax = new Capacity("attackCountMax",-1);
+	Capacity *capa_beast_effect1 = new Capacity("effect",5);
+	Capacity *capa_beast_effect2 = new Capacity("effect",4);
 
-	beast->addCapacity(capa_hp);
-	beast->addCapacity(capa_hpMax);
-	beast->addCapacity(capa_attack);
-	beast->addCapacity(capa_attackCount);
-	beast->addCapacity(capa_attackCountMax);
-	beast->addCapacity(capa_effect1);
-	beast->addCapacity(capa_effect2);
+	capa_beast_hp->setActive(true);
+	capa_beast_hpMax->setActive(true);
+	capa_beast_attack->setActive(true);
+	capa_beast_attackCount->setActive(true);
+	capa_beast_attackCountMax->setActive(true);
+	capa_beast_effect1->setActive(true);
+	capa_beast_effect2->setActive(true);
+	capa_beast_hp->setEffect(beast_hp);
+	capa_beast_hpMax->setEffect(beast_hpMax);
+	capa_beast_attack->setEffect(beast_attack);
+	capa_beast_attackCount->setEffect(beast_attackCount);
+	capa_beast_attackCountMax->setEffect(beast_attackCountMax);
+	capa_beast_effect1->setEffect(beast_effect1);
+	capa_beast_effect2->setEffect(beast_effect2);
+
+	beast->addCapacity(capa_beast_hp);
+	beast->addCapacity(capa_beast_hpMax);
+	beast->addCapacity(capa_beast_attack);
+	beast->addCapacity(capa_beast_attackCount);
+	beast->addCapacity(capa_beast_attackCountMax);
+	beast->addCapacity(capa_beast_effect1);
+	beast->addCapacity(capa_beast_effect2);
 
 	beast->calculateCost();
 	printAllCapa(beast,"beast");
 
+/*Hero*//*Hero*//*Hero*//*Hero*//*Hero*//*Hero*//*Hero*//*Hero*/
+	Effect *hero_hp = new Effect("hp","none",5);
+	Effect *hero_hpMax = new Effect("hpMax","none",7);
+	Effect *hero_attack = new Effect("attack","none",5);
+	Effect *hero_attackCount = new Effect("attackCount","none",0);
+	Effect *hero_attackCountMax = new Effect("attackCountMax","none",1);
+	Effect *hero_shards = new Effect("shards","none",3);
+	Effect *hero_shardsMax = new Effect("shardsMax","none",7);
+
+	Capacity *capa_hero_hp = new Capacity("hp",-1);
+	Capacity *capa_hero_hpMax = new Capacity("hpMax",-1);
+	Capacity *capa_hero_attack = new Capacity("attack",-1);
+	Capacity *capa_hero_attackCount = new Capacity("attackCount",-1);
+	Capacity *capa_hero_attackCountMax = new Capacity("attackCountMax",-1);
+	Capacity *capa_hero_shards = new Capacity("shards",-1);
+	Capacity *capa_hero_shardsMax = new Capacity("shardsMax",-1);
+
+	capa_hero_hp->setActive(true);
+	capa_hero_hpMax->setActive(true);
+	capa_hero_attack->setActive(true);
+	capa_hero_attackCount->setActive(true);
+	capa_hero_attackCountMax->setActive(true);
+	capa_hero_shards->setActive(true);
+	capa_hero_shardsMax->setActive(true);
+	capa_hero_hp->setEffect(hero_hp);
+	capa_hero_hpMax->setEffect(hero_hpMax);
+	capa_hero_attack->setEffect(hero_attack);
+	capa_hero_attackCount->setEffect(hero_attackCount);
+	capa_hero_attackCountMax->setEffect(hero_attackCountMax);
+	capa_hero_shards->setEffect(hero_shards);
+	capa_hero_shardsMax->setEffect(hero_shardsMax);
+	hero->addCapacity(capa_hero_hp);
+	hero->addCapacity(capa_hero_hpMax);
+	hero->addCapacity(capa_hero_attack);
+	hero->addCapacity(capa_hero_attackCount);
+	hero->addCapacity(capa_hero_attackCountMax);
+	hero->addCapacity(capa_hero_shards);
+	hero->addCapacity(capa_hero_shardsMax);
+
 	std::cout << "	1	2	3	blc" << std::endl;
-
-	Effect *shards = new Effect("shards","none",3);
-	Effect *shardsMax = new Effect("shardsMax","none",7);
-	
-	Capacity *capa_shards = new Capacity("shards",-1);
-	Capacity *capa_shardsMax = new Capacity("shardsMax",-1);
-
-	std::cout << "	4	5	6	blc" << std::endl;
-
-
-	capa_shards->setActive(true);
-	capa_shardsMax->setActive(true);
-	hero->addCapacity(capa_hp);
-	hero->addCapacity(capa_hpMax);
-	hero->addCapacity(capa_attack);
-	hero->addCapacity(capa_attackCount);
-	hero->addCapacity(capa_attackCountMax);
-	hero->addCapacity(capa_shards);
-	hero->addCapacity(capa_shardsMax);
-
-	std::cout << "	7	8	9	blc" << std::endl;
-
-	hero->calculateCost();
-
-	std::cout << "	10	11	12	blc" << std::endl;
 
 	printAllCapa(hero,"hero");
 
+/*Spell*//*Spell*//*Spell*//*Spell*//*Spell*//*Spell*//*Spell*/
 	Effect *damageeffect = new Effect("damage","none",6);
 	Capacity *capa = new Capacity("damage",0);
 	capa->setActive(true);
 	capa->setEffect(damageeffect);
 	spell->addCapacity(capa);
 
+	std::cout << "	4	5	6	blc" << std::endl;
 
 	spell->calculateCost();
 	printAllCapa(spell,"spell");

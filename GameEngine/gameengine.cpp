@@ -107,13 +107,12 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 void Engine::GameEngine::endTurn()
 {
 //-------- this will be a generic function later
-	foreach(std::list<iCard*>, listCardsProccedWhenTurnEnds, itCard){
-		foreach(std::list<iCapacity*>, itList->capaList, itCapa){
-			if(itCapa->getEvent()->timeMask.when_turn_ends==1){
+	for_each(listCardsProccedWhenTurnEnds.begin(), listCardsProccedWhenTurnEnds.end(), [] (iCard* itCard) { 
+		for_each(capaList.begin(), capaList.end(), [] (iCard* itCapa) { if(itCapa->getEvent()->timeMask.when_turn_ends==1){
 				itCapa->getEffect()->proc();
-			}
-		}
-	}
+			} 
+		}); 
+	});
 //--------
 	turn++; 
 	beginTurn();
@@ -421,9 +420,11 @@ void Engine::GameEngine::beginTurn()
 		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER0_HERO]->getCardX(0)->getShards());
 		//reset the attack count of the board
-		foreach(std::list<iCard*>, matchBoard->getIHMObject(PLAYER0_BOARD), itCard){
-			itCard->resetAttackCount();		
-		}
+		for_each(boards[PLAYER0_BOARD].begin(), boards[PLAYER0_BOARD].end(), [] (iCard* itCard) {
+			itCard->resetAttackCount();	
+		});
+		
+
 		playerDraws(getCurrentPlayerNumber,1);
 	}
 	else
@@ -445,9 +446,9 @@ void Engine::GameEngine::beginTurn()
 		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER1_HERO]->getCardX(0)->getShards());
 		//reset the attack count of the board
-		foreach(std::list<iCard*>, matchBoard->getIHMObject(PLAYER1_BOARD), itCard){
-			itCard->resetAttackCount();		
-		}
+		for_each(boards[PLAYER1_BOARD].begin(), boards[PLAYER1_BOARD].end(), [] (iCard* itCard) {
+			itCard->resetAttackCount();	
+		});
 		playerDraws(getCurrentPlayerNumber(),1);
 	}
 }
