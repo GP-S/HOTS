@@ -261,7 +261,7 @@ int main(int argc, char **argv){
 
 	std::cout << "	1	2	3	blc" << std::endl;
 
-	printAllCapa(hero,"hero");
+	//printAllCapa(hero,"hero");
 
 	Effect *damageeffect = new Effect("damage","none",6);
 	Capacity *capa = new Capacity("damage",0);
