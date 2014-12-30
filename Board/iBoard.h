@@ -82,6 +82,11 @@ public:
  	*/
 	virtual ~iBoard() = 0;
 
+	virtual std::list<iCard*>::iterator begin() = 0;
+
+	virtual std::list<iCard*>::iterator end() = 0;
+
+
 };
 
 #endif //IBOARD_H

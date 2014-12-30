@@ -2,12 +2,12 @@
 
 
 
-iCard * StackedBoard::getCardX(unsigned int x) {
+iCard* StackedBoard::getCardX(unsigned int x) {
 
 	if (listCard->size() < x)
 		throw std::logic_error("the number is to big");
 
-	std::list<Card*>::iterator it;
+	std::list<iCard*>::iterator it;
 
 	it = listCard->begin();
 
@@ -18,13 +18,13 @@ iCard * StackedBoard::getCardX(unsigned int x) {
 
 }
 
-iCard * StackedBoard::takeCardX(unsigned int x) {
+iCard* StackedBoard::takeCardX(unsigned int x) {
 
 	if (listCard->size() < x)
 		throw std::logic_error("the number is to big");
 
-	std::list<Card*>::iterator it;
-	Card *card;
+	std::list<iCard*>::iterator it;
+	iCard* card;
 
 	it = listCard->begin();
 
@@ -44,7 +44,7 @@ void StackedBoard::deleteCardX(unsigned int x) {
 	if (listCard->size() < x)
 		throw std::logic_error("the number is to big");
 
-	std::list<Card*>::iterator it;
+	std::list<iCard*>::iterator it;
 
 	it = listCard->begin();
 
@@ -73,20 +73,20 @@ void StackedBoard::setMaxSize(unsigned int size) {
 
 }
 
-void StackedBoard::addCardX(iCard *card, unsigned int x) {
+void StackedBoard::addCardX(iCard* card, unsigned int x) {
 
 	if (listCard->size() < x) {
-		listCard->push_back((Card*)card);
+		listCard->push_back(dynamic_cast<iCard*> (card));
 	}
 	else {
-		std::list<Card*>::iterator it;
+		std::list<iCard*>::iterator it;
 
 		it = listCard->begin();
 
 		for (size_t i = 0; i < x; i++)
 			it++;
 
-		listCard->insert(it, (Card*)card);
+		listCard->insert(it, dynamic_cast<iCard*> (card));
 	}
 }
 
@@ -98,14 +98,14 @@ void StackedBoard::addCardX(std::list<iCard*> *listcard, unsigned int x) {
 	if (size_max < listCard->size() + listcard->size())
 		throw std::logic_error("the listcard is too big");
 
-	std::list<Card*>::iterator it;
+	std::list<iCard*>::iterator it;
 
 	it = listCard->begin();
 
 	for (size_t i = 0; i < x; i++)
 		it++;
 
-	listCard->splice(it, reinterpret_cast <std::list<Card*> &>(listcard));
+	listCard->splice(it, *listcard);
 
 }
 
