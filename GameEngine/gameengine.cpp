@@ -491,6 +491,15 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	     if(*getCurrentPlayer()==*e->client)
 	      endTurn();
 	     break;
+	   case Network::CREATE:
+	     Network::CreateCardAnswerStructType* answer = (Network::CreateCardAnswerStructType*) e->data;
+	     if(*(e->client)==*player0){
+	       matchCardPlayer0.add((iCard*)answer->serverRef,(void*)answer->clientRef);
+	     }
+	     else if(*(e->client)==*player1) {
+	       matchCardPlayer1.add((iCard*)answer->serverRef,(void*)answer->clientRef);
+	     }
+	     break;
 	 }
          break;
       case ServerEvent::EVENT_CLIENT_CONNECTED:
