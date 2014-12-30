@@ -23,6 +23,7 @@
 
 void printEtape(std::string text);
 void printBoard(Board *board, std::string name);
+void printTimeBoard(RegulatedBoard *board, std::string name);
 void printCard(Card *card);
 void printListCard(std::list<Card*> *listCard);
 void printSizeBoard(Board *board, std::string name);

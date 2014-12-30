@@ -1,11 +1,14 @@
 
 #include "Creature.h"
 
-Creature::Creature() :
-Card()
+Creature::Creature()
 {
     hp = 0;
     baseAttack = 0;
+    attackCount = 0;
+    name = "";
+    cardType = "creature";
+    capaList = new std::list<Capacity*>();
 }
 
 Creature::Creature(std::string name,int hp, int attack)  :
