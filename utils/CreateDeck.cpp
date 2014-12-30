@@ -15,6 +15,53 @@ int myRandom(unsigned int mod){
 	return (int)std::rand()%mod;
 }
 
+Hero* newHero(std::string name){
+
+	Hero* hero = new Hero(name,30,0);
+
+	Effect *hero_hp = new Effect("hp","none",30);
+	Effect *hero_hpMax = new Effect("hpMax","none",30);
+	Effect *hero_attack = new Effect("attack","none",0);
+	Effect *hero_attackCount = new Effect("attackCount","none",0);
+	Effect *hero_attackCountMax = new Effect("attackCountMax","none",0);
+	Effect *hero_shards = new Effect("shards","none",0);
+	Effect *hero_shardsMax = new Effect("shardsMax","none",0);
+
+	Capacity *capa_hero_hp = new Capacity("hp",-1);
+	Capacity *capa_hero_hpMax = new Capacity("hpMax",-1);
+	Capacity *capa_hero_attack = new Capacity("attack",-1);
+	Capacity *capa_hero_attackCount = new Capacity("attackCount",-1);
+	Capacity *capa_hero_attackCountMax = new Capacity("attackCountMax",-1);
+	Capacity *capa_hero_shards = new Capacity("shards",-1);
+	Capacity *capa_hero_shardsMax = new Capacity("shardsMax",-1);
+
+	capa_hero_hp->setActive(true);
+	capa_hero_hpMax->setActive(true);
+	capa_hero_attack->setActive(true);
+	capa_hero_attackCount->setActive(true);
+	capa_hero_attackCountMax->setActive(true);
+	capa_hero_shards->setActive(true);
+	capa_hero_shardsMax->setActive(true);
+	capa_hero_hp->setEffect(hero_hp);
+	capa_hero_hpMax->setEffect(hero_hpMax);
+	capa_hero_attack->setEffect(hero_attack);
+	capa_hero_attackCount->setEffect(hero_attackCount);
+	capa_hero_attackCountMax->setEffect(hero_attackCountMax);
+	capa_hero_shards->setEffect(hero_shards);
+	capa_hero_shardsMax->setEffect(hero_shardsMax);
+
+	hero->addCapacity(capa_hero_hp);
+	hero->addCapacity(capa_hero_hpMax);
+	hero->addCapacity(capa_hero_attack);
+	hero->addCapacity(capa_hero_attackCount);
+	hero->addCapacity(capa_hero_attackCountMax);
+	hero->addCapacity(capa_hero_shards);
+	hero->addCapacity(capa_hero_shardsMax);
+
+	return hero;
+
+}
+
 std::list<Card*>* newDeck(){
 
 	std::srand(std::time(0));

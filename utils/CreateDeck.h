@@ -4,6 +4,7 @@
 #include "../Card/Card.h"
 #include "../Card/Beast.h"
 #include "../Card/Spell.h"
+#include "../Card/Hero.h"
 #include "../Card/Capacity.h"
 #include "../Effect/Effect.h"
 #include "cstdlib"
@@ -12,6 +13,7 @@
 
 int myRandom(unsigned int mod);
 
+Hero* newHero(std::string name);
 std::list<Card*>* newDeck();
 
 #endif //CREATEDECK_H
