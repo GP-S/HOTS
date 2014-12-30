@@ -23,5 +23,8 @@ void printCreature(Creature *creature);
 void printSpell(Spell *spell);
 void printCard(Card *card);
 void printIsAlive(Creature * creature);
+void printAllCapa(Card *card);
+void printEffect(Effect *effect);
+void printCapacity(Capacity *capacity);
 
 #endif //CARD_TEST_H
