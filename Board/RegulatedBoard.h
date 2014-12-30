@@ -14,7 +14,7 @@ class RegulatedBoard : public Board
 {
 
 protected: 
-	std::list<Card*> *cardByArrivalTime;
+	std::list<iCard*> *cardByArrivalTime;
 
 public:
   
@@ -27,7 +27,7 @@ public:
 	* Create a board and initialize it with the pointer of listCard.  
 	* @param std::list<Card> *listCard pointer of a list of card.
 	*/
-	RegulatedBoard(std::list<Card*> *listCard);
+	RegulatedBoard(std::list<iCard*> *listCard);
 
 	/** 
 	* Take the card which is at the Xth position and erase it of the deck.

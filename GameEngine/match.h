@@ -112,9 +112,9 @@ template <class V,class U> class Match
 		}
 
 		U* getIHMObject(V* GEObject){
-			typename listU_type::iterator IHMIterator = GEObjects->begin() ;
-			typename listU_type::iterator IHMObjectsEnd = GEObjects->end() ;
-			typename listV_type::iterator GEIterator = IHMObjects->begin() ;
+			typename listU_type::iterator IHMIterator = IHMObjects->begin() ;
+			typename listU_type::iterator IHMObjectsEnd = IHMObjects->end() ;
+			typename listV_type::iterator GEIterator = GEObjects->begin() ;
 
 			for ( IHMIterator; IHMIterator!=IHMObjectsEnd; ++IHMIterator ) {
 			    ++GEIterator;

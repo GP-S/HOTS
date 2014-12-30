@@ -14,7 +14,7 @@
 class Board
 {
 protected:
-	std::list<Card*> *listCard;
+	std::list<iCard*> *listCard;
 	unsigned int size_max;
 
 public:
@@ -28,21 +28,21 @@ public:
 	* Create a board and initialize it with the pointer of listCard.  
 	* @param std::list<Card> *listCard pointer of a list of card.
 	*/
-	Board(std::list<Card*> *listCard);
+	Board(std::list<iCard*> *listCard);
 	
 	/** 
 	* Get the card which is at the Xth position.
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	virtual iCard * getCardX(unsigned int x);
+	virtual iCard* getCardX(unsigned int x);
 	
 	/** 
 	* Take the card which is at the Xth position and erase it of the deck.
 	* @param unsigned int x position of the wanted card.
 	* @return Card the pointer of the card.
 	*/
-	virtual iCard * takeCardX(unsigned int x);
+	virtual iCard* takeCardX(unsigned int x);
 	
 	/**
 	 * Delete the card which is at the Xth position.
@@ -70,9 +70,9 @@ public:
 	
 	/**
  	* Add a card at the Xth position of a board.
- 	* @param Card *card pointer of the target card, unsigned int x wanted position.
+ 	* @param iCard* card pointer of the target card, unsigned int x wanted position.
  	*/
-	virtual void addCardX(iCard *card,unsigned int x);
+	virtual void addCardX(iCard* card,unsigned int x);
 	
 	/**
  	* Add a list of cards at the Xth position of a board.
@@ -92,9 +92,9 @@ public:
  	*/
 	virtual ~Board();
 
-	std::list<Card*>::iterator begin();
+	std::list<iCard*>::iterator begin();
 
-	std::list<Card*>::iterator end() ;
+	std::list<iCard*>::iterator end() ;
 };
 
 #endif //BOARD_H

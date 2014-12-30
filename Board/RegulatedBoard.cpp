@@ -2,13 +2,13 @@
 
 RegulatedBoard::RegulatedBoard(){
 
-  listCard = new std::list<Card*>();
-  cardByArrivalTime = new std::list<Card*>();
+  listCard = new std::list<iCard*>();
+  cardByArrivalTime = new std::list<iCard*>();
   size_max = listCard->max_size();
 
 }
 
-RegulatedBoard::RegulatedBoard(std::list<Card*> *listcard){
+RegulatedBoard::RegulatedBoard(std::list<iCard*> *listcard){
 
   listCard = listcard;
   cardByArrivalTime = listcard;
@@ -26,10 +26,10 @@ iCard* RegulatedBoard::takeCardX(unsigned int x){
   if(listCard->size() < x)
     throw std::logic_error( "the number is to big" );
 
-  std::list<Card*>::iterator it1;
-  std::list<Card*>::iterator it2;
-  Card* pointerCard1;
-  Card* pointerCard2;
+  std::list<iCard*>::iterator it1;
+  std::list<iCard*>::iterator it2;
+  iCard* pointerCard1;
+  iCard* pointerCard2;
   
   it1 = listCard->begin();
 
@@ -67,10 +67,10 @@ void RegulatedBoard::deletCardX(unsigned int x){
   if(listCard->size() < x)
     throw std::logic_error( "the number is to big" );
 
-  std::list<Card*>::iterator it1;
-  std::list<Card*>::iterator it2;
-  Card* pointerCard1;
-  Card* pointerCard2;
+  std::list<iCard*>::iterator it1;
+  std::list<iCard*>::iterator it2;
+  iCard* pointerCard1;
+  iCard* pointerCard2;
 
   it1 = listCard->begin();
   for(size_t i = 0; i < x; i++)
@@ -97,27 +97,27 @@ void RegulatedBoard::deletCardX(unsigned int x){
 
 }
 
-void RegulatedBoard::addCardX(iCard *card,unsigned int x){
+void RegulatedBoard::addCardX(iCard*card,unsigned int x){
 
   if(listCard->size() < x){
-    listCard->push_back((Card*)card);
-    cardByArrivalTime->push_back((Card*)card);
+    listCard->push_back(dynamic_cast<iCard*> (card));
+    cardByArrivalTime->push_back(dynamic_cast<iCard*> (card));
   }
   else{
-    std::list<Card*>::iterator it;
+    std::list<iCard*>::iterator it;
     it = listCard->begin();
     for(size_t i = 0; i < x; i++)
       it++;
 
-    listCard->insert(it,(Card*)card);
-    cardByArrivalTime->push_back((Card*)card);
+    listCard->insert(it,dynamic_cast<iCard*> (card));
+    cardByArrivalTime->push_back(dynamic_cast<iCard*> (card));
   }
 }
 
 
 void RegulatedBoard::addCardX(std::list<iCard*> *list, unsigned int x) {
 
-	std::list<Card*>::iterator it;
+	std::list<iCard*>::iterator it;
 	it = listCard->begin();
 
   if(this->listCard->size() < x)
@@ -128,25 +128,25 @@ void RegulatedBoard::addCardX(std::list<iCard*> *list, unsigned int x) {
     it = this->listCard->end();
 
 
-	this->listCard->splice(it, reinterpret_cast <std::list<Card*> &> (list));
-	this->listCard->splice(this->listCard->end(), reinterpret_cast <std::list<Card*> &> (list));
+	this->listCard->splice(it, *list);
+	this->listCard->splice(this->listCard->end(), *list);
 	/*this->cardByArrivalTime->insert(this->cardByArrivalTime->end, //maybe onde day...
-								  ((std::list<Card*>)list)->begin(),
-								  ((std::list<Card*>)list)->end());
+								  ((std::list<iCard*>)list)->begin(),
+								  ((std::list<iCard*>)list)->end());
   */
 }
 
-unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
+unsigned int RegulatedBoard::CardArrivalByTime(iCard*card){
 
   unsigned int arrival = 0;
   bool finish = false;
 
-  std::list<Card*>::iterator it1;
-  std::list<Card*>::iterator it2;
+  std::list<iCard*>::iterator it1;
+  std::list<iCard*>::iterator it2;
   it1 = listCard->begin();
   it2 = cardByArrivalTime->begin();
   
-  while((Card*)card != *it1){
+  while(dynamic_cast<iCard*> (card) != *it1){
     
     if(it1 == listCard->end())
       throw std::logic_error( "no finding card" );

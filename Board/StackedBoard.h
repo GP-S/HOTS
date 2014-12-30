@@ -1,4 +1,6 @@
-#pragma once
+#ifndef STACKED_BOARD_H
+#define STACKED_BOARD_H
+
 #include "Board.h"
 class StackedBoard :
 	public Board
@@ -13,7 +15,7 @@ public:
 		* Create a board and initialize it with the pointer of listCard.
 		* @param std::list<Card> *listCard pointer of a list of card.
 		*/
-	StackedBoard(std::list<Card*> *listCard) : Board(listCard){}
+	StackedBoard(std::list<iCard*> *listCard) : Board(listCard){}
 
 	/**
 	* Get the card which is at the Xth position.
@@ -78,4 +80,4 @@ public:
 	~StackedBoard();
 };
 
-
+#endif // STACKED_BOARD_H

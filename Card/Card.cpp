@@ -45,7 +45,7 @@ void Card::calculateCost(){//modify when capacities are done
 	// 	fcost += (*it)->getEffect()->costVal(this);
 	// }
 
-	std::for_each(capaList->begin(),capaList->end(), [fcost,this] (Capacity* it){
+	std::for_each(capaList->begin(),capaList->end(), [fcost,this] (Capacity* it) mutable {
 
 			fcost += it->getEffect()->costVal(this);
 		}
@@ -65,7 +65,7 @@ std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a 
 	// 	}
 	// }
 
-	std::for_each(capaList->begin(),capaList->end(), [effectType] (Capacity* it){
+	std::for_each(capaList->begin(),capaList->end(), [effectType, capaListTemp] (Capacity* it){
 		if (it->getEffect()->getType()==effectType)//compare the strings
 			capaListTemp->push_back(it);
 		}
@@ -111,7 +111,7 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 	// 		}
 	// 	}
 
-	std::for_each(capaList->begin(),capaList->end(),[total,effectType] (Capacity* capaIterator){
+	std::for_each(capaList->begin(),capaList->end(),[total,effectType] (Capacity* capaIterator) mutable {
 		if (capaIterator->getActive())//if the capacity is active
 			if(capaIterator->getEffect()->getType()==effectType)//compare the strings
 				total+=capaIterator->getEffect()->getValue();
