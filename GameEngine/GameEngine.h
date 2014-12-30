@@ -57,7 +57,7 @@ namespace Engine
       ~GameEngine();
       GameEngine& operator= ( const GameEngine& other );
       bool operator== ( const GameEngine& other ) const;
-      IGameSimulator* getSimulator ( void );
+      iGameSimulator* getSimulator ( void );
       void useCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );

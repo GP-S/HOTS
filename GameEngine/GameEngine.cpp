@@ -48,11 +48,11 @@ bool Engine::GameEngine::operator== ( const GameEngine& other ) const
 
 }
 
-Engine::IGameSimulator* Engine::GameEngine::getSimulator ( void ) 
+Engine::iGameSimulator* Engine::GameEngine::getSimulator ( void ) 
 {
  	Engine::GameSimulator* gameSimulator=new GameSimulator();
 
-	return dynamic_cast<IGameSimulator*> (gameSimulator);
+	return dynamic_cast<iGameSimulator*> (gameSimulator);
 
 }
 
@@ -428,7 +428,7 @@ void Engine::GameEngine::beginTurn()
 			currentHero->getTotal("shards"));
 		//reset the attack count of the board
 		std::for_each(boards[PLAYER0_BOARD]->begin(), boards[PLAYER0_BOARD]->end(), [] (iCard* itCard) {
-			itCard->resetAttackCount();	
+			dynamic_cast<iBeast*> (itCard)->resetAttackCount();	
 		});
 		playerDraws(getCurrentPlayerNumber(),1);
 	}
