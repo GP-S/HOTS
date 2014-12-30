@@ -68,7 +68,7 @@ int main(int argc, char **argv){
 /*=================================etape  1=========================================*/
 /*Instance of some card, and three board: hand, cemetery and deck*/
  	printEtape(": Instanciation of hand, cemetery and deck and a list of card with newDeck");	// etape 1
- 	std::list<Card*> *deck = newDeck();
+ 	std::list<Card*> *listOfCard = newDeck();
 
  	Board *deck = new Board();
  	Board *hand = new Board();
@@ -79,7 +79,7 @@ int main(int argc, char **argv){
 /*I print all cards in the list of cards*/
 	printEtape(": Some visual of all cards");
 
-	printListCard(deck);
+	printListCard(listOfCard);
 
 /*=================================etape  3=========================================*/
 /*Set the max size of all board*/
@@ -104,7 +104,7 @@ int main(int argc, char **argv){
 /*I put all cards in the deck*/
 	printEtape(": Fill the deck with all cards");
 
-	deck->addCardX(deck,0);
+	deck->addCardX(listOfCard,0);
 
 	printBoard(deck,"deck");
 
