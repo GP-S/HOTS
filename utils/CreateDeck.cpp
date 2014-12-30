@@ -31,28 +31,28 @@ std::list<Card*>* newDeck(){
 		Beast *beast = new Beast(namebeast[myRandom(16)],life,strength,"human");
 
 		Effect *hp = new Effect("hp","none",life);
-		Effect *max_hp = new Effect("hpMax","none",life);
+		Effect *hpMax = new Effect("hpMax","none",life);
 		Effect *attack = new Effect("attack","none",strength);
-		Effect *AttackCount = new Effect("attackCount","none",0);
-		Effect *AttackCountMax = new Effect("attackCountMax","none",1);
+		Effect *attackCount = new Effect("attackCount","none",0);
+		Effect *attackCountMax = new Effect("attackCountMax","none",1);
 
 		Capacity *capa_hp = new Capacity("hp",-1);
-		Capacity *capa_max_hp = new Capacity("hpMax",-1);
+		Capacity *capa_hpMax = new Capacity("hpMax",-1);
 		Capacity *capa_attack = new Capacity("attack",-1);
-		Capacity *capa_AttackCount = new Capacity("attackCount",-1);
-		Capacity *capa_AttackCountMax = new Capacity("attackCountMax",-1);
+		Capacity *capa_attackCount = new Capacity("attackCount",-1);
+		Capacity *capa_attackCountMax = new Capacity("attackCountMax",-1);
 
 		capa_hp->setEffect(hp);
-		capa_max_hp->setEffect(max_hp);
+		capa_hpMax->setEffect(hpMax);
 		capa_attack->setEffect(attack);
-		capa_AttackCount->setEffect(AttackCount);
-		capa_AttackCountMax->setEffect(AttackCountMax);
+		capa_attackCount->setEffect(attackCount);
+		capa_attackCountMax->setEffect(attackCountMax);
 
 		beast->addCapacity(capa_hp);
-		beast->addCapacity(capa_max_hp);
+		beast->addCapacity(capa_hpMax);
 		beast->addCapacity(capa_attack);
-		beast->addCapacity(capa_AttackCount);
-		beast->addCapacity(capa_AttackCountMax);
+		beast->addCapacity(capa_attackCount);
+		beast->addCapacity(capa_attackCountMax);
 
 		beast->calculateCost();
 
@@ -70,11 +70,9 @@ std::list<Card*>* newDeck(){
 		Capacity *capa = new Capacity("damage",0);
 
 		capa->setEffect(damageeffect);
-
 		spell->addCapacity(capa);
-
-
 		spell->calculateCost();
+		
 		deck->push_back((Card*)spell);
 	}
 

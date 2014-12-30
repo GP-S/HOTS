@@ -23,7 +23,6 @@ void printEffect(Effect *effect){
 
 }
 
-
 void printCapacity(Capacity *capacity){
 
 	std::cout << "Capacity: " << std::endl;
