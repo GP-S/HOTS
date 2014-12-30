@@ -13,7 +13,7 @@
 
 
 void printEtape(std::string text);
-void printEffect(Effect *effect,unsigned int max);
-void printCapacity(Capacity *capacity,unsigned int max);
+void printEffect(Effect *effect);
+void printCapacity(Capacity *capacity);
 
 #endif //EFFECT_TEST_H

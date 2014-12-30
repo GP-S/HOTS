@@ -16,5 +16,12 @@
 
 #include "../../utils/tool.inc"
 
+void printEtape(std::string text);
+void printBeast(Beast *beast);
+void printHero(Hero *hero);
+void printCreature(Creature *creature);
+void printSpell(Spell *spell);
+void printCard(Card *card);
+void printIsAlive(Creature * creature);
 
 #endif //CARD_TEST_H

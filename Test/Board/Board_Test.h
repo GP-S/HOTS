@@ -11,6 +11,7 @@
 #include <string>
 
 #include "../../utils/tool.inc"
+#include "../../utils/CreateDeck.h"
 
 void printEtape(std::string text);
 void printBoard(Board *board, std::string name);

@@ -1,17 +1,14 @@
 #include "Card_Test.h"
 
-#define NUMBER 10
+#define NUMBER 5
 
 static unsigned int etape = 0;
-std::string name = "alpha";
-std::string type = "beta";
-std::string race = "gamma";
+std::string std::string cardName[NUMBER] = {"alpha","fire","dafuck","beta","omega"};
+std::string std::string cardType[NUMBER] = {"beast","spell","card_dafuck","creature","hero"};
+std::string std::string cardRace[NUMBER] = {"human","robot","none","none","none"};
 
-std::string intToString(int i) {
-     std::ostringstream oss;
-     oss << i;
-     return oss.str();
-}
+
+
 
 void printEtape(std::string text){
 	std::cout << std::endl;
@@ -19,55 +16,66 @@ void printEtape(std::string text){
 	std::cout << "***etape: " << etape << text << " *** " << std::endl;
 }
 
-void printBeast(Beast *beast,unsigned int max){
+void printBeast(Beast *beast){
 
 	std::cout << "Beast: " << std::endl;
-	for(size_t i = 0; i < max; i++){
-		std::cout <<	" beast[" << i << "] = ";
-		std::cout <<	" Name: " << beast[i].getName();
-		std::cout <<	" cardType: " << beast[i].getType();
-		std::cout <<	" cost: " << beast[i].getCost();
-		std::cout <<	" hp: " << beast[i].getHp();
-		std::cout <<	" baseAttack: " << beast[i].getBaseAttack();
-		std::cout <<	" race: " << beast[i].getRace() << std::endl;
-	} 
+
+	std::cout <<	"  Name: " << beast->getName();
+	std::cout <<	"  cardType: " << beast->getType();
+	std::cout <<	"  cost: " << beast->getCost();
+	std::cout <<	"  hp: " << beast->getHp();
+	std::cout <<	"  baseAttack: " << beast->getBaseAttack();
+	std::cout <<	"  race: " << beast->getRace() << std::endl;
 }
 
-void printCreature(Creature *creature,unsigned int max){
+void printHero(Hero *hero){
+
+	std::cout << "Hero: " << std::endl;
+
+	std::cout <<	"  Name: " << hero->getName();
+	std::cout <<	"  cardType: " << hero->getType();
+	std::cout <<	"  cost: " << hero->getCost();
+	std::cout <<	"  hp: " << hero->getHp();
+	std::cout <<	"  baseAttack: " << hero->getBaseAttack() << std::endl; 
+}
+
+void printCreature(Creature *creature){
 
 	std::cout << "Creature: " << std::endl;
-	for(size_t i = 0; i < max; i++){
-		std::cout <<	" creature[" << i << "] = ";
-		std::cout <<	" Name: " << creature[i].getName();
-		std::cout <<	" cardType: " << creature[i].getType();
-		std::cout <<	" cost: " << creature[i].getCost();
-		std::cout <<	" hp: " << creature[i].getHp();
-		std::cout <<	" baseAttack: " << creature[i].getBaseAttack() << std::endl;
-	} 
+
+	std::cout <<	"  Name: " << creature->getName();
+	std::cout <<	"  cardType: " << creature->getType();
+	std::cout <<	"  cost: " << creature->getCost();
+	std::cout <<	"  hp: " << creature->getHp();
+	std::cout <<	"  baseAttack: " << creature->getBaseAttack() << std::endl; 
 }
 
-void printCard(Card *card,unsigned int max){
+void printSpell(Spell *spell){
+
+	std::cout << "Spell: " << std::endl;
+
+	std::cout <<	"  Name: " << spell->getName();
+	std::cout <<	"  cardType: " << spell->getType();
+	std::cout <<	"  cost: " << spell->getCost() << std::endl; 
+}
+
+void printCard(Card *card){
 
 	std::cout << "Card: " << std::endl;
-	for(size_t i = 0; i < max; i++){
-		std::cout <<	" card[" << i << "] = ";
-		std::cout <<	" Name: " << card[i].getName();
-		std::cout <<	" cardType: " << card[i].getType();
-		std::cout <<	" cost: " << card[i].getCost() << std::endl;
-	} 
+
+	std::cout <<	"  Name: " << card->getName();
+	std::cout <<	"  cardType: " << card->getType();
+	std::cout <<	"  cost: " << card->getCost() << std::endl; 
 }
 
-void printIsAlive(Creature * creature,unsigned int max){
+void printIsAlive(Creature * creature){
 
-	for(size_t i = 0; i < max; i++){
-		std::cout <<	" creature[" << i << "] = ";
-		std::cout << creature[i].getName();
-		std::cout <<	" is ";
-		if(creature[i].isAlive())
-			std::cout << "alive" << std::endl;
-		else
-			std::cout << "dead" << std::endl;
-	} 
+	std::cout << creature->getName();
+	std::cout <<	" is ";
+	if(creature->isAlive())
+		std::cout << "alive" << std::endl;
+	else
+		std::cout << "dead" << std::endl; 
 }
 
 /*==================================================================================*/
@@ -77,219 +85,95 @@ void printIsAlive(Creature * creature,unsigned int max){
 int main(int argc, char **argv){
 
 
-/*==================================================================================*/
-/*I Instance some card, creature, beast*/
-	printEtape("Instanciation of cards, creatures and beasts");	// etape 1
+/*=================================etape  1=========================================*/
+/*I Instance all diferent Card*/
+	printEtape("Instanciation of all Cards type");
 	Card *card;
+	Spell *spell;
 	Creature *creature;
+	Hero *hero;
 	Beast *beast;
 
-	card = (Card*)malloc(NUMBER*sizeof(Card));
-	creature = (Creature*)malloc(NUMBER*sizeof(Creature));
-	beast = (Beast*)malloc(NUMBER*sizeof(Beast));
-
-/*==================================================================================*/
-/*I Initialise some card, creature, beast*/
-	printEtape("Intialisation of cards, creatures and beasts");	// etape 2
-
-	/*for(size_t i = 0; i < NUMBER; i++){
-		printEtape("plop 0");
-		//card[i].setName(name);
-		printEtape("plop 1");
-		//card[i].setType(type);
-		printEtape("plop 2");
-		//card[i].calculateCost();
-		printEtape("plop 3");
-		name += intToString(i);
-		printEtape("plop 4");
-		type += intToString(i);
-		printEtape("plop 5");
-	}
-
-	printCard(card,NUMBER);*/
-
-	for(size_t i = 0; i < NUMBER; i++){
-
-		printEtape("plop 0");
-		beast[i].setName(name);
-		beast[i].setType(type);
-		beast[i].setHp(i+1);
-		beast[i].setBaseAttack(i);
-		beast[i].setRace(race);
-		beast[i].calculateCost();
-		name += intToString(i);
-		type += intToString(i);
-		race += intToString(i);
-	}
-
-	printBeast(beast,NUMBER);
-
-	for(size_t i = 0; i < NUMBER; i++){
-
-		creature[i].setName(name);
-		creature[i].setType(type);
-		creature[i].setHp(i+1);
-		creature[i].setBaseAttack(i);
-		creature[i].calculateCost();
-		name += intToString(i);
-		type += intToString(i);
-	}
-
-	printCreature(creature,NUMBER);
-
-/*==================================================================================*/
-/*I Instance a beast and a creature*/
-	printEtape("Instanciation of heros ,human");	// etape 3
+	Card *anotherCard = new Card("card","card_dafuck");
+	Spell *anotherSpell = new Spell("Lightning bolt");
+	Creature *anotherCreature = new Creature("creature",2,3);
+	Hero *anotherHero = new Hero("Arthas",30,0);
+	Beast *anotherBeast = new Beast("Nicolas",1,0,"human");
 
 
-	//Card *firstCard = new Card("firstCard","\0");
-	// I can't do this because Card is abstract
+/*=================================etape  2=========================================*/
+/*I Initialise all Cards*/
+	printEtape("Intialisation of cards");
 
-	Creature *heros = new Creature("heros",30,2);
-	Beast *arthas = new Beast("Arthas",4,6,"human");
+	card->setName(cardName[2]);
+	card->setType(cardType[2]);
+	card->calculateCost();
 
-	printCreature(heros,1);
-	printBeast(arthas,1);
+	printCard(card);
+
+	beast->setName(cardName[0]);
+	beast->setType(cardType[0]);
+	beast->setHp(5);
+	beast->setBaseAttack(1);
+	beast->setRace(cardRace[0]);
+	beast->calculateCost();
+
+	printBeast(beast);
+
+	creature->setName(cardName[3]);
+	creature->setType(cardType[3]);
+	creature->setHp(1);
+	creature->setBaseAttack(1);
+	creature->calculateCost();
+	
+	printCreature(creature);
+
+	hero->setName(cardName[4]);
+	hero->setType(cardType[4]);
+	hero->setHp(30);
+	hero->setBaseAttack(0);
+	hero->calculateCost();
+	
+	printHero(hero);
+
+	spell->setName(cardName[1]);
+	spell->setType(cardType[1]);
+	spell->calculateCost();
+
+	printSpell(spell);
 
 
-/*==================================================================================*/
-/*I try to get all attribute of all class*/
-	printEtape("Test all getteur");	// etape 4
+	printCard(anotherCard);
+	printBeast(anotherBeast);
+	printCreature(anotherCreature);
+	printHero(anotherHero);
+	printSpell(anotherSpell);
 
 
-
-/*==================================================================================*/
+/*=================================etape  3=========================================*/
 /*I test the methode attack*/
-	printEtape("Fight beteewn heros and arthas");	// etape 5
-
-	arthas->takeDamage(heros->getBaseAttack());
-	heros->takeDamage(arthas->getBaseAttack());
-
-	printCreature(arthas,1);
-	printCreature(heros,1);
-
-	printIsAlive(arthas,1);
-	printIsAlive(heros,1);
-
-/*==================================================================================*/
-/*I test the methode attack and canAttack util death*/
-	printEtape("Fight beteewn heros and arthas util death");	// etape 6
-
-	size_t roundNumber = 0;
-	while(arthas->isAlive() | heros->isAlive()){
-		roundNumber++;
-
-		std::cout << "round number: " << roundNumber << std::endl;
-
-		arthas->takeDamage(heros->getBaseAttack());
-		heros->takeDamage(arthas->getBaseAttack());
-
-		printCreature(arthas,1);
-		printCreature(heros,1);
-	}
-
-		printIsAlive(arthas,1);
-		printIsAlive(heros,1);
-
-/*==================================================================================*/
-/*I test methode for increase/decrease attribute*/
-	printEtape("heal, increaseMaxHP, increaseAttackCount, decreaseMaxHP");	// etape 7
-
-	std::cout << "	before tests" << std::endl;
-	printCreature(&creature[9],1);
-
-	std::cout << "	takeDamage 3" << std::endl;
-	creature[9].takeDamage(3);
-	printCreature(&creature[9],1);
-
-	std::cout << "heal 10" << std::endl;
-	creature[9].heal(10);
-	printCreature(&creature[9],1);
-
-	std::cout << "increaseMaxHP 4" << std::endl;
-	creature[9].increaseMaxHP(4);
-
-	std::cout << "increaseAttackCount 3" << std::endl;
-	//creature[9].increaseAttackCount(3);
-	printCreature(&creature[9],1);
-
-	std::cout << "decreaseMaxHP 8" << std::endl;
-	creature[9].decreaseMaxHP(8);
-	printCreature(&creature[9],1);
+	printEtape("Not implemented yet");
 
 
-/*==================================================================================*/
-/*	 destruction, il manque aussi la création d'une liste avec une liste de cartes
-	Il manque aussi le fait que l'on travail avec des RegulatedBoard & des StackBoard
-			*/
+/*=================================etape  4=========================================*/
 
-	printEtape("End of the test, all tests are succesfull for the science !");	// etape 10
+	printEtape("End of the test, all tests are succesfull for the science !");
 	return 0;
 }
 
-/*Done
 
-###Beast();
-#Beast(std::string race);
-###std::string getRace();
-###void setRace(std::string race);
-
-###Creature();
-###Creature(std::string name,int hp,int attack);
-###void setHp(int hp);
-###void setBaseAttack(int attack);
-###int getHp();
-###int getBaseAttack();
-###void attack(Creature* target);
-###bool canAttack();
-###void takeDamage(unsigned int damage);
-###void heal(unsigned int heal);
-###void increaseMaxHP(unsigned int modifier);
-###void decreaseMaxHP(unsigned int modifier);       
-###void increaseAttackCount(); 
-
-###Card();
-###Card(std::string name, std::string cardType);
-###int	getCost();	
-###void setName(std::string);
-###void setType(std::string);
-###std::string	getName();
-###std::string	getType();
-###void calculateCost();
-
-
+/*=================================Beast=========================================*/
+/*
 */
-
-/* To do
-
-
-~Beast();
-bool isAlive();
-
-
-
-
-~Creature();
-virtual bool isAlive();
-void resetAttackCount();
-
-
-
-~Card();
-void addCapacity(Capacity* capa);
-virtual bool isAlive() = 0;
-    //	std::list<Capacity*>*		findCapaByType(std::string capaType);
-bool isUsable(Player p);
-int getTotal(std::string effectType);
-void decreaseAllDurabilty();
-
-protected:
-    std::string				name;
-	std::string				cardType;
-    int                     cost;
-    std::list<Capacity*>*   capaList;
-    Player                  owner;
-
-
-
+/*=================================Hero=========================================*/
+/*
+*/
+/*=================================Creature=========================================*/
+/*
+*/
+/*=================================Spell=========================================*/
+/*
+*/
+/*=================================Card=========================================*/
+/*
 */

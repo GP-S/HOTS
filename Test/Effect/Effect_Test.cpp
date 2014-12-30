@@ -12,39 +12,30 @@ void printEtape(std::string text){
 	std::cout << "***etape: " << etape << text << " *** " << std::endl;
 }
 
-void printEffect(Effect *effect,unsigned int max){
+void printEffect(Effect *effect){
 
 	std::cout << "Effect: " << std::endl;
-	for(size_t i = 0; i < max; i++){
-
-		if(max != 1)
-			std::cout <<	" effect[" << i << "] = ";
 		
-		std::cout <<	" type: " << effect[i].getType();
-		std::cout <<	" affinity: " << effect[i].getAffinity();
-		std::cout <<	" value: " << effect[i].getValue();		
-		std::cout <<	" cost value: " << effect[i].costVal() << std::endl;
-	} 
+	std::cout <<	" type: " << effect->getType();
+	std::cout <<	" affinity: " << effect->getAffinity();
+	std::cout <<	" value: " << effect->getValue();		
+	std::cout <<	" cost value: " << effect->costVal() << std::endl;
+
 }
 
 
-void printCapacity(Capacity *capacity,unsigned int max){
+void printCapacity(Capacity *capacity){
 
 	std::cout << "Capacity: " << std::endl;
-	for(size_t i = 0; i < max; i++){
 
-		if(max != 1)
-			std::cout <<	" capacity[" << i << "] = ";
-		
-		std::cout <<	" type: " << capacity[i].getType();
+	std::cout <<	" type: " << capacity->getType();
 
-		if(capacity[i].getDurabilty() == -1)
-			std::cout <<	" durabilty: infinity";
-		else
-			std::cout <<	" durabilty: " << capacity[i].getDurabilty();
+	if(capacity->getDurabilty() == -1)
+		std::cout <<	" durabilty: infinity";
+	else
+		std::cout <<	" durabilty: " << capacity->getDurabilty();
 
-		std::cout <<	" active: " << capacity[i].getActive() << std::endl;
-	} 
+	std::cout <<	" active: " << capacity->getActive() << std::endl; 
 }
 
 /*==================================================================================*/
@@ -57,91 +48,80 @@ int main(int argc, char **argv){
 /*=================================etape  1=========================================*/
 /*I instance some effects and capacities*/
 	printEtape("Instanciation of effects and capacities");
-	// Effect *effect;
-	// Capacity *capacity;
 
 	Effect *effect = new Effect();
 	Capacity *capacity = new Capacity();
 
-//	effect = (Effect*)malloc(NUMBER*sizeof(Effect));
-//	capacity = (Capacity*)malloc(NUMBER*sizeof(Capacity));
+	Effect *anotherEffect = new Effect("another type","another affinity",0);
+	Capacity *anotherCapacity = new Capacity("something like a type",0);
 	
 
 /*=================================etape  2=========================================*/
 /*I initialise all effects and capacities*/
 	printEtape("Intialisation of effects and capacities");
 
-	effect->setType(effectTypes[0]);
-	effect->setAffinity("none");
-	effect->setValue(0);
+	for(size_t i = 0; i < NUMBER; i++){
 
-	printEffect(effect,1);
+		effect->setType(effectTypes[i]);
+		effect->setAffinity("none");
+		effect->setValue(i);
 
-	// for(size_t i = 0; i < NUMBER; i++){
-	// 	effect[i].setType(effectTypes[i]);
-	// 	effect[i].setAffinity("nome");
-	// 	effect[i].setValue(i);
-	// }
+		printEffect(effect);
+	}
 
-	// printEffect(effect,NUMBER);
+	for(size_t i = 0; i < NUMBER; i++){
 
-	// for(size_t i = 0; i < NUMBER; i++){
+		capacity->setType(effectTypes[i]);
+		if(i%2)
+			capacity->setActive(true);
+		else
+			capacity->setActive(false);
 
-	// 	capacity[i].setType(effectTypes[i]);
-	// 	if(i%2)
-	// 		capacity[i].setActive(true);
-	// 	else
-	// 		capacity[i].setActive(false);
+		if(i<NUMBER/2)
+			capacity->setDurabilty(-1);
+		else
+			capacity->setDurabilty(i);
 
-	// 	if(i<NUMBER/2)
-	// 		capacity[i].setDurabilty(-1);
-	// 	else
-	// 		capacity[i].setDurabilty(i);
+		printCapacity(capacity,NUMBER);
+	}
 
-	// 	capacity[i].setEffect(&effect[i]);
-	// }
+	anotherCapacity->setEffect(anotherEffect);
 
-	// printCapacity(capacity,NUMBER);
+	printEffect(anotherEffect);
+	printCapacity(anotherCapacity);
 
 /*=================================etape  3=========================================*/
-/*I try to get the effect of all capacity*/
+/*I try to get the effect of capacity*/
 	printEtape("Get the effect of capacity");
 
-	for(size_t i = 0; i < NUMBER; i++)
-		printEffect(capacity[i].getEffect(),NUMBER);
-
+	printEffect(anotherCapacity->getEffect());
+	printEffect(capacity->getEffect());
 
 /*=================================etape  4=========================================*/
-/*I create one more effect and capacity with the other constructor*/
-	printEtape("Create effect and capacity with the other constructor");
-
-	Effect *anotherEffect = new Effect("another type","another affinity",0);
-	Capacity *anotherCapacity = new Capacity("something like a type",0);
-
-	printEffect(anotherEffect,1);
-	printCapacity(anotherCapacity,1);
-
-/*=================================etape  5=========================================*/
-/*I decrease all the durability of all capacity by one*/
+/*I decrease the durability of capacity by one*/
 	printEtape("Decrease the durability of capacity");
 
-	std::cout << "before: " << std::endl;
-	printCapacity(capacity,NUMBER);
+	capacity->decreaseDurability();
+	anotherCapacity->decreaseDurability();
 
-	for(size_t i = 0; i < NUMBER; i++)
-		capacity[i].decreaseDurability();
+	printCapacity(capacity);
+	printCapacity(anotherCapacity);
 
-	std::cout << "after: " << std::endl;
-	printCapacity(capacity,NUMBER);
+/*=================================etape  5=========================================*/
+/*iEffect and iCapacity*/
+	printEtape("iEffect and iCapacity");
 
-/*=================================etape  6=========================================*/
+
+
+
+/*=================================etape  5=========================================*/
 
 //destructor
 //~Effect();
 //~Capacity();
 
 
-/*=================================etape  7=========================================*/
+/*=================================etape  6=========================================*/
 
 	printEtape("End of the effect test, all tests well done");
 	return 0;
