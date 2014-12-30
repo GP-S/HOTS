@@ -264,6 +264,9 @@ int main(int argc, char **argv){
 	std::cout << "	7	8	9	blc" << std::endl;
 
 	hero->calculateCost();
+
+	std::cout << "	10	11	12	blc" << std::endl;
+
 	printAllCapa(hero,"hero");
 
 	Effect *damageeffect = new Effect("damage","none",6);
