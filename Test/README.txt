@@ -16,9 +16,12 @@
 #                                                                                   #
 #     2) Who to compile test files                                                  #
 #                                                                                   #
-#      -go into build repertory of the test you went to execute                     #
+#      -go into the repertory of the test you want to execute                       #
+#                                                                                   #
+#      -create a repertory name build and go into it                                #
 #                                                                                   #
 #      -enter the following command into a terminal:                                #
+#                                                                                   #
 #              cmake ..                                                             #
 #                                                                                   #
 #      -after that, the MakeFile is generated                                       #

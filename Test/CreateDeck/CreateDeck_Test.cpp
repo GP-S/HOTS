@@ -56,37 +56,48 @@ int main(int argc, char **argv){
 
 	std::cout << "Deck cree, size: " << deck->size() << std::endl;
 
-	for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); it++){
+	// for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); it++){
 
-		printCard((*it));
+	// 	printCard((*it));
 
-		if((*it)->getType() == "beast"){
-			printBeast((Beast*)(*it));
+	// 	if((*it)->getType() == "beast"){
+	// 		printBeast((Beast*)(*it));
+
+	// 		std::cout << "    Effect: " << std::endl;
+	// 		printEffect((*it),"attack");
+	// 		printEffect((*it),"attackCount");
+	// 		printEffect((*it),"attackCountMax");
+	// 		printEffect((*it),"hp");
+	// 		printEffect((*it),"hpMax");
+	// 	}
+
+	// 	if((*it)->getType() == "spell")
+	// 		printSpell((Spell*)(*it));
+	// 		printEffect((*it),"damage");
+
+
+
+	// }
+
+	std::for_each(deck->begin(),deck->end(), [] (Card* it){
+		printCard(it);
+
+		if(it->getType() == "beast"){
+			printBeast((Beast*)it);
 
 			std::cout << "    Effect: " << std::endl;
-			printEffect((*it),"attack");
-			printEffect((*it),"attackCount");
-			printEffect((*it),"attackCountMax");
-			printEffect((*it),"hp");
-			printEffect((*it),"hpMax");
+			printEffect(it,"attack");
+			printEffect(it,"attackCount");
+			printEffect(it,"attackCountMax");
+			printEffect(it,"hp");
+			printEffect(it,"hpMax");
 		}
 
-		if((*it)->getType() == "spell")
-			printSpell((Spell*)(*it));
-			printEffect((*it),"damage");
-
-
-
-	}
-
-/*
-"attack"
-"attackCount"
-"attackCountMax"
-"damage"
-"hp"
-"hpMax"
-*/
+		if(it->getType() == "spell")
+			printSpell((Spell*)it);
+			printEffect(it,"damage");
+		}
+	);
 
 	std::cout << "Tout c'est bien passé ! ! ! " << std::endl;
 

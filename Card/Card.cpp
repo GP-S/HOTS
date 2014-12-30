@@ -7,7 +7,7 @@
 *
 **/
 
-#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
+//#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
 
 
 
@@ -41,15 +41,15 @@ void Card::calculateCost(){//modify when capacities are done
 
 	float fcost = 0.0;
 
-	foreach(std::list<Capacity*>, capaList, it){
-		fcost += (*it)->getEffect()->costVal(this);
-	}
+	// foreach(std::list<Capacity*>, capaList, it){
+	// 	fcost += (*it)->getEffect()->costVal(this);
+	// }
 
-	// std::for_each(capaList->begin(),capaList->end(), [fcost,this] (Capacity* it){
+	std::for_each(capaList->begin(),capaList->end(), [fcost,this] (Capacity* it){
 
-	// 		fcost += it->getEffect()->costVal(this);
-	// 	}
-	// );
+			fcost += it->getEffect()->costVal(this);
+		}
+	);
 
 	cost = (int)fcost;
 
@@ -59,17 +59,17 @@ std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a 
 {
 	std::list<Capacity*>* capaListTemp = new std::list<Capacity*>();
 
-	foreach(std::list<Capacity*>, capaList, it){
-		if ((*it)->getEffect()->getType()==effectType){//compare the strings
-			capaListTemp->push_back(*it);
-		}
-	}
-
-	// std::for_each(capaList->begin(),capaList->end(), [effectType] (Capacity* it){
-	// 	if (it->getEffect()->getType()==effectType)//compare the strings
-	// 		capaListTemp->push_back(it);
+	// foreach(std::list<Capacity*>, capaList, it){
+	// 	if ((*it)->getEffect()->getType()==effectType){//compare the strings
+	// 		capaListTemp->push_back(*it);
 	// 	}
-	// );
+	// }
+
+	std::for_each(capaList->begin(),capaList->end(), [effectType] (Capacity* it){
+		if (it->getEffect()->getType()==effectType)//compare the strings
+			capaListTemp->push_back(it);
+		}
+	);
 
 	return capaListTemp;
 
@@ -103,20 +103,20 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 {
 	int total = 0;
 	
-	foreach(std::list<Capacity*>, capaList, capaIterator){
-		if ((*capaIterator)->getActive()){//if the capacity is active
-			if((*capaIterator)->getEffect()->getType()==effectType){//compare the strings
-				total+=(*capaIterator)->getEffect()->getValue();
-				}
-			}
-		}
-
-	// std::for_each(capaList->begin(),capaList->end(),[total,effectType] (Capacity* capaIterator){
-	// 	if (capaIterator->getActive())//if the capacity is active
-	// 		if(capaIterator->getEffect()->getType()==effectType)//compare the strings
-	// 			total+=capaIterator->getEffect()->getValue();
+	// foreach(std::list<Capacity*>, capaList, capaIterator){
+	// 	if ((*capaIterator)->getActive()){//if the capacity is active
+	// 		if((*capaIterator)->getEffect()->getType()==effectType){//compare the strings
+	// 			total+=(*capaIterator)->getEffect()->getValue();
+	// 			}
+	// 		}
 	// 	}
-	// );
+
+	std::for_each(capaList->begin(),capaList->end(),[total,effectType] (Capacity* capaIterator){
+		if (capaIterator->getActive())//if the capacity is active
+			if(capaIterator->getEffect()->getType()==effectType)//compare the strings
+				total+=capaIterator->getEffect()->getValue();
+		}
+	);
 	
 
 	if (effectType == "hp" && total < 1){
@@ -152,14 +152,14 @@ int Card::getCost()
 
 void Card::decreaseAllDurabilty(){
 
-	foreach(std::list<Capacity*>, capaList, capaIterator){
-		(*capaIterator)->decreaseDurability();
-	}
+	// foreach(std::list<Capacity*>, capaList, capaIterator){
+	// 	(*capaIterator)->decreaseDurability();
+	// }
 
-	// std::for_each(capaList->begin(),capaList->end(), [] (Capacity* capaIterator){
-	// 		capaIterator->decreaseDurability();
-	// 	}
-	// );
+	std::for_each(capaList->begin(),capaList->end(), [] (Capacity* capaIterator){
+			capaIterator->decreaseDurability();
+		}
+	);
 }
 
 void Card::setType(std::string type){
