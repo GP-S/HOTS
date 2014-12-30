@@ -7,8 +7,7 @@
 *
 **/
 
-class iCreature
-// : virtual public iCard
+class iCreature : virtual public iCard
 {
     public:
         

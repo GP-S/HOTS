@@ -331,13 +331,13 @@ int main(int argc, char **argv){
 	printCapa(hero,"shardsMax","hero");
 
 	hero->increaseShards(1);
-	printCapa(hero,"shards","hero");
+	printCapa(hero,"shards","hero, increase shards");
 	hero->increaseShards(1);
-	printCapa(hero,"shards","hero");
+	printCapa(hero,"shards","hero, increase shards");
 	hero->increaseShards(1);
-	printCapa(hero,"shards","hero");
+	printCapa(hero,"shards","hero, increase shards");
 	hero->increaseShards(1);
-	printCapa(hero,"shards","hero");
+	printCapa(hero,"shards","hero, increase shards");
 
 /*=================================etape  5=========================================*/
 /**/
@@ -346,50 +346,38 @@ int main(int argc, char **argv){
 	printIsAlive(beast);
 	printCanAttack(beast);
 
+	beast->increaseAttackCount();
+	printCapa(beast,"attackCount","beast, increase attackcount");
+	beast->increaseAttackCount();
+	printCapa(beast,"attackCount","beast, increase attackcount");
+	beast->resetAttackCount();
+	printCapa(beast,"attackCount","beast, reset attackcount");
+
+	beast->takeDamage(2);
+	printCapa(beast,"hp","beast, take 2 damage");
+	beast->heal(1);
+	printCapa(beast,"hp","beast, heal 1 HP");
+	beast->heal(1);
+	printCapa(beast,"hp","beast, heal 1 HP");
+	beast->heal(1);
+	printCapa(beast,"hp","beast, heal 1 HP");
+
+	beast->increaseMaxHP(1);
+	printCapa(beast,"hp","beast, increase hpMax");
+	beast->decreaseMaxHP(1);
+	printCapa(beast,"hp","beast, decrease hpMax");
+
 /*=================================etape  6=========================================*/
 /**/
 	printEtape(": Modification on Card");
 
+	std::cout << "getTotal de 'effect': " << beast->getTotal("effect") << std::endl;
 
+	beast->decreaseAllDurabilty();
+	printAllCapa(beast,"beast");
 
 /*=================================etape  5=========================================*/
 
 	printEtape(": End of the test, all tests are succesfull for the science !");
 	return 0;
 }
-
-
-/*=================================Beast=========================================*/
-/*
-        ~Beast();
-*/
-/*=================================Hero=========================================*/
-/*
-        ~Hero();
-*/
-/*=================================Creature=========================================*/
-/*
-
-        ~Creature();
-        virtual void resetAttackCount();
-        virtual void takeDamage(unsigned int damage);
-        virtual void heal(unsigned int heal);
-        virtual void increaseMaxHP(unsigned int modifier);
-        virtual void decreaseMaxHP(unsigned int modifier);
-        virtual void increaseAttackCount(); 
-
-
-*/
-/*=================================Spell=========================================*/
-/*
-
-        ~Spell();
-
-*/
-/*=================================Card=========================================*/
-/*
-    	~Card();
-        int getTotal(std::string effectType);
-        void decreaseAllDurabilty();
-
-*/
