@@ -80,19 +80,19 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 			if(	idOriginBoard==PLAYER0_BOARD&&idDestinationBoard==PLAYER1_BOARD||
 				idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER0_BOARD)
 			{//if it is an attack on a beast
-				beastAttackBeast(idOriginBoard,idDestinationBoard,(iBeast*) playedCard,originPosition,destinationPosition);
+				beastAttackBeast(idOriginBoard,idDestinationBoard,dynamic_cast<iBeast*> (playedCard),originPosition,destinationPosition);
 			}
 			if(	idOriginBoard==PLAYER0_BOARD&&idDestinationBoard==PLAYER1_HERO||
 				idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER0_HERO)
 			{//if it is an attack on the hero
-				beastAttackHero(idOriginBoard,idDestinationBoard,(iBeast*) playedCard,originPosition,destinationPosition);
+				beastAttackHero(idOriginBoard,idDestinationBoard,dynamic_cast<iBeast*> (playedCard),originPosition,destinationPosition);
 			}
 
 		} 
 		else if (	idOriginBoard==PLAYER0_HAND&&idDestinationBoard==PLAYER0_BOARD||
 					idOriginBoard==PLAYER1_HAND&&idDestinationBoard==PLAYER1_BOARD)
 		{//if the Beast is being played
-			playBeast(idOriginBoard,idDestinationBoard,(iBeast*) playedCard,originPosition,destinationPosition);
+			playBeast(idOriginBoard,idDestinationBoard,dynamic_cast<iBeast*> (playedCard),originPosition,destinationPosition);
 		}
 	}
 	else if (playedCard->getType()=="spell")
