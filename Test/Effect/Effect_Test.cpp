@@ -9,17 +9,17 @@ static const std::string effectTypes[NUMBER] = {"attackCount","attackCountMax","
 void printEtape(std::string text){
 	std::cout << std::endl;
 	etape++;
-	std::cout << "***etape: " << etape << text << " *** " << std::endl;
+	std::cout << "***etape " << etape << text << " *** " << std::endl;
 }
 
 void printEffect(Effect *effect){
 
 	std::cout << "Effect: " << std::endl;
 		
-	std::cout <<	" type: " << effect->getType();
+	std::cout <<	" cost value: " << effect->costVal();
 	std::cout <<	" affinity: " << effect->getAffinity();
 	std::cout <<	" value: " << effect->getValue();		
-	std::cout <<	" cost value: " << effect->costVal() << std::endl;
+	std::cout <<	" type: " << effect->getType() << std::endl;
 
 }
 
@@ -28,14 +28,14 @@ void printCapacity(Capacity *capacity){
 
 	std::cout << "Capacity: " << std::endl;
 
-	std::cout <<	" type: " << capacity->getType();
+	std::cout <<	" active: " << capacity->getActive();	
 
 	if(capacity->getDurabilty() == -1)
 		std::cout <<	" durabilty: infinity";
 	else
 		std::cout <<	" durabilty: " << capacity->getDurabilty();
 
-	std::cout <<	" active: " << capacity->getActive() << std::endl; 
+	std::cout <<	" type: " << capacity->getType(); << std::endl; 
 }
 
 /*==================================================================================*/
@@ -47,7 +47,7 @@ int main(int argc, char **argv){
 
 /*=================================etape  1=========================================*/
 /*I instance some effects and capacities*/
-	printEtape("Instanciation of effects and capacities");
+	printEtape(": Instanciation of effects and capacities");
 
 	Effect *effect = new Effect();
 	Capacity *capacity = new Capacity();
@@ -58,7 +58,7 @@ int main(int argc, char **argv){
 
 /*=================================etape  2=========================================*/
 /*I initialise all effects and capacities*/
-	printEtape("Intialisation of effects and capacities");
+	printEtape(": Intialisation of effects and capacities");
 
 	for(size_t i = 0; i < NUMBER; i++){
 
@@ -85,6 +85,7 @@ int main(int argc, char **argv){
 		printCapacity(capacity);
 	}
 
+	capacity->setEffect(effect);
 	anotherCapacity->setEffect(anotherEffect);
 
 	printEffect(anotherEffect);
@@ -92,14 +93,14 @@ int main(int argc, char **argv){
 
 /*=================================etape  3=========================================*/
 /*I try to get the effect of capacity*/
-	printEtape("Get the effect of capacity");
+	printEtape(": Get the effect of capacity");
 
 	printEffect(anotherCapacity->getEffect());
 	printEffect(capacity->getEffect());
 
 /*=================================etape  4=========================================*/
 /*I decrease the durability of capacity by one*/
-	printEtape("Decrease the durability of capacity");
+	printEtape(": Decrease the durability of capacity");
 
 	capacity->decreaseDurability();
 	anotherCapacity->decreaseDurability();
@@ -109,7 +110,7 @@ int main(int argc, char **argv){
 
 /*=================================etape  5=========================================*/
 /*iEffect and iCapacity*/
-	printEtape("iEffect and iCapacity");
+	printEtape(": iEffect and iCapacity");
 
 
 
@@ -123,6 +124,6 @@ int main(int argc, char **argv){
 
 /*=================================etape  6=========================================*/
 
-	printEtape("End of the effect test, all tests well done");
+	printEtape(": End of the effect test, all tests well done");
 	return 0;
 }

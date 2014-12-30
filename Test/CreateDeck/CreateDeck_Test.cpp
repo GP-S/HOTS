@@ -23,11 +23,12 @@ void printSpell(Spell *spell){
 
 void printCard(Card *card){
 
-	std::cout << "***********Card**********" << std::endl;
+	std::cout << std::endl;
+	std::cout << "**********************Card*********************" << std::endl;
 
-	std::cout <<	" Name: " << card->getName();
+	std::cout <<	" cost: " << card->getCost();
 	std::cout <<	" cardType: " << card->getType();
-	std::cout <<	" cost: " << card->getCost() << std::endl;
+	std::cout <<	" Name: " << card->getName() << std::endl;
 }
 
 void printEffect(Card *card,std::string type){

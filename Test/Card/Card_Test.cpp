@@ -13,7 +13,7 @@ static const std::string cardRace[NUMBER] = {"human","robot","none","none","none
 void printEtape(std::string text){
 	std::cout << std::endl;
 	etape++;
-	std::cout << "***etape: " << etape << text << " *** " << std::endl;
+	std::cout << "***etape " << etape << text << " *** " << std::endl;
 }
 
 void printBeast(Beast *beast){
@@ -87,7 +87,7 @@ int main(int argc, char **argv){
 
 /*=================================etape  1=========================================*/
 /*I Instance all diferent Card*/
-	printEtape("Instanciation of all Cards type");
+	printEtape(": Instanciation of all Cards type");
 	Card *card;
 	Spell *spell;
 	Creature *creature;
@@ -103,13 +103,13 @@ int main(int argc, char **argv){
 
 /*=================================etape  2=========================================*/
 /*I Initialise all Cards*/
-	printEtape("Intialisation of cards");
+	printEtape(": Intialisation of cards");
 
-	card->setName(cardName[2]);
+	/*card->setName(cardName[2]);
 	card->setType(cardType[2]);
 	card->calculateCost();
 
-	printCard(card);
+	printCard(card);*/
 
 	beast->setName(cardName[0]);
 	beast->setType(cardType[0]);
@@ -152,12 +152,12 @@ int main(int argc, char **argv){
 
 /*=================================etape  3=========================================*/
 /*I test the methode attack*/
-	printEtape("Not implemented yet");
+	printEtape(": Not implemented yet");
 
 
 /*=================================etape  4=========================================*/
 
-	printEtape("End of the test, all tests are succesfull for the science !");
+	printEtape(": End of the test, all tests are succesfull for the science !");
 	return 0;
 }
 

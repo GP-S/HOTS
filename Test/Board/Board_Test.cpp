@@ -6,7 +6,7 @@ static unsigned int etape = 0;
 void printEtape(std::string text){
 	std::cout << std::endl;
 	etape++;
-	std::cout << "***etape: " << etape << text << " *** " << std::endl;
+	std::cout << "***etape " << etape << text << " *** " << std::endl;
 }
 
 void printBoard(Board *board, std::string name){
