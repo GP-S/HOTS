@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <string>
 
+
 void printEtape(std::string text);
 void printBeast(Beast *beast);
 void printHero(Hero *hero);
