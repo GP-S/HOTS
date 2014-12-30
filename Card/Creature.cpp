@@ -2,8 +2,8 @@
 #include "Creature.h"
 
 Creature::Creature()
+Card()
 {
-    name = "unknown";
     hp = 0;
     baseAttack = 0;
 }

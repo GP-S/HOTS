@@ -111,7 +111,7 @@ int main(int argc, char **argv){
 //	deck->addCardX((iCard*)listOfCard->front(),0);
 	
 
-	for(<std::list<Card*>::iterator it = listOfCard->begin(); it != listOfCard->end(); ++it){
+	for(std::list<Card*>::iterator it = listOfCard->begin(); it != listOfCard->end(); ++it){
 		deck->addCardX((iCard*)(*it),0);
 	}
 

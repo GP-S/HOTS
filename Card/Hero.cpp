@@ -2,11 +2,9 @@
 
 #define MAXSHARDS 10
 
-Hero::Hero()
+Hero::Hero() :
+Creature()
 {
-  name = "unknown";
-    hp = 0;
-    baseAttack = 0;
 }
 
 Hero::Hero(std::string name,int hp,int attack) :

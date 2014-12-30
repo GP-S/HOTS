@@ -1,10 +1,8 @@
 #include "Beast.h"
 
-Beast::Beast()
+Beast::Beast() :
+Creature()
 {
-  name = "unknown";
-	hp = 0;
-	baseAttack = 0;
 	race = "";
 }
 

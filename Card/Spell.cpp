@@ -1,9 +1,8 @@
 #include "Spell.h"
 
 Spell::Spell()
+Card()
 {
-    name = "unknown";
-    
 }
 
 Spell::Spell(std::string name)  :
