@@ -6,6 +6,7 @@ Card()
 {
     hp = 0;
     baseAttack = 0;
+    attackCount = 0;
 }
 
 Creature::Creature(std::string name,int hp, int attack)  :

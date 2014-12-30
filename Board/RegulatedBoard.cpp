@@ -145,7 +145,7 @@ unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
   std::list<Card*>::iterator it2;
   it1 = listCard->begin();
   
-  while((Card)card != *it1){
+  while((Card*)card != *it1){
     
     if(it1 == listCard->end())
       throw std::logic_error( "no finding card" );

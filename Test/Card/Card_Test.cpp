@@ -217,6 +217,7 @@ int main(int argc, char **argv){
     	int hp;
     	int	baseAttack;
     	int attackCount;
+    	
 */
 /*=================================Spell=========================================*/
 /*
