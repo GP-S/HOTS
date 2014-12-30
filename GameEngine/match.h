@@ -24,7 +24,9 @@ template <class V,class U> class Match
 			this->GEObjects=GEObjects;
 			this->IHMObject=IHMObject;
 		}
-		~Match();
+		virtual ~Match(){
+		  
+		}
 	
 		void add(V* GEObject,U* IHMObject){
 			this->GEObjects->push_back(GEObject);

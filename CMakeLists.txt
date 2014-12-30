@@ -9,7 +9,7 @@ file(GLOB_RECURSE HOTS_SRC_FILES
 			Effect/*
 			GameEngine/*
 			utils/*
-			IA/*
+# 			IA/*
 			Network/*
 			)
 

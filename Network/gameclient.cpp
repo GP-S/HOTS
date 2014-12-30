@@ -28,7 +28,7 @@ namespace Network {
 
   void GameClient::handleEvent ( Polycode::Event* event ) {
     if (event->getDispatcher() == this){
-      ClientEvent* e = event;
+      ClientEvent* e = dynamic_cast<ClientEvent*> (event);
       switch(e->getEventCode()){
 	case ClientEvent::EVENT_SERVER_DISCONNECTED:
 	  Services()->getCore()->Shutdown();
@@ -93,16 +93,16 @@ void GameClient::endTurnRequest() {
 
 void GameClient::playOnRequest ( int boardOrigin, int cardOrigine, int boardArr, int placeArr ) {
   PlayOnStructType request = {boardOrigin,cardOrigine,boardArr,placeArr};
-  sendData(serverAddress, &request, sizeof(request), PLAYON);
+  sendData(serverAddress,(char*) &request, sizeof(request), PLAYON);
 }
 
 void GameClient::addCardExecute ( AddCardStructType* request ) {
 
-	ihm->getBoard(request->boardDestination)->addCard(request->card,request->cardDestination);
+	ihm->getBoard(request->boardDestination)->addCard( static_cast<IHM::ICard*> (request->card),request->cardDestination);
 }
 
 void GameClient::moveCardExecute ( MoveCardStructType* request ) {
-	IHM::ICard* movedCard= (ihm->getBoard(request->boardOrigin))[request->cardOrigin];
+	IHM::ICard* movedCard= (*ihm->getBoard(request->boardOrigin))[request->cardOrigin];
 	ihm->getBoard(request->boardOrigin)->deleteCard(request->cardOrigin);
 	ihm->getBoard(request->boardDestination)->addCard(movedCard,request->cardDestination);
 }
@@ -114,12 +114,12 @@ void GameClient::removeCardExecute ( RemoveCardStructType* request ) {
 
 void GameClient::setDescriptionExecute ( SetDescriptionStructType* request ) { // FIXME CRADE
 
-	dynamic_cast<IHM::ICard*> (request->card)->setDescription(request->description);
+	static_cast<IHM::ICard*> (request->card)->setDescription(request->description);
 }
 
 void GameClient::setTitleExecute ( SetTitleStructType* request ) {
 
-	dynamic_cast<IHM::ICard*> (request->card)->setTitle(request->title);
+	static_cast<IHM::ICard*> (request->card)->setTitle(request->title);
 }
 
 void GameClient::setMaxShardsExecute ( Network::SetShardStructType* request ) {
@@ -132,24 +132,24 @@ void GameClient::setShardsExecute ( Network::SetShardStructType* request ) {
 
 void GameClient::createCardExecute ( Network::CreateCardStructType* request ) {
   IHM::ICard* card=ihm->createCard( request->title,request->cost,request->attack,request->defense,request->description,request->imageID);
-  CreateCardAnswerStructType answer = {request->incomingReference, (int) card};
-  sendData(serverAddress,&answer,sizeof(CreateCardAnswerStructType),CREATE);
+  CreateCardAnswerStructType answer = {request->incomingReference, (void*) card};
+  sendData(serverAddress,(char*) &answer,sizeof(CreateCardAnswerStructType),CREATE);
 }
 
 void GameClient::setAttackExecute ( SetNumericalAttributeStructType* request ) { //FIXME CRADE
-  dynamic_cast<IHM::ICard*> (request->card)->setAttack(request->newVal);
+  static_cast<IHM::ICard*> (request->card)->setAttack(request->newVal);
 }
 
 void GameClient::setCostExecute ( SetNumericalAttributeStructType* request ) { //FIXME CRADE
-  dynamic_cast<IHM::ICard*> (request->card)->setCost(request->newVal);
+  static_cast<IHM::ICard*> (request->card)->setCost(request->newVal);
 }
 
 void GameClient::setDefenseExecute ( SetNumericalAttributeStructType* request ) { //FIXME CRADE
-  dynamic_cast<IHM::ICard*> (request->card)->setDefense(request->newVal);
+  static_cast<IHM::ICard*> (request->card)->setDefense(request->newVal);
 }
 
 void GameClient::setImageIdExecute ( SetNumericalAttributeStructType* request ) {
-  dynamic_cast<IHM::ICard*> (request->card)->setImageId(request->newVal);
+  static_cast<IHM::ICard*> (request->card)->setImageId(request->newVal);
 }
 
 }
