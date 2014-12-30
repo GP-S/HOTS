@@ -105,13 +105,19 @@ int main(int argc, char **argv){
 /*I Initialise all Cards*/
 	printEtape(": Intialisation of cards");
 
+	printCard(anotherCard);
+	printBeast(anotherBeast);
+	printCreature(anotherCreature);
+	printHero(anotherHero);
+	printSpell(anotherSpell);
+
 	/*card->setName(cardName[2]);
 	card->setType(cardType[2]);
 	card->calculateCost();
 
 	printCard(card);*/
 
-	(Card*)beast->setName("0");
+	beast->setName("0");
 	// beast->setType(cardType[0]);
 	// beast->setHp(5);
 	// beast->setBaseAttack(1);
@@ -142,12 +148,6 @@ int main(int argc, char **argv){
 
 	// printSpell(spell);
 
-
-	printCard(anotherCard);
-	printBeast(anotherBeast);
-	printCreature(anotherCreature);
-	printHero(anotherHero);
-	printSpell(anotherSpell);
 
 
 /*=================================etape  3=========================================*/

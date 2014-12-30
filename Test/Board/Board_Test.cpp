@@ -111,10 +111,10 @@ int main(int argc, char **argv){
 /*=================================etape  5=========================================*/
 /*I look the first 3 cards of deck*/
 	printEtape(": Look first 3 cards of deck");
-	Card *tmpCard;
+	iCard *tmpCard;
 	for(size_t i = 0; i < 3; i++){
 		tmpCard = deck->getCardX(i);
-		printCard(tmpCard);
+		printCard((Card*)tmpCard);
 	}
 
 
