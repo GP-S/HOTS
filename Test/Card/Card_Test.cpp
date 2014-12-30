@@ -112,35 +112,35 @@ int main(int argc, char **argv){
 	printCard(card);*/
 
 	beast->setName(cardName[0]);
-	beast->setType(cardType[0]);
-	beast->setHp(5);
-	beast->setBaseAttack(1);
-	beast->setRace(cardRace[0]);
-	beast->calculateCost();
+	// beast->setType(cardType[0]);
+	// beast->setHp(5);
+	// beast->setBaseAttack(1);
+	// beast->setRace(cardRace[0]);
+	// beast->calculateCost();
 
 	printBeast(beast);
-
-	creature->setName(cardName[3]);
-	creature->setType(cardType[3]);
-	creature->setHp(1);
-	creature->setBaseAttack(1);
-	creature->calculateCost();
+	printEtape(": Intialisation of cards");
+	// creature->setName(cardName[3]);
+	// creature->setType(cardType[3]);
+	// creature->setHp(1);
+	// creature->setBaseAttack(1);
+	// creature->calculateCost();
 	
-	printCreature(creature);
+	// printCreature(creature);
 
-	hero->setName(cardName[4]);
+	// hero->setName(cardName[4]);
 	hero->setType(cardType[4]);
-	hero->setHp(30);
-	hero->setBaseAttack(0);
-	hero->calculateCost();
+	// hero->setHp(30);
+	// hero->setBaseAttack(0);
+	// hero->calculateCost();
 	
 	printHero(hero);
+	printEtape(": Intialisation of cards");
+	// spell->setName(cardName[1]);
+	// spell->setType(cardType[1]);
+	// spell->calculateCost();
 
-	spell->setName(cardName[1]);
-	spell->setType(cardType[1]);
-	spell->calculateCost();
-
-	printSpell(spell);
+	// printSpell(spell);
 
 
 	printCard(anotherCard);

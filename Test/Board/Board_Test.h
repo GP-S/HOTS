@@ -2,9 +2,17 @@
 #define BOARD_TEST_H
 
 #include "../../Card/Card.h"
-#include "../../Card/iCard.h"
+#include "../../Card/Spell.h"
+#include "../../Card/Creature.h"
+#include "../../Card/Beast.h"
+#include "../../Card/Capacity.h"
+#include "../../Card/Hero.h"
+#include "../../Effect/Effect.h"
 #include "../../Board/Board.h"
 #include "../../Board/RegulatedBoard.h"
+
+#include "../../Card/iCard.h"
+
 #include <iostream>
 #include <string>
 #include <cstdlib>

@@ -35,7 +35,7 @@ void printCapacity(Capacity *capacity){
 	else
 		std::cout <<	" durabilty: " << capacity->getDurabilty();
 
-	std::cout <<	" type: " << capacity->getType(); << std::endl; 
+	std::cout <<	" type: " << capacity->getType() << std::endl; 
 }
 
 /*==================================================================================*/
