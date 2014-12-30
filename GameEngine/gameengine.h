@@ -94,7 +94,11 @@ namespace Engine
       
       unsigned int turn;
       
-    Polycode::ServerClient*& getCurentPlayer();
+    Polycode::ServerClient*& getCurrentPlayer();
+    Polycode::ServerClient*& getNonCurrentPlayer();
+    Match<iCard,void>* getCurrentPlayerCards();
+    Match<iCard,void>* getNonCurrentPlayerCards();
+    int getCurrentPlayerNumber();
     void initDeck ( Polycode::ServerClient* player );
     
     void setTitleRequest(Polycode::ServerClient* client, void* card, std::string title);
@@ -106,7 +110,7 @@ namespace Engine
     void setMaxShardsRequest(Polycode::ServerClient* client, int playerId, int shards);
     void setAttackRequest(Polycode::ServerClient* client, void* card, int newVal);
     void setDefenseRequest(Polycode::ServerClient* client, void* card, int newVal);
-    void setCostkRequest(Polycode::ServerClient* client, void* card, int newVal);
+    void setCostRequest(Polycode::ServerClient* client, void* card, int newVal);
     void setImageIDRequest(Polycode::ServerClient* client, void* card, int newVal);
 
   private:
@@ -117,7 +121,8 @@ namespace Engine
       void beastAttackHero(int idOriginBoard,int idDestinationBoard,iBeast* playedCard,int originPosition, int destinationPosition);
       void playerDraws(int playerNumber,int cardsDrawn);
       void beginTurn(); 
-      void shuffleDeck(int playerNumber);//heavy tests for this please .
+      void shuffleDeck(int playerNumber);//this doesn't work at all . do it over .
+      
   };
 
 
