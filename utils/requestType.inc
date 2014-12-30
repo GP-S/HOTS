@@ -3,33 +3,33 @@
 
 namespace Network {
   //Request from player to GE
-  constexpr int PLAYON=10;
-  constexpr int ENDTURN=11;
+  constexpr unsigned short PLAYON=10;
+  constexpr unsigned short ENDTURN=11;
 
   //Request from GE to player fo card
-  constexpr int SETTITLE=20;
-  constexpr int SETTYPE=21;
-  constexpr int SETDESCRIP=22; //FIXME CRADE
-  constexpr int SETCAPA=23;
+  constexpr unsigned short SETTITLE=20;
+  constexpr unsigned short SETTYPE=21;
+  constexpr unsigned short SETDESCRIP=22; //FIXME CRADE
+  constexpr unsigned short SETCAPA=23;
   
   //FIXME CRADE
-  constexpr int SETATTACK=24;
-  constexpr int SETCOST=25;
-  constexpr int SETDEFENSE=26;
+  constexpr unsigned short SETATTACK=24;
+  constexpr unsigned short SETCOST=25;
+  constexpr unsigned short SETDEFENSE=26;
   
-  constexpr int SETIMAGEID=27;
+  constexpr unsigned short SETIMAGEID=27;
   
-  constexpr int CREATE=29;
+  constexpr unsigned short CREATE=29;
 
   //Request from GE to player for Board
-  constexpr int ADDCARD=30;
-  constexpr int REMOVECARD=31;
-  constexpr int SETNBCARD=32;
-  constexpr int MOVECARD=33;
+  constexpr unsigned short ADDCARD=30;
+  constexpr unsigned short REMOVECARD=31;
+  constexpr unsigned short SETNBCARD=32;
+  constexpr unsigned short MOVECARD=33;
   
   //Request from GE to player
-  constexpr int SETSHARD=40;
-  constexpr int SETMAXSHARD=41;
+  constexpr unsigned short SETSHARD=40;
+  constexpr unsigned short SETMAXSHARD=41;
   
   typedef struct PlayOnStruct {
     int boardOrigin;
@@ -72,7 +72,7 @@ namespace Network {
   } SetShardStructType;
   
   typedef struct CreateCardStruct {
-    int incomingReference;
+    void* incomingReference;
     int attack;
     int defense;
     int cost;
@@ -82,8 +82,8 @@ namespace Network {
   } CreateCardStructType;
   
   typedef struct CreateCardAnswerStruct {
-    int serverRef;
-    int clientRef;
+    void* serverRef;
+    void* clientRef;
   } CreateCardAnswerStructType;
   
   typedef struct SetNumericalAttributeStruct {

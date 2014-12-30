@@ -96,10 +96,10 @@ namespace Engine
       
       unsigned int turn;
       
-    Polycode::ServerClient*& getCurrentPlayer();
-    Polycode::ServerClient*& getNonCurrentPlayer();
-    Match<iCard,void>* getCurrentPlayerCards();
-    Match<iCard,void>* getNonCurrentPlayerCards();
+    Polycode::ServerClient* getCurrentPlayer();
+    Polycode::ServerClient* getNonCurrentPlayer();
+    Match<iCard,void>& getCurrentPlayerCards();
+    Match<iCard,void>& getNonCurrentPlayerCards();
     int getCurrentPlayerNumber();
     void initDeck ( Polycode::ServerClient* client );
     
@@ -114,6 +114,7 @@ namespace Engine
     void setDefenseRequest(Polycode::ServerClient* client, void* card, int newVal);
     void setCostRequest(Polycode::ServerClient* client, void* card, int newVal);
     void setImageIDRequest(Polycode::ServerClient* client, void* card, int newVal);
+    void CreateCardRequest (Polycode::ServerClient* client, void* card, int attack, int defense, int cost, std::string title, std::string description, int imageID);
 
   private:
       void procEffectByType(int type);

@@ -107,8 +107,8 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 void Engine::GameEngine::endTurn()
 {
 //-------- this will be a generic function later
-	foreach(std::list<Card*>, listCardsProccedWhenTurnEnds, itCard){
-		foreach(std::list<Capacity*>, itList->capaList, itCapa){
+	foreach(std::list<iCard*>, listCardsProccedWhenTurnEnds, itCard){
+		foreach(std::list<iCapacity*>, itList->capaList, itCapa){
 			if(itCapa->getEvent()->timeMask.when_turn_ends==1){
 				itCapa->getEffect()->proc();
 			}
@@ -359,7 +359,7 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 
 	if(!(playerNumber%2))
 	{//if it is the Player1
-		for (int i=0;i<cardsDrawn)
+		for (int i=0;i<cardsDrawn;i++)
 		{
 			//takes the first card of the deck
 			Card* drawnCard = boards[PLAYER0_DECK]->takeCardX(0);
@@ -378,7 +378,7 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 	}
 	else
 	{
-		for (int i=0;i<cardsDrawn)
+		for (int i=0;i<cardsDrawn;i++)
 		{
 			//takes the first card of the deck
 			Card* drawnCard = boards[PLAYER1_DECK]->takeCardX(0);
@@ -421,7 +421,7 @@ void Engine::GameEngine::beginTurn()
 		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER0_HERO]->getCardX(0)->getShards());
 		//reset the attack count of the board
-		foreach(std::list<Card*>, matchBoard->getIHMObject(PLAYER0_BOARD), itCard){
+		foreach(std::list<iCard*>, matchBoard->getIHMObject(PLAYER0_BOARD), itCard){
 			itCard->resetAttackCount();		
 		}
 		playerDraws(getCurrentPlayerNumber,1);
@@ -445,10 +445,10 @@ void Engine::GameEngine::beginTurn()
 		setShardsRequest(getNonCurentPlayer(), getCurrentPlayerNumber(), 
 			boards[PLAYER1_HERO]->getCardX(0)->getShards());
 		//reset the attack count of the board
-		foreach(std::list<Card*>, matchBoard->getIHMObject(PLAYER1_BOARD), itCard){
+		foreach(std::list<iCard*>, matchBoard->getIHMObject(PLAYER1_BOARD), itCard){
 			itCard->resetAttackCount();		
 		}
-		playerDraws(getCurrentPlayerNumber,1);
+		playerDraws(getCurrentPlayerNumber(),1);
 	}
 }
 
@@ -477,23 +477,24 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
       switch (e->getEventCode()){
       case ServerEvent::EVENT_CLIENT_DATA:
          switch(e->dataType){
-	   case Network::PLAYON:
-	     Network::PlayOnStructType* playon = (Network::PlayOnStructType*)e->data;
-	     if(*getCurrentPlayer()==*e->client)
+	   case Network::PLAYON: {
+	     Network::PlayOnStructType* playon = (Network::PlayOnStructType*) e->data;
+	     if(getCurrentPlayer()->clientID==e->client->clientID)
 	      useCard(playon->boardOrigin,playon->cardOrigin,playon->boardDestination,playon->cardDestination);
+	     }
 	     break;
 	   case Network::ENDTURN:
-	     if(*getCurrentPlayer()==*e->client)
+	     if(getCurrentPlayer()->clientID==e->client->clientID)
 	      endTurn();
 	     break;
-	   case Network::CREATE:
+	   case Network::CREATE: {
 	     Network::CreateCardAnswerStructType* answer = (Network::CreateCardAnswerStructType*) e->data;
-	     if(*(e->client)==*player0){
+	     if(e->client->clientID==player0->clientID){
 	       matchCardPlayer0.add((iCard*)answer->serverRef,(void*)answer->clientRef);
 	     }
-	     else if(*(e->client)==*player1) {
+	     else if(e->client->clientID==player1->clientID) {
 	       matchCardPlayer1.add((iCard*)answer->serverRef,(void*)answer->clientRef);
-	     }
+	     }}
 	     break;
 	 }
          break;
@@ -514,28 +515,28 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
     }
 }
 
-Polycode::ServerClient*& Engine::GameEngine::getCurrentPlayer() {
+Polycode::ServerClient* Engine::GameEngine::getCurrentPlayer() {
   if(turn%2)
     return player0;
   else
     return player1;
 }
 
-Polycode::ServerClient*& Engine::GameEngine::getNonCurrentPlayer() {
+Polycode::ServerClient* Engine::GameEngine::getNonCurrentPlayer() {
   if(turn%2)
     return player1;
   else
     return player0;
 }
 
-Match<iCard,void>* Engine::GameEngine::getCurrentPlayerCards() {
+Match<iCard,void>& Engine::GameEngine::getCurrentPlayerCards() {
 	if(turn%2)
     return matchCardPlayer0;
   else
     return matchCardPlayer1;
 }
 
-Match<iCard,void>* Engine::GameEngine::getNonCurrentPlayerCards() {
+Match<iCard,void>& Engine::GameEngine::getNonCurrentPlayerCards() {
 	if(turn%2)
     return matchCardPlayer1;
   else
@@ -557,61 +558,70 @@ void Engine::GameEngine::initDeck ( Polycode::ServerClient* client ) {
 
 void Engine::GameEngine::addCardRequest ( Polycode::ServerClient* client, void* card, int board, int position ) {
   Network::AddCardStructType request = {card,board,position};
-  sendData(client, &request, sizeof(Network::AddCardStructType), Network::ADDCARD);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::AddCardStructType), Network::ADDCARD);
 }
 void Engine::GameEngine::moveCardRequest ( Polycode::ServerClient* client, int originBoard, int originPosition, int destinationBoard, int destinationPosition ) {
   Network::MoveCardStructType request = {originBoard,originPosition,destinationBoard,destinationPosition};
-  sendData(client, &request, sizeof(Network::MoveCardStructType), Network::MOVECARD);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::MoveCardStructType), Network::MOVECARD);
 }
 
 void Engine::GameEngine::removeCardRequest ( Polycode::ServerClient* client, int board, int position ) {
   Network::RemoveCardStructType request = {board,position};
-  sendData(client, &request, sizeof(Network::RemoveCardStructType),Network::REMOVECARD);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::RemoveCardStructType),Network::REMOVECARD);
 }
 
 void Engine::GameEngine::setDescriptionRequest ( Polycode::ServerClient* client, void* card, std::string Description ) {
-  Network::SetDescriptionStructType request = { card, Description.substr(0,254)};
-  sendData(client, &request, sizeof(Network::SetDescriptionStructType),Network::SETDESCRIP);
+  Description = Description.substr(0,254);
+  Network::SetDescriptionStructType request = { card};
+  strcpy(request.description,Description.c_str());
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetDescriptionStructType),Network::SETDESCRIP);
 }
 
 void Engine::GameEngine::setTitleRequest ( Polycode::ServerClient* client, void* card, std::string title ) {
-  Network::SetTitleStructType request = { card, title.substr(0,19)};
-  sendData(client, &request, sizeof(Network::SetTitleStructType),Network::SETTITLE);
+  Network::SetTitleStructType request = { card};
+  title=title.substr(0,19);
+  strcpy(request.title, title.c_str());
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetTitleStructType),Network::SETTITLE);
 }
 
 void Engine::GameEngine::setMaxShardsRequest ( Polycode::ServerClient* client, int playerId, int shards ) {
   Network::SetShardStructType request = { playerId, shards};
-  sendData(client, &request, sizeof(Network::SetShardStructType), Network::SETMAXSHARD);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetShardStructType), Network::SETMAXSHARD);
 }
 
 void Engine::GameEngine::setShardsRequest ( Polycode::ServerClient* client, int playerId, int shards ) {
   Network::SetShardStructType request = { playerId, shards};
-  sendData(client, &request, sizeof(Network::SetShardStructType), Network::SETSHARD);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetShardStructType), Network::SETSHARD);
 }
 
 void Engine::GameEngine::setAttackRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
   Network::SetNumericalAttributeStructType request = { card, newVal };
-  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETATTACK);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETATTACK);
 }
 
 void Engine::GameEngine::setCostRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
   Network::SetNumericalAttributeStructType request = { card, newVal };
-  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETCOST);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETCOST);
 }
 
 void Engine::GameEngine::setDefenseRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
   Network::SetNumericalAttributeStructType request = { card, newVal };
-  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETDEFENSE);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETDEFENSE);
 }
 
 void Engine::GameEngine::setImageIDRequest ( Polycode::ServerClient* client, void* card, int newVal ) {
   Network::SetNumericalAttributeStructType request = { card, newVal };
-  sendData(client, &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETIMAGEID);
+  sendData(client->connection->address, (char*) &request, sizeof(Network::SetNumericalAttributeStructType),Network::SETIMAGEID);
 }
 
 void Engine::GameEngine::CreateCardRequest (Polycode::ServerClient* client, void* card, int attack,
-    int defense, int cost, char title[20], char description[255], int imageID){
-	Network::CreateCardStructType request = {&card,attack,defense,cost, title, description,imageID};
-	sendData(client, &request, sizeof(Network::CreateCardStructType),Network::CREATE);
+    int defense, int cost, std::string title, std::string description, int imageID){
+	description=description.substr(0,254);
+	title=title.substr(0,19);
+	Network::CreateCardStructType request = {card,attack,defense,cost};
+	strcpy(request.description,description.c_str());
+	strcpy(request.title,title.c_str());
+	request.imageID=imageID;
+	sendData(client->connection->address, (char*) &request, sizeof(Network::CreateCardStructType),Network::CREATE);
 }
   

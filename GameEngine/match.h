@@ -28,7 +28,7 @@ template <class V,class U> class Match
 	
 		void add(V* GEObject,U* IHMObject){
 			this->GEObjects->push_back(GEObject);
-			this->IHMObject->push_back(IHMObject);
+			this->IHMObjects->push_back(IHMObject);
 		}
 		int getGEObjectPosition(V* GEObject){
 			int i=0;
