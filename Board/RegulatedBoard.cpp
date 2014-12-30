@@ -144,6 +144,7 @@ unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
   std::list<Card*>::iterator it1;
   std::list<Card*>::iterator it2;
   it1 = listCard->begin();
+  it2 = cardByArrivalTime->begin();
 
   std::cout << "CABT 1" << std::endl;
   
