@@ -87,10 +87,12 @@ void printAllCapa(Card *card,std::string name){
 	std::cout << "Print all capa of " << name << std::endl;
 
 	for(size_t i = 0; i < ALLCAPA; i++){
+		std::cout << "					blc					" << i << std::endl;
 
 		std::list<Capacity*>* capalist =  card->findCapaByType(capaName[i]);
 
 		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
+					std::cout << "					blc					into" << std::endl;
 			printCapacity((*it));
 		}
 	}
