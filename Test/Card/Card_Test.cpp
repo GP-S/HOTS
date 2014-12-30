@@ -111,7 +111,7 @@ int main(int argc, char **argv){
 
 	printCard(card);*/
 
-	beast->setName("0");
+	(Card*)beast->setName("0");
 	// beast->setType(cardType[0]);
 	// beast->setHp(5);
 	// beast->setBaseAttack(1);

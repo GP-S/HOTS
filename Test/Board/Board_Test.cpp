@@ -104,7 +104,7 @@ int main(int argc, char **argv){
 /*I put all cards in the deck*/
 	printEtape(": Fill the deck with all cards");
 
-	deck->addCardX(reinterpret_cast <std::list<iCard*> &> (listOfCard),0);
+	deck->addCardX(reinterpret_cast <std::list<iCard*> *> (listOfCard),0);
 
 	printBoard(deck,"deck");
 
