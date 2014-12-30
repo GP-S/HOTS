@@ -101,7 +101,7 @@ namespace Engine
     Match<iCard,void>* getCurrentPlayerCards();
     Match<iCard,void>* getNonCurrentPlayerCards();
     int getCurrentPlayerNumber();
-    void initDeck ( Polycode::ServerClient* player );
+    void initDeck ( Polycode::ServerClient* client );
     
     void setTitleRequest(Polycode::ServerClient* client, void* card, std::string title);
     void setDescriptionRequest(Polycode::ServerClient* client, void* card, std::string Description);
