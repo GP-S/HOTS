@@ -56,6 +56,7 @@ std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a 
 	foreach(std::list<Capacity*>, capaList, it){
 		if ((*it)->getEffect()->getType()==effectType){//compare the strings
 			capaListTemp->push_back(*it);
+			std::cout << "                                                blc" << std::endl;
 		}
 	}
 

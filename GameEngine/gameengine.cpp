@@ -19,17 +19,16 @@
 
 #include "gameengine.h"
 
-Engine::GameEngine::GameEngine() 
+Engine::GameEngine::GameEngine() : Server(1337,100)
 {
-	boards = new std::list<Board*>();
-	players = new std::list<Player*>();
+
 
     //corresCardId = NULL;
     //corresBoardId = NULL;  
     turn = 0;
 }
 
-Engine::GameEngine::GameEngine ( const GameEngine& other ) 
+Engine::GameEngine::GameEngine ( const GameEngine& other ) : Server(1337,100)
 {
 
 }
@@ -49,18 +48,12 @@ bool Engine::GameEngine::operator== ( const GameEngine& other ) const
 
 }
 
-std::list<GameSimulator*> Engine::GameEngine::getSimulator ( void ) 
+Engine::IGameSimulator* Engine::GameEngine::getSimulator ( void ) 
 {
- 	std::list<GameSimulator*> gameSimulators;
-	for(size_t i = 0; i < boards[OWNER_HAND].getSize(); i++)
-	{
-	    if(boards[OWNER_HAND].getCardX(i).getCost() < /*FIXME TODO Get mana disponible*/)
-		{
-	        GameSimulator *gameSimulator = new gameSimulator();
-	        gameSimulator.setListCard();
-	        gameSimulators.push_back(gameSimulator);
-	    }
-	}
+ 	Engine::GameSimulator* gameSimulator=new GameSimulator();
+
+	return dynamic_cast<IGameSimulator*> (gameSimulator);
+
 }
 
 void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //-------------- DOUBT HERE
@@ -74,8 +67,8 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 		throw std::logic_error( "you cann't use that board right now" ); 
 	}
 
-  	Card* playedCard = boards[idOriginBoard]->getCardX(originPosition);
-  	Player* activePlayer = (turn%2) ? (players->end()) : (players->begin()); 
+  	iCard* playedCard = boards[idOriginBoard]->getCardX(originPosition);
+  	//Player* activePlayer = (turn%2) ? (players->end()) : (players->begin()); 
 	/* Decide on what is the action performed
 	Timy-whymy-bubbly stuff . Abandon hope all ye who enter here . 
 	*/
@@ -492,6 +485,15 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	   case Network::ENDTURN:
 	     if(*getCurrentPlayer()==*e->client)
 	      endTurn();
+	     break;
+	   case Network::CREATE:
+	     Network::CreateCardAnswerStructType* answer = (Network::CreateCardAnswerStructType*) e->data;
+	     if(*(e->client)==*player0){
+	       matchCardPlayer0.add((iCard*)answer->serverRef,(void*)answer->clientRef);
+	     }
+	     else if(*(e->client)==*player1) {
+	       matchCardPlayer1.add((iCard*)answer->serverRef,(void*)answer->clientRef);
+	     }
 	     break;
 	 }
          break;

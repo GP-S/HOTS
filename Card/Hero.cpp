@@ -2,9 +2,14 @@
 
 #define MAXSHARDS 10
 
-Hero::Hero() :
-Creature()
+Hero::Hero()
 {
+    hp = 0;
+    baseAttack = 0;
+    attackCount = 0;
+    name = "";
+    cardType = "hero";
+    capaList = new std::list<Capacity*>();
 }
 
 Hero::Hero(std::string name,int hp,int attack) :

@@ -30,6 +30,8 @@
 #include "../Card/iBeast.h"
 #include "../utils/usefulStruc.inc"
 #include "../IHM/iihm.h"
+
+#include <tool.inc>
 #include "gamesimulator.h"
 
 #include <vector>
@@ -55,7 +57,7 @@ namespace Engine
       ~GameEngine();
       GameEngine& operator= ( const GameEngine& other );
       bool operator== ( const GameEngine& other ) const;
-      IGameSimulator& getSimulator ( void );
+      IGameSimulator* getSimulator ( void );
       void useCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
@@ -87,7 +89,7 @@ namespace Engine
       std::list<iCard*>* listCardsProccedWhenTurnEnds; // when turn ends
       
       iBoard* boards[16];
-      Player* players[2];
+      //Player* players[2];
       
       Polycode::ServerClient* player0;
       Polycode::ServerClient* player1;

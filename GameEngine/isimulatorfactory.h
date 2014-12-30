@@ -27,7 +27,7 @@ namespace Engine{
   {
   public:
     /** Creates a simulator with the curent state of the game **/
-    virtual IGameSimulator& getSimulator(void)=0;
+    virtual IGameSimulator* getSimulator(void)=0;
 
   };
 }

@@ -1,9 +1,14 @@
 #include "Beast.h"
 
-Beast::Beast() :
-Creature()
+Beast::Beast()
 {
 	race = "";
+	hp = 0;
+    baseAttack = 0;
+    attackCount = 0;
+	name = "";
+	cardType = "beast";
+	capaList = new std::list<Capacity*>();
 }
 
 Beast::Beast(std::string name,int hp,int attack,std::string race) :
