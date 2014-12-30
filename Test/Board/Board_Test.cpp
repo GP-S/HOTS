@@ -21,12 +21,15 @@ void printBoard(Board *board, std::string name){
 
 void printTimeBoard(RegulatedBoard *board, std::string name){
 
+	iCard *iCard;
+
 	std::cout << "Board " << name << ": " << std::endl;
 
 	for(size_t i = 0; i < board->getSize(); i++){
+		iCard = board->getCardX(i);
 		std::cout <<	" Card[" << i << "]";
-		std::cout <<	" name: " << board->getCardX(i)->getName();
-		std::cout <<	" arrival time: " << board->CardArrivalByTime(board->getCardX(i)) << std::endl;
+		std::cout <<	" name: " << board->getCardX(i)->getName()<< std::endl;
+		std::cout <<	" arrival time: " << board->CardArrivalByTime(iCard) << std::endl;
 	} 
 	std::cout << std::endl;
 }
