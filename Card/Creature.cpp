@@ -11,8 +11,8 @@ Creature::Creature()
 Creature::Creature(std::string name,int hp, int attack)  :
 Card(name,  "creature")
 {
-    hp = hp;
-    baseAttack = attack;
+    this->hp = hp;
+    this->baseAttack = attack;
 }
 
 
@@ -35,11 +35,11 @@ int Creature::getBaseAttack(){
 }
 void Creature::setHp(int hp){
 
-    hp =hp;
+    this->hp = hp;
 }
 void Creature::setBaseAttack(int attack){
 
-    baseAttack=attack;
+    this->baseAttack = attack;
 }
 
 // void Creature::attack(Creature* target){//this should work now 
@@ -80,12 +80,11 @@ void Creature::increaseAttackCount(){
 
 void Creature::takeDamage(unsigned int damage){
 
-    std::string capaType = "hp";
-    std::list<Capacity*>* tempList = this->findCapaByType(capaType);
+    std::list<Capacity*>* tempList = this->findCapaByType("hp");
 
      
-        if (tempList->empty()){
-    throw std::logic_error( "no hp capacity in current card" ); 
+    if (tempList->empty()){
+        throw std::logic_error( "no hp capacity in current card" ); 
     }
  
     tempList->front()->getEffect()->setValue(tempList->front()->getEffect()->getValue()-damage);
@@ -119,12 +118,11 @@ void Creature::heal(unsigned int heal){
 
 void Creature::increaseMaxHP(unsigned int modifier){
 
-    std::string maxHP = "hpMax";
-    std::list<Capacity*>* listMaxHP = this->findCapaByType(maxHP);
+    std::list<Capacity*>* listMaxHP = this->findCapaByType("hpMax");
 
      
-        if (listMaxHP->empty()){
-    throw std::logic_error( "no hp_max capacity in current card" ); 
+    if (listMaxHP->empty()){
+        throw std::logic_error( "no hp_max capacity in current card" ); 
     }
 
     listMaxHP->front()->getEffect()->setValue(listMaxHP->front()->getEffect()->getValue()+modifier);
@@ -135,12 +133,11 @@ void Creature::increaseMaxHP(unsigned int modifier){
 
 void Creature::decreaseMaxHP(unsigned int modifier){
 
-    std::string maxHP = "hpMax";
-    std::list<Capacity*>* listMaxHP = this->findCapaByType(maxHP);
+    std::list<Capacity*>* listMaxHP = this->findCapaByType("hpMax");
 
      
-        if (listMaxHP->empty()){
-    throw std::logic_error( "no hp_max capacity in current card" ); 
+    if (listMaxHP->empty()){
+        throw std::logic_error( "no hp_max capacity in current card" ); 
     }
 
     listMaxHP->front()->getEffect()->setValue(listMaxHP->front()->getEffect()->getValue()-modifier);

@@ -117,7 +117,8 @@ void Board::addCardX(std::list<iCard*> *listcard, unsigned int x){
   
   for(size_t i = 0; i < x; i++)
     it++;
-    listCard->splice(it, reinterpret_cast <std::list<Card*> &> (listcard)); //to my future myself : beleive me
+
+  listCard->splice(it, reinterpret_cast <std::list<Card*> &> (listcard)); //to my future myself : beleive me
   
 }
 

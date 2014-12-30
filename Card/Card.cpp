@@ -87,7 +87,8 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 
 int Card::getTotal(std::string effectType)//returns the total of the values of a choosen effect type
 {
-	int total =0;
+	int total = 0;
+	
 	foreach(std::list<Capacity*>, capaList, capaIterator){
 		if ((*capaIterator)->getActive()){//if the capacity is active
 			if((*capaIterator)->getEffect()->getType()==effectType){//compare the strings
@@ -97,10 +98,10 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 		}
 	
 
-	if (effectType=="hp" && total<1){
+	if (effectType == "hp" && total < 1){
     throw std::logic_error( "current card has an illegal health" ); 
   	}
-  	if (effectType=="attack" && total<0){
+  	if (effectType == "attack" && total < 0){
     throw std::logic_error( "current card has an illegal attack" ); 
   	}
 

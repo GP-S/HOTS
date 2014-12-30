@@ -23,9 +23,9 @@ void printCard(Card *card){
 
 	std::cout << "Card: " << std::endl;
 
-	std::cout <<	" name: " << card->getName();
+	std::cout <<	" cost: " << card->getCost();
 	std::cout <<	" type: " << card->getType();
-	std::cout <<	" cost: " << card->getCost() << std::endl;
+	std::cout <<	" name: " << card->getName() << std::endl;
 }
 
 void printListCard(std::list<Card*> *listCard){
@@ -33,9 +33,9 @@ void printListCard(std::list<Card*> *listCard){
 	std::cout << "Card: " << std::endl;
 
 	foreach(std::list<Card*>,listCard,it){
-		std::cout <<	" name: " << (*it)->getName();
+		std::cout <<	" cost: " << (*it)->getCost();
 		std::cout <<	" type: " << (*it)->getType();
-		std::cout <<	" cost: " << (*it)->getCost() << std::endl;
+		std::cout <<	" name: " << (*it)->getName() << std::endl;
 	}
 }
 
