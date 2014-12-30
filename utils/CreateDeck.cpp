@@ -35,6 +35,7 @@ std::list<Card*>* newDeck(){
 
 			Capacity *capa = new Capacity("damage",0);
 
+			capa->setActive(true);
 			capa->setEffect(damageeffect);
 			spell->addCapacity(capa);
 			spell->calculateCost();
@@ -60,6 +61,11 @@ std::list<Card*>* newDeck(){
 			Capacity *capa_attackCount = new Capacity("attackCount",-1);
 			Capacity *capa_attackCountMax = new Capacity("attackCountMax",-1);
 
+			capa_hp->setActive(true);
+			capa_hpMax->setActive(true);
+			capa_attack->setActive(true);
+			capa_attackCount->setActive(true);
+			capa_attackCountMax->setActive(true);
 			capa_hp->setEffect(hp);
 			capa_hpMax->setEffect(hpMax);
 			capa_attack->setEffect(attack);
