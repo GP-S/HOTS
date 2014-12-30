@@ -64,6 +64,9 @@ class Hero : public Creature, virtual public iHero
         **/
         void    decreaseMaxShards(unsigned int modifier);
 
+        void    setShards(unsigned int newShards);
+        void    setMaxShards(unsigned int newMaxShards);
+
 		
     protected:
 

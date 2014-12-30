@@ -80,3 +80,25 @@ void Hero::decreaseMaxShards(unsigned int modifier){
 
 }
 
+ void    Hero::setShards(unsigned int newShards){
+
+    std::list<Capacity*>* listShards = this->findCapaByType("shards");
+
+    if (listShards->empty()){
+        throw std::logic_error( "no shards capacity in current card" ); 
+    }
+
+    listShards->front()->getEffect()->setValue(newShards);
+}
+
+void    Hero::setMaxShards(unsigned int newMaxShards){
+
+    std::list<Capacity*>* listMaxShards = this->findCapaByType("shardsMax");
+
+    if (listMaxShards->empty()){
+        throw std::logic_error( "no maxShards capacity in current card" ); 
+    }
+    
+    listMaxShards->front()->getEffect()->setValue(newMaxShards);
+}
+
