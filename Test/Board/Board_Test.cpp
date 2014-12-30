@@ -3,6 +3,8 @@
 static unsigned int etape = 0;
 static size_t increm = 0;
 
+#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
+
 void printEtape(std::string text){
 	std::cout << std::endl;
 	etape++;
@@ -52,6 +54,13 @@ void printListCard(std::list<Card*> *listCard){
 		std::cout <<	" type: " << (*it)->getType();
 		std::cout <<	" name: " << (*it)->getName() << std::endl;
 	}
+
+	// std::for_each(listCard->begin(),listCard->end(), [] (Card* it){
+//  	std::cout <<	" cost: " << (*it)->getCost();
+// 		std::cout <<	" type: " << (*it)->getType();
+// 		std::cout <<	" name: " << (*it)->getName() << std::endl;
+	// 	}
+	// );
 }
 
 void printSizeBoard(Board *board, std::string name){
