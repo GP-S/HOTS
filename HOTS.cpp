@@ -22,16 +22,60 @@
 #include "utils/CreateDeck.h"
 
 #include <Polycode.h>
+#include <string>
+#include <iostream>
+
 #include "PolycodeView.h"
+
+void printHelp();
 
 int main (int argc, char** argv){
   std::list<Card*> *firstDeck = newDeck();
   std::list<Card*> *secondDeck = newDeck();
 
-  Engine::GameEngine *ge= new Engine::GameEngine();
+    int c;
+    std::string address = "127.0.0.1";
+    bool single=false;
+    bool server=false;
+  if(argc >= 2){
+    switch(argv[2]){
+      case "-c":
+	if(argc == 2){
+	  printHelp();
+	  return 1;
+	}
+	address = argv[3];
+	break;
+      case "--single":
+	single=true;
+	server=true;
+	break;
+      case "--server":
+	server=true;
+	break;
+      default:
+	printHelp();
+	return 1;
+    }
+  }
+  else {
+    printHelp();
+    return 1;
+  }
+	
+	
+  if(server)
+    Engine::GameEngine *ge= new Engine::GameEngine();
   
   PolycodeView *view = new PolycodeView("Hello Polycode!");
-  IHM::PolycodeGUI::IHM *app = new IHM::PolycodeGUI::IHM(view, ge);
+  IHM::PolycodeGUI::IHM *app = new IHM::PolycodeGUI::IHM(view, address, 1337);
   
   while(app->Update()) {}
+}
+
+void printHelp() {
+  std::cout << "Usage : HOTS  --single | --server | -c <serverAddress>" << std::endl;
+  std::cout << " --single : Play a single player game against an AI" << std::endl;
+  std::cout << " --server : Play a two players game as the host" << std::endl;
+  std::cout << " -c <serverAddress> : Play a two player game as a client to the given server" << std::endl;
 }
