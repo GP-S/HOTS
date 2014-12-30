@@ -158,7 +158,7 @@ unsigned int RegulatedBoard::CardArrivalByTime(iCard *card){
 
     if(*it2 == *it1){
       finish = true;
-      std::cout << "it2 = it1" << std::endl;
+      std::cout << arrival << std::endl;
       break;
     }
     if(it2 == cardByArrivalTime->end() & !finish)
