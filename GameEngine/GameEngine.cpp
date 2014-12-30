@@ -48,11 +48,11 @@ bool Engine::GameEngine::operator== ( const GameEngine& other ) const
 
 }
 
-Engine::IGameSimulator* Engine::GameEngine::getSimulator ( void ) 
+Engine::iGameSimulator* Engine::GameEngine::getSimulator ( void ) 
 {
  	Engine::GameSimulator* gameSimulator=new GameSimulator();
 
-	return dynamic_cast<IGameSimulator*> (gameSimulator);
+	return dynamic_cast<iGameSimulator*> (gameSimulator);
 
 }
 

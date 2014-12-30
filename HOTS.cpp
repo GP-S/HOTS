@@ -18,7 +18,7 @@
  */
 
 #include "IHM/PolycodeGUI/IHM.h"
-#include "GameEngine/gameengine.h"
+#include "GameEngine/GameEngine.h"
 #include "utils/CreateDeck.h"
 
 #include <Polycode.h>
