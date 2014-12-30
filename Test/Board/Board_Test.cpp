@@ -3,7 +3,7 @@
 static unsigned int etape = 0;
 static size_t increm = 0;
 
-#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
+//#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
 
 void printEtape(std::string text){
 	std::cout << std::endl;
@@ -49,18 +49,18 @@ void printListCard(std::list<Card*> *listCard){
 
 	std::cout << "Card: " << std::endl;
 
-	foreach(std::list<Card*>,listCard,it){
-		std::cout <<	" cost: " << (*it)->getCost();
+	// foreach(std::list<Card*>,listCard,it){
+	// 	std::cout <<	" cost: " << (*it)->getCost();
+	// 	std::cout <<	" type: " << (*it)->getType();
+	// 	std::cout <<	" name: " << (*it)->getName() << std::endl;
+	// }
+
+	std::for_each(listCard->begin(),listCard->end(), [] (Card* it){
+ 		std::cout <<	" cost: " << (*it)->getCost();
 		std::cout <<	" type: " << (*it)->getType();
 		std::cout <<	" name: " << (*it)->getName() << std::endl;
-	}
-
-	// std::for_each(listCard->begin(),listCard->end(), [] (Card* it){
-//  	std::cout <<	" cost: " << (*it)->getCost();
-// 		std::cout <<	" type: " << (*it)->getType();
-// 		std::cout <<	" name: " << (*it)->getName() << std::endl;
-	// 	}
-	// );
+		}
+	);
 }
 
 void printSizeBoard(Board *board, std::string name){
@@ -132,13 +132,19 @@ int main(int argc, char **argv){
 /*I put all cards in the deck*/
 	printEtape(": Fill the deck with all cards");
 
+/*Some problem with addCardX(list)*/
 //	deck->addCardX(reinterpret_cast <std::list<iCard*> *> (listOfCard),0);
 //	deck->addCardX((iCard*)listOfCard->front(),0);
 	
 
-	for(std::list<Card*>::iterator it = listOfCard->begin(); it != listOfCard->end(); ++it){
-		deck->addCardX((iCard*)(*it),0);
-	}
+	// for(std::list<Card*>::iterator it = listOfCard->begin(); it != listOfCard->end(); ++it){
+	// 	deck->addCardX((iCard*)(*it),0);
+	// }
+
+	std::for_each(listOfCard->begin(),listOfCard->end(), [] (Card* it){
+ 		deck->addCardX((iCard*)it,0);
+		}
+	);
 
 	printSizeBoard(deck,"deck");
 	printBoard(deck,"deck");

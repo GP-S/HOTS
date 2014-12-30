@@ -91,6 +91,10 @@ public:
  	* Destructor.
  	*/
 	virtual ~Board();
+
+	std::list<Card*>::iterator begin();
+
+	std::list<Card*>::iterator end() ;
 };
 
 #endif //BOARD_H

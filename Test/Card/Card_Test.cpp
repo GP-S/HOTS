@@ -104,9 +104,14 @@ void printAllCapa(Card *card,std::string name){
 
 		capalist =  card->findCapaByType(capaName[i]);
 
-		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
-			printCapacity((*it));
-		}
+		// for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
+		// 	printCapacity((*it));
+		// }
+
+		std::for_each(capalist->begin(),capalist->end(), [] (Capacity* it){
+			printCapacity(it);
+			}
+		);	
 	}
 }
 
@@ -142,9 +147,14 @@ void printCapa(Card *card,std::string capaName,std::string name){
 
 	capalist =  card->findCapaByType(capaName);
 
-	for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
-		printCapacity((*it));
-	}
+	// for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
+	// 	printCapacity((*it));
+	// }
+
+	std::for_each(capalist->begin(),capalist->end(), [] (Capacity* it){
+		printCapacity(it);
+		}
+	);
 }
 
 /*==================================================================================*/
