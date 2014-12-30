@@ -135,3 +135,13 @@ bool Board::isFull(){
     listCard->erase(listCard->begin(),listCard->end());
     std::cout << "EXTERMINATE (board) not yet" << std::endl;
   }
+
+std::list<Card*>::iterator Board::begin(){
+
+  return listCard->begin();
+}
+
+std::list<Card*>::iterator Board::end(){
+
+  return listCard->end();
+}
