@@ -14,8 +14,6 @@
 #include <cstdlib>
 #include <string>
 
-#include "../../utils/tool.inc"
-
 void printEtape(std::string text);
 void printBeast(Beast *beast);
 void printHero(Hero *hero);
