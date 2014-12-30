@@ -1,17 +1,18 @@
 #include "NeurMono.h"
 #define lengthEntryVector 5
-#define nb_entry lengthEntryVector
+#define nb_entry 5
 
 NeurMono::NeurMono(char * entryTab, char * weightList, int treshold, Agent * agent) :
 Neurone(entryTab,  weightList, treshold)
 {
 	this->Asset = agent;
-	int HighAverage=0;
-	int HA=0;
-	int LowAverage=0;
-	int LA=0;
-	int Average=0;
+	HighAverage = 0;
+	HA = 0;
+	LowAverage = 0;
+	LA=0;
+	Average=0;
 }
+
 
 NeurMono::~NeurMono()
 {

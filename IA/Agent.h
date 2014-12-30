@@ -2,7 +2,7 @@
 #define AGENT_H
 
 #include <string>
-//#include "usefulStruc.inc"
+#include "IAStruct.inc"
 
 
 /**
@@ -37,7 +37,7 @@ protected:
 	* @return his mark(which can be negative)
 	**/
 	int autoEval();
-
+	Movement *proposition;
 	int satisfaction;
 	const std::string order; //destroy, save, protect, powerup...
 	//const placeMask targetAvailable;

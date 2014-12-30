@@ -1,8 +1,14 @@
 #ifndef NEURONE_H
 #define NEURONE_H
 
+#define lengthEntryVector 40
+#define nb_entry 40
+
+#include "IAStruct.inc"
+
+
 #define NULL 0
-#define lengthEntryVector 5
+
 
 /**
 * Class Neurone .
@@ -25,7 +31,7 @@ public:
 	* @param unsigned char* weightList List of all weight corresponding to the entry
 	* @param int treshold try to guess...
 	**/
-	Neurone(char *entryTab, char weightList[lengthEntryVector], int treshold);
+	Neurone(char *entryTab, char *weightList, int treshold);
 	/**
 	* Default destructor
 	*
@@ -55,7 +61,7 @@ public:
 protected:
 	char* entryTab;
 //	int lenghtEntryVector;
-	char weightList[lengthEntryVector];
+	char* weightList;
 	int treshold;
 	int delta;
 	int calculatedOutput;

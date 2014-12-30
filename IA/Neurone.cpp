@@ -1,7 +1,6 @@
 #include "Neurone.h"
 #include "iostream"
-#define lengthEntryVector 5
-#define nb_entry lengthEntryVector
+
 
 
 Neurone::Neurone()
@@ -10,7 +9,7 @@ Neurone::Neurone()
 	treshold = 0;
 }
 
-Neurone::Neurone(char *entryTab, char weightTab[lengthEntryVector], int treshold)
+Neurone::Neurone(char *entryTab, char * weightTab, int treshold)
 {
 	this->entryTab = entryTab;
 	this->setWeightList(weightTab);

@@ -1,7 +1,7 @@
 #ifndef NEURMON_H
 #define NEURMON_H
-#define lengthEntryVector 5
-#define nb_entry lengthEntryVector
+//#define lengthEntryVector 40 //2*10*2
+//#define nb_entry 40
 
 #include "Neurone.h"
 #include "Agent.h"
@@ -28,7 +28,7 @@ public:
 	* @param Agent * agent referance to the neurone's agent assigned
 	* @param int treshold try to guess...
 	**/
-	NeurMono(char entryTab[lengthEntryVector], char weightList[lengthEntryVector], int treshold, Agent * agent);
+	NeurMono(char * entryTab, char * weightList, int treshold, Agent * agent);
 	/**
 	* Default destructor
 	*
@@ -46,6 +46,7 @@ public:
 	void learn(int expectedOutput);
 protected :
 	Agent * Asset;
+	char * order;
 	int calculatedOutput;
 	int HighAverage;
 	int HA;
