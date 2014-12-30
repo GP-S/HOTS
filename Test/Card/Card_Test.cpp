@@ -4,6 +4,7 @@
 #define ALLCAPA 9
 
 static unsigned int etape = 0;
+static std::list<Capacity*>* capalist = new std::list<Capacity*>();
 static const std::string cardName[NUMBER] = {"alpha","fire","dafuck","beta","omega"};
 static const std::string cardType[NUMBER] = {"beast","spell","card_dafuck","creature","hero"};
 static const std::string cardRace[NUMBER] = {"human","robot","none","none","none"};
@@ -89,7 +90,7 @@ void printAllCapa(Card *card,std::string name){
 	for(size_t i = 0; i < ALLCAPA; i++){
 		std::cout << "					blc					" << i << std::endl;
 
-		std::list<Capacity*>* capalist =  card->findCapaByType(capaName[i]);
+		capalist =  card->findCapaByType(capaName[i]);
 
 		for(std::list<Capacity*>::iterator it = capalist->begin(); it != capalist->end();it++){
 					std::cout << "					blc					into" << std::endl;
