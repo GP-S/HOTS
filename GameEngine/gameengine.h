@@ -30,6 +30,7 @@
 #include "../Card/iBeast.h"
 #include "../utils/usefulStruc.inc"
 #include "../IHM/iihm.h"
+
 #include "gamesimulator.h"
 
 #include <vector>
@@ -55,7 +56,7 @@ namespace Engine
       ~GameEngine();
       GameEngine& operator= ( const GameEngine& other );
       bool operator== ( const GameEngine& other ) const;
-      IGameSimulator& getSimulator ( void );
+      IGameSimulator* getSimulator ( void );
       void useCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
