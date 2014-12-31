@@ -533,17 +533,21 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 		 addCardRequest ( player0, answer->clientRef, PLAYER0_HERO, 0 );
 	       else if ((iCard*)answer->serverRef == heroPlayer1)
 		 addCardRequest ( player0, answer->clientRef, PLAYER1_HERO, 0 );
-	       else
+	       else if(std::find(deckPlayer0->begin(), deckPlayer0->end(),(iCard*)answer->serverRef)!= deckPlayer0->end())
 		 addCardRequest ( player0, answer->clientRef, PLAYER0_DECK, 0 );
+	       else
+		 addCardRequest ( player0, answer->clientRef, PLAYER1_DECK, 0 );
 	     }
 	     else if(e->client->clientID==player1->clientID) {
 	       matchCardPlayer1.add((iCard*)answer->serverRef,(void*)answer->clientRef);
-	       	       if((iCard*)answer->serverRef == heroPlayer0)
+	       if((iCard*)answer->serverRef == heroPlayer0)
 		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER0_HERO), 0 );
 	       else if ((iCard*)answer->serverRef == heroPlayer1)
 		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER1_HERO), 0 );
-	       else
+	       else if(std::find(deckPlayer0->begin(), deckPlayer0->end(),(iCard*)answer->serverRef)!= deckPlayer0->end())
 		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER0_DECK), 0 );
+	       else 
+		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER1_DECK), 0 );
 	     }
 	     
 	     if(matchCardPlayer0.getSizeIHM()==deckPlayer0->size()+deckPlayer1->size()+2)
@@ -697,16 +701,16 @@ void Engine::GameEngine::initDecks () {
 
 void Engine::GameEngine::addCardRequest ( Polycode::ServerClient* client, void* card, int board, int position ) {
   Network::AddCardStructType request = {card,board,position};
-  sendData(client->connection->address, (char*) &request, sizeof(Network::AddCardStructType), Network::ADDCARD);
+  sendReliableData(client->connection->address, (char*) &request, sizeof(Network::AddCardStructType), Network::ADDCARD);
 }
 void Engine::GameEngine::moveCardRequest ( Polycode::ServerClient* client, int originBoard, int originPosition, int destinationBoard, int destinationPosition ) {
   Network::MoveCardStructType request = {originBoard,originPosition,destinationBoard,destinationPosition};
-  sendData(client->connection->address, (char*) &request, sizeof(Network::MoveCardStructType), Network::MOVECARD);
+  sendReliableData(client->connection->address, (char*) &request, sizeof(Network::MoveCardStructType), Network::MOVECARD);
 }
 
 void Engine::GameEngine::removeCardRequest ( Polycode::ServerClient* client, int board, int position ) {
   Network::RemoveCardStructType request = {board,position};
-  sendData(client->connection->address, (char*) &request, sizeof(Network::RemoveCardStructType),Network::REMOVECARD);
+  sendReliableData(client->connection->address, (char*) &request, sizeof(Network::RemoveCardStructType),Network::REMOVECARD);
 }
 
 void Engine::GameEngine::setDescriptionRequest ( Polycode::ServerClient* client, void* card, std::string Description ) {

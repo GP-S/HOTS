@@ -102,8 +102,11 @@ void GameClient::playOnRequest ( int boardOrigin, int cardOrigine, int boardArr,
 }
 
 void GameClient::addCardExecute ( AddCardStructType* request ) {
-
+	try {
 	ihm->getBoard(request->boardDestination)->addCard( static_cast<IHM::ICard*> (request->card),request->cardDestination);
+	} catch (std::exception e) {
+	  std::cout << e.what() << std::endl;
+	}
 }
 
 void GameClient::moveCardExecute ( MoveCardStructType* request ) {
@@ -113,8 +116,12 @@ void GameClient::moveCardExecute ( MoveCardStructType* request ) {
 }
 
 void GameClient::removeCardExecute ( RemoveCardStructType* request ) {
-
+	try {
 	ihm->getBoard(request->board)->deleteCard(request->position);
+	}
+	catch (std::exception e) {
+	  std::cout << e.what() << std::endl;
+	}
 }
 
 void GameClient::setDescriptionExecute ( SetDescriptionStructType* request ) { // FIXME CRADE

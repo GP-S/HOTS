@@ -104,6 +104,7 @@ void IHM::PolycodeGUI::Board::addCard ( std::list< IHM::ICard* > cards, int pos 
 
 void IHM::PolycodeGUI::Board::deleteCard ( int index ) {
     if ( index>=cards.size() ) {
+	std::cout << this->stacked << this->hidden << std::endl;
         throw std::out_of_range ( "Out of board" );
     }
     cards.erase ( cards.begin() +index );
