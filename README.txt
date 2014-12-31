@@ -83,20 +83,29 @@
 ########################## Installation instruction #################################
 #####################################################################################
 #                                                                                   #
+#    1) with a terminal go into the main repertory named HOTS                       #
 #                                                                                   #
+#    2) enter in terminal the following instruction:                                #
+#                     ./BuildLinux.sh                                               #
 #                                                                                   #
+#    3) now the MakeFile file was generated in Build folder                         #
 #                                                                                   #
+#    4) go into that repertory and enter the next instruction:                      #
+#                     make                                                          #
 #                                                                                   #
+#    5) now the executable of HOTS is created                                       #
 #                                                                                   #
+#    6) this execute is in repertory bin into Build repertory                       #
 #                                                                                   #
+#    7) you can execute our game with the next instruction:                         #
+#                    ./HOTS argument(see the next point)                            #
 #                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
+#    8) There is an unremovable argument, the following list is all arguments you   #
+#       can add to the instruction:                                                 #
+#          --single: Play a single player game against an AI                        #
+#          --server: Play a two  players game as the host                           #
+#          --c <serverAddress>: Play a two player game as a client to the given     #
+#                               server                                              #
 #                                                                                   #
 #####################################################################################
 ################################ Configuration ######################################
