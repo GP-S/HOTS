@@ -35,6 +35,11 @@ Engine::GameEngine::GameEngine(std::list<iCard*>* deckPlayer0,std::list<iCard*>*
     heroPlayer0=heroPlayer0;
     heroPlayer1=heroPlayer1;
     turn = 0;
+    player0=nullptr;
+    player1=nullptr;
+    addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_CONNECTED);
+    addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_DISCONNECTED);
+    addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_DATA);
 }
 
 Engine::GameEngine::GameEngine ( const GameEngine& other ) : Server(1337,100)
@@ -520,12 +525,15 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	 }
          break;
       case ServerEvent::EVENT_CLIENT_CONNECTED:
+	std::cout << "Here Comes the client" << std::endl;
 	if(player0==nullptr){
 	  player0=e->client;
 	}
 	else if(player1==nullptr){
 	  player1=e->client;
 	  initDecks();
+	} else {
+	  DisconnectClient(e->client);
 	}
 	break;
       case ServerEvent::EVENT_CLIENT_DISCONNECTED:
