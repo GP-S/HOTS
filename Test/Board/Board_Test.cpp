@@ -56,9 +56,9 @@ void printListCard(std::list<Card*> *listCard){
 	// }
 
 	std::for_each(listCard->begin(),listCard->end(), [] (Card* it){
- 		std::cout <<	" cost: " << (*it)->getCost();
-		std::cout <<	" type: " << (*it)->getType();
-		std::cout <<	" name: " << (*it)->getName() << std::endl;
+ 		std::cout <<	" cost: " << it->getCost();
+		std::cout <<	" type: " << it->getType();
+		std::cout <<	" name: " << it->getName() << std::endl;
 		}
 	);
 }
@@ -155,7 +155,7 @@ int main(int argc, char **argv){
 
 	for(size_t i = 0; i < 3; i++){
 		tmpCard = deck->getCardX(i);
-		printCard((Card*)tmpCard);
+		printCard(dynamic_cast<Card*> tmpCard);
 	}
 
 
