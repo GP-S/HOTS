@@ -17,6 +17,12 @@
  *
  */
 
+/** 
+* Class iSimulatorFactory . factory to create simulators
+* @author Nicolas BELOUIN
+*
+**/
+
 #ifndef ISIMULATORFACTORY_H
 #define ISIMULATORFACTORY_H
 

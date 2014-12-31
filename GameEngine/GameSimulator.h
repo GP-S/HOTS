@@ -25,6 +25,12 @@
 #include "iGameSolver.h"
 #include "GameEngine.h"
 
+/** 
+* Class GameEngine . Used to emulate an engine to test a play
+* @author Nicolas BELOUIN
+*
+**/
+
 namespace Engine {
   class GameEngine;
   

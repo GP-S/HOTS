@@ -513,7 +513,7 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
          switch(e->dataType){
 	   case Network::PLAYON: {
 	     Network::PlayOnStructType* playon = (Network::PlayOnStructType*) e->data;
-	     if(getCurrentPlayer()->clientID==e->client->clientID)
+	     //if(getCurrentPlayer()->clientID==e->client->clientID)
 	       if(e->client->clientID==player0->clientID)
 		useCard(playon->boardOrigin,playon->cardOrigin,playon->boardDestination,playon->cardDestination);
 	       else
@@ -521,7 +521,7 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	     }
 	     break;
 	   case Network::ENDTURN:
-	     if(getCurrentPlayer()->clientID==e->client->clientID)
+	     //if(getCurrentPlayer()->clientID==e->client->clientID)
 	      endTurn();
 	     break;
 	   case Network::CREATE: {

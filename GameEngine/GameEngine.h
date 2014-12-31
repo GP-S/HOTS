@@ -50,6 +50,12 @@
 #include <PolyServer.h>
 #include <requestType.inc>
 
+/** 
+* Class GameEngine . The core of the game that modifies the states
+* @author Armand
+* @author Nicolas BELOUIN
+*
+**/
 
 namespace Engine
 {
