@@ -38,21 +38,43 @@
 ############################## General information ##################################
 #####################################################################################
 #                                                                                   #
+#  HOTS is a game developed by engineering students from the graduate school ENSEA  #
+#                                                                                   #
+#  This game was developed as part of programming project in our last year of ENSEA #
 #                                                                                   #
 #                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
+#  Polycode is completely free and open source (MIT license), with all development  #
+#  happening publicly on Github. Its core is written in C++ and currently runs on   #
+#  Mac, Windows and Linux with iOS and Android support planned in the future.       #
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
 ##################### Copyright and licensing information ###########################
 #####################################################################################
 #                                                                                   #
+#          1) Polycode Licence                                                      #
 #                                                                                   #
+#     Copyright (C) 2014 by Ivan Safrin, Polycode Team                              #
 #                                                                                   #
+#     Permission is hereby granted, free of charge, to any person obtaining a copy  #
+#  of this software and associated documentation files (the "Software"), to deal    #
+#  in the Software without restriction, including without limitation the rights     #
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell        #
+#  copies of the Software, and to permit persons to whom the Software is            #
+#  furnished to do so, subject to the following conditions:                         #
 #                                                                                   #
+#     The above copyright notice and this permission notice shall be included in    #
+#  all copies or substantial portions of the Software.                              #
+#                                                                                   #
+#     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR    #
+#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,         #
+#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE      #
+#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER           #
+#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,    #
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN        #
+#  THE SOFTWARE.                                                                    #
+#                                                                                   #
+#          2)                                                                       #
 #                                                                                   #
 #                                                                                   #
 #                                                                                   #
@@ -96,7 +118,7 @@
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
-#################################### FAQ ############################################
+###################################### FAQ ##########################################
 #####################################################################################
 #                                                                                   #
 #                                                                                   #
@@ -107,7 +129,7 @@
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
-#################################### BUGS ###########################################
+###################################### BUGS #########################################
 #####################################################################################
 #                                                                                   #
 #                                                                                   #
@@ -118,7 +140,7 @@
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
-############################## File manifest ########################################
+############################### File manifest #######################################
 #####################################################################################
 #                                                                                   #
 #  HOTS                                                                             #
