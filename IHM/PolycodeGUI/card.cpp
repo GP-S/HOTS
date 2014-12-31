@@ -85,12 +85,66 @@ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non pr
     rotTween=nullptr;
 }
 
-IHM::PolycodeGUI::Card::Card ( std::string title, int cost, int attack, int defense, std::string description, int imageId ) : Card() {
-    setTitle ( title );
+IHM::PolycodeGUI::Card::Card ( std::string title, int cost, int attack, int defense, std::string description, int imageId ) : ScenePrimitive ( ScenePrimitive::TYPE_BOX, CARD_WIDTH, CARD_THICK, CARD_HEIGHT ) {
+    minifiedCard = new ScenePrimitive ( ScenePrimitive::TYPE_BOX, CARD_WIDTH, CARD_THICK, CARD_HEIGHT/2 );
+    addChild ( minifiedCard );
+    minifiedCard->visible=false;
+    minifiedCard->visibilityAffectsChildren=false;
+    minified=false;
+
+    const std::string font = "Script";
+    const Color textColor = Color ( 1.0,1.0,1.0,1.0 );
+
+
+    this->title=title;
+    this->cost = cost;
+    def = defense;
+    att= attack;
+
+
+
+
+    this->setMaterialByName ( "CubeMaterial" );
+
+    image = new ScenePrimitive ( ScenePrimitive::TYPE_PLANE, CARD_WIDTH-2*textMargin, CARD_HEIGHT/2-2*textMargin );
+    image->setPosition ( 0,CARD_THICK/2+textElevation/2,-CARD_HEIGHT/4+textMargin );
+    image->loadTexture ( "Resources/Cards/"+std::to_string ( imageId ) +".png" );
+    image->alphaTest=true;
+    minifiedCard->addChild ( image );
+
+
+    titleLabel = new SceneLabel ( title, 17,font,Label::ANTIALIAS_FULL,textScale );
+    titleLabel->setColor ( textColor );
+    titleLabel->setPosition ( 0,CARD_THICK/2+textElevation );
+    titleLabel->setPitch ( -90 );
+    minifiedCard->addChild ( titleLabel );
+
+    attackLabel = new SceneLabel ( "", 25,font,Label::ANTIALIAS_FULL,textScale*1.5 );
+    attackLabel->setColor ( textColor );
+    setAttack ( att );
+    attackLabel->setPitch ( -90 );
+    minifiedCard->addChild ( attackLabel );
+
+    defenseLabel = new SceneLabel ( "", 25,font,Label::ANTIALIAS_FULL,textScale*1.5 );
+    defenseLabel->setColor ( textColor );
+    setDefense ( def );
+    defenseLabel->setPitch ( -90 );
+    minifiedCard->addChild ( defenseLabel );
+
+    costLabel = new SceneLabel ( "", 25,font,Label::ANTIALIAS_FULL,textScale*1.5 );
+    costLabel->setColor ( textColor );
     setCost ( cost );
-    setDefense ( defense );
+    costLabel->setPitch ( -90 );
+    this->addChild ( costLabel );
+
     setDescription ( description );
-    setImageId ( imageId );
+
+
+    rotationQuat=Quaternion ( 0,0,0,1 );
+    hidden=true;
+    hovered=false;
+    tween=nullptr;
+    rotTween=nullptr;
 }
 
 

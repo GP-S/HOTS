@@ -29,6 +29,41 @@ template <class V,class U> class Match
 		  
 		}
 	
+    int getSizeGE() {
+
+
+
+        return GEObjects->size();
+
+    }
+
+
+
+    int getMaxSizeGE() {
+
+
+
+        return GEObjects->max_size();
+
+    }
+
+
+
+    int getSizeIHM() {
+
+
+
+        return IHMObjects->size();
+
+    }
+
+
+
+    int getMaxSizeIHM() {
+
+        return IHMObjects->max_size();
+
+    }
 		void add(V* GEObject,U* IHMObject){
 			this->GEObjects->push_back(GEObject);
 			this->IHMObjects->push_back(IHMObject);

@@ -32,6 +32,7 @@
 #include "../Card/iBeast.h"
 #include "../utils/usefulStruc.inc"
 #include "../IHM/iihm.h"
+#include "unistd.h"
 
 
 #include "GameSimulator.h"
