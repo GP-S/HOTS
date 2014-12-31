@@ -27,7 +27,7 @@
 #                                                                                   #
 #  * General information                                                            #
 #  * Copyright and licensing information                                            #
-#  * Installation instruction                                                       #
+#  * Installation instructions                                                      #
 #  * Configuration                                                                  #
 #  * FAQ                                                                            #
 #  * BUGS                                                                           #
@@ -38,14 +38,14 @@
 ############################## General information ##################################
 #####################################################################################
 #                                                                                   #
-#  HOTS is a game developed by engineering students from the graduate school ENSEA  #
+#  HOTS is a game developed by engineering students from the graduate school ENSEA. #
 #                                                                                   #
-#  This game was developed as part of programming project in our last year of ENSEA #
+#  This game was developed as a part of programming project in our last year of     #
+#  ENSEA.                                                                           #
 #                                                                                   #
-#                                                                                   #
-#  Polycode is completely free and open source (MIT license), with all development  #
+#  Polycode is completely free and open source (MIT license), with all developments #
 #  happening publicly on Github. Its core is written in C++ and currently runs on   #
-#  Mac, Windows and Linux with iOS and Android support planned in the future.       #
+#  Mac, Windows and Linux. iOS and Android support will be planned in the future.   #
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
@@ -80,31 +80,31 @@
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
-########################## Installation instruction #################################
+########################## Installation instructions ################################
 #####################################################################################
 #                                                                                   #
-#    1) with a terminal go into the main repertory named HOTS                       #
+#    1) Open a terminal and go into the main repertory named "HOTS"                 #
 #                                                                                   #
-#    2) enter in terminal the following instruction:                                #
+#    2) Enter the following instructions:                                           #
 #                     ./BuildLinux.sh                                               #
 #                                                                                   #
-#    3) now the MakeFile file was generated in Build folder                         #
+#    3) Now the "MakeFile" file is generated in "Build" folder                      #
 #                                                                                   #
-#    4) go into that repertory and enter the next instruction:                      #
+#    4) Go into that repertory and enter the next instruction:                      #
 #                     make                                                          #
 #                                                                                   #
-#    5) now the executable of HOTS is created                                       #
+#    5) Now the executable of HOTS is created                                       #
 #                                                                                   #
-#    6) this execute is in repertory bin into Build repertory                       #
+#    6) This executable is in repertory bin into "Build" repertory                  #
 #                                                                                   #
-#    7) you can execute our game with the next instruction:                         #
+#    7) Then you can execute our game with the next instruction:                    #
 #                    ./HOTS argument(see the next point)                            #
 #                                                                                   #
-#    8) There is an unremovable argument, the following list is all arguments you   #
-#       can add to the instruction:                                                 #
+#    8) There is an unremovable argument. You can find below the list of all the    #
+#       arguments you can add to the instruction:                                   #
 #          --single: Play a single player game against an AI                        #
 #          --server: Play a two  players game as the host                           #
-#          --c <serverAddress>: Play a two player game as a client to the given     #
+#          --c <serverAddress>: Play a two players game as a client to the given    #
 #                               server                                              #
 #                                                                                   #
 #####################################################################################
