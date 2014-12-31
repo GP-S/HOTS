@@ -10,6 +10,9 @@ static const std::string namespell[10] = {	"Fire ball","Acid arrow","Touch of id
 											"Deafness","Explosive runes","Lightning bolt",
 											"Wind rage","Flame arrow","Vanish","Storm"
 										 };
+static const std::string nameeffecthero[7] = {	"hp","hpMax","attack","attackCount",
+												"attackCountMax","shards","shardsMax"
+											};
 
 int myRandom(unsigned int mod){
 	return (int)std::rand()%mod;
@@ -18,8 +21,24 @@ int myRandom(unsigned int mod){
 Hero* newHero(std::string name){
 
 	Hero* hero = new Hero(name,30,0);
+	int value = 0;
 
-	Effect *hero_hp = new Effect("hp","none",30);
+	for(size_t i = 0; i < 7; i++){
+
+		if(nameeffecthero[i] == "hp" | nameeffecthero[i] == "hpMax")
+			value = 30;
+		else
+			value = 0;
+
+		Effect *effect_hero = new Effect(nameeffecthero[i],"none",value);
+		Capacity *capa_hero = new Capacity(nameeffecthero[i],-1);
+
+		capa_hero->setActive(true);
+		capa_hero->setEffect(effect_hero);
+		hero->addCapacity(capa_hero);
+	}
+
+/*	Effect *hero_hp = new Effect("hp","none",30);
 	Effect *hero_hpMax = new Effect("hpMax","none",30);
 	Effect *hero_attack = new Effect("attack","none",0);
 	Effect *hero_attackCount = new Effect("attackCount","none",0);
@@ -56,7 +75,7 @@ Hero* newHero(std::string name){
 	hero->addCapacity(capa_hero_attackCount);
 	hero->addCapacity(capa_hero_attackCountMax);
 	hero->addCapacity(capa_hero_shards);
-	hero->addCapacity(capa_hero_shardsMax);
+	hero->addCapacity(capa_hero_shardsMax);*/
 
 	return hero;
 

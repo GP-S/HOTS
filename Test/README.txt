@@ -1,11 +1,37 @@
 #####################################################################################
-#                                 README.txt                                        #
-#                                                                                   #
-#                           Who to compile test files                               #
-#                                                                                   #
+#         _____                                   _____              _____          #
+#        /\    \             _______             /\    \            /\    \         #
+#       /::\____\           /::\    \           /::\    \          /::\    \        #
+#      /:::/    /          /::::\    \          \:::\    \        /::::\    \       #
+#     /:::/    /          /::::::\    \          \:::\    \      /::::::\    \      #
+#    /:::/    /          /::::::::\    \          \:::\    \    /:::/\:::\    \     #
+#   /:::/____/          /:::/~~\:::\    \          \:::\    \  /:::/__\:::\    \    #
+#  /::::\    \         /:::/    \:::\    \         /::::\    \ \:::\   \:::\    \   #
+# /::::::\    \   ____/:::/    / \:::\    \       /::::::\    \_\:::\   \:::\    \  #
+#/:::/\:::\    \ /\    \:/____/   \:::\____\     /:::/\:::\    \ \:::\   \:::\    \ #
+#:::/  \:::\    /::\____\    |     |:::|    |   /:::/  \:::\____\ \:::\   \:::\____\#
+#::/    \:::\  /:::/    /____|     |:::|    |  /:::/    \::/    /  \:::\   \::/    /#
+#\/____/ \:::\/:::/    /:\    \   /:::/    /  /:::/    / \/____/\   \:::\   \/____/ #
+#         \::::::/    /\::\    \ /:::/    /  /:::/    /      \:::\   \:::\    \     #
+#          \::::/    / \:::\    /:::/    /  /:::/    /        \:::\   \:::\____\    #
+#          /:::/    /   \:::\__/:::/    /  /:::/    /          \:::\  /:::/    /    #
+#         /:::/    /     \::::::::/    /  /:::/    /            \:::\/:::/    /     #
+#        /:::/    /       \::::::/    /   \::/    /              \::::::/    /      #
+#       /:::/    /         \::::/    /     \/____/                \::::/    /       #
+#       \::/    /           \::/____/                              \::/    /        #
+#        \/____/             ~~                                     \/____/         #
 #                                                                                   #
 #####################################################################################
-#     1) list of posible test:                                                      #
+############################# CONTENTS OF THIS FILE #################################
+#####################################################################################
+#                                                                                   #
+#  * List of posible test                                                           #
+#  * Who to compile tests files                                                     #
+#                                                                                   #
+#####################################################################################
+############################ List of posible test ###################################
+#####################################################################################
+#    You can test the following part:                                               #
 #         -Board                                                                    #
 #         -Card                                                                     #
 #         -CreateDeck                                                               #
@@ -13,28 +39,28 @@
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
+########################## Who to compile tests files ###############################
+#####################################################################################
 #                                                                                   #
-#     2) Who to compile test files                                                  #
+#      1) with a terminal go into the repertory of the test you want to execute     #
 #                                                                                   #
-#      -go into the repertory of the test you want to execute                       #
+#      2) create a repertory name build and go into it                              #
 #                                                                                   #
-#      -create a repertory name build and go into it                                #
-#                                                                                   #
-#      -enter the following command into a terminal:                                #
-#                                                                                   #
+#      3) enter the following command into a terminal:                              #
 #              cmake ..                                                             #
 #                                                                                   #
-#      -after that, the MakeFile is generated                                       #
+#       now you have generate the MakeFile file                                     #
 #                                                                                   #
-#      -you can compile the test with the command:                                  #
+#      4) you can compile the test with the command:                                #
 #              make                                                                 #
 #                                                                                   #
-#      -the executable is generate into the bin repertory                           #
+#      the executable is generate into the bin repertory                            #
 #                                                                                   #
-#      -you can execute the programme with the command:                             #
+#      5) you can execute the programme with the command:                           #
 #             ./bin/name_of_executable                                              #
 #                                                                                   #
-#      -for you information, there is one file into bin                             #
+#      -for your information, there is one file into bin and one repertory          #
+#           in build begining with the letter b                                     #
 #                                                                                   #
 #####################################################################################
 #                                                                                   #
