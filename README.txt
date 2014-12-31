@@ -27,7 +27,7 @@
 #                                                                                   #
 #  * General information                                                            #
 #  * Copyright and licensing information                                            #
-#  * Installation instructions                                                       #
+#  * Installation instructions                                                      #
 #  * Configuration                                                                  #
 #  * FAQ                                                                            #
 #  * BUGS                                                                           #
@@ -83,28 +83,21 @@
 ########################## Installation instructions ################################
 #####################################################################################
 #                                                                                   #
+#    1)                                                                             #
+#                                                                                   #
 #    1) Open a terminal and go into the main repertory named "HOTS"                 #
 #                                                                                   #
 #    2) Enter the following instructions:                                           #
 #                     ./BuildLinux.sh                                               #
 #                                                                                   #
-#    3) Now the "MakeFile" file is generated in "Build" folder                      #
+#    3) Then you can execute our game with the next instruction:                    #
+#                    ./Release/HOTS argument(see the next point)                    #
 #                                                                                   #
-#    4) Go into that repertory and enter the next instruction:                      #
-#                     make                                                          #
-#                                                                                   #
-#    5) Now the executable of HOTS is created                                       #
-#                                                                                   #
-#    6) This executable is in repertory bin into "Build" repertory                  #
-#                                                                                   #
-#    7) Then you can execute our game with the next instruction:                    #
-#                    ./HOTS argument(see the next point)                            #
-#                                                                                   #
-#    8) There is an unremovable argument. You can find below the list of all the    #
+#    4) There is an unremovable argument. You can find below the list of all the    #
 #       arguments you can add to the instruction:                                   #
 #          --single: Play a single player game against an AI                        #
 #          --server: Play a two  players game as the host                           #
-#          --c <serverAddress>: Play a two players game as a client to the given     #
+#          --c <serverAddress>: Play a two players game as a client to the given    #
 #                               server                                              #
 #                                                                                   #
 #####################################################################################
@@ -148,8 +141,6 @@
 #  |    |____Board.cpp                                                              #
 #  |    |____Board.h                                                                #
 #  |    |____iBoard.h                                                               #
-#  |    |____RegulatedBoard.cpp                                                     #
-#  |    |____RegulatedBoard.h                                                       #
 #  |                                                                                #
 #  |                                                                                #
 #  |____Card                                                                        #
@@ -262,6 +253,12 @@
 #  |     |____file_manager.h                                                        #
 #  |     |____requesType.inc                                                        #
 #  |     |____usefulStruc.inc                                                       #
+#  |                                                                                #
+#  |                                                                                #
+#  |____Release                                                                     #
+#  |    |____Ressources                                                             #
+#  |    |____UIThemes.pak                                                           #
+#  |                                                                                #
 #  |                                                                                #
 #  |                                                                                #
 #  |_____.gitattributes                                                             #
