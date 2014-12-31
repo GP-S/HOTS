@@ -40,6 +40,11 @@ Engine::GameEngine::GameEngine(std::list<iCard*>* deckPlayer0,std::list<iCard*>*
     addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_CONNECTED);
     addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_DISCONNECTED);
     addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_DATA);
+    /*
+    for (int i=0;i<16;i++){
+	    boards[i] = getBoard();
+    }*/
+
 }
 
 Engine::GameEngine::GameEngine ( const GameEngine& other ) : Server(1337,100)
@@ -67,6 +72,14 @@ Engine::iGameSimulator* Engine::GameEngine::getSimulator ( void )
  	Engine::GameSimulator* gameSimulator=new GameSimulator(this, getCurrentPlayer());
 
 	return dynamic_cast<iGameSimulator*> (gameSimulator);
+
+}
+
+iBoard* Engine::GameEngine::getBoard ( void ) 
+{
+ 	Board* board=new Board();
+
+	return dynamic_cast<iBoard*> (board);
 
 }
 

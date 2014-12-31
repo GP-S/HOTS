@@ -21,6 +21,7 @@
 #define GAMEENGINE_H
 
 #include "iSimulatorFactory.h"
+ #include "../Board/iBoardFactory.h"
 #include "iGameSolver.h"
 #include "match.h"
 #include "../Board/iBoard.h"
@@ -50,7 +51,7 @@
 
 namespace Engine
 {
-  class GameEngine : public iSimulatorFactory, public iGameSolver, public Polycode::Server {
+  class GameEngine : public iSimulatorFactory, public iBoardFactory, public iGameSolver, public Polycode::Server {
     friend class GameSimulator;
   public:
       GameEngine();
@@ -60,6 +61,7 @@ namespace Engine
       GameEngine& operator= ( const GameEngine& other );
       bool operator== ( const GameEngine& other ) const;
       iGameSimulator* getSimulator ( void );
+      iBoard* getBoard ( void ) ;
       void useCard ( int originBoard, int originPosition, 
                       int destinationBoard, int destinationPosition );//done .
       void endTurn ( void );
