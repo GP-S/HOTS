@@ -26,14 +26,14 @@ public:
 	**/
 	virtual ~Agent();
 	/*
-	* Search the best combination of action in a list of state
+	* Search the best combination of action in a list of states
 	* resulting for different actions
 	**/
 	void search(/*some list of state*/);
 
 protected:
 	/**
-	* Auto evaluation of th agent
+	* Auto evaluation of the agent
 	* @return his mark(which can be negative)
 	**/
 	int autoEval();
