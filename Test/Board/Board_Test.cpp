@@ -94,7 +94,7 @@ int main(int argc, char **argv){
 /*Instance of some card, and three board: hand, cemetery and deck*/
  	printEtape(": Instanciation of hand, cemetery and deck and a list of card with newDeck");
 
- 	std::list<Card*> *listOfCard = newDeck();
+ 	std::list<iCard*> *listOfCard = newDeck();
 
 	iCard *tmpCard;
 
@@ -107,7 +107,7 @@ int main(int argc, char **argv){
 /*I print all cards in the list of cards*/
 	printEtape(": Some visual of all cards");
 
-	printListCard(listOfCard);
+	printListCard(reinterpret_cast<std::list<iCard*>*> listOfCard);
 
 /*=================================etape  3=========================================*/
 /*Set the max size of all board*/
@@ -141,7 +141,7 @@ int main(int argc, char **argv){
 	// 	deck->addCardX((iCard*)(*it),0);
 	// }
 
-	std::for_each(listOfCard->begin(),listOfCard->end(), [] (Card* it){
+	std::for_each(listOfCard->begin(),listOfCard->end(), [] (iCard* it){
  		deck->addCardX((iCard*)it,0);
 		}
 	);
