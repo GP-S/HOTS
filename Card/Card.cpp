@@ -37,17 +37,13 @@ void Card::calculateCost(){//modify when capacities are done
 
 	float fcost = 0.0;
 
-	std::cout << "calculateCost yet " << std::endl;
-
 	std::for_each(capaList->begin(),capaList->end(), [&fcost,this] (Capacity* it) mutable {
 
 			fcost += it->getEffect()->costVal(this);
-			std::cout << "calculateCost: " << fcost << std::endl;
 		}
 	);
 
 	cost = (int)fcost;
-	std::cout << "~~~~~~calculateCost and final cost: " << fcost << "," << cost << std::endl;
 
 }
 // i don't know if this is usefull anymore . keeping it just in case
@@ -93,14 +89,6 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 {
 	int total = 0;
 	
-	// foreach(std::list<Capacity*>, capaList, capaIterator){
-	// 	if ((*capaIterator)->getActive()){//if the capacity is active
-	// 		if((*capaIterator)->getEffect()->getType()==effectType){//compare the strings
-	// 			total+=(*capaIterator)->getEffect()->getValue();
-	// 			}
-	// 		}
-	// 	}
-
 	std::for_each(capaList->begin(),capaList->end(),[&total,effectType] (Capacity* capaIterator) mutable {
 		if (capaIterator->getActive())//if the capacity is active
 			if(capaIterator->getEffect()->getType()==effectType)//compare the strings
@@ -108,7 +96,6 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 		}
 	);
 	
-
 	if (effectType == "hp" && total < 1){
     	throw std::logic_error( "current card has an illegal health" ); 
   	}
@@ -141,10 +128,6 @@ int Card::getCost()
 // }
 
 void Card::decreaseAllDurabilty(){
-
-	// foreach(std::list<Capacity*>, capaList, capaIterator){
-	// 	(*capaIterator)->decreaseDurability();
-	// }
 
 	std::for_each(capaList->begin(),capaList->end(), [] (Capacity* capaIterator){
 			capaIterator->decreaseDurability();
