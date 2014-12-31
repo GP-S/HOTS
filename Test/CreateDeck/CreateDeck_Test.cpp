@@ -61,6 +61,7 @@ int main(int argc, char **argv){
 
 	std::list<iCard*> *deck = newDeck();
 	std::list<Capacity*> *capa = new std::list<Capacity*>();
+	Card *tmpcard = new Card();
 	std::cout << "Deck cree, size: " << deck->size() << std::endl;
 
 	// std::for_each(deck->begin(),deck->end(), [] (iCard* it){
@@ -85,7 +86,14 @@ int main(int argc, char **argv){
 
 
 	std::for_each(deck->begin(),deck->end(), [capa] (iCard* itcard){
-		printCard(dynamic_cast<Card*> (itcard));
+		card = dynamic_cast<Card*> (itcard);
+
+		if(card->getType() == "beast")
+			printBeast((Beast*)card);
+		else if(card->getType() == "spell")
+			printSpell((Spell*)card);
+		else
+			printCard(card);
 
 		for(size_t i = 0 ; i < ALLCAPA; i++)
 			printEffect(dynamic_cast<Card*> (itcard),capaName[i]);
