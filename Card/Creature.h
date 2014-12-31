@@ -21,7 +21,7 @@
 *               
 *   canAttack() : - freeze, paralyze etc are not handled yet
 *
-*   vrais getter et setters des capacités 
+*   vrais getters et setters des capacités 
 *
 **/
 class Creature : public Card, virtual public iCreature
@@ -87,7 +87,7 @@ class Creature : public Card, virtual public iCreature
 //		virtual void attack(Creature* target);
         /**
         * resetAttackCount
-        * Used every to reset the number of attacks a Creature did .
+        * Used everytime to reset the number of attacks a Creature did .
         *
         **/
         virtual void resetAttackCount();
