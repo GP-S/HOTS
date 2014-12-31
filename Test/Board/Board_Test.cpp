@@ -107,7 +107,7 @@ int main(int argc, char **argv){
 /*I print all cards in the list of cards*/
 	printEtape(": Some visual of all cards");
 
-	printListCard(reinterpret_cast<std::list<iCard*>*> listOfCard);
+	printListCard(reinterpret_cast<std::list<iCard*>*> (listOfCard));
 
 /*=================================etape  3=========================================*/
 /*Set the max size of all board*/
@@ -141,7 +141,7 @@ int main(int argc, char **argv){
 	// 	deck->addCardX((iCard*)(*it),0);
 	// }
 
-	std::for_each(listOfCard->begin(),listOfCard->end(), [] (iCard* it){
+	std::for_each(listOfCard->begin(),listOfCard->end(), [deck] (iCard* it){
  		deck->addCardX((iCard*)it,0);
 		}
 	);
