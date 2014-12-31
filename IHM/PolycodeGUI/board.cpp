@@ -47,7 +47,8 @@ void IHM::PolycodeGUI::Board::addCard ( ICard* card, int pos ) {
    /* if ( typeid ( card ) !=typeid ( Card ) ) {
         throw std::invalid_argument ( "This card is incompatible with this UI" );
     }*/
-    Card* realCard = (Card*) card;
+   std::cout << "Add : " << card << std::endl;
+    Card* realCard = dynamic_cast<Card*> (card);
     if ( cards.size() >=size && size!=0 ) {
         throw std::length_error ( "Board is full" );
     }

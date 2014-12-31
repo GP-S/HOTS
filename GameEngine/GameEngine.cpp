@@ -526,6 +526,7 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	     break;
 	   case Network::CREATE: {
 	     Network::CreateCardAnswerStructType* answer = (Network::CreateCardAnswerStructType*) e->data;
+	     std::cout << "Client : " << answer->clientRef << " Server : " << answer->serverRef << std::endl;
 	     if(e->client->clientID==player0->clientID){
 	       matchCardPlayer0.add((iCard*)answer->serverRef,(void*)answer->clientRef);
 	       if((iCard*)answer->serverRef == heroPlayer0)
@@ -544,6 +545,14 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	       else
 		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER0_DECK), 0 );
 	     }
+	     
+	     if(matchCardPlayer0.getSizeIHM()==deckPlayer0->size()+deckPlayer1->size()+2)
+	       if(matchCardPlayer0.getSizeIHM()==matchCardPlayer1.getSizeIHM())
+	       {
+		   	playerDraws(0,3);
+			playerDraws(1,4);
+			beginTurn();
+	       }
 	  }
 	     
 	     break;
@@ -660,39 +669,29 @@ void Engine::GameEngine::initDecks () {
 		boards[PLAYER1_DECK]->addCardX(itCard,0);
 	});
   	
-  	void* heroPlayer0IHM;
-  	matchCardPlayer0.add(heroPlayer0,heroPlayer0IHM);
-	matchCardPlayer1.add(heroPlayer0,heroPlayer0IHM);
+
 	attack = heroPlayer0->getTotal("attack");
 	defense = heroPlayer0->getTotal("hp");
 	cost = heroPlayer0->getCost();
 	title = heroPlayer0->getName();
 	description = heroPlayer0->getType();
 	imageID = 0; //pending . WIP .
-	CreateCardRequest (player0, heroPlayer0IHM, attack,defense,cost,  title,  description,  imageID);
-	CreateCardRequest (player1, heroPlayer0IHM, attack,defense,cost,  title,  description,  imageID);
+	CreateCardRequest (player0, heroPlayer0, attack,defense,cost,  title,  description,  imageID);
+	CreateCardRequest (player1, heroPlayer0, attack,defense,cost,  title,  description,  imageID);
 	boards[PLAYER0_HERO]->addCardX(heroPlayer0,0);
-	addCardRequest ( player0, heroPlayer0IHM, PLAYER0_HERO, 0 );
-	addCardRequest ( player1, heroPlayer0IHM, getOppositeBoard(PLAYER0_HERO), 0 );
 
-    void* heroPlayer1IHM;
-	matchCardPlayer0.add(heroPlayer1,heroPlayer1IHM);
-	matchCardPlayer1.add(heroPlayer1,heroPlayer1IHM);
+
 	attack = heroPlayer1->getTotal("attack");
 	defense = heroPlayer1->getTotal("hp");
 	cost = heroPlayer1->getCost();
 	title = heroPlayer1->getName();
 	description = heroPlayer1->getType();
 	imageID = 0; //pending . WIP .
-	CreateCardRequest (player0, heroPlayer1IHM, attack,defense,cost,  title,  description,  imageID);
-	CreateCardRequest (player1, heroPlayer1IHM, attack,defense,cost,  title,  description,  imageID);
+	CreateCardRequest (player0, heroPlayer1, attack,defense,cost,  title,  description,  imageID);
+	CreateCardRequest (player1, heroPlayer1, attack,defense,cost,  title,  description,  imageID);
 	boards[PLAYER1_HERO]->addCardX(heroPlayer1,0);
-	addCardRequest ( player0, heroPlayer1IHM, PLAYER1_HERO, 0 );
-	addCardRequest ( player1, heroPlayer1IHM, getOppositeBoard(PLAYER1_HERO), 0 );
 
-  	playerDraws(0,3);
-  	playerDraws(1,4);
-  	beginTurn();
+
 
 }
 

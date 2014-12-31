@@ -176,11 +176,17 @@ bool IHM::PolycodeGUI::IHM::Update() {
 }
 
 IHM::ICard* IHM::PolycodeGUI::IHM::createCard() {
-    return new Card();
+    Card* card = new Card();
+    scene->addCollisionChild(card);
+    std::cout<< "Create : "<< card << std::endl;
+    return card;
 }
 
 IHM::ICard* IHM::PolycodeGUI::IHM::createCard ( std::string title, int cost, int attack, int defense, std::string description, int imageId ) {
-    return new Card ( title,cost,attack,defense,description,imageId );
+    Card* card = new Card ( title,cost,attack,defense,description,imageId );
+    scene->addCollisionChild(card);
+    std::cout<< "Create : "<< card << std::endl;
+    return card;
 }
 
 IHM::IBoard* IHM::PolycodeGUI::IHM::getBoard ( int numBoard) {
