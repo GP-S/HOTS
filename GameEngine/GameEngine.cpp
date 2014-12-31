@@ -489,6 +489,7 @@ void Engine::GameEngine::shuffleDeck(int playerNumber){//this doesn't work at al
 
 void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
   using namespace Polycode;
+  Server::handleEvent(event);
     if(event->getDispatcher()==this){
       ServerEvent *e = (ServerEvent*)event;
       switch (e->getEventCode()){

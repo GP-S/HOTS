@@ -18,19 +18,24 @@
  */
 
 #include "gameclient.h"
+#include <iostream>
 
 namespace Network {
   GameClient::GameClient ( std::string serverAddress, int port , IHM::IIHM* ihm) : serverAddress(Address(serverAddress,port)), ihm(ihm), Client(0,1) {
     Connect(serverAddress,port);
+    std::cout<<"Here Come The Network"<<std::endl;
     addEventListener(this, ClientEvent::EVENT_SERVER_DISCONNECTED);
     addEventListener(this, ClientEvent::EVENT_SERVER_DATA);
   }
 
   void GameClient::handleEvent ( Polycode::Event* event ) {
+    	Client::handleEvent(event);
+	
     if (event->getDispatcher() == this){
       ClientEvent* e = dynamic_cast<ClientEvent*> (event);
       switch(e->getEventCode()){
 	case ClientEvent::EVENT_SERVER_DISCONNECTED:
+	  
 	  Services()->getCore()->Shutdown();
 	  break;
 	case ClientEvent::EVENT_SERVER_DATA:
