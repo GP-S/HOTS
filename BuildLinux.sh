@@ -142,6 +142,7 @@ cd ../..
 #### Build HOTS
 mkdir Build
 cd Build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 make install
+cd ..

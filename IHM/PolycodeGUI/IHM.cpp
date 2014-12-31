@@ -3,7 +3,7 @@
 
 IHM::PolycodeGUI::IHM::IHM ( PolycodeView* view, string serverAddress, int serverPort ) {
 
-    core = new POLYCODE_CORE ( view, 1920,1080,false,true,0,0,90, 0, true );
+    core = new POLYCODE_CORE ( view, 1280,720,false,true,0,0,90, 0, true );
 
     CoreServices::getInstance()->getResourceManager()->addArchive ( "Resources/default.pak" );
     CoreServices::getInstance()->getResourceManager()->addDirResource ( "default", false );
@@ -89,6 +89,7 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
         InputEvent *inputEvent = ( InputEvent* ) e;
         Ray ray = scene->projectRayFromCameraAndViewportCoordinate ( scene->getActiveCamera(), inputEvent->mousePosition );
         RayTestResult res = scene->getFirstEntityInRay ( ray.origin, ray.direction * 10000.0 );
+	try {
         switch ( e->getEventCode() ) {
         case InputEvent::EVENT_MOUSEMOVE:
             if ( res.entity ) {
@@ -163,6 +164,9 @@ void IHM::PolycodeGUI::IHM::handleEvent ( Event *e ) {
 
             break;
         }
+	} catch (std::exception e) {
+	  
+	}
     }
 }
 
