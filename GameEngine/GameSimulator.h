@@ -20,32 +20,30 @@
 #ifndef GAMESIMULATOR_H
 #define GAMESIMULATOR_H
 
-#include "iGameSimulator.h"
+#include <stdexcept>
+#include <Polycode.h>
+#include "iGameSolver.h"
+#include "GameEngine.h"
 
 namespace Engine {
+  class GameEngine;
+  
   class GameSimulator : public iGameSolver
   {
   public:
-    GameSimulator();
+    GameSimulator( Engine::GameEngine* server, Polycode::ServerClient* client );
     ~GameSimulator();
     virtual void endTurn ( void );
     virtual void useCard ( int originBoard, int originPosition, int destinationBoard, int destinationPosition );
 
-
+  private:
+    void playBeast(int idOriginBoard,int idDestinationBoard,iBeast* playedCard,int originPosition, int destinationPosition);
+      void playSpell(int idOriginBoard,int idDestinationBoard,iCard* playedCard,int originPosition, int destinationPosition);
+      void beastAttackBeast(int idOriginBoard,int idDestinationBoard,iBeast* playedCard,int originPosition, int destinationPosition);
+      void beastAttackHero(int idOriginBoard,int idDestinationBoard,iBeast* playedCard,int originPosition, int destinationPosition);
+    GameEngine* server;
+    Polycode::ServerClient* client;
   };
 
-  /*class GameSimulator : public IGameSimulator
-  {
-  public:
-      GameSimulator();
-      GameSimulator ( const GameSimulator& other );
-      ~GameSimulator();
-      GameSimulator& operator= ( const GameSimulator& other );
-      bool operator== ( const GameSimulator& other ) const;
-      virtual void resetState();
-      virtual void endTurn ( void );
-      virtual void playCard ( int originBoard, int originPosition, int 
-destinationBoard, int destinationPosition );
-  };*/
 }
 #endif // GAMESIMULATOR_H
