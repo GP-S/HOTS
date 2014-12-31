@@ -2,6 +2,14 @@
 #define STACKED_BOARD_H
 
 #include "Board.h"
+
+
+/**
+* Class of RegulatedBoard is: .
+* @author Nicolas Léger
+* @author Francois Denquin
+*/
+
 class StackedBoard :
 	public Board
 {
@@ -13,7 +21,7 @@ public:
 
 		/**
 		* Create a board and initialize it with the pointer of listCard.
-		* @param std::list<Card> *listCard pointer of a list of card.
+		* @param std::list<Card> *listCard pointer of a list of cards.
 		*/
 	StackedBoard(std::list<iCard*> *listCard) : Board(listCard){}
 
