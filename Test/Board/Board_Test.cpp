@@ -21,20 +21,20 @@ void printBoard(Board *board, std::string name){
 	std::cout << std::endl;
 }
 
-void printTimeBoard(RegulatedBoard *board, std::string name){
+// void printTimeBoard(RegulatedBoard *board, std::string name){
 
-	iCard *iCard;
+// 	iCard *iCard;
 
-	std::cout << "Board " << name << ": " << std::endl;
+// 	std::cout << "Board " << name << ": " << std::endl;
 
-	for(size_t i = 0; i < board->getSize(); i++){
-		iCard = board->getCardX(i);
-		std::cout <<	" Card[" << i << "]";
-		std::cout <<	" name: " << board->getCardX(i)->getName()<< std::endl;
-		std::cout <<	" arrival time: " << board->CardArrivalByTime(iCard) << std::endl;
-	} 
-	std::cout << std::endl;
-}
+// 	for(size_t i = 0; i < board->getSize(); i++){
+// 		iCard = board->getCardX(i);
+// 		std::cout <<	" Card[" << i << "]";
+// 		std::cout <<	" name: " << board->getCardX(i)->getName()<< std::endl;
+// 		std::cout <<	" arrival time: " << board->CardArrivalByTime(iCard) << std::endl;
+// 	} 
+// 	std::cout << std::endl;
+// }
 
 void printCard(Card *card){
 
@@ -100,7 +100,7 @@ int main(int argc, char **argv){
 
  	Board *deck = new Board();
  	Board *hand = new Board();
- 	RegulatedBoard *battlefield = new RegulatedBoard();
+ 	// RegulatedBoard *battlefield = new RegulatedBoard();
 
 
 /*=================================etape  2=========================================*/
@@ -114,11 +114,11 @@ int main(int argc, char **argv){
 	printEtape(": Set max size of all board");
 
 	hand->setMaxSize(7);
-	battlefield->setMaxSize(3);
+	// battlefield->setMaxSize(3);
 
 	printSizeBoard(deck,"deck");
 	printSizeBoard(hand,"hand");
-	printSizeBoard(battlefield,"battlefield");
+	// printSizeBoard(battlefield,"battlefield");
 
 
 // /*==================================================================================*/
@@ -189,106 +189,47 @@ int main(int argc, char **argv){
 
 /*=================================etape  8=========================================*/
 /*I take all cards from hand and I put them into battlefield, if I can't place it on battle, I put it into hand*/
-	printEtape(": Take all cards from hand and put them into battlefield, if it's not possible the card is returned into hand");
+	// printEtape(": Take all cards from hand and put them into battlefield, if it's not possible the card is returned into hand");
 
-	for(size_t i = 0; i < 7; i++){
-		tmpCard = hand->takeCardX(0);
+	// for(size_t i = 0; i < 7; i++){
+	// 	tmpCard = hand->takeCardX(0);
 
-		if(!battlefield->isFull())
-			battlefield->addCardX(tmpCard,i);
+	// 	if(!battlefield->isFull())
+	// 		battlefield->addCardX(tmpCard,i);
 		
-		else
-			hand->addCardX(tmpCard,0);
+	// 	else
+	// 		hand->addCardX(tmpCard,0);
 
-	}
+	// }
 
-	printSizeBoard(hand,"hand       ");
-	//printBoard(hand,"hand");
-	printSizeBoard(battlefield,"battlefield");
-	printBoard(battlefield,"battlefield");
+	// printSizeBoard(hand,"hand       ");
+	// //printBoard(hand,"hand");
+	// printSizeBoard(battlefield,"battlefield");
+	// printBoard(battlefield,"battlefield");
 
 /*=================================etape  9=========================================*/
 /*I delete the first card in battlefield, and I put another card in first position of battlefield*/
-	printEtape(": Delete the first card in battlefield,Put another card in first position of battlefield");
+	// printEtape(": Delete the first card in battlefield,Put another card in first position of battlefield");
 
-	battlefield->deleteCardX(0);
+	// battlefield->deleteCardX(0);
 
-	printSizeBoard(battlefield,"battlefield");
-	printBoard(battlefield,"battlefield");
-	printTimeBoard(battlefield,"battlefield");
+	// printSizeBoard(battlefield,"battlefield");
+	// printBoard(battlefield,"battlefield");
+	// printTimeBoard(battlefield,"battlefield");
 
-	tmpCard = hand->takeCardX(0);
-	battlefield->addCardX(tmpCard,0);
-
-
-	printSizeBoard(battlefield,"battlefield");
-	printBoard(battlefield,"battlefield");
-	printTimeBoard(battlefield,"battlefield");
-
-/*=================================etape  9=========================================*/
-/*I add the list of cards to deck*/
-	// printEtape(": add list of cards to deck");	// etape 10
-
-	// std::list<Card*> *listCard = new std::list<Card*>();
+	// tmpCard = hand->takeCardX(0);
+	// battlefield->addCardX(tmpCard,0);
 
 
-	// for(size_t i = 0; i < NUMBER; i++){
-	// 	listCard->push_back(&card[i]);
-	// }
+	// printSizeBoard(battlefield,"battlefield");
+	// printBoard(battlefield,"battlefield");
+	// printTimeBoard(battlefield,"battlefield");
 
-
-	// printCard(card,NUMBER);
-	// foreach(std::list<Card*>, listCard, it){
-	// 	printCard(*it,1);
-	// 	//std::cout << "hello" << std::endl;
-	// }
-
-	// deck->setMaxSize(2*NUMBER);
-
-	// deck->addListCardX(listCard,NUMBER/2);
-
-	// printSizeBoard(deck,"deck");
-	// printBoard(deck,"deck");
-
-// /*==================================================================================*/
-// /*I delete the cemetery*/
-// 	printEtape(": Delete the cemetery");	// etape 11
-
-// 	printSizeBoard(cemetery,"cemetery");
-// 	printBoard(cemetery,"cemetery");
-
-// 	delete cemetery;
-
-// 	printSizeBoard(cemetery,"cemetery");
-// 	printBoard(cemetery,"cemetery");
-
-// /*==================================================================================*/
-// /*I create a new RegulatedBoard and I initialise it*/
-// 	printEtape(": RegulatedBoard: a new age ->battlefield");	// etape 12
-// 	RegulatedBoard *battlefield = new RegulatedBoard();
-// 	battlefield->setMaxSize(7);
-
-// 	printSizeBoard(battlefield,"battlefield");
-
-// /*==================================================================================*/
-// /*I fill the battlefield by the end*/
-// 	printEtape(": Fill the battlefield by the end");	// etape 13
-	
-// 	for(size_t i = 0; i < 7; i++)
-// 		battlefield->addCardX(&card[i],i);
-
-// 	printBoard(battlefield,"battlefield");
-
-// 	std::cout << "card arrival by time: " << battlefield->CardArrivalByTime(&card[2]) << std::endl;
-
-
-// /**/
-
-/*==================================================================================*/
+/*=================================etape 10=========================================*/
 /*	 destruction, il manque aussi la création d'une liste avec une liste de cartes
 	Il manque aussi le fait que l'on travail avec des RegulatedBoard & des StackBoard
 			*/
 
-	printEtape(": End of the test, all tests are succesfull for the science !");	// etape 10
+	printEtape(": End of the test, all tests are succesfull for the science !");
 	return 0;
 }
