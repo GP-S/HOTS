@@ -155,7 +155,7 @@ int main(int argc, char **argv){
 
 	for(size_t i = 0; i < 3; i++){
 		tmpCard = deck->getCardX(i);
-		printCard(dynamic_cast<Card*> tmpCard);
+		printCard(dynamic_cast<Card*> (tmpCard));
 	}
 
 
