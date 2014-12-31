@@ -60,30 +60,6 @@ std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a 
 	return capaListTemp;
 
 }
-/*well it seems that capacity only has ONE effect .
-int Card::getTotal(std::string effectType)//returns the total of the values of a choosen effect type
-{
-	int total =0;
-	foreach(std::list<Capacity*>, capaList, capaIterator){
-		if ((*capaIterator)->getActive()){//if the capacity is active
-			foreach(std::list<Effect*>, capaIterator->effectList, effectIterator){
-			if ((*effectIterator)->getType()==capaType){//compare the strings
-				total+=(*effectIterator)->getValue();
-				}
-			}
-		}
-	}
-
-	if (effectType=="hp" && total<1){
-    throw std::logic_error( "current card has an illegal health" ); 
-  	}
-  	if (effectType=="attack" && total<0){
-    throw std::logic_error( "current card has an illegal attack" ); 
-  	}
-
-	return total;
-}
-*/
 
 int Card::getTotal(std::string effectType)//returns the total of the values of a choosen effect type
 {
@@ -120,12 +96,6 @@ int Card::getCost()
 {
 	return cost;
 }
-
-// bool Card::isUsable(Player p)
-// {
-
-// 	return true;
-// }
 
 void Card::decreaseAllDurabilty(){
 

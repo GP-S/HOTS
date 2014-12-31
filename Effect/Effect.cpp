@@ -67,29 +67,4 @@ float Effect::costVal(iCard *card){
 	else
 		return 0.0;
 
-
-	// if((Card*)card->getType == "beast"){
-
-	// 	if(type == "hpMax")
-	// 		return (float)value/2.5;
-
-	// 	if(type == "attack")
-	// 		return (float)value/2.5;
-		
-	// 	if(type == "attackCountMax"){
-	// 		float attack = (iBeast*)card->getBaseAttack();
-	// 		float life = (iBeast*)card->getHp();
-
-	// 		return ((value*value-1)*(attack+(life-1)))/7.5;
-	// 	}
-
-	// }
-
-	// if((Card*)card->getType == "spell"){
-
-	// 	if(type == "damage")
-	// 		return 1.0+(value*value)/10.0;
-
-	// }
-
 }

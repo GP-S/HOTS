@@ -19,21 +19,6 @@ void printBoard(Board *board, std::string name){
 	std::cout << std::endl;
 }
 
-// void printTimeBoard(RegulatedBoard *board, std::string name){
-
-// 	iCard *iCard;
-
-// 	std::cout << "Board " << name << ": " << std::endl;
-
-// 	for(size_t i = 0; i < board->getSize(); i++){
-// 		iCard = board->getCardX(i);
-// 		std::cout <<	" Card[" << i << "]";
-// 		std::cout <<	" name: " << board->getCardX(i)->getName()<< std::endl;
-// 		std::cout <<	" arrival time: " << board->CardArrivalByTime(iCard) << std::endl;
-// 	} 
-// 	std::cout << std::endl;
-// }
-
 void printCard(Card *card){
 
 	std::cout << "Card: " << std::endl;
@@ -96,26 +81,9 @@ int main(int argc, char **argv){
 	printSizeBoard(hand,"hand");
 	// printSizeBoard(battlefield,"battlefield");
 
-
-// /*==================================================================================*/
-// /*I try to put a card in some invalides positions*/
-// 	//hand->addCardX(&card[6],6);
-// 	//hand->addCardX(&card[0],12);
-	
-
-
 /*=================================etape  4=========================================*/
 /*I put all cards in the deck*/
 	printEtape(": Fill the deck with all cards");
-
-/*Some problem with addCardX(list)*/
-//	deck->addCardX(reinterpret_cast <std::list<iCard*> *> (listOfCard),0);
-//	deck->addCardX((iCard*)listOfCard->front(),0);
-	
-
-	// for(std::list<Card*>::iterator it = listOfCard->begin(); it != listOfCard->end(); ++it){
-	// 	deck->addCardX((iCard*)(*it),0);
-	// }
 
 	std::for_each(listOfCard->begin(),listOfCard->end(), [deck] (iCard* it){
  		deck->addCardX((iCard*)it,0);
@@ -164,44 +132,6 @@ int main(int argc, char **argv){
 	//printBoard(hand,"hand");
 
 /*=================================etape  8=========================================*/
-/*I take all cards from hand and I put them into battlefield, if I can't place it on battle, I put it into hand*/
-	// printEtape(": Take all cards from hand and put them into battlefield, if it's not possible the card is returned into hand");
-
-	// for(size_t i = 0; i < 7; i++){
-	// 	tmpCard = hand->takeCardX(0);
-
-	// 	if(!battlefield->isFull())
-	// 		battlefield->addCardX(tmpCard,i);
-		
-	// 	else
-	// 		hand->addCardX(tmpCard,0);
-
-	// }
-
-	// printSizeBoard(hand,"hand       ");
-	// //printBoard(hand,"hand");
-	// printSizeBoard(battlefield,"battlefield");
-	// printBoard(battlefield,"battlefield");
-
-/*=================================etape  9=========================================*/
-/*I delete the first card in battlefield, and I put another card in first position of battlefield*/
-	// printEtape(": Delete the first card in battlefield,Put another card in first position of battlefield");
-
-	// battlefield->deleteCardX(0);
-
-	// printSizeBoard(battlefield,"battlefield");
-	// printBoard(battlefield,"battlefield");
-	// printTimeBoard(battlefield,"battlefield");
-
-	// tmpCard = hand->takeCardX(0);
-	// battlefield->addCardX(tmpCard,0);
-
-
-	// printSizeBoard(battlefield,"battlefield");
-	// printBoard(battlefield,"battlefield");
-	// printTimeBoard(battlefield,"battlefield");
-
-/*=================================etape 10=========================================*/
 /*	 destruction, il manque aussi la création d'une liste avec une liste de cartes
 	Il manque aussi le fait que l'on travail avec des RegulatedBoard & des StackBoard
 			*/

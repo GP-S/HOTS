@@ -77,15 +77,6 @@ class Creature : public Card, virtual public iCreature
         **/
 		virtual void setBaseAttack(int attack);
         /**
-        * attack
-        * Used to attack another Creature
-        * @param Creature* target The target of the attack
-        *
-        *
-        * modify it
-        **/
-//		virtual void attack(Creature* target);
-        /**
         * resetAttackCount
         * Used everytime to reset the number of attacks a Creature did .
         *

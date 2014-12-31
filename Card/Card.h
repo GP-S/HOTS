@@ -81,13 +81,6 @@ class Card : virtual public iCard
         **/
     	std::string getName();
         /**
-        * isAlive
-        * tells if a card is alive 
-        * @return isAlive the alive flag of a card .
-        *
-        **/
-//        virtual bool isAlive() = 0;
-        /**
         * findCapaByType
         * returns a list of capacity that matches choosen type
         * @param std::string capaType the type you want to find
@@ -101,14 +94,6 @@ class Card : virtual public iCard
         *
         **/
     	std::string	getType();
-        /**
-        * isUsable
-        * tells if a card can be used or not
-        * @param
-        *
-        * not done yet !!!
-        **/
-//        bool isUsable(Player* p);
 
         /**
         * getTotal
