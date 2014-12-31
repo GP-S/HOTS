@@ -5,13 +5,14 @@
 #include "../Card/iCard.h"
 #include "../Card/Card.h"
 #include <iostream>
+#include "iBoard.h"
 
 /**
 * The class Board is .
 * @author Nicolas Léger
 * @author François Denquin
 */
-class Board
+class Board : public iBoard
 {
 protected:
 	std::list<iCard*> *listCard;
