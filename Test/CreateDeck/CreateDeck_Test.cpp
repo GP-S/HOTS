@@ -57,12 +57,10 @@ void printHero(Hero *hero){
 	std::cout << "***********************Hero*********************" << std::endl;
 	std::cout <<	"   Name: " << hero->getName();
 	std::cout <<	"   cardType: " << hero->getType();
-	std::cout <<	"   hp: " << hero->getHp();
-	std::cout <<	"   race: " << hero->getRace() << std::endl;
+	std::cout <<	"   hp: " << hero->getHp() << std::endl;
 
 	for(size_t i = 0 ; i < ALLCAPA; i++)
 		printEffect(hero,capaName[i]);
-	}
 
 }
 
