@@ -7,10 +7,6 @@
 *
 **/
 
-//#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
-
-
-
 Card::Card()
 {
 	name = "";
@@ -41,32 +37,23 @@ void Card::calculateCost(){//modify when capacities are done
 
 	float fcost = 0.0;
 
-	// foreach(std::list<Capacity*>, capaList, it){
-	// 	fcost += (*it)->getEffect()->costVal(this);
-	// }
-
 	std::cout << "calculateCost yet " << std::endl;
 
 	std::for_each(capaList->begin(),capaList->end(), [fcost,this] (Capacity* it) mutable {
 
-			std::cout << "calculateCost: " << fcost << std::endl;
 			fcost += it->getEffect()->costVal(this);
+			std::cout << "calculateCost: " << fcost << std::endl;
 		}
 	);
 
 	cost = (int)fcost;
+	std::cout << "~~~~~~calculateCost and final cost: " << fcost << "," << cost << std::endl;
 
 }
 // i don't know if this is usefull anymore . keeping it just in case
 std::list <Capacity*>*  Card::findCapaByType(std::string effectType)//returns a list of all capacities of choosen type
 {
 	std::list<Capacity*>* capaListTemp = new std::list<Capacity*>();
-
-	// foreach(std::list<Capacity*>, capaList, it){
-	// 	if ((*it)->getEffect()->getType()==effectType){//compare the strings
-	// 		capaListTemp->push_back(*it);
-	// 	}
-	// }
 
 	std::for_each(capaList->begin(),capaList->end(), [effectType, capaListTemp] (Capacity* it){
 		if (it->getEffect()->getType()==effectType)//compare the strings
