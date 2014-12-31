@@ -185,7 +185,6 @@
 #  |     |____Neurone.h                                                             #
 #  |     |____StupideAgent.cpp                                                      #
 #  |     |____StupideAgent.h                                                        #
-#  |     |____testIA.cpp                                                            #
 #  |                                                                                #
 #  |                                                                                #
 #  |_____IHM                                                                        #
@@ -205,10 +204,6 @@
 #  |_____Network                                                                    #
 #  |     |____gameclient.cpp                                                        #
 #  |     |____gameclient.h                                                          #
-#  |     |____HelloPolycodeApp.cpp                                                  #
-#  |     |____HelloPolycodeApp.h                                                    #
-#  |     |____main.cpp                                                              #
-#  |     |____patron.cpp                                                            #
 #  |                                                                                #
 #  |                                                                                #
 #  |_____Test                                                                       #
