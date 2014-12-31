@@ -55,11 +55,16 @@ void Effect::setValue(int value){
 
 float Effect::costVal(iCard *card){
 
+	std::cout << "cost is null, i test costVal " << std::endl;
+
 	if(card == NULL)
 		return (float)value/2.0;
 	
-	if(type == "attack" | type == "hpMax")
+	if(type == "attack" | type == "hpMax"){
+
+		std::cout << "attack " << std::endl;
 		return (float)value/2.5;
+	}
 
 	if(type == "damage")
 		return 1+(0.9*value*value*value)/(10*value+1);

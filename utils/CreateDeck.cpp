@@ -1,6 +1,6 @@
 #include "CreateDeck.h"
 
-static const unsigned int sizeofdeck = 40;
+static const unsigned int sizeofdeck = 10;
 static const std::string namebeast[16] = {	"Socrate","Platon","Aristote","Confucius",
 											"Sénèque","Averroès","Montaigne","Descartes",
 											"Erasme","Voltaire","Moontesquieu","Rousseau",

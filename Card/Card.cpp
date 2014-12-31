@@ -45,8 +45,11 @@ void Card::calculateCost(){//modify when capacities are done
 	// 	fcost += (*it)->getEffect()->costVal(this);
 	// }
 
+	std::cout << "calculateCost yet " << std::endl;
+
 	std::for_each(capaList->begin(),capaList->end(), [fcost,this] (Capacity* it) mutable {
 
+			std::cout << "calculateCost: " << fcost << std::endl;
 			fcost += it->getEffect()->costVal(this);
 		}
 	);
