@@ -61,7 +61,7 @@ public:
  	* Add a list of cards at the Xth position of a board.
  	* @param std::list<iCard> *listCard pointer of the list of cards, unsigned int x wanted position. 
 	 */
-	virtual void addListCardX(std::list<iCard*> *listCard,unsigned int x) = 0;
+	virtual void addCardX(std::list<iCard*> *listCard,unsigned int x) = 0;
 	
 	/**
 	 * Return true if the list is full (like an egg), else 0.
@@ -75,12 +75,8 @@ public:
 	 * @param iCard *card pointer of card.
 	 * @return unsigned int.
 	 */
-	virtual unsigned int CardArrivalByTime(iCard *card) = 0;
+	//virtual unsigned int CardArrivalByTime(iCard *card) = 0;
 
-	/**
- 	* Destructor.
- 	*/
-	virtual ~iBoard() = 0;
 
 	virtual std::list<iCard*>::iterator begin() = 0;
 
