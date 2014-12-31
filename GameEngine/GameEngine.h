@@ -25,6 +25,7 @@
 #include "iGameSolver.h"
 #include "match.h"
 #include "../Board/iBoard.h"
+#include "../Board/Board.h"
 #include "../Card/iCard.h"
 #include "../Card/iHero.h"
 #include "../Card/iCreature.h"

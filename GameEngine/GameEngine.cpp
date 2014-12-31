@@ -77,7 +77,7 @@ Engine::iGameSimulator* Engine::GameEngine::getSimulator ( void )
 
 iBoard* Engine::GameEngine::getBoard ( void ) 
 {
- 	Board* board=new Board();
+ 	Board* board = new Board();
 
 	return dynamic_cast<iBoard*> (board);
 
