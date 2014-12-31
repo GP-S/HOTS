@@ -4,10 +4,10 @@
 #include "Board.h"
 
 /**
- * 
- * Write the functions in StackBoard.cpp, then write here the commentaries
- * @author Nicolas Léger
- */
+* Class of RegulatedBoard is: .
+* @author Nicolas Léger
+* @author Francois Denquin
+**/
 
 
 class RegulatedBoard : public Board
@@ -25,7 +25,7 @@ public:
 
 	/** 
 	* Create a board and initialize it with the pointer of listCard.  
-	* @param std::list<Card> *listCard pointer of a list of card.
+	* @param std::list<Card> *listCard pointer of a list of cards.
 	*/
 	RegulatedBoard(std::list<iCard*> *listCard);
 
@@ -49,7 +49,7 @@ public:
 	void addCardX(iCard *card,unsigned int x);
 
 	/**
-	* Add a list of cards at the Xth position of a board and at the ed of its regulated list.
+	* Add a list of cards at the Xth position of a board and at the end of its regulated list.
 	* @param std::list<Card> *listCard pointer of the list of cards, unsigned int x wanted position.
 	*/
 	void addCardX(std::list<iCard*> *listcard, unsigned int x);
