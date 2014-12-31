@@ -3,6 +3,12 @@
 
 #include "iCreature.h"
 
+/** 
+*   Class iBeast . derived from iCreature
+* @author Armand
+*
+**/
+
 class iBeast : virtual public iCreature
 {
     public:

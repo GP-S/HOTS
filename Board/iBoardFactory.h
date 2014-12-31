@@ -20,6 +20,13 @@
 #ifndef IBOARDFACTORY_H
 #define IBOARDFACTORY_H
 
+/** 
+* Class iBoardFactory . factory to create boards
+* @author Nicolas BELOUIN
+* @author Armand
+*
+**/
+
 #include "iBoard.h"
 
 
