@@ -17,12 +17,13 @@ template <class V,class U> class Match
 	typedef typename std::list<U*> listU_type;
 	public:
 		Match(){
-
+			GEObjects = new std::list<V*>();
+			IHMObjects = new std::list<U*>();
 		}
 		Match(listV_type* GEObjects,listU_type* IHMObject){
 
 			this->GEObjects=GEObjects;
-			this->IHMObject=IHMObject;
+			this->IHMObjects=IHMObject;
 		}
 		virtual ~Match(){
 		  
