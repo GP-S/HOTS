@@ -45,7 +45,7 @@ void printCard(Card *card){
 	std::cout <<	" name: " << card->getName() << std::endl;
 }
 
-void printListCard(std::list<Card*> *listCard){
+void printListCard(std::list<iCard*> *listCard){
 
 	std::cout << "Card: " << std::endl;
 
@@ -55,10 +55,10 @@ void printListCard(std::list<Card*> *listCard){
 	// 	std::cout <<	" name: " << (*it)->getName() << std::endl;
 	// }
 
-	std::for_each(listCard->begin(),listCard->end(), [] (Card* it){
- 		std::cout <<	" cost: " << it->getCost();
-		std::cout <<	" type: " << it->getType();
-		std::cout <<	" name: " << it->getName() << std::endl;
+	std::for_each(listCard->begin(),listCard->end(), [] (iCard* it){
+ 		std::cout <<	" cost: " << dynamic_cast<Card*>(it)->getCost();
+		std::cout <<	" type: " << dynamic_cast<Card*>(it)->getType();
+		std::cout <<	" name: " << dynamic_cast<Card*>(it)->getName() << std::endl;
 		}
 	);
 }
@@ -107,7 +107,7 @@ int main(int argc, char **argv){
 /*I print all cards in the list of cards*/
 	printEtape(": Some visual of all cards");
 
-	printListCard(reinterpret_cast<std::list<iCard*>*> (listOfCard));
+	printListCard(listOfCard);
 
 /*=================================etape  3=========================================*/
 /*Set the max size of all board*/

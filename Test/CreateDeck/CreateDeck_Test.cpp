@@ -85,16 +85,10 @@ int main(int argc, char **argv){
 
 
 	std::for_each(deck->begin(),deck->end(), [capa] (iCard* itcard){
-		printCard((Card*)itcard);
+		printCard(dynamic_cast<Card*> (itcard));
 
-		for(size_t i = 0 ; i < ALLCAPA; i++){
-
-			capa = dynamic_cast<Card*>(it)->findCapaByType(capaName[i]);
-			std::for_each(capa->begin(),capa->end(), [] (Capacity* itcapa){
-					printEffect(itcapa->getEffect());
-				}
-			);
-		}
+		for(size_t i = 0 ; i < ALLCAPA; i++)
+			printEffect(dynamic_cast<Card*> (itcard),capaName[i]);
 		}
 	);
 
