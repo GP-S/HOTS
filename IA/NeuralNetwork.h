@@ -30,7 +30,7 @@ public:
 	* Take the satifaction of HAL, learn, update andsend back new proposition;
 	* @param bool satisfied true if the last move was good false if not.
 	* @param ChosenOne the agent which was chosen if there was multiple possibilities
-	* @return return the list of agent allowed to play this turn
+	* @return return the list of agents allowed to play this turn
 	**/
 	void learn(std::list<Agent*> expectedOutPut);
 	void update();
