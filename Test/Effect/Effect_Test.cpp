@@ -108,13 +108,6 @@ int main(int argc, char **argv){
 	printCapacity(anotherCapacity);
 
 /*=================================etape  5=========================================*/
-/*iEffect and iCapacity*/
-	printEtape(": iEffect and iCapacity");
-
-
-
-
-/*=================================etape  5=========================================*/
 
 //destructor
 //~Effect();

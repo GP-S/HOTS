@@ -3,8 +3,6 @@
 static unsigned int etape = 0;
 static size_t increm = 0;
 
-//#define foreach(T, c, i) for(T::iterator i = c->begin(); i!=c->end(); ++i)
-
 void printEtape(std::string text){
 	std::cout << std::endl;
 	etape++;
@@ -49,12 +47,6 @@ void printListCard(std::list<iCard*> *listCard){
 
 	std::cout << "Card: " << std::endl;
 
-	// foreach(std::list<Card*>,listCard,it){
-	// 	std::cout <<	" cost: " << (*it)->getCost();
-	// 	std::cout <<	" type: " << (*it)->getType();
-	// 	std::cout <<	" name: " << (*it)->getName() << std::endl;
-	// }
-
 	std::for_each(listCard->begin(),listCard->end(), [] (iCard* it){
  		std::cout <<	" cost: " << dynamic_cast<Card*>(it)->getCost();
 		std::cout <<	" type: " << dynamic_cast<Card*>(it)->getType();
@@ -66,22 +58,6 @@ void printListCard(std::list<iCard*> *listCard){
 void printSizeBoard(Board *board, std::string name){
 	std::cout << "Board " << name << " size: " << board->getSize() << " maxSize: " << board->getMaxSize() << std::endl;
 }
-
-/*
-	Board();
-	Board(std::list<Card*> *listCard);
-	virtual iCard * getCardX(unsigned int x);
-	virtual iCard * takeCardX(unsigned int x);
-	virtual void deleteCardX(unsigned int x);
-	unsigned int getSize();
-	unsigned int getMaxSize();
-	void setMaxSize(unsigned int size);
-	virtual void addCardX(iCard *card,unsigned int x);
-	virtual void addCardX(std::list<iCard*> *listcard, unsigned int x);
-	bool isFull();
-	virtual ~Board();
-*/
-
 
 /*==================================================================================*/
 /*===================================MAIN===========================================*/

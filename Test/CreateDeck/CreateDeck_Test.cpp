@@ -77,26 +77,6 @@ int main(int argc, char **argv){
 	std::list<Capacity*> *capa = new std::list<Capacity*>();
 	std::cout << "Deck cree, size: " << deck->size() << std::endl;
 
-	// std::for_each(deck->begin(),deck->end(), [] (iCard* it){
-	// 	printCard(it);
-
-	// 	if(it->getType() == "beast"){
-	// 		printBeast((Beast*)it);
-
-	// 		std::cout << "    Effect: " << std::endl;
-	// 		printEffect(it,"attack");
-	// 		printEffect(it,"attackCount");
-	// 		printEffect(it,"attackCountMax");
-	// 		printEffect(it,"hp");
-	// 		printEffect(it,"hpMax");
-	// 	}
-
-	// 	if(it->getType() == "spell")
-	// 		printSpell((Spell*)it);
-	// 		printEffect(it,"damage");
-	// 	}
-	// );
-
 
 	std::for_each(deck->begin(),deck->end(), [capa] (iCard* itcard){
 
