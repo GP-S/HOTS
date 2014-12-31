@@ -85,7 +85,7 @@ int main(int argc, char **argv){
 	// );
 
 
-	std::for_each(deck->begin(),deck->end(), [capa] (iCard* itcard){
+	std::for_each(deck->begin(),deck->end(), [capa,card] (iCard* itcard){
 		card = dynamic_cast<Card*> (itcard);
 
 		if(card->getType() == "beast")
