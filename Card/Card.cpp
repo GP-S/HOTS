@@ -111,7 +111,7 @@ int Card::getTotal(std::string effectType)//returns the total of the values of a
 	// 		}
 	// 	}
 
-	std::for_each(capaList->begin(),capaList->end(),[total,effectType] (Capacity* capaIterator) mutable {
+	std::for_each(capaList->begin(),capaList->end(),[&total,effectType] (Capacity* capaIterator) mutable {
 		if (capaIterator->getActive())//if the capacity is active
 			if(capaIterator->getEffect()->getType()==effectType)//compare the strings
 				total+=capaIterator->getEffect()->getValue();

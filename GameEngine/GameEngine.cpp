@@ -38,10 +38,10 @@ Engine::GameEngine::GameEngine(std::list<iCard*>* deckPlayer0,std::list<iCard*>*
     addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_CONNECTED);
     addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_DISCONNECTED);
     addEventListener(this, Polycode::ServerEvent::EVENT_CLIENT_DATA);
-    /*
+    
     for (int i=0;i<16;i++){
 	    boards[i] = getBoard();
-    }*/
+    }
 
 }
 
@@ -528,10 +528,24 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	     Network::CreateCardAnswerStructType* answer = (Network::CreateCardAnswerStructType*) e->data;
 	     if(e->client->clientID==player0->clientID){
 	       matchCardPlayer0.add((iCard*)answer->serverRef,(void*)answer->clientRef);
+	       if((iCard*)answer->serverRef == heroPlayer0)
+		 addCardRequest ( player0, answer->clientRef, PLAYER0_HERO, 0 );
+	       else if ((iCard*)answer->serverRef == heroPlayer1)
+		 addCardRequest ( player0, answer->clientRef, PLAYER1_HERO, 0 );
+	       else
+		 addCardRequest ( player0, answer->clientRef, PLAYER0_DECK, 0 );
 	     }
 	     else if(e->client->clientID==player1->clientID) {
 	       matchCardPlayer1.add((iCard*)answer->serverRef,(void*)answer->clientRef);
-	     }}
+	       	       if((iCard*)answer->serverRef == heroPlayer0)
+		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER0_HERO), 0 );
+	       else if ((iCard*)answer->serverRef == heroPlayer1)
+		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER1_HERO), 0 );
+	       else
+		 addCardRequest ( player1, answer->clientRef, getOppositeBoard(PLAYER0_DECK), 0 );
+	     }
+	  }
+	     
 	     break;
 	 }
          break;
@@ -604,9 +618,7 @@ void Engine::GameEngine::initDecks () {
 	int imageID ;
 	std::for_each(deckPlayer0->begin(), deckPlayer0->end(), [&] (iCard* itCard) mutable {
 		//attack,defense,cost,title,description,imageID,matchCardPlayer0,matchCardPlayer1,boards,player0,player1
-		void* itCardIHM;
-		matchCardPlayer0.add(itCard,itCardIHM);
-		matchCardPlayer1.add(itCard,itCardIHM);
+
 		if(itCard->getType()=="beast")
 		{		
 			attack = itCard->getTotal("attack");
@@ -621,17 +633,14 @@ void Engine::GameEngine::initDecks () {
 		title = itCard->getName();
 		description = itCard->getType();
 		imageID = 0; //pending . WIP .
-		CreateCardRequest (player0, itCardIHM, attack,defense,cost,  title,  description,  imageID);
-		CreateCardRequest (player1, itCardIHM, attack,defense,cost,  title,  description,  imageID);
+		CreateCardRequest (player0, itCard, attack,defense,cost,  title,  description,  imageID);
+		CreateCardRequest (player1, itCard, attack,defense,cost,  title,  description,  imageID);
 		boards[PLAYER0_DECK]->addCardX(itCard,0);
-		addCardRequest ( player0, itCardIHM, PLAYER0_DECK, 0 );
-		addCardRequest ( player1, itCardIHM, getOppositeBoard(PLAYER0_DECK), 0 );
+
 	});
 	std::for_each(deckPlayer1->begin(), deckPlayer1->end(), [&] (iCard* itCard) mutable {
 		
 		void* itCardIHM;
-		matchCardPlayer0.add(itCard,itCardIHM);
-		matchCardPlayer1.add(itCard,itCardIHM);
 		if(itCard->getType()=="beast")
 		{		
 			attack = itCard->getTotal("attack");
@@ -646,11 +655,9 @@ void Engine::GameEngine::initDecks () {
 		title = itCard->getName();
 		description = itCard->getType();
 		imageID = 0; //pending . WIP .
-		CreateCardRequest (player0, itCardIHM, attack,defense,cost,  title,  description,  imageID);
-		CreateCardRequest (player1, itCardIHM, attack,defense,cost,  title,  description,  imageID);
+		CreateCardRequest (player0, itCard, attack,defense,cost,  title,  description,  imageID);
+		CreateCardRequest (player1, itCard, attack,defense,cost,  title,  description,  imageID);
 		boards[PLAYER1_DECK]->addCardX(itCard,0);
-		addCardRequest ( player0, itCardIHM, PLAYER1_DECK, 0 );
-		addCardRequest ( player1, itCardIHM, getOppositeBoard(PLAYER1_DECK), 0 );
 	});
   	
   	void* heroPlayer0IHM;
