@@ -38,21 +38,43 @@
 ############################## General information ##################################
 #####################################################################################
 #                                                                                   #
+#  HOTS is a game developed by engineering students from the graduate school ENSEA  #
+#                                                                                   #
+#  This game was developed as part of programming project in our last year of ENSEA #
 #                                                                                   #
 #                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
+#  Polycode is completely free and open source (MIT license), with all development  #
+#  happening publicly on Github. Its core is written in C++ and currently runs on   #
+#  Mac, Windows and Linux with iOS and Android support planned in the future.       #
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
 ##################### Copyright and licensing information ###########################
 #####################################################################################
 #                                                                                   #
+#          1) Polycode Licence                                                      #
 #                                                                                   #
+#     Copyright (C) 2014 by Ivan Safrin, Polycode Team                              #
 #                                                                                   #
+#     Permission is hereby granted, free of charge, to any person obtaining a copy  #
+#  of this software and associated documentation files (the "Software"), to deal    #
+#  in the Software without restriction, including without limitation the rights     #
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell        #
+#  copies of the Software, and to permit persons to whom the Software is            #
+#  furnished to do so, subject to the following conditions:                         #
 #                                                                                   #
+#     The above copyright notice and this permission notice shall be included in    #
+#  all copies or substantial portions of the Software.                              #
+#                                                                                   #
+#     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR    #
+#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,         #
+#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE      #
+#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER           #
+#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,    #
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN        #
+#  THE SOFTWARE.                                                                    #
+#                                                                                   #
+#          2)                                                                       #
 #                                                                                   #
 #                                                                                   #
 #                                                                                   #
@@ -61,20 +83,29 @@
 ########################## Installation instruction #################################
 #####################################################################################
 #                                                                                   #
+#    1) with a terminal go into the main repertory named HOTS                       #
 #                                                                                   #
+#    2) enter in terminal the following instruction:                                #
+#                     ./BuildLinux.sh                                               #
 #                                                                                   #
+#    3) now the MakeFile file was generated in Build folder                         #
 #                                                                                   #
+#    4) go into that repertory and enter the next instruction:                      #
+#                     make                                                          #
 #                                                                                   #
+#    5) now the executable of HOTS is created                                       #
 #                                                                                   #
+#    6) this execute is in repertory bin into Build repertory                       #
 #                                                                                   #
+#    7) you can execute our game with the next instruction:                         #
+#                    ./HOTS argument(see the next point)                            #
 #                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
+#    8) There is an unremovable argument, the following list is all arguments you   #
+#       can add to the instruction:                                                 #
+#          --single: Play a single player game against an AI                        #
+#          --server: Play a two  players game as the host                           #
+#          --c <serverAddress>: Play a two player game as a client to the given     #
+#                               server                                              #
 #                                                                                   #
 #####################################################################################
 ################################ Configuration ######################################
@@ -96,21 +127,16 @@
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
-#################################### FAQ ############################################
+###################################### FAQ ##########################################
 #####################################################################################
 #                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
-#                                                                                   #
+#  We haven't deploy the game yet, so we haven't usual question from yours clients  #
 #                                                                                   #
 #####################################################################################
-#################################### BUGS ###########################################
+###################################### BUGS #########################################
 #####################################################################################
 #                                                                                   #
-#                                                                                   #
+#  None as we know yet.                                                             #
 #                                                                                   #
 #                                                                                   #
 #                                                                                   #
@@ -118,7 +144,7 @@
 #                                                                                   #
 #                                                                                   #
 #####################################################################################
-############################## File manifest ########################################
+############################### File manifest #######################################
 #####################################################################################
 #                                                                                   #
 #  HOTS                                                                             #
@@ -264,141 +290,3 @@
 #                  Valérie Bousquié                                                 #
 #                                                                                   #
 #####################################################################################
-
-
-.------.
-|H.--. |
-| :/\: |
-| (__) |
-| '--'H|
-`------'
-.------.
-|O.--. |
-| :/\: |
-| :\/: |
-| '--'O|
-`------'
-.------.
-|T.--. |
-| :/\: |
-| (__) |
-| '--'T|
-`------'
-.------.
-|S.--. |
-| :/\: |
-| :\/: |
-| '--'S|
-`------'
-
-         /\    \                 /::\    \             /\    \                  /\    \         
-        /::\____\               /::::\    \           /::\    \                /::\    \        
-       /:::/    /              /::::::\    \          \:::\    \              /::::\    \       
-      /:::/    /              /::::::::\    \          \:::\    \            /::::::\    \      
-     /:::/    /              /:::/~~\:::\    \          \:::\    \          /:::/\:::\    \     
-    /:::/____/              /:::/    \:::\    \          \:::\    \        /:::/__\:::\    \    
-   /::::\    \             /:::/    / \:::\    \         /::::\    \       \:::\   \:::\    \   
-  /::::::\    \   _____   /:::/____/   \:::\____\       /::::::\    \    ___\:::\   \:::\    \  
- /:::/\:::\    \ /\    \ |:::|    |     |:::|    |     /:::/\:::\    \  /\   \:::\   \:::\    \ 
-/:::/  \:::\    /::\____\|:::|____|     |:::|    |    /:::/  \:::\____\/::\   \:::\   \:::\____\
-\::/    \:::\  /:::/    / \:::\    \   /:::/    /    /:::/    \::/    /\:::\   \:::\   \::/    /
- \/____/ \:::\/:::/    /   \:::\    \ /:::/    /    /:::/    / \/____/  \:::\   \:::\   \/____/ 
-          \::::::/    /     \:::\    /:::/    /    /:::/    /            \:::\   \:::\    \     
-           \::::/    /       \:::\__/:::/    /    /:::/    /              \:::\   \:::\____\    
-           /:::/    /         \::::::::/    /     \::/    /                \:::\  /:::/    /    
-          /:::/    /           \::::::/    /       \/____/                  \:::\/:::/    /     
-         /:::/    /             \::::/    /                                  \::::::/    /      
-        /:::/    /               \::/____/                                    \::::/    /       
-        \::/    /                 ~~                                           \::/    /        
-         \/____/                                                                \/____/         
-                                                                                                
-
-         _____               _______          _____                 _____          
-        /\    \             /::\    \        /\    \               /\    \         
-       /::\____\           /::::\    \      /::\    \             /::\    \        
-      /:::/    /          /::::::\    \     \:::\    \           /::::\    \       
-     /:::/    /          /::::::::\    \     \:::\    \         /::::::\    \      
-    /:::/    /          /:::/~~\:::\    \     \:::\    \       /:::/\:::\    \     
-   /:::/____/          /:::/    \:::\    \     \:::\    \     /:::/__\:::\    \    
-  /::::\    \         /:::/    / \:::\    \    /::::\    \    \:::\   \:::\    \   
- /::::::\    \   ____/:::/____/   \:::\____\  /::::::\    \ ___\:::\   \:::\    \  
-/:::/\:::\    \ /\    \:|    |     |:::|    |/:::/\:::\    \\   \:::\   \:::\    \ 
-:::/  \:::\    /::\____\|____|     |:::|    |:::/  \:::\____\\   \:::\   \:::\____\
-::/    \:::\  /:::/    /:\    \   /:::/    /:::/    \::/    /:\   \:::\   \::/    /
-\/____/ \:::\/:::/    /:::\    \ /:::/    /:::/    / \/____/:::\   \:::\   \/____/ 
-         \::::::/    / \:::\    /:::/    /:::/    /         \:::\   \:::\    \     
-          \::::/    /   \:::\__/:::/    /:::/    /           \:::\   \:::\____\    
-          /:::/    /     \::::::::/    /\::/    /             \:::\  /:::/    /    
-         /:::/    /       \::::::/    /  \/____/               \:::\/:::/    /     
-        /:::/    /         \::::/    /                          \::::::/    /      
-       /:::/    /           \::/____/                            \::::/    /       
-       \::/    /             ~~                                   \::/    /        
-        \/____/                                                    \/____/         
-                                                                                              
-                                                                                    
-HHHHHHHHH     HHHHHHHHH     OOOOOOOOO     TTTTTTTTTTTTTTTTTTTTTTT   SSSSSSSSSSSSSSS 
-H:::::::H     H:::::::H   OO:::::::::OO   T:::::::::::::::::::::T SS:::::::::::::::S
-H:::::::H     H:::::::H OO:::::::::::::OO T:::::::::::::::::::::TS:::::SSSSSS::::::S
-HH::::::H     H::::::HHO:::::::OOO:::::::OT:::::TT:::::::TT:::::TS:::::S     SSSSSSS
-  H:::::H     H:::::H  O::::::O   O::::::OTTTTTT  T:::::T  TTTTTTS:::::S            
-  H:::::H     H:::::H  O:::::O     O:::::O        T:::::T        S:::::S            
-  H::::::HHHHH::::::H  O:::::O     O:::::O        T:::::T         S::::SSSS         
-  H:::::::::::::::::H  O:::::O     O:::::O        T:::::T          SS::::::SSSSS    
-  H:::::::::::::::::H  O:::::O     O:::::O        T:::::T            SSS::::::::SS  
-  H::::::HHHHH::::::H  O:::::O     O:::::O        T:::::T               SSSSSS::::S 
-  H:::::H     H:::::H  O:::::O     O:::::O        T:::::T                    S:::::S
-  H:::::H     H:::::H  O::::::O   O::::::O        T:::::T                    S:::::S
-HH::::::H     H::::::HHO:::::::OOO:::::::O      TT:::::::TT      SSSSSSS     S:::::S
-H:::::::H     H:::::::H OO:::::::::::::OO       T:::::::::T      S::::::SSSSSS:::::S
-H:::::::H     H:::::::H   OO:::::::::OO         T:::::::::T      S:::::::::::::::SS 
-HHHHHHHHH     HHHHHHHHH     OOOOOOOOO           TTTTTTTTTTT       SSSSSSSSSSSSSSS  
-
- ___  ___      ________     __________    ________      
-|\  \|\  \    |\   __  \   |\____   ___\ |\   ____\     
-\ \  \\\  \   \ \  \|\  \  \|___ \  \__| \ \  \___|_    
- \ \   __  \   \ \  \\\  \      \ \  \    \ \_____  \   
-  \ \  \ \  \   \ \  \\\  \      \ \  \    \|____|\  \  
-   \ \  \ \  \   \ \  \\\  \      \ \  \     ____\_\  \ 
-    \ \__\ \__\   \ \_______\      \ \__\   |\_________\
-     \|__|\|__|    \|_______|       \|__|   \|_________|
-
-888    888  .d88888b.  88888888888  .d8888b.  
-888    888 d88P" "Y88b     888     d88P  Y88b 
-888    888 888     888     888     Y88b.      
-8888888888 888     888     888      "Y888b.   
-888    888 888     888     888         "Y88b. 
-888    888 888     888     888           "888 
-888    888 Y88b. .d88P     888     Y88b  d88P 
-888    888  "Y88888P"      888      "Y8888P"  
-
-   #       #       # #      ######   
-  ######## #       # #               
- #       #        #  ##   ########## 
-#      ##        #   # #       #     
-     ##        ##    #  #      #     
-   ##        ##      #        #      
- ##        ##        #      ##      
-
-88        88    ,ad8888ba,    888888888888   ad88888ba   
-88        88   d8"'    `"8b        88       d8"     "8b  
-88        88  d8'        `8b       88       Y8,          
-88aaaaaaaa88  88          88       88       `Y8aaaaa,    
-88""""""""88  88          88       88         `"""""8b,  
-88        88  Y8,        ,8P       88               `8b  
-88        88   Y8a.    .a8P        88       Y8a     a8P  
-88        88    `"Y8888Y"'         88        "Y88888P"   
-                                                        
-
-       _  ___   __  
- )_)  / )  )   (_ ` 
-( (  (_/  (   .__) 
-
-
-      _      _      ________     __________       __________       
-     | |    | |    |        |   |___    ___|     |   _______|         
-     | |    | |    |   __   |       |  |         |  |              
-     | |____| |    |  |  |  |       |  |         |  |_______       
-     |  ____  |    |  |  |  |       |  |         |_______   |   
-     | |    | |    |  |__|  |       |  |                 |  |    
-     | |    | |    |        |       |  |          _______|  |   
-     |_|    |_|    |________|       |__|         |__________| 
