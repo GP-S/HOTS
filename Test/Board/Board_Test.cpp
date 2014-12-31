@@ -45,7 +45,7 @@ void printCard(Card *card){
 	std::cout <<	" name: " << card->getName() << std::endl;
 }
 
-void printListCard(std::list<Card*> *listCard){
+void printListCard(std::list<iCard*> *listCard){
 
 	std::cout << "Card: " << std::endl;
 
@@ -55,10 +55,10 @@ void printListCard(std::list<Card*> *listCard){
 	// 	std::cout <<	" name: " << (*it)->getName() << std::endl;
 	// }
 
-	std::for_each(listCard->begin(),listCard->end(), [] (Card* it){
- 		std::cout <<	" cost: " << it->getCost();
-		std::cout <<	" type: " << it->getType();
-		std::cout <<	" name: " << it->getName() << std::endl;
+	std::for_each(listCard->begin(),listCard->end(), [] (iCard* it){
+ 		std::cout <<	" cost: " << dynamic_cast<Card*>(it)->getCost();
+		std::cout <<	" type: " << dynamic_cast<Card*>(it)->getType();
+		std::cout <<	" name: " << dynamic_cast<Card*>(it)->getName() << std::endl;
 		}
 	);
 }
@@ -94,7 +94,7 @@ int main(int argc, char **argv){
 /*Instance of some card, and three board: hand, cemetery and deck*/
  	printEtape(": Instanciation of hand, cemetery and deck and a list of card with newDeck");
 
- 	std::list<Card*> *listOfCard = newDeck();
+ 	std::list<iCard*> *listOfCard = newDeck();
 
 	iCard *tmpCard;
 
@@ -141,7 +141,7 @@ int main(int argc, char **argv){
 	// 	deck->addCardX((iCard*)(*it),0);
 	// }
 
-	std::for_each(listOfCard->begin(),listOfCard->end(), [] (Card* it){
+	std::for_each(listOfCard->begin(),listOfCard->end(), [deck] (iCard* it){
  		deck->addCardX((iCard*)it,0);
 		}
 	);
@@ -155,7 +155,7 @@ int main(int argc, char **argv){
 
 	for(size_t i = 0; i < 3; i++){
 		tmpCard = deck->getCardX(i);
-		printCard(dynamic_cast<Card*> tmpCard);
+		printCard(dynamic_cast<Card*> (tmpCard));
 	}
 
 

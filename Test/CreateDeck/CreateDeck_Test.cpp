@@ -1,5 +1,12 @@
 #include "CreateDeck.h"
 
+#define ALLCAPA 9
+
+static const std::string capaName[ALLCAPA] = {	"attack","attackCount","attackCountMax",
+												"damage","hp","hpMax","shards",
+												"shardsMax","effect"
+											 };
+
 void printBeast(Beast *beast){
 
 	std::cout << "  Beast: " << std::endl;
@@ -52,50 +59,36 @@ void printEffect(Card *card,std::string type){
 
 int main(int argc, char **argv){
 
-	std::list<Card*> *deck = newDeck();
-
+	std::list<iCard*> *deck = newDeck();
+	std::list<Capacity*> *capa = new std::list<Capacity*>();
 	std::cout << "Deck cree, size: " << deck->size() << std::endl;
 
-	// for(std::list<Card*>::iterator it = deck->begin(); it!=deck->end(); it++){
+	// std::for_each(deck->begin(),deck->end(), [] (iCard* it){
+	// 	printCard(it);
 
-	// 	printCard((*it));
-
-	// 	if((*it)->getType() == "beast"){
-	// 		printBeast((Beast*)(*it));
+	// 	if(it->getType() == "beast"){
+	// 		printBeast((Beast*)it);
 
 	// 		std::cout << "    Effect: " << std::endl;
-	// 		printEffect((*it),"attack");
-	// 		printEffect((*it),"attackCount");
-	// 		printEffect((*it),"attackCountMax");
-	// 		printEffect((*it),"hp");
-	// 		printEffect((*it),"hpMax");
+	// 		printEffect(it,"attack");
+	// 		printEffect(it,"attackCount");
+	// 		printEffect(it,"attackCountMax");
+	// 		printEffect(it,"hp");
+	// 		printEffect(it,"hpMax");
 	// 	}
 
-	// 	if((*it)->getType() == "spell")
-	// 		printSpell((Spell*)(*it));
-	// 		printEffect((*it),"damage");
+	// 	if(it->getType() == "spell")
+	// 		printSpell((Spell*)it);
+	// 		printEffect(it,"damage");
+	// 	}
+	// );
 
 
+	std::for_each(deck->begin(),deck->end(), [capa] (iCard* itcard){
+		printCard(dynamic_cast<Card*> (itcard));
 
-	// }
-
-	std::for_each(deck->begin(),deck->end(), [] (Card* it){
-		printCard(it);
-
-		if(it->getType() == "beast"){
-			printBeast((Beast*)it);
-
-			std::cout << "    Effect: " << std::endl;
-			printEffect(it,"attack");
-			printEffect(it,"attackCount");
-			printEffect(it,"attackCountMax");
-			printEffect(it,"hp");
-			printEffect(it,"hpMax");
-		}
-
-		if(it->getType() == "spell")
-			printSpell((Spell*)it);
-			printEffect(it,"damage");
+		for(size_t i = 0 ; i < ALLCAPA; i++)
+			printEffect(dynamic_cast<Card*> (itcard),capaName[i]);
 		}
 	);
 
