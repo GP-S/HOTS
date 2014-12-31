@@ -9,7 +9,7 @@ static const std::string capaName[ALLCAPA] = {	"attack","attackCount","attackCou
 
 void printBeast(Beast *beast){
 
-	std::cout << "  Beast: " << std::endl;
+	std::cout << "**********************Beast*********************" << std::endl;
 
 	std::cout <<	"   Name: " << beast->getName();
 	std::cout <<	"   cardType: " << beast->getType();
@@ -21,7 +21,7 @@ void printBeast(Beast *beast){
 
 void printSpell(Spell *spell){
 
-	std::cout << "  Spell: " << std::endl;
+	std::cout << "**********************Spell*********************" << std::endl;
 
 	std::cout <<	"   Name: " << spell->getName();
 	std::cout <<	"   cardType: " << spell->getType();
@@ -52,6 +52,18 @@ void printEffect(Card *card,std::string type){
 	}
 }
 
+void printHero(Hero *hero){
+
+	std::cout << "***********************Hero*********************" << std::endl;
+	std::cout <<	"   Name: " << hero->getName();
+	std::cout <<	"   cardType: " << hero->getType();
+	std::cout <<	"   hp: " << hero->getHp() << std::endl;
+
+	for(size_t i = 0 ; i < ALLCAPA; i++)
+		printEffect(hero,capaName[i]);
+
+}
+
 
 /*==================================================================================*/
 /*===================================MAIN===========================================*/
@@ -60,6 +72,8 @@ void printEffect(Card *card,std::string type){
 int main(int argc, char **argv){
 
 	std::list<iCard*> *deck = newDeck();
+	Hero* hero = newHero("Arthas");
+
 	std::list<Capacity*> *capa = new std::list<Capacity*>();
 	std::cout << "Deck cree, size: " << deck->size() << std::endl;
 
@@ -85,12 +99,20 @@ int main(int argc, char **argv){
 
 
 	std::for_each(deck->begin(),deck->end(), [capa] (iCard* itcard){
-		printCard(dynamic_cast<Card*> (itcard));
+
+		if(dynamic_cast<Card*>(itcard)->getType() == "beast")
+			printBeast((Beast*)dynamic_cast<Card*>(itcard));
+		else if(dynamic_cast<Card*>(itcard)->getType() == "spell")
+			printSpell((Spell*)dynamic_cast<Card*>(itcard));
+		else
+			printCard(dynamic_cast<Card*>(itcard));
 
 		for(size_t i = 0 ; i < ALLCAPA; i++)
-			printEffect(dynamic_cast<Card*> (itcard),capaName[i]);
+			printEffect(dynamic_cast<Card*>(itcard),capaName[i]);
 		}
 	);
+
+	printHero(hero);
 
 	std::cout << "Tout c'est bien passé ! ! ! " << std::endl;
 
