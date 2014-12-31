@@ -30,8 +30,8 @@
 void printHelp();
 
 int main (int argc, char** argv){
-  std::list<Card*> *firstDeck = newDeck();
-  std::list<Card*> *secondDeck = newDeck();
+  std::list<iCard*> *firstDeck = newDeck();
+  std::list<iCard*> *secondDeck = newDeck();
   Hero* p0=newHero("Player 0");
   Hero* p1=newHero("Player 1");
 
@@ -64,7 +64,7 @@ int main (int argc, char** argv){
 	
 	
   if(server)
-    Engine::GameEngine *ge= new Engine::GameEngine(reinterpret_cast<std::list<iCard*>*> (firstDeck),reinterpret_cast<std::list<iCard*>*> (secondDeck), p0,p1);
+    Engine::GameEngine *ge= new Engine::GameEngine((firstDeck),(secondDeck), p0,p1);
   
   PolycodeView *view = new PolycodeView("Hello Polycode!");
   IHM::PolycodeGUI::IHM *app = new IHM::PolycodeGUI::IHM(view, address, 1337);

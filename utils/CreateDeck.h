@@ -14,6 +14,6 @@
 int myRandom(unsigned int mod);
 
 Hero* newHero(std::string name);
-std::list<Card*>* newDeck();
+std::list<iCard*>* newDeck();
 
 #endif //CREATEDECK_H
