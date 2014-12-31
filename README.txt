@@ -83,8 +83,6 @@
 ########################## Installation instructions ################################
 #####################################################################################
 #                                                                                   #
-#    1)                                                                             #
-#                                                                                   #
 #    1) Open a terminal and go into the main repertory named "HOTS"                 #
 #                                                                                   #
 #    2) Enter the following instructions:                                           #
