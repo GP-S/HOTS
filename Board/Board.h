@@ -8,7 +8,7 @@
 #include "iBoard.h"
 
 /**
-* The class Board is .
+* The class Board is:
 * @author Nicolas Léger
 * @author François Denquin
 */
@@ -27,7 +27,7 @@ public:
 	
 	/** 
 	* Create a board and initialize it with the pointer of listCard.  
-	* @param std::list<Card> *listCard pointer of a list of card.
+	* @param std::list<Card> *listCard pointer of a list of cards.
 	*/
 	Board(std::list<iCard*> *listCard);
 	
