@@ -100,17 +100,17 @@ int main(int argc, char **argv){
 
 
 	std::for_each(deck->begin(),deck->end(), [capa,tmpcard] (iCard* itcard){
-		tmpcard = dynamic_cast<Card*> (itcard);
+		tmpcard = (Card*)itcard;
 
-		if(card->getType() == "beast")
-			printBeast((Beast*)card);
-		else if(card->getType() == "spell")
-			printSpell((Spell*)card);
+		if(tmpcard->getType() == "beast")
+			printBeast((Beast*)tmpcard);
+		else if(tmpcard->getType() == "spell")
+			printSpell((Spell*)tmpcard);
 		else
-			printCard(card);
+			printCard(tmpcard);
 
 		for(size_t i = 0 ; i < ALLCAPA; i++)
-			printEffect(dynamic_cast<Card*> (itcard),capaName[i]);
+			printEffect(tmpcard,capaName[i]);
 		}
 	);
 
