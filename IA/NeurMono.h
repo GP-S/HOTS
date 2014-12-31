@@ -25,7 +25,7 @@ public:
 	* Constructor
 	* @param char* entryTab List of all entry vector
 	* @param char* weitghList List of all weight corresponding to the entry
-	* @param Agent * agent referance to the neurone's agent assigned
+	* @param Agent * agent referent to the neurone's agent assigned
 	* @param int treshold try to guess...
 	**/
 	NeurMono(char * entryTab, char * weightList, int treshold, Agent * agent);
