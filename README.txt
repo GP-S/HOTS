@@ -27,7 +27,7 @@
 #                                                                                   #
 #  * General information                                                            #
 #  * Copyright and licensing information                                            #
-#  * Installation instructions                                                      #
+#  * Installation instructions                                                       #
 #  * Configuration                                                                  #
 #  * FAQ                                                                            #
 #  * BUGS                                                                           #
@@ -104,7 +104,7 @@
 #       arguments you can add to the instruction:                                   #
 #          --single: Play a single player game against an AI                        #
 #          --server: Play a two  players game as the host                           #
-#          --c <serverAddress>: Play a two players game as a client to the given    #
+#          --c <serverAddress>: Play a two players game as a client to the given     #
 #                               server                                              #
 #                                                                                   #
 #####################################################################################
