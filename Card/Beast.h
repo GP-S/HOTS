@@ -11,7 +11,7 @@
 /** 
 *   Class Beast . Derived from Creature  .
 * @author Armand
-* @author NicolasL
+* @author Nicolas Léger
 *
 **/
 /** @TODO :

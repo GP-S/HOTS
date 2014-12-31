@@ -7,13 +7,35 @@
 #include <iterator>
 #include <stdexcept>
 #include "iEffect.h"
+/** 
+*   Class Effect .
+* @author Armand
+* @author Nicolas Léger
+*
+**/
 
 
 class Effect : public iEffect
 {
     public:
+
+        /**
+        * Default constructor
+        * 
+        *
+        **/
     	Effect();
+    	/**
+        * Constructor
+        * @param std::string type
+        * @param std::string affinity
+        * @param int value
+        **/
 		Effect(std::string type,std::string affinity,int value);
+		/**
+        * Destructor
+        *
+        **/
     	~Effect();
 		std::string getType();
 		std::string getAffinity();

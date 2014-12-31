@@ -1,6 +1,12 @@
 #ifndef CREATEDECK_TEST_H
 #define CREATEDECK_TEST_H
 
+/** 
+*   File Test for CreateDeck
+* @author Nicolas Léger
+*
+**/
+
 #include "../../Card/Card.h"
 #include "../../Card/Spell.h"
 #include "../../Card/Creature.h"

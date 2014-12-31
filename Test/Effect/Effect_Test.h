@@ -1,6 +1,12 @@
 #ifndef EFFECT_TEST_H
 #define EFFECT_TEST_H
 
+/** 
+*   File Test for Effect
+* @author Nicolas Léger
+*
+**/
+
 #include "../../Effect/Effect.h"
 #include "../../Card/Capacity.h"
 #include <iostream>

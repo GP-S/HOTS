@@ -13,7 +13,7 @@
 /** 
 *   Class Creature . Derived from Card  .
 * @author Armand
-* @author NicolasL
+* @author Nicolas Léger
 *
 **/
 /** @TODO :

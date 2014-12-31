@@ -15,7 +15,7 @@
 /** 
 * Class Card . 
 * @author Armand
-* @author NicolasL
+* @author Nicolas Léger
 *
 **/
 

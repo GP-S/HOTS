@@ -1,6 +1,12 @@
 #ifndef BOARD_TEST_H
 #define BOARD_TEST_H
 
+/** 
+*   File Test for Board
+* @author Nicolas Léger
+*
+**/
+
 #include "../../Card/Card.h"
 #include "../../Card/Spell.h"
 #include "../../Card/Creature.h"

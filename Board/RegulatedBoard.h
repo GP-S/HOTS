@@ -6,7 +6,7 @@
 /**
  * 
  * Write the functions in StackBoard.cpp, then write here the commentaries
- * 
+ * @author Nicolas Léger
  */
 
 

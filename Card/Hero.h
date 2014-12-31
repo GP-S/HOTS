@@ -11,7 +11,6 @@
 /** 
 *   Class Hero . Derived from Creature  .
 * @author Armand
-* @author NicolasL
 *
 **/
 
