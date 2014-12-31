@@ -75,7 +75,6 @@ int main(int argc, char **argv){
 	Hero* hero = newHero("Arthas");
 
 	std::list<Capacity*> *capa = new std::list<Capacity*>();
-	Card *tmpcard = new Card();
 	std::cout << "Deck cree, size: " << deck->size() << std::endl;
 
 	// std::for_each(deck->begin(),deck->end(), [] (iCard* it){
@@ -99,18 +98,17 @@ int main(int argc, char **argv){
 	// );
 
 
-	std::for_each(deck->begin(),deck->end(), [capa,tmpcard] (iCard* itcard){
-		tmpcard = (Card*)itcard;
+	std::for_each(deck->begin(),deck->end(), [capa] (iCard* itcard){
 
-		if(tmpcard->getType() == "beast")
-			printBeast((Beast*)tmpcard);
-		else if(tmpcard->getType() == "spell")
-			printSpell((Spell*)tmpcard);
+		if(dynamic_cast<Card*>(itcard)->getType() == "beast")
+			printBeast((Beast*)dynamic_cast<Card*>(itcard));
+		else if(dynamic_cast<Card*>(itcard)->getType() == "spell")
+			printSpell((Spell*)dynamic_cast<Card*>(itcard));
 		else
-			printCard(tmpcard);
+			printCard(dynamic_cast<Card*>(itcard));
 
 		for(size_t i = 0 ; i < ALLCAPA; i++)
-			printEffect(tmpcard,capaName[i]);
+			printEffect(dynamic_cast<Card*>(itcard),capaName[i]);
 		}
 	);
 
