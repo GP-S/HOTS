@@ -28,12 +28,10 @@ Engine::GameEngine::GameEngine() : Server(1337,100)
     turn = 0;
 }
 
-Engine::GameEngine::GameEngine(std::list<iCard*>* deckPlayer0,std::list<iCard*>* deckPlayer1,iHero* heroPlayer0,iHero* heroPlayer1) : Server(1337,100)
+Engine::GameEngine::GameEngine(std::list<iCard*>* deckPlayer0,std::list<iCard*>* deckPlayer1,iHero* heroPlayer0,iHero* heroPlayer1) : Server(1337,100),
+  deckPlayer0(deckPlayer0), deckPlayer1(deckPlayer1), heroPlayer0(heroPlayer0), heroPlayer1(heroPlayer1)
 {
-    deckPlayer0=deckPlayer0;
-    deckPlayer1=deckPlayer1;
-    heroPlayer0=heroPlayer0;
-    heroPlayer1=heroPlayer1;
+
     turn = 0;
     player0=nullptr;
     player1=nullptr;

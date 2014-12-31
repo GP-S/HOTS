@@ -81,10 +81,10 @@ Hero* newHero(std::string name){
 
 }
 
-std::list<Card*>* newDeck(){
+std::list<iCard*>* newDeck(){
 
 	std::srand(std::time(0));
-	std::list<Card*> *deck = new std::list<Card*>();
+	std::list<iCard*> *deck = new std::list<iCard*>();
 	int strength = 0;
 	int life = 0;
 	int damage = 0;
@@ -106,7 +106,7 @@ std::list<Card*>* newDeck(){
 			spell->addCapacity(capa);
 			spell->calculateCost();
 			
-			deck->push_back((Card*)spell);
+			deck->push_back((iCard*)spell);
 
 		}
 		else{
@@ -146,7 +146,7 @@ std::list<Card*>* newDeck(){
 
 			beast->calculateCost();
 
-			deck->push_back((Card*)beast);
+			deck->push_back((iCard*)beast);
 		}
 	}
 
