@@ -18,22 +18,21 @@
 #include "ctime"
 
 /** 
-*  just for get a random number
+*  Create a new Beast object.
 *
 **/
-int myRandom(unsigned int mod);
+Beast* newBeast(std::string name = "",int hp = 0,int attack = 0,std::string race = "");
+
+/** 
+*  Create a new Spell object.
+*
+**/
+Spell* newBeast(std::string name = "",int damage = 0);
 
 /** 
 *  Create a new Hero object.
 *
 **/
-Hero* newHero(std::string name);
-
-/** 
-*  Create a full list of card.
-*  Cards are beast or spell
-*
-**/
-std::list<iCard*>* newDeck();
+Hero* newHero(std::string name = "",int hp = 0);
 
 #endif //CREATEDECK_H
