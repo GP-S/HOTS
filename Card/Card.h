@@ -7,7 +7,6 @@
 #include <iterator>
 #include <stdexcept>
 #include "Capacity.h"
-#include "Player.h"
 #include "iCard.h"
 #include <algorithm>
 
@@ -112,7 +111,6 @@ class Card : virtual public iCard
 		std::string				cardType;
         int                     cost;
         std::list<Capacity*> *  capaList;
-        Player*                 owner;
 
 };
 
