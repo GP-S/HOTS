@@ -18,7 +18,7 @@ Board::Board(std::list<iCard*> *listcard){
 iCard* Board::getCardX(unsigned int x){
   
   if(listCard->size() < x)
-    throw std::logic_error( "the number is to big" );
+    throw std::logic_error( "the number is too big (get)" );
   
   std::list<iCard*>::iterator it;
   
@@ -34,7 +34,7 @@ iCard* Board::getCardX(unsigned int x){
 iCard* Board::takeCardX(unsigned int x){
   
   if(listCard->size() < x)
-    throw std::logic_error( "the number is to big" );
+    throw std::logic_error( "the number is too big (take)" );
   
   std::list<iCard*>::iterator it;
   iCard*card;
@@ -55,7 +55,7 @@ iCard* Board::takeCardX(unsigned int x){
 void Board::deleteCardX(unsigned int x){
   
   if(listCard->size() < x)
-    throw std::logic_error( "the number is to big" );
+    throw std::logic_error( "the number is too big (delete)" );
   
   std::list<iCard*>::iterator it;
   

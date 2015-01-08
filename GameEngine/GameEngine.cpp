@@ -86,12 +86,12 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 {  	
 	int idOriginBoard=originIHMBoard;
 	int idDestinationBoard=destinationIHMBoard;
-
+/*
 	if((idOriginBoard-1)/7!=turn%2)
 	{//if the actions comes from a board that doesn't belong to the active player
 		throw std::logic_error( "you cann't use that board right now" ); 
 	}
-
+*/
   	iCard* playedCard = boards[idOriginBoard]->getCardX(originPosition);
   	//Player* activePlayer = (turn%2) ? (players->end()) : (players->begin()); 
 	/* Decide on what is the action performed
