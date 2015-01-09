@@ -17,10 +17,10 @@ Board::Board(std::list<iCard*> *listcard){
 
 iCard* Board::getCardX(unsigned int x){
   
-  if(listCard->size() < x)
-    
+  if(listCard->size() < x){
+    std::cout<<"size :"<<listCard->size()<<" index "<<x<<std::endl;
     throw std::logic_error( "the number is too big (get) " );
-  
+  }
   std::list<iCard*>::iterator it;
   
   it = listCard->begin();

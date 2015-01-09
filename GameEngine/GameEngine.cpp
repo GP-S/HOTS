@@ -440,11 +440,12 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 void Engine::GameEngine::beginTurn()
 {
 	//procs the effect of the beginning of the turn .
-	std::cout<<"beginning a turn"<<std::endl;
+	std::cout<<"beginning turn "<<turn<<std::endl;
 	//makes the current player draw
 	if(!(turn%2))
 	{//if it is player 0's turn
 		//increase the max shards of player 0
+	std::cout<<"player 0's turn"<<std::endl;
 		iHero* currentHero = dynamic_cast<iHero*> (boards[PLAYER0_HERO]->getCardX(0));
 		currentHero->setMaxShards(
 			currentHero->getTotal("maxShards")+1);
@@ -469,6 +470,7 @@ void Engine::GameEngine::beginTurn()
 	}
 	else
 	{//if it is player 1's turn
+	std::cout<<"player 1's turn"<<std::endl;
 		iHero* currentHero = dynamic_cast<iHero*> (boards[PLAYER1_HERO]->getCardX(0));
 		//increase the max shards of player 
 		currentHero->setMaxShards(
@@ -563,7 +565,7 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	       if(matchCardPlayer0.getSizeIHM()==matchCardPlayer1.getSizeIHM())
 	       {
 		   	playerDraws(0,3);
-			playerDraws(1,4);
+			playerDraws(1,2);//modifiy to 4
 			beginTurn();
 	       }
 	  }
@@ -704,7 +706,7 @@ void Engine::GameEngine::initDecks () {
 	CreateCardRequest (player1, heroPlayer1, attack,defense,cost,  title,  description,  imageID);
 	boards[PLAYER1_HERO]->addCardX(heroPlayer1,0);
 
-
+	std::cout<<"initDecks is done"<<std::endl;
 
 }
 
