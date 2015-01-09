@@ -5,6 +5,7 @@
 #include "../Card/iCard.h"
 #include "../Card/Card.h"
 #include <iostream>
+#include <string>
 #include "iBoard.h"
 
 /**

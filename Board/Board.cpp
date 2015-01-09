@@ -18,7 +18,8 @@ Board::Board(std::list<iCard*> *listcard){
 iCard* Board::getCardX(unsigned int x){
   
   if(listCard->size() < x)
-    throw std::logic_error( "the number is too big (get)" );
+    
+    throw std::logic_error( "the number is too big (get) " );
   
   std::list<iCard*>::iterator it;
   

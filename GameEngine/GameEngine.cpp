@@ -84,6 +84,7 @@ iBoard* Engine::GameEngine::getBoard ( void )
 void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //-------------- DOUBT HERE
 									int destinationIHMBoard, int destinationPosition)
 {  	
+	std::cout<<"using a card"<<std::endl;
 	int idOriginBoard=originIHMBoard;
 	int idDestinationBoard=destinationIHMBoard;
 /*
@@ -105,11 +106,13 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 			if(	idOriginBoard==PLAYER0_BOARD&&idDestinationBoard==PLAYER1_BOARD||
 				idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER0_BOARD)
 			{//if it is an attack on a beast
+				std::cout<<"beastAttackBeast"<<std::endl;
 				beastAttackBeast(idOriginBoard,idDestinationBoard,dynamic_cast<iBeast*> (playedCard),originPosition,destinationPosition);
 			}
 			if(	idOriginBoard==PLAYER0_BOARD&&idDestinationBoard==PLAYER1_HERO||
 				idOriginBoard==PLAYER1_BOARD&&idDestinationBoard==PLAYER0_HERO)
 			{//if it is an attack on the hero
+				std::cout<<"beastAttackHero"<<std::endl;
 				beastAttackHero(idOriginBoard,idDestinationBoard,dynamic_cast<iBeast*> (playedCard),originPosition,destinationPosition);
 			}
 
@@ -117,6 +120,7 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 		else if (	idOriginBoard==PLAYER0_HAND&&idDestinationBoard==PLAYER0_BOARD||
 					idOriginBoard==PLAYER1_HAND&&idDestinationBoard==PLAYER1_BOARD)
 		{//if the Beast is being played
+			std::cout<<"PlayBeast"<<std::endl;
 			playBeast(idOriginBoard,idDestinationBoard,dynamic_cast<iBeast*> (playedCard),originPosition,destinationPosition);
 		}
 	}
@@ -124,9 +128,11 @@ void Engine::GameEngine::useCard(	int originIHMBoard, int originPosition, //----
 	{
 		if (idOriginBoard==PLAYER0_HAND||idOriginBoard==PLAYER1_HAND)
 		{//if the spell is played from the hand
+			std::cout<<"PlaySPell"<<std::endl;
 			playSpell(idOriginBoard,idDestinationBoard, playedCard,originPosition,destinationPosition);
 		}
 	}
+	std::cout<<"end of useCard"<<std::endl;
 }
 
 void Engine::GameEngine::endTurn()
@@ -144,8 +150,9 @@ void Engine::GameEngine::endTurn()
 		}); 
 	});
 //--------
-	turn++; 
 	*/
+std::cout<<"ending a turn"<<std::endl;
+	turn++; 
 	beginTurn();
 }
 
@@ -392,6 +399,7 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 	{//if it is the Player1
 		for (int i=0;i<cardsDrawn;i++)
 		{
+		std::cout<<"player 0 drawing"<<std::endl;
 			//takes the first card of the deck
 			iCard* drawnCard = boards[PLAYER0_DECK]->takeCardX(0);
 			void* drawnCardIHMCurrent = (getCurrentPlayerCards())[(drawnCard)];
@@ -410,7 +418,8 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 	else
 	{
 		for (int i=0;i<cardsDrawn;i++)
-		{
+		{	
+			std::cout<<"player 1 drawing"<<std::endl;
 			//takes the first card of the deck
 			iCard* drawnCard = boards[PLAYER1_DECK]->takeCardX(0);
 			void* drawnCardIHMCurrent = (getCurrentPlayerCards())[(drawnCard)];
@@ -431,7 +440,7 @@ void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this sho
 void Engine::GameEngine::beginTurn()
 {
 	//procs the effect of the beginning of the turn .
-
+	std::cout<<"beginning a turn"<<std::endl;
 	//makes the current player draw
 	if(!(turn%2))
 	{//if it is player 0's turn
@@ -456,7 +465,7 @@ void Engine::GameEngine::beginTurn()
 		std::for_each(boards[PLAYER0_BOARD]->begin(), boards[PLAYER0_BOARD]->end(), [] (iCard* itCard) {
 			dynamic_cast<iBeast*> (itCard)->resetAttackCount();	
 		});
-		playerDraws(getCurrentPlayerNumber(),1);
+		playerDraws(0,1);
 	}
 	else
 	{//if it is player 1's turn
@@ -481,7 +490,7 @@ void Engine::GameEngine::beginTurn()
 		std::for_each(boards[PLAYER1_BOARD]->begin(), boards[PLAYER1_BOARD]->end(), [] (iCard* itCard) {
 			dynamic_cast<iBeast*> (itCard)->resetAttackCount();	
 		});
-		playerDraws(getCurrentPlayerNumber(),1);
+		playerDraws(1,1);
 	}
 }
 
