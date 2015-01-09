@@ -23,6 +23,17 @@ Beast* newBeast(std::string name,int hp,int attack,std::string race){
 
 	for(size_t i = 0; i < nbeffectbeast; i++){
 
+/*		switch (i){
+			case 1,2:	//hp, hpMax
+				value = hp; break;
+			case 3:		//attack
+				value = attack; break;
+			case 5:		//attackCountMax
+				value = 1; break;
+			case default:
+				value = 0;
+		}*/
+
 		if(nameeffectbeast[i] == "hp" | nameeffectbeast[i] == "hpMax")
 			value = hp;
 		else if(nameeffectbeast[i] == "attack")
