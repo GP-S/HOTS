@@ -395,43 +395,43 @@ void Engine::GameEngine::beastAttackHero(	int idOriginBoard,int idDestinationBoa
 
 void Engine::GameEngine::playerDraws(int playerNumber,int cardsDrawn){//this should work for v1 since there is no effect that makes a player draw .
 
-	if(!(playerNumber%2))
-	{//if it is the Player1
+	if(playerNumber==0)
+	{//if it is the Player0
 		for (int i=0;i<cardsDrawn;i++)
 		{
 		std::cout<<"player 0 drawing"<<std::endl;
 			//takes the first card of the deck
 			iCard* drawnCard = boards[PLAYER0_DECK]->takeCardX(0);
-			void* drawnCardIHMCurrent = (getCurrentPlayerCards())[(drawnCard)];
-			void* drawnCardIHMNonCurrent = (getNonCurrentPlayerCards())[(drawnCard)];
-			removeCardRequest(getCurrentPlayer(), PLAYER0_DECK, 0);
-			removeCardRequest(getNonCurrentPlayer(), getOppositeBoard(PLAYER0_DECK), 0);
+			void* drawnCardIHMCurrent = (matchCardPlayer0)[(drawnCard)];
+			void* drawnCardIHMNonCurrent = (matchCardPlayer1)[(drawnCard)];
+			removeCardRequest(player0, PLAYER0_DECK, 0);
+			removeCardRequest(player1, getOppositeBoard(PLAYER0_DECK), 0);
 			if (!boards[PLAYER0_HAND]->isFull())
 			{//if the hand isn't full
 				//adds the card the the hand
 				boards[PLAYER0_HAND]->addCardX(drawnCard, 0);
-				addCardRequest(getCurrentPlayer(),drawnCardIHMCurrent, PLAYER0_HAND, 0);
-				addCardRequest(getNonCurrentPlayer(),drawnCardIHMNonCurrent, getOppositeBoard(PLAYER0_HAND), 0);
+				addCardRequest(player0,drawnCardIHMCurrent, PLAYER0_HAND, 0);
+				addCardRequest(player1,drawnCardIHMNonCurrent, getOppositeBoard(PLAYER0_HAND), 0);
 			}
 		}	
 	}
 	else
-	{
+	{//if it is the Player1
 		for (int i=0;i<cardsDrawn;i++)
 		{	
 			std::cout<<"player 1 drawing"<<std::endl;
 			//takes the first card of the deck
 			iCard* drawnCard = boards[PLAYER1_DECK]->takeCardX(0);
-			void* drawnCardIHMCurrent = (getCurrentPlayerCards())[(drawnCard)];
-			void* drawnCardIHMNonCurrent = (getNonCurrentPlayerCards())[(drawnCard)];
-			removeCardRequest(getCurrentPlayer(), PLAYER1_DECK, 0);
-			removeCardRequest(getNonCurrentPlayer(), getOppositeBoard(PLAYER1_DECK), 0);
+			void* drawnCardIHMCurrent = (matchCardPlayer0)[(drawnCard)];
+			void* drawnCardIHMNonCurrent = (matchCardPlayer1)[(drawnCard)];
+			removeCardRequest(player0, PLAYER1_DECK, 0);
+			removeCardRequest(player1, getOppositeBoard(PLAYER1_DECK), 0);
 			if (!boards[PLAYER1_HAND]->isFull())
 			{//if the hand isn't full
 				//adds the card the the hand
 				boards[PLAYER1_HAND]->addCardX(drawnCard, 0);
-				addCardRequest(getCurrentPlayer(),drawnCardIHMCurrent, PLAYER1_HAND, 0);
-				addCardRequest(getNonCurrentPlayer(),drawnCardIHMNonCurrent, getOppositeBoard(PLAYER1_HAND), 0);
+				addCardRequest(player0,drawnCardIHMCurrent, PLAYER1_HAND, 0);
+				addCardRequest(player1,drawnCardIHMNonCurrent, getOppositeBoard(PLAYER1_HAND), 0);
 			}
 		}
 	}
