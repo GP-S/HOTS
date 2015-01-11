@@ -565,7 +565,7 @@ void Engine::GameEngine::handleEvent ( Polycode::Event* event ) {
 	       if(matchCardPlayer0.getSizeIHM()==matchCardPlayer1.getSizeIHM())
 	       {
 		   	playerDraws(0,3);
-			playerDraws(1,2);//modifiy to 4
+			playerDraws(1,4);//modifiy to 4
 			beginTurn();
 	       }
 	  }
