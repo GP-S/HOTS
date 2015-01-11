@@ -271,11 +271,11 @@
 ################################## Credits ##########################################
 #####################################################################################
 #                                                                                   #
-# Programmer:      Thibault Cattelani                                               #
-#                  Nicolas Belouin                                                  #
-#                  Armand Verstraete                                                #
+# Programmer:      Nicolas Belouin                                                  #
+#                  Thibault Cattelani                                               #
 #                  François Denquin                                                 #
 #                  Nicolas Léger                                                    #
+#                  Armand Verstraete                                                #
 #                                                                                   #
 # Graphic artist:                                                                   #
 #                  Valérie Bousquié                                                 #
