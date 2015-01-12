@@ -3,7 +3,10 @@
 
 IHM::PolycodeGUI::IHM::IHM ( PolycodeView* view, string serverAddress, int serverPort ) {
 
-    core = new POLYCODE_CORE ( view, 1280,720,false,true,0,0,90, 0, true );
+    core = new POLYCODE_CORE ( view, 1280,720,false,true,0,0,60, 0, true );
+    
+    CoreServices::getInstance()->getRenderer()->enableScissor(true);
+    CoreServices::getInstance()->getRenderer()->setScissorBox(Polycode::Rectangle(0, 0, 1280, 720));
 
     CoreServices::getInstance()->getResourceManager()->addArchive ( "Resources/default.pak" );
     CoreServices::getInstance()->getResourceManager()->addDirResource ( "default", false );
@@ -263,7 +266,7 @@ void IHM::PolycodeGUI::IHM::initBoard() {
     scene->addCollisionChild ( p1Battlefield,CollisionEntity::SHAPE_MESH );
     
     p1Hero = new Board (1,false,true,false);
-    p1Hero->setPosition( 0, Card::CARD_THICK/2+10, -(Card::CARD_HEIGHT/2+10+10));
+    p1Hero->setPosition( 0, Card::CARD_THICK/2+20, -(Card::CARD_HEIGHT/2+10+10));
     scene->addCollisionChild( p1Hero, CollisionEntity::SHAPE_MESH);
 }
 
