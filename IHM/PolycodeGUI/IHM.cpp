@@ -27,12 +27,12 @@ IHM::PolycodeGUI::IHM::IHM ( PolycodeView* view, string serverAddress, int serve
     button->setPosition(core->getXRes()-2*button->getWidth()-20,core->getYRes()/2-2*button->getHeight()/2);
     screen->rootEntity.processInputEvents = true;
     
-    p1Shards = new SceneLabel("0/0", 17,"Script",Label::ANTIALIAS_FULL,1.6);
+    p1Shards = new SceneLabel("0/0", 17,"Script",Label::ANTIALIAS_FULL,16);
     p1Shards->setColorInt(255,255,255,255);
     p1Shards->setPosition(10,10);
     screen->addChild(p1Shards);
     
-    p0Shards = new SceneLabel("0/0", 17,"Script",Label::ANTIALIAS_FULL,1.6);
+    p0Shards = new SceneLabel("0/0", 17,"Script",Label::ANTIALIAS_FULL,16);
     p0Shards->setColorInt(255,255,255,255);
     p0Shards->setPosition(core->getXRes()-2*p0Shards->getWidth()-10,core->getYRes()-2*p0Shards->getHeight()-10);
     screen->addChild(p0Shards);
